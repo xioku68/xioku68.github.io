@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Kali Linux 淇敼瀹氬埗鏁欑▼ 閫傜敤鍦烘櫙锛欻exStrike-AI 椤圭洰 Kali VM锛?92.168.56.138锛? PentAGI Docker Kali 闀滃儚 | 2026-07-08鍩轰簬 Kali Linux 2024.x &#x2F; 2025.x   鐩綍 Kali VM 鍩虹鐜淇敼 Kali VM 绯荤粺浼樺寲涓庢€ц兘璋冧紭 [Kali VM 宸ュ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kali Linux修改定制教程">
+<meta property="og:url" content="http://example.com/2026/07/09/Kali%20Linux%20%E4%BF%AE%E6%94%B9%E5%AE%9A%E5%88%B6%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="xiokuの小さな世界">
+<meta property="og:description" content="Kali Linux 淇敼瀹氬埗鏁欑▼ 閫傜敤鍦烘櫙锛欻exStrike-AI 椤圭洰 Kali VM锛?92.168.56.138锛? PentAGI Docker Kali 闀滃儚 | 2026-07-08鍩轰簬 Kali Linux 2024.x &#x2F; 2025.x   鐩綍 Kali VM 鍩虹鐜淇敼 Kali VM 绯荤粺浼樺寲涓庢€ц兘璋冧紭 [Kali VM 宸ュ">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-07-09T08:07:15.000Z">
+<meta property="article:modified_time" content="2026-07-09T08:07:16.049Z">
+<meta property="article:author" content="Xioku">
+<meta property="article:tag" content="Kali">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="渗透测试">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2026/07/09/Kali%20Linux%20%E4%BF%AE%E6%94%B9%E5%AE%9A%E5%88%B6%E6%95%99%E7%A8%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Kali Linux修改定制教程 | xiokuの小さな世界</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">xiokuの小さな世界</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">xioku的小破站</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-resources">
+
+    <a href="/resources/" rel="section"><i class="download fa-fw"></i>资源</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/07/09/Kali%20Linux%20%E4%BF%AE%E6%94%B9%E5%AE%9A%E5%88%B6%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Xioku">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xiokuの小さな世界">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Kali Linux修改定制教程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-07-09 16:07:15 / Modified: 16:07:16" itemprop="dateCreated datePublished" datetime="2026-07-09T16:07:15+08:00">2026-07-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Kali-Linux-淇敼瀹氬埗鏁欑▼"><a href="#Kali-Linux-淇敼瀹氬埗鏁欑▼" class="headerlink" title="Kali Linux 淇敼瀹氬埗鏁欑▼"></a>Kali Linux 淇敼瀹氬埗鏁欑▼</h1><blockquote>
+<p>閫傜敤鍦烘櫙锛欻exStrike-AI 椤圭洰 Kali VM锛?92.168.56.138锛? PentAGI Docker Kali 闀滃儚 | 2026-07-08<br>鍩轰簬 Kali Linux 2024.x &#x2F; 2025.x</p>
+</blockquote>
+<hr>
+<h2 id="鐩綍"><a href="#鐩綍" class="headerlink" title="鐩綍"></a>鐩綍</h2><ol>
+<li><a href="#1-kali-vm-%E9%8D%A9%E8%99%B9%EE%94%85%E9%90%9C%EE%88%9A%EE%95%A8%E6%B7%87%EE%86%BD%E6%95%BC">Kali VM 鍩虹鐜淇敼</a></li>
+<li><a href="#2-kali-vm-%E7%BB%AF%E8%8D%A4%E7%B2%BA%E6%B5%BC%E6%A8%BA%E5%AF%B2%E6%B6%93%E5%BA%A2%E2%82%AC%D1%86%E5%85%98%E7%92%8B%E5%86%A7%E7%B4%AD">Kali VM 绯荤粺浼樺寲涓庢€ц兘璋冧紭</a></li>
+<li>[Kali VM 宸ュ叿閾炬墿灞昡(#3-kali-vm-宸ュ叿閾炬墿灞?</li>
+<li><a href="#4-kali-vm-%E7%BC%83%E6%88%A0%E7%B2%B6%E6%B6%93%E5%B7%97sh%E9%96%B0%E5%B6%87%E7%96%86">Kali VM 缃戠粶涓嶴SH閰嶇疆</a></li>
+<li><a href="#5-pentagi-kali-docker-%E9%97%80%E6%BB%83%E5%84%9A%E7%80%B9%E6%B0%AC%E5%9F%97">PentAGI Kali Docker 闀滃儚瀹氬埗</a></li>
+<li><a href="#6-%E9%91%B7%EE%81%84%E7%95%BE%E6%B6%94?kali-docker-%E9%97%80%E6%BB%83%E5%84%9A%E9%8F%8B%E5%8B%AB%E7%BC%93">鑷畾涔?Kali Docker 闀滃儚鏋勫缓</a></li>
+<li>[Kali 绯荤粺澶囦唤涓庢仮澶峕(#7-kali-绯荤粺澶囦唤涓庢仮澶?</li>
+<li>[甯歌闂涓庢帓閿橾(#8-甯歌闂涓庢帓閿?</li>
+</ol>
+<hr>
+<h2 id="1-Kali-VM-鍩虹鐜淇敼"><a href="#1-Kali-VM-鍩虹鐜淇敼" class="headerlink" title="1. Kali VM 鍩虹鐜淇敼"></a>1. Kali VM 鍩虹鐜淇敼</h2><h3 id="1-1-淇敼绯荤粺瀵嗙爜"><a href="#1-1-淇敼绯荤粺瀵嗙爜" class="headerlink" title="1.1 淇敼绯荤粺瀵嗙爜"></a>1.1 淇敼绯荤粺瀵嗙爜</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 淇敼褰撳墠鐢ㄦ埛瀵嗙爜</span></span><br><span class="line">passwd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 淇敼 root 瀵嗙爜锛堥渶 root 鏉冮檺锛?sudo passwd root</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 淇敼鐗瑰畾鐢ㄦ埛瀵嗙爜</span></span><br><span class="line">sudo passwd &lt;username&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-娣诲姞鏂扮敤鎴"><a href="#1-2-娣诲姞鏂扮敤鎴" class="headerlink" title="1.2 娣诲姞鏂扮敤鎴?"></a>1.2 娣诲姞鏂扮敤鎴?</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 娣诲姞鏅€氱敤鎴?sudo adduser &lt;username&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 灏嗙敤鎴峰姞鍏?sudo 缁?sudo usermod -aG sudo &lt;username&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍒涘缓鍏锋湁 root 鏉冮檺鐨勭敤鎴?sudo useradd -m -s /bin/bash &lt;username&gt;</span></span><br><span class="line">sudo passwd &lt;username&gt;</span><br><span class="line">sudo usermod -aG sudo &lt;username&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-閰嶇疆涓枃璇█鐜"><a href="#1-3-閰嶇疆涓枃璇█鐜" class="headerlink" title="1.3 閰嶇疆涓枃璇█鐜"></a>1.3 閰嶇疆涓枃璇█鐜</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鏇存柊杞欢鍖呭垪琛?sudo apt update</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 瀹夎涓枃瀛椾綋鏀寔</span></span><br><span class="line">sudo apt install fonts-wqy-microhei fonts-wqy-zenhei -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 瀹夎涓枃杈撳叆娉曪紙鍙€夛級</span></span><br><span class="line">sudo apt install fcitx fcitx-googlepinyin -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 閰嶇疆璇█鐜</span></span><br><span class="line">sudo dpkg-reconfigure locales</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍦ㄥ脊鍑虹晫闈腑閫夋嫨锛?# zh_CN.UTF-8 UTF-8锛堝嬀閫夛級</span></span><br><span class="line"><span class="comment"># 榛樿 locale 閫夋嫨 zh_CN.UTF-8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鎴栬€呯洿鎺ヤ慨鏀归厤缃枃浠?sudo sed -i &#x27;s/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/&#x27; /etc/locale.gen</span></span><br><span class="line">sudo locale-gen</span><br><span class="line">sudo update-locale LANG=zh_CN.UTF-8 LANGUAGE=zh_CN:zh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 閲嶅惎鍚庣敓鏁?sudo reboot</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4-淇敼绯荤粺鏃跺尯"><a href="#1-4-淇敼绯荤粺鏃跺尯" class="headerlink" title="1.4 淇敼绯荤粺鏃跺尯"></a>1.4 淇敼绯荤粺鏃跺尯</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鏌ョ湅褰撳墠鏃跺尯</span></span><br><span class="line">timedatectl</span><br><span class="line"></span><br><span class="line"><span class="comment"># 璁剧疆涓轰笂娴锋椂鍖?sudo timedatectl set-timezone Asia/Shanghai</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 楠岃瘉</span></span><br><span class="line"><span class="built_in">date</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-5-淇敼涓绘満鍚"><a href="#1-5-淇敼涓绘満鍚" class="headerlink" title="1.5 淇敼涓绘満鍚?"></a>1.5 淇敼涓绘満鍚?</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鏌ョ湅褰撳墠涓绘満鍚?hostnamectl</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 淇敼涓绘満鍚?sudo hostnamectl set-hostname &lt;new-hostname&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 淇敼 hosts 鏂囦欢</span></span><br><span class="line">sudo sed -i <span class="string">&quot;s/127.0.1.1.*/127.0.1.1 &lt;new-hostname&gt;/&quot;</span> /etc/hosts</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-Kali-VM-绯荤粺浼樺寲涓庢€ц兘璋冧紭"><a href="#2-Kali-VM-绯荤粺浼樺寲涓庢€ц兘璋冧紭" class="headerlink" title="2. Kali VM 绯荤粺浼樺寲涓庢€ц兘璋冧紭"></a>2. Kali VM 绯荤粺浼樺寲涓庢€ц兘璋冧紭</h2><h3 id="2-1-绯荤粺鏇存柊"><a href="#2-1-绯荤粺鏇存柊" class="headerlink" title="2.1 绯荤粺鏇存柊"></a>2.1 绯荤粺鏇存柊</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鍏ㄩ噺鏇存柊锛堥」鐩幆澧冧娇鐢?HexStrike-AI 鍏堢‘璁や笉鐮村潖宸ュ叿閾撅級</span></span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade -y</span><br><span class="line">sudo apt dist-upgrade -y</span><br><span class="line">sudo apt autoremove -y</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-SSH-鏈嶅姟浼樺寲锛堥拡瀵硅繙绋嬭繛鎺ュ満鏅級"><a href="#2-2-SSH-鏈嶅姟浼樺寲锛堥拡瀵硅繙绋嬭繛鎺ュ満鏅級" class="headerlink" title="2.2 SSH 鏈嶅姟浼樺寲锛堥拡瀵硅繙绋嬭繛鎺ュ満鏅級"></a>2.2 SSH 鏈嶅姟浼樺寲锛堥拡瀵硅繙绋嬭繛鎺ュ満鏅級</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 缂栬緫 SSH 閰嶇疆</span></span><br><span class="line">sudo nano /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
+
+<p>鎺ㄨ崘淇敼椤癸細</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鍏佽 root 鐧诲綍锛堟牴鎹渶瑕侊級</span></span><br><span class="line">PermitRootLogin <span class="built_in">yes</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍚敤瀵嗛挜璁よ瘉</span></span><br><span class="line">PubkeyAuthentication <span class="built_in">yes</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 淇濇寔闀胯繛鎺ワ紙闃叉 SSH 瓒呮椂鏂紑锛?ClientAliveInterval 60</span></span><br><span class="line">ClientAliveCountMax 5</span><br><span class="line"></span><br><span class="line"><span class="comment"># 淇敼 SSH 绔彛锛堝畨鍏ㄦ€э級</span></span><br><span class="line">Port 22  <span class="comment"># 鍙敼涓哄叾浠栫鍙ｅ 2222</span></span><br></pre></td></tr></table></figure>
+
+<p>搴旂敤閰嶇疆锛?</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart ssh</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-纾佺洏绌洪棿绠＄悊"><a href="#2-3-纾佺洏绌洪棿绠＄悊" class="headerlink" title="2.3 纾佺洏绌洪棿绠＄悊"></a>2.3 纾佺洏绌洪棿绠＄悊</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鏌ョ湅纾佺洏浣跨敤鎯呭喌</span></span><br><span class="line"><span class="built_in">df</span> -h</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鏌ョ湅澶ф枃浠?du -sh /* 2&gt;/dev/null | sort -rh | head -10</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 娓呯悊 apt 缂撳瓨</span></span><br><span class="line">sudo apt clean</span><br><span class="line">sudo apt autoclean</span><br><span class="line"></span><br><span class="line"><span class="comment"># 娓呯悊鏃у唴鏍革紙璋ㄦ厧鎿嶄綔锛?sudo apt autoremove --purge -y</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 娓呯悊鏃ュ織</span></span><br><span class="line">sudo journalctl --vacuum-time=7d</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-鎵╁睍纾佺洏绌洪棿锛圴Mware-VM锛"><a href="#2-4-鎵╁睍纾佺洏绌洪棿锛圴Mware-VM锛" class="headerlink" title="2.4 鎵╁睍纾佺洏绌洪棿锛圴Mware VM锛?"></a>2.4 鎵╁睍纾佺洏绌洪棿锛圴Mware VM锛?</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鍦?VMware 涓厛鎵╁睍铏氭嫙纾佺洏澶у皬锛岀劧鍚庡湪 Kali 涓墽琛岋細</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鏌ョ湅褰撳墠鍒嗗尯</span></span><br><span class="line">sudo fdisk -l</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鎵╁睍鍒嗗尯锛堜互 /dev/sda3 涓轰緥锛?sudo growpart /dev/sda 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鎵╁睍鏂囦欢绯荤粺锛坋xt4锛?sudo resize2fs /dev/sda3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 楠岃瘉</span></span><br><span class="line"><span class="built_in">df</span> -h</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5-绂佺敤涓嶅繀瑕佺殑鏈嶅姟"><a href="#2-5-绂佺敤涓嶅繀瑕佺殑鏈嶅姟" class="headerlink" title="2.5 绂佺敤涓嶅繀瑕佺殑鏈嶅姟"></a>2.5 绂佺敤涓嶅繀瑕佺殑鏈嶅姟</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鏌ョ湅鎵€鏈夎繍琛岀殑鏈嶅姟</span></span><br><span class="line">sudo systemctl list-units --<span class="built_in">type</span>=service --state=running</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绂佺敤涓嶉渶瑕佺殑鏈嶅姟锛堝钃濈墮銆佹墦鍗版湇鍔＄瓑锛?sudo systemctl disable bluetooth.service</span></span><br><span class="line">sudo systemctl <span class="built_in">disable</span> cups.service</span><br><span class="line">sudo systemctl <span class="built_in">disable</span> avahi-daemon.service</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-6-鍏抽棴-GUI-浠ヨ妭鐪佽祫婧愶紙鐢ㄤ簬杩滅▼-SSH-鎿嶄綔锛"><a href="#2-6-鍏抽棴-GUI-浠ヨ妭鐪佽祫婧愶紙鐢ㄤ簬杩滅▼-SSH-鎿嶄綔锛" class="headerlink" title="2.6 鍏抽棴 GUI 浠ヨ妭鐪佽祫婧愶紙鐢ㄤ簬杩滅▼ SSH 鎿嶄綔锛?"></a>2.6 鍏抽棴 GUI 浠ヨ妭鐪佽祫婧愶紙鐢ㄤ簬杩滅▼ SSH 鎿嶄綔锛?</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 涓存椂鍏抽棴锛堥噴鏀惧唴瀛橈級</span></span><br><span class="line">sudo systemctl set-default multi-user.target</span><br><span class="line">sudo reboot</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鎭㈠ GUI</span></span><br><span class="line">sudo systemctl set-default graphical.target</span><br><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-7-鍐呭瓨涓嶴wap浼樺寲"><a href="#2-7-鍐呭瓨涓嶴wap浼樺寲" class="headerlink" title="2.7 鍐呭瓨涓嶴wap浼樺寲"></a>2.7 鍐呭瓨涓嶴wap浼樺寲</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鏌ョ湅鍐呭瓨浣跨敤</span></span><br><span class="line">free -h</span><br><span class="line"></span><br><span class="line"><span class="comment"># 璋冩暣 Swappiness锛堝€艰秺灏忚秺灏戠敤 swap锛岄粯璁?60锛?sudo sysctl vm.swappiness=10</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;vm.swappiness=10&quot;</span> | sudo <span class="built_in">tee</span> -a /etc/sysctl.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍒涘缓棰濆 Swap 鏂囦欢锛堝闇€锛?sudo fallocate -l 4G /swapfile</span></span><br><span class="line">sudo <span class="built_in">chmod</span> 600 /swapfile</span><br><span class="line">sudo mkswap /swapfile</span><br><span class="line">sudo swapon /swapfile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;/swapfile none swap sw 0 0&#x27;</span> | sudo <span class="built_in">tee</span> -a /etc/fstab</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-Kali-VM-宸ュ叿閾炬墿灞"><a href="#3-Kali-VM-宸ュ叿閾炬墿灞" class="headerlink" title="3. Kali VM 宸ュ叿閾炬墿灞?"></a>3. Kali VM 宸ュ叿閾炬墿灞?</h2><h3 id="3-1-瀹夎瀹屾暣宸ュ叿闆"><a href="#3-1-瀹夎瀹屾暣宸ュ叿闆" class="headerlink" title="3.1 瀹夎瀹屾暣宸ュ叿闆?"></a>3.1 瀹夎瀹屾暣宸ュ叿闆?</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 瀹夎瀹屾暣鐨?Kali 宸ュ叿鍖?sudo apt install kali-linux-headless -y   # 鏃?GUI 鐜锛岄€傚悎杩滅▼</span></span><br><span class="line"><span class="comment"># 鎴?sudo apt install kali-linux-default -y    # 榛樿妗岄潰鐜</span></span><br><span class="line"><span class="comment"># 鎴?sudo apt install kali-linux-large -y      # 澶у瀷宸ュ叿闆?```</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 3.2 閽堝 HexStrike-AI 椤圭洰鐨勫繀瑁呭伐鍏?</span></span><br><span class="line">鍩轰簬 HexStrike-AI 椤圭洰鐨?Kali VM锛?92.168.56.138锛夌幆澧冿紝纭浠ヤ笅宸ュ叿宸插畨瑁咃細</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line"><span class="comment"># 鏍稿績鎵弿宸ュ叿</span></span><br><span class="line">sudo apt install nmap masscan rustscan -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鐩綍/璺緞鏋氫妇</span></span><br><span class="line">sudo apt install gobuster dirsearch ffuf -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># Web 婕忔礊鎵弿</span></span><br><span class="line">sudo apt install nikto wpscan nuclei -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># SQL 娉ㄥ叆</span></span><br><span class="line">sudo apt install sqlmap -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍛戒护鎵ц/鍒╃敤</span></span><br><span class="line">sudo apt install metasploit-framework -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 瀵嗙爜鐖嗙牬</span></span><br><span class="line">sudo apt install hydra john hashcat -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># SMB 鏋氫妇</span></span><br><span class="line">sudo apt install smbclient smbmap enum4linux -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># DNS 宸ュ叿</span></span><br><span class="line">sudo apt install dnsrecon fierce -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># OSINT</span></span><br><span class="line">sudo apt install theharvester -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 浠ｇ悊/闅ч亾</span></span><br><span class="line">sudo apt install proxychains4 -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># Web 鎸囩汗</span></span><br><span class="line">sudo apt install whatweb -y</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-瀹夎-HexStrike-AI-琛ュ厖宸ュ叿"><a href="#3-3-瀹夎-HexStrike-AI-琛ュ厖宸ュ叿" class="headerlink" title="3.3 瀹夎 HexStrike-AI 琛ュ厖宸ュ叿"></a>3.3 瀹夎 HexStrike-AI 琛ュ厖宸ュ叿</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 濡傛灉涓婅堪鏈夌己澶憋紝鎵嬪姩琛ュ厖瀹夎</span></span><br><span class="line">sudo apt install subfinder dnsx httpx -y    <span class="comment"># 瀛愬煙鍚?HTTP 鎺㈡椿</span></span><br><span class="line">sudo apt install feroxbuster -y             <span class="comment"># 蹇€熺洰褰曟壂鎻?sudo apt install commix -y                  # 鍛戒护娉ㄥ叆妫€娴?sudo apt install wfuzz -y                   # Web 妯＄硦娴嬭瘯</span></span><br><span class="line">sudo apt install responder -y               <span class="comment"># LLMNR/NBT-NS 鎶曟瘨</span></span><br><span class="line">sudo apt install impacket-scripts -y        <span class="comment"># Windows 鍗忚鍒╃敤</span></span><br><span class="line">sudo apt install crackmapexec -y            <span class="comment"># 鍐呯綉妯悜绉诲姩</span></span><br><span class="line">sudo apt install evil-winrm -y              <span class="comment"># WinRM Shell</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4-浠庢簮鐮佸畨瑁呰嚜瀹氫箟宸ュ叿"><a href="#3-4-浠庢簮鐮佸畨瑁呰嚜瀹氫箟宸ュ叿" class="headerlink" title="3.4 浠庢簮鐮佸畨瑁呰嚜瀹氫箟宸ュ叿"></a>3.4 浠庢簮鐮佸畨瑁呰嚜瀹氫箟宸ュ叿</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 绀轰緥锛氬畨瑁呬粠 GitHub 鑾峰彇鐨勫伐鍏?git clone https://github.com/projectdiscovery/nuclei.git /opt/nuclei</span></span><br><span class="line"><span class="built_in">cd</span> /opt/nuclei/cmd/nuclei</span><br><span class="line">go build</span><br><span class="line">sudo <span class="built_in">ln</span> -s /opt/nuclei/cmd/nuclei/nuclei /usr/local/bin/nuclei</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鏇存柊 Nuclei 妯℃澘</span></span><br><span class="line">nuclei -update-templates</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-5-Python-宸ュ叿鐜"><a href="#3-5-Python-宸ュ叿鐜" class="headerlink" title="3.5 Python 宸ュ叿鐜"></a>3.5 Python 宸ュ叿鐜</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 纭繚 pip3 宸插畨瑁?sudo apt install python3-pip python3-venv -y</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 瀹夎甯哥敤 Python 瀹夊叏搴?pip3 install requests beautifulsoup4 lxml paramiko</span></span><br><span class="line">pip3 install impacket pycryptodomex</span><br><span class="line">pip3 install shodan censys</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-6-鏇存柊婕忔礊妯℃澘搴"><a href="#3-6-鏇存柊婕忔礊妯℃澘搴" class="headerlink" title="3.6 鏇存柊婕忔礊妯℃澘搴?"></a>3.6 鏇存柊婕忔礊妯℃澘搴?</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Nuclei 妯℃澘鏇存柊锛堣繍琛?Nuceli 鎵弿鍓嶅姟蹇呮墽琛岋級</span></span><br><span class="line">nuclei -update-templates</span><br><span class="line"></span><br><span class="line"><span class="comment"># Searchsploit 鏇存柊</span></span><br><span class="line">searchsploit -u</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-Kali-VM-缃戠粶涓-SSH-閰嶇疆"><a href="#4-Kali-VM-缃戠粶涓-SSH-閰嶇疆" class="headerlink" title="4. Kali VM 缃戠粶涓?SSH 閰嶇疆"></a>4. Kali VM 缃戠粶涓?SSH 閰嶇疆</h2><h3 id="4-1-閰嶇疆闈欐€-IP锛圴M-鐜锛"><a href="#4-1-閰嶇疆闈欐€-IP锛圴M-鐜锛" class="headerlink" title="4.1 閰嶇疆闈欐€?IP锛圴M 鐜锛?"></a>4.1 閰嶇疆闈欐€?IP锛圴M 鐜锛?</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 缂栬緫缃戠粶閰嶇疆</span></span><br><span class="line">sudo nano /etc/network/interfaces</span><br></pre></td></tr></table></figure>
+
+<p>閰嶇疆绀轰緥锛?</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 闈欐€?IP 閰嶇疆</span></span><br><span class="line">auto eth0</span><br><span class="line">iface eth0 inet static</span><br><span class="line">    address 192.168.56.138</span><br><span class="line">    netmask 255.255.255.0</span><br><span class="line">    gateway 192.168.56.1</span><br><span class="line">    dns-nameservers 8.8.8.8 114.114.114.114</span><br></pre></td></tr></table></figure>
+
+<p>鎴栬€呬娇鐢?NetworkManager锛?</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鏌ョ湅杩炴帴鍚嶇О</span></span><br><span class="line">nmcli con show</span><br><span class="line"></span><br><span class="line"><span class="comment"># 淇敼涓洪潤鎬?IP</span></span><br><span class="line">sudo nmcli con mod <span class="string">&quot;Wired connection 1&quot;</span> \</span><br><span class="line">  ipv4.addresses 192.168.56.138/24 \</span><br><span class="line">  ipv4.gateway 192.168.56.1 \</span><br><span class="line">  ipv4.dns <span class="string">&quot;8.8.8.8 114.114.114.114&quot;</span> \</span><br><span class="line">  ipv4.method manual</span><br><span class="line"></span><br><span class="line"><span class="comment"># 閲嶅惎缃戠粶</span></span><br><span class="line">sudo nmcli con down <span class="string">&quot;Wired connection 1&quot;</span></span><br><span class="line">sudo nmcli con up <span class="string">&quot;Wired connection 1&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-SSH-瀵嗛挜璁よ瘉锛堝厤瀵嗙櫥褰曪級"><a href="#4-2-SSH-瀵嗛挜璁よ瘉锛堝厤瀵嗙櫥褰曪級" class="headerlink" title="4.2 SSH 瀵嗛挜璁よ瘉锛堝厤瀵嗙櫥褰曪級"></a>4.2 SSH 瀵嗛挜璁よ瘉锛堝厤瀵嗙櫥褰曪級</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鍦ㄦ湰鏈猴紙Windows锛夌敓鎴愬瘑閽ュ锛堣嫢杩樻病鏈夛級</span></span><br><span class="line"><span class="comment"># ssh-keygen -t ed25519 -C &quot;hexstrike-kali&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍦?Kali 涓厤缃?authorized_keys</span></span><br><span class="line"><span class="built_in">mkdir</span> -p ~/.ssh</span><br><span class="line"><span class="built_in">chmod</span> 700 ~/.ssh</span><br><span class="line">nano ~/.ssh/authorized_keys</span><br><span class="line"><span class="comment"># 绮樿创鏈満鐨勫叕閽ュ唴瀹?chmod 600 ~/.ssh/authorized_keys</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 纭繚 SSH 閰嶇疆鍏佽瀵嗛挜璁よ瘉</span></span><br><span class="line">sudo nano /etc/ssh/sshd_config</span><br><span class="line"><span class="comment"># 纭繚浠ヤ笅閰嶇疆鏈娉ㄩ噴锛?# PubkeyAuthentication yes</span></span><br><span class="line"><span class="comment"># AuthorizedKeysFile .ssh/authorized_keys</span></span><br><span class="line"></span><br><span class="line">sudo systemctl restart ssh</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-閰嶇疆-SSH-鍒悕锛圵indows-side锛"><a href="#4-3-閰嶇疆-SSH-鍒悕锛圵indows-side锛" class="headerlink" title="4.3 閰嶇疆 SSH 鍒悕锛圵indows side锛?"></a>4.3 閰嶇疆 SSH 鍒悕锛圵indows side锛?</h3><p>鍦?Windows 鐨?<code>~/.ssh/config</code> 涓坊鍔狅細</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host kali</span><br><span class="line">    HostName 192.168.56.138</span><br><span class="line">    Port 22</span><br><span class="line">    User root</span><br><span class="line">    IdentityFile ~/.ssh/id_ed25519</span><br></pre></td></tr></table></figure>
+
+<p>鐒跺悗鍙互鐢?<code>ssh kali</code> 涓€閿櫥褰曘€?</p>
+<h3 id="4-4-iptables-闃茬伀澧欏熀纭€瑙勫垯"><a href="#4-4-iptables-闃茬伀澧欏熀纭€瑙勫垯" class="headerlink" title="4.4 iptables 闃茬伀澧欏熀纭€瑙勫垯"></a>4.4 iptables 闃茬伀澧欏熀纭€瑙勫垯</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鏌ョ湅褰撳墠瑙勫垯</span></span><br><span class="line">sudo iptables -L -n -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍏佽 SSH锛堢鍙?22锛?sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍏佽宸插缓绔嬬殑杩炴帴</span></span><br><span class="line">sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绂佹澶栭儴璁块棶鏁忔劅绔彛锛堝 3306, 6379 绛夛級</span></span><br><span class="line">sudo iptables -A INPUT -p tcp --dport 3306 -j DROP</span><br><span class="line">sudo iptables -A INPUT -p tcp --dport 6379 -j DROP</span><br><span class="line"></span><br><span class="line"><span class="comment"># 淇濆瓨 iptables 瑙勫垯</span></span><br><span class="line">sudo apt install iptables-persistent -y</span><br><span class="line">sudo netfilter-persistent save</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5-PentAGI-Kali-Docker-闀滃儚瀹氬埗"><a href="#5-PentAGI-Kali-Docker-闀滃儚瀹氬埗" class="headerlink" title="5. PentAGI Kali Docker 闀滃儚瀹氬埗"></a>5. PentAGI Kali Docker 闀滃儚瀹氬埗</h2><h3 id="5-1-PentAGI-Kali-闀滃儚绠€浠"><a href="#5-1-PentAGI-Kali-闀滃儚绠€浠" class="headerlink" title="5.1 PentAGI Kali 闀滃儚绠€浠?"></a>5.1 PentAGI Kali 闀滃儚绠€浠?</h3><p>PentAGI 浣跨敤浜?VXControl 鍥㈤槦缁存姢鐨?<code>vxcontrol/kali-linux</code> Docker 闀滃儚锛岃闀滃儚棰勮浜?**200+ 娓楅€忔祴璇曞伐鍏?*锛屾槸 PentAGI 娌欑洅鎵ц寮曟搸鐨勮繍琛屽熀纭€ [cite:1]銆傞暅鍍忓熀浜?Kali Linux锛屽寘鍚互涓嬪伐鍏风被鍒細</p>
+<ul>
+<li>绯荤粺宸ュ叿锛歝url銆亀get銆乬it銆乯q銆乼mux</li>
+<li>缃戠粶渚︽煡锛歯map銆乵asscan銆乤mass銆乼heharvester</li>
+<li>瀛愬煙鍚嶆灇涓撅細subfinder銆乨nsx銆乧haos銆乤ssetfinder</li>
+<li>Web 鎵弿锛歨ttpx銆乬obuster銆乫fuf銆乨irsearch銆乶ikto銆亀hatweb</li>
+<li>婕忔礊鎵弿锛歯uclei銆乻qlmap銆乧ommix銆亀pscan</li>
+<li>瀵嗙爜鏀诲嚮锛歨ydra銆乯ohn銆乭ashcat銆乧runch</li>
+<li>AD 娓楅€忥細impacket銆乥loodhound銆乧rackmapexec銆乺esponder</li>
+<li>鍚庢笚閫忥細evil-winrm銆乵imikatz銆乸owershell-empire</li>
+<li>浠ｇ悊闅ч亾锛歝hisel銆乸roxychains銆乻ocat</li>
+</ul>
+<h3 id="5-2-PentAGI-涓浛鎹㈣嚜瀹氫箟-Kali-闀滃儚"><a href="#5-2-PentAGI-涓浛鎹㈣嚜瀹氫箟-Kali-闀滃儚" class="headerlink" title="5.2 PentAGI 涓浛鎹㈣嚜瀹氫箟 Kali 闀滃儚"></a>5.2 PentAGI 涓浛鎹㈣嚜瀹氫箟 Kali 闀滃儚</h3><p>PentAGI 榛樿鎷夊彇 <code>vxcontrol/kali-linux:latest</code>锛屽彲浠ユ浛鎹负鑷畾涔夐暅鍍忋€?<br><strong>鏂规硶涓€锛氫慨鏀?docker-compose.yml</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 杩涘叆 PentAGI 宸ヤ綔鐩綍</span></span><br><span class="line"><span class="built_in">cd</span> ~/pentagi</span><br><span class="line"></span><br><span class="line"><span class="comment"># 缂栬緫 docker-compose.yml</span></span><br><span class="line">nano docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<p>鎵惧埌 kali 鏈嶅姟閮ㄥ垎锛屼慨鏀?image锛?</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">kali:</span></span><br><span class="line">    <span class="comment"># 榛樿闀滃儚</span></span><br><span class="line">    <span class="comment"># image: vxcontrol/kali-linux:latest</span></span><br><span class="line">    <span class="comment"># 鏀逛负鑷畾涔夐暅鍍?    image: my-custom-kali:latest</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>鏂规硶浜岋細閫氳繃 .env 鐜鍙橀噺</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鍦?.env 涓坊鍔狅紙濡傛灉 PentAGI 鏀寔姝ゅ彉閲忥級</span></span><br><span class="line">KALI_IMAGE=my-custom-kali:latest</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3-鎻愬彇-PentAGI-Kali-Docker-闀滃儚"><a href="#5-3-鎻愬彇-PentAGI-Kali-Docker-闀滃儚" class="headerlink" title="5.3 鎻愬彇 PentAGI Kali Docker 闀滃儚"></a>5.3 鎻愬彇 PentAGI Kali Docker 闀滃儚</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鎷夊彇 PentAGI 瀹樻柟 Kali 闀滃儚</span></span><br><span class="line">docker pull vxcontrol/kali-linux:latest</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍚姩浜や簰寮?shell</span></span><br><span class="line">docker run --<span class="built_in">rm</span> -it vxcontrol/kali-linux bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鏌ョ湅宸插畨瑁呯殑宸ュ叿</span></span><br><span class="line"><span class="built_in">which</span> nmap nuclei sqlmap gobuster ffuf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鏌ョ湅宸ュ叿鍒楄〃锛堝湪瀹瑰櫒鍐咃級</span></span><br><span class="line"><span class="built_in">ls</span> /usr/bin/ | <span class="built_in">head</span> -50</span><br><span class="line">dpkg --list | grep -i <span class="string">&quot;kali-tools&quot;</span> | <span class="built_in">head</span> -20</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-4-鍦-PentAGI-Kali-瀹瑰櫒鍐呬复鏃跺畨瑁呭伐鍏"><a href="#5-4-鍦-PentAGI-Kali-瀹瑰櫒鍐呬复鏃跺畨瑁呭伐鍏" class="headerlink" title="5.4 鍦?PentAGI Kali 瀹瑰櫒鍐呬复鏃跺畨瑁呭伐鍏?"></a>5.4 鍦?PentAGI Kali 瀹瑰櫒鍐呬复鏃跺畨瑁呭伐鍏?</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 浠?root 韬唤杩涘叆瀹瑰櫒</span></span><br><span class="line">docker run --<span class="built_in">rm</span> -it --entrypoint bash vxcontrol/kali-linux</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鏇存柊骞跺畨瑁呭伐鍏?apt update</span></span><br><span class="line">apt install -y &lt;tool-name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 閫€鍑哄鍣紙閫€鍑哄悗鎵€鏈変慨鏀逛涪澶憋紝鍥犱负瀹瑰櫒鐨?闃呭悗鍗崇剼&quot;鏈哄埗锛?exit</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="6-鑷畾涔-Kali-Docker-闀滃儚鏋勫缓"><a href="#6-鑷畾涔-Kali-Docker-闀滃儚鏋勫缓" class="headerlink" title="6. 鑷畾涔?Kali Docker 闀滃儚鏋勫缓"></a>6. 鑷畾涔?Kali Docker 闀滃儚鏋勫缓</h2><h3 id="6-1-鍩轰簬-PentAGI-瀹樻柟闀滃儚鎵╁睍"><a href="#6-1-鍩轰簬-PentAGI-瀹樻柟闀滃儚鎵╁睍" class="headerlink" title="6.1 鍩轰簬 PentAGI 瀹樻柟闀滃儚鎵╁睍"></a>6.1 鍩轰簬 PentAGI 瀹樻柟闀滃儚鎵╁睍</h3><p>鍒涘缓 <code>Dockerfile</code>锛?</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鍩轰簬 PentAGI 瀹樻柟闀滃儚</span></span><br><span class="line"><span class="keyword">FROM</span> vxcontrol/kali-linux:latest</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍏冧俊鎭?LABEL maintainer=&quot;your-name&quot;</span></span><br><span class="line"><span class="keyword">LABEL</span><span class="language-bash"> description=<span class="string">&quot;Custom Kali image for HexStrike-AI&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 瀹夎棰濆宸ュ叿</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt update &amp;&amp; apt install -y \</span></span><br><span class="line"><span class="language-bash">    <span class="comment"># 鏂板宸ュ叿</span></span></span><br><span class="line">    bloodhound \</span><br><span class="line">    certipy-ad \</span><br><span class="line">    ldapdomaindump \</span><br><span class="line">    chisel \</span><br><span class="line">    docker.io \</span><br><span class="line">    <span class="comment"># 娓呯悊缂撳瓨</span></span><br><span class="line">    &amp;&amp; apt clean \</span><br><span class="line">    &amp;&amp; rm -rf /var/lib/apt/lists/*</span><br><span class="line"></span><br><span class="line"><span class="comment"># 瀹夎 Python 宸ュ叿</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> pip3 install --no-cache-dir \</span></span><br><span class="line"><span class="language-bash">    shodan \</span></span><br><span class="line"><span class="language-bash">    censys \</span></span><br><span class="line"><span class="language-bash">    pymetasploit3 \</span></span><br><span class="line"><span class="language-bash">    mitmproxy</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鏇存柊 Nuclei 妯℃澘</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> nuclei -update-templates</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 璁剧疆榛樿宸ヤ綔鐩綍</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /work</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 璁剧疆鍏ュ彛</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> [<span class="string">&quot;/bin/bash&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-鏋勫缓鑷畾涔夐暅鍍"><a href="#6-2-鏋勫缓鑷畾涔夐暅鍍" class="headerlink" title="6.2 鏋勫缓鑷畾涔夐暅鍍?"></a>6.2 鏋勫缓鑷畾涔夐暅鍍?</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 浣跨敤 Docker Buildx 鏋勫缓</span></span><br><span class="line">docker buildx build --load -t my-custom-kali:latest .</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鎴栦紶缁熸柟寮忔瀯寤?docker build -t my-custom-kali:latest .</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 楠岃瘉</span></span><br><span class="line">docker images | grep my-custom-kali</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-3-绮剧畝鐗-Kali-闀滃儚锛堟渶灏忓寲锛"><a href="#6-3-绮剧畝鐗-Kali-闀滃儚锛堟渶灏忓寲锛" class="headerlink" title="6.3 绮剧畝鐗?Kali 闀滃儚锛堟渶灏忓寲锛?"></a>6.3 绮剧畝鐗?Kali 闀滃儚锛堟渶灏忓寲锛?</h3><p>閫傜敤浜庨渶瑕佹瀬鑷村惎鍔ㄩ€熷害鐨勫満鏅細</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> kalilinux/kali-rolling:latest</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鏈€灏忓寲瀹夎</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt update &amp;&amp; apt install -y \</span></span><br><span class="line"><span class="language-bash">    nmap \</span></span><br><span class="line"><span class="language-bash">    curl \</span></span><br><span class="line"><span class="language-bash">    wget \</span></span><br><span class="line"><span class="language-bash">    git \</span></span><br><span class="line"><span class="language-bash">    jq \</span></span><br><span class="line"><span class="language-bash">    python3 \</span></span><br><span class="line"><span class="language-bash">    python3-pip \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; apt clean \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">rm</span> -rf /var/lib/apt/lists/*</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鎸夐渶琛ュ厖宸ュ叿</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt install -y nuclei sqlmap gobuster ffuf whatweb</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> pip3 install requests</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /work</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;/bin/bash&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-4-闀滃儚鎺ㄩ€佷笌澶嶇敤"><a href="#6-4-闀滃儚鎺ㄩ€佷笌澶嶇敤" class="headerlink" title="6.4 闀滃儚鎺ㄩ€佷笌澶嶇敤"></a>6.4 闀滃儚鎺ㄩ€佷笌澶嶇敤</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 瀵煎嚭涓?tar 鏂囦欢</span></span><br><span class="line">docker save my-custom-kali:latest -o my-custom-kali.tar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍦ㄥ彟涓€鍙版満鍣ㄥ鍏?docker load -i my-custom-kali.tar</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鎺ㄩ€佸埌绉佹湁浠撳簱</span></span><br><span class="line">docker tag my-custom-kali:latest registry.example.com/my-custom-kali:latest</span><br><span class="line">docker push registry.example.com/my-custom-kali:latest</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-5-楠岃瘉鑷畾涔夐暅鍍"><a href="#6-5-楠岃瘉鑷畾涔夐暅鍍" class="headerlink" title="6.5 楠岃瘉鑷畾涔夐暅鍍?"></a>6.5 楠岃瘉鑷畾涔夐暅鍍?</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鍚姩骞舵祴璇曞伐鍏?docker run --rm -it my-custom-kali:latest bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍦ㄥ鍣ㄥ唴鎵ц</span></span><br><span class="line">nmap --version</span><br><span class="line">nuclei -version</span><br><span class="line">sqlmap --version</span><br><span class="line"><span class="comment"># 楠岃瘉鏂板宸ュ叿</span></span><br><span class="line">bloodhound-python --<span class="built_in">help</span></span><br><span class="line">certipy --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="7-Kali-绯荤粺澶囦唤涓庢仮澶"><a href="#7-Kali-绯荤粺澶囦唤涓庢仮澶" class="headerlink" title="7. Kali 绯荤粺澶囦唤涓庢仮澶?"></a>7. Kali 绯荤粺澶囦唤涓庢仮澶?</h2><h3 id="7-1-閲嶈閰嶇疆鏂囦欢澶囦唤"><a href="#7-1-閲嶈閰嶇疆鏂囦欢澶囦唤" class="headerlink" title="7.1 閲嶈閰嶇疆鏂囦欢澶囦唤"></a>7.1 閲嶈閰嶇疆鏂囦欢澶囦唤</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 澶囦唤鍏抽敭閰嶇疆鏂囦欢</span></span><br><span class="line">sudo tar -czf ~/kali-config-backup-$(<span class="built_in">date</span> +%Y%m%d).tar.gz \</span><br><span class="line">    /etc/ssh/sshd_config \</span><br><span class="line">    /etc/network/interfaces \</span><br><span class="line">    /etc/hosts \</span><br><span class="line">    /etc/hostname \</span><br><span class="line">    /etc/resolv.conf \</span><br><span class="line">    /root/.ssh \</span><br><span class="line">    /home/*/.ssh \</span><br><span class="line">    2&gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-2-宸ュ叿鍒楄〃澶囦唤"><a href="#7-2-宸ュ叿鍒楄〃澶囦唤" class="headerlink" title="7.2 宸ュ叿鍒楄〃澶囦唤"></a>7.2 宸ュ叿鍒楄〃澶囦唤</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 瀵煎嚭宸插畨瑁呭伐鍏峰垪琛?dpkg --get-selections &gt; ~/installed-packages-$(date +%Y%m%d).txt</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鎭㈠宸ュ叿鍒楄〃</span></span><br><span class="line">sudo dpkg --set-selections &lt; ~/installed-packages-20260701.txt</span><br><span class="line">sudo apt dselect-upgrade -y</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-3-VM-蹇収锛堥拡瀵-VMware锛"><a href="#7-3-VM-蹇収锛堥拡瀵-VMware锛" class="headerlink" title="7.3 VM 蹇収锛堥拡瀵?VMware锛?"></a>7.3 VM 蹇収锛堥拡瀵?VMware锛?</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 閫氳繃 VMware 鐣岄潰鍒涘缓蹇収锛堟帹鑽愶級</span></span><br><span class="line"><span class="comment"># VM 鈫?Snapshot 鈫?Take Snapshot</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鎴栦娇鐢ㄥ懡浠よ</span></span><br><span class="line">vmware-vim-cmd vmsvc/snapshot.create &lt;vmid&gt; <span class="string">&quot;Before-Update-20260708&quot;</span> <span class="string">&quot;Snapshot before system update&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-4-Docker-闀滃儚澶囦唤"><a href="#7-4-Docker-闀滃儚澶囦唤" class="headerlink" title="7.4 Docker 闀滃儚澶囦唤"></a>7.4 Docker 闀滃儚澶囦唤</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 澶囦唤鎵€鏈夐暅鍍?docker images --format &quot;&#123;&#123;.Repository&#125;&#125;:&#123;&#123;.Tag&#125;&#125;&quot; | grep -v &quot;&lt;none&gt;&quot; | \</span></span><br><span class="line">  <span class="keyword">while</span> <span class="built_in">read</span> img; <span class="keyword">do</span></span><br><span class="line">    fname=$(<span class="built_in">echo</span> <span class="variable">$img</span> | <span class="built_in">tr</span> <span class="string">&#x27;/:&#x27;</span> <span class="string">&#x27;_&#x27;</span>)</span><br><span class="line">    docker save <span class="variable">$img</span> -o <span class="string">&quot;<span class="variable">$&#123;fname&#125;</span>.tar&quot;</span></span><br><span class="line">  <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="8-甯歌闂涓庢帓閿"><a href="#8-甯歌闂涓庢帓閿" class="headerlink" title="8. 甯歌闂涓庢帓閿?"></a>8. 甯歌闂涓庢帓閿?</h2><h3 id="8-1-SSH-杩炴帴鐩稿叧"><a href="#8-1-SSH-杩炴帴鐩稿叧" class="headerlink" title="8.1 SSH 杩炴帴鐩稿叧"></a>8.1 SSH 杩炴帴鐩稿叧</h3><p>*<em>Q: SSH 杩炴帴琚嫆缁?</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 妫€鏌?SSH 鏈嶅姟鐘舵€?sudo systemctl status ssh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 妫€鏌?SSH 绔彛鏄惁鐩戝惉</span></span><br><span class="line">sudo netstat -tlnp | grep :22</span><br><span class="line"></span><br><span class="line"><span class="comment"># 妫€鏌ラ槻鐏</span></span><br><span class="line">sudo iptables -L -n -v | grep 22</span><br><span class="line"></span><br><span class="line"><span class="comment"># 妫€鏌?hosts.allow / hosts.deny</span></span><br><span class="line"><span class="built_in">cat</span> /etc/hosts.allow</span><br><span class="line"><span class="built_in">cat</span> /etc/hosts.deny</span><br></pre></td></tr></table></figure>
+
+<p><strong>Q: 瀵嗛挜璁よ瘉澶辫触</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 妫€鏌?authorized_keys 鏉冮檺</span></span><br><span class="line"><span class="built_in">chmod</span> 700 ~/.ssh</span><br><span class="line"><span class="built_in">chmod</span> 600 ~/.ssh/authorized_keys</span><br><span class="line"></span><br><span class="line"><span class="comment"># 妫€鏌?SSH 鏃ュ織</span></span><br><span class="line">sudo <span class="built_in">tail</span> -f /var/log/auth.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 涓存椂鍚敤瀵嗙爜璁よ瘉浠ヨ皟璇?sudo sed -i &#x27;s/PasswordAuthentication no/PasswordAuthentication yes/&#x27; /etc/ssh/sshd_config</span></span><br><span class="line">sudo systemctl restart ssh</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-2-缃戠粶鐩稿叧"><a href="#8-2-缃戠粶鐩稿叧" class="headerlink" title="8.2 缃戠粶鐩稿叧"></a>8.2 缃戠粶鐩稿叧</h3><p><strong>Q: Kali VM 鏃犳硶鑱旂綉</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 妫€鏌ョ綉缁滄帴鍙?ip addr show</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 妫€鏌ヨ矾鐢?ip route show</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 娴嬭瘯 DNS</span></span><br><span class="line">nslookup google.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 閲嶅惎缃戠粶鏈嶅姟</span></span><br><span class="line">sudo systemctl restart networking</span><br><span class="line"><span class="comment"># 鎴?sudo nmcli networking off &amp;&amp; sudo nmcli networking on</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Q: apt update 澶辫触</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鏇存崲 Kali 闀滃儚婧?sudo sed -i &#x27;s/http.kali.org/mirrors.ustc.edu.cn/g&#x27; /etc/apt/sources.list</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鎴栫紪杈?sources.list</span></span><br><span class="line">sudo nano /etc/apt/sources.list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鎺ㄨ崘鍥藉唴婧愶紙涓澶э級</span></span><br><span class="line">deb https://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib</span><br><span class="line">deb-src https://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鏇存柊</span></span><br><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-3-宸ュ叿鐩稿叧"><a href="#8-3-宸ュ叿鐩稿叧" class="headerlink" title="8.3 宸ュ叿鐩稿叧"></a>8.3 宸ュ叿鐩稿叧</h3><p>*<em>Q: 宸ュ叿鍛戒护涓嶅瓨鍦?</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 妫€鏌ュ伐鍏锋槸鍚﹀凡瀹夎</span></span><br><span class="line"><span class="built_in">which</span> &lt;tool-name&gt;</span><br><span class="line">dpkg -l | grep &lt;tool-name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鎼滅储鍙畨瑁呯殑鍖?apt search &lt;tool-name&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 瀹夎</span></span><br><span class="line">sudo apt install &lt;tool-name&gt; -y</span><br></pre></td></tr></table></figure>
+
+<p><strong>Q: Python 宸ュ叿鎶ラ敊 ModuleNotFoundError</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 瀹夎缂哄け鐨勬ā鍧?pip3 install &lt;module-name&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鎴栦娇鐢?apt 瀹夎锛堟帹鑽愶紝鍏煎鎬ф洿濂斤級</span></span><br><span class="line">sudo apt install python3-&lt;module-name&gt; -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 妫€鏌?Python 鐗堟湰鍏煎鎬?python3 --version</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="8-4-Docker-鐩稿叧"><a href="#8-4-Docker-鐩稿叧" class="headerlink" title="8.4 Docker 鐩稿叧"></a>8.4 Docker 鐩稿叧</h3><p>*<em>Q: Docker 鍐呭伐鍏锋墽琛屾潈闄愪笉瓒?</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 杩愯鏃舵坊鍔犲繀瑕佹潈闄?docker run --rm --cap-add NET_ADMIN --cap-add NET_RAW \</span></span><br><span class="line">  vxcontrol/kali-linux nmap -sS target.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 浣跨敤 --privileged 妯″紡锛堜粎娴嬭瘯鐜锛?docker run --rm --privileged vxcontrol/kali-linux bash</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Q: Docker 闀滃儚鎷夊彇澶辫触</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 閰嶇疆 Docker 闀滃儚鍔犻€熷櫒</span></span><br><span class="line">sudo <span class="built_in">tee</span> /etc/docker/daemon.json &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">  &quot;registry-mirrors&quot;: [&quot;https://docker.mirrors.ustc.edu.cn&quot;, &quot;https://hub-mirror.c.163.com&quot;]</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-5-鎬ц兘鐩稿叧"><a href="#8-5-鎬ц兘鐩稿叧" class="headerlink" title="8.5 鎬ц兘鐩稿叧"></a>8.5 鎬ц兘鐩稿叧</h3><table>
+<thead>
+<tr>
+<th>闂</th>
+<th>鐥囩姸</th>
+<th>瑙ｅ喅鏂规</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Kali VM 杩愯缂撴參</td>
+<td>鍝嶅簲杩熼挐</td>
+<td>澧炲姞鍐呭瓨&#x2F;CPU 鏍稿績鏁帮紝鍏抽棴 GUI</td>
+</tr>
+<tr>
+<td>纾佺洏绌洪棿涓嶈冻</td>
+<td>apt 鏃犳硶瀹夎</td>
+<td><code>apt clean &amp;&amp; journalctl --vacuum-time=3d</code></td>
+</tr>
+<tr>
+<td>鍐呭瓨涓嶈冻</td>
+<td>OOM 鏉€杩涚▼</td>
+<td>澧炲姞 Swap 绌洪棿锛屾垨澧炲姞 VM 鍐呭瓨</td>
+</tr>
+<tr>
+<td>鎵弿鑰楁椂杩囬暱</td>
+<td>nmap 绛夋墽琛屾參</td>
+<td>浣跨敤 <code>-T4</code> 鍙傛暟锛岄檺鍒舵壂鎻忕鍙ｆ暟閲?</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="闄勫綍涓€锛欻exStrike-AI-Kali-VM-涓€閿垵濮嬪寲鑴氭湰"><a href="#闄勫綍涓€锛欻exStrike-AI-Kali-VM-涓€閿垵濮嬪寲鑴氭湰" class="headerlink" title="闄勫綍涓€锛欻exStrike-AI Kali VM 涓€閿垵濮嬪寲鑴氭湰"></a>闄勫綍涓€锛欻exStrike-AI Kali VM 涓€閿垵濮嬪寲鑴氭湰</h2><p>灏嗕互涓嬪唴瀹逛繚瀛樹负 <code>kali-init.sh</code>锛孲SH 鍒?Kali VM 鍚庢墽琛岋細</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># HexStrike-AI Kali VM 鍒濆鍖栬剼鏈?# 鐢ㄤ簬 192.168.56.138 鐜鐨勫揩閫熼厤缃?</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 鏇存柊绯荤粺...&quot;</span></span><br><span class="line">apt update &amp;&amp; apt upgrade -y</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 瀹夎鏍稿績宸ュ叿闆?..&quot;</span></span><br><span class="line">apt install -y nmap masscan rustscan \</span><br><span class="line">    gobuster dirsearch ffuf feroxbuster \</span><br><span class="line">    nikto wpscan nuclei \</span><br><span class="line">    sqlmap metasploit-framework \</span><br><span class="line">    hydra john hashcat \</span><br><span class="line">    smbclient smbmap enum4linux \</span><br><span class="line">    dnsrecon fierce theharvester \</span><br><span class="line">    whatweb wfuzz commix \</span><br><span class="line">    responder impacket-scripts \</span><br><span class="line">    crackmapexec evil-winrm \</span><br><span class="line">    proxychains4 \</span><br><span class="line">    python3-pip python3-venv</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 瀹夎 Python 搴?..&quot;</span></span><br><span class="line">pip3 install requests beautifulsoup4 lxml paramiko</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 鏇存柊宸ュ叿搴?..&quot;</span></span><br><span class="line">nuclei -update-templates 2&gt;/dev/null || <span class="literal">true</span></span><br><span class="line">searchsploit -u 2&gt;/dev/null || <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 閰嶇疆鏃跺尯...&quot;</span></span><br><span class="line">timedatectl set-timezone Asia/Shanghai</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 浼樺寲绯荤粺鍙傛暟...&quot;</span></span><br><span class="line">sysctl -w vm.swappiness=10</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;vm.swappiness=10&quot;</span> &gt;&gt; /etc/sysctl.conf</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 娓呯悊...&quot;</span></span><br><span class="line">apt autoremove --purge -y</span><br><span class="line">apt clean</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 鍒濆鍖栧畬鎴愶紒&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;    IP: <span class="subst">$(hostname -I)</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;    宸ュ叿鏁? <span class="subst">$(which nmap nuclei sqlmap gobuster hydra john 2&gt;/dev/null | wc -l)</span> 鏍稿績宸ュ叿灏辩华&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>浣跨敤鏂规硶锛?</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh root@192.168.56.138</span><br><span class="line"><span class="built_in">chmod</span> +x kali-init.sh</span><br><span class="line">./kali-init.sh</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="闄勫綍浜岋細甯哥敤鍛戒护閫熸煡琛"><a href="#闄勫綍浜岋細甯哥敤鍛戒护閫熸煡琛" class="headerlink" title="闄勫綍浜岋細甯哥敤鍛戒护閫熸煡琛?"></a>闄勫綍浜岋細甯哥敤鍛戒护閫熸煡琛?</h2><h3 id="绯荤粺绠＄悊"><a href="#绯荤粺绠＄悊" class="headerlink" title="绯荤粺绠＄悊"></a>绯荤粺绠＄悊</h3><table>
+<thead>
+<tr>
+<th>鍛戒护</th>
+<th>鐢ㄩ€?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>uname -a</code></td>
+<td>鏌ョ湅鍐呮牳鐗堟湰</td>
+</tr>
+<tr>
+<td><code>cat /etc/os-release</code></td>
+<td>鏌ョ湅绯荤粺鐗堟湰</td>
+</tr>
+<tr>
+<td><code>free -h</code></td>
+<td>鏌ョ湅鍐呭瓨浣跨敤</td>
+</tr>
+<tr>
+<td><code>df -h</code></td>
+<td>鏌ョ湅纾佺洏浣跨敤</td>
+</tr>
+<tr>
+<td><code>htop</code></td>
+<td>瀹炴椂杩涚▼鐩戞帶</td>
+</tr>
+<tr>
+<td><code>journalctl -xe</code></td>
+<td>鏌ョ湅绯荤粺鏃ュ織</td>
+</tr>
+</tbody></table>
+<h3 id="缃戠粶绠＄悊"><a href="#缃戠粶绠＄悊" class="headerlink" title="缃戠粶绠＄悊"></a>缃戠粶绠＄悊</h3><table>
+<thead>
+<tr>
+<th>鍛戒护</th>
+<th>鐢ㄩ€?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ip addr</code></td>
+<td>鏌ョ湅 IP 鍦板潃</td>
+</tr>
+<tr>
+<td><code>ip route</code></td>
+<td>鏌ョ湅璺敱琛?</td>
+</tr>
+<tr>
+<td><code>ss -tlnp</code></td>
+<td>鏌ョ湅鐩戝惉绔彛</td>
+</tr>
+<tr>
+<td><code>nslookup &lt;domain&gt;</code></td>
+<td>DNS 鏌ヨ</td>
+</tr>
+<tr>
+<td><code>curl -I &lt;url&gt;</code></td>
+<td>HTTP 澶撮儴鎺㈡祴</td>
+</tr>
+</tbody></table>
+<h3 id="鍖呯鐞"><a href="#鍖呯鐞" class="headerlink" title="鍖呯鐞?"></a>鍖呯鐞?</h3><table>
+<thead>
+<tr>
+<th>鍛戒护</th>
+<th>鐢ㄩ€?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>apt update</code></td>
+<td>鏇存柊婧?</td>
+</tr>
+<tr>
+<td><code>apt search &lt;pkg&gt;</code></td>
+<td>鎼滅储鍖?</td>
+</tr>
+<tr>
+<td><code>apt show &lt;pkg&gt;</code></td>
+<td>鏌ョ湅鍖呰鎯?</td>
+</tr>
+<tr>
+<td><code>apt install &lt;pkg&gt;</code></td>
+<td>瀹夎鍖?</td>
+</tr>
+<tr>
+<td><code>apt remove &lt;pkg&gt;</code></td>
+<td>鍗歌浇鍖?</td>
+</tr>
+<tr>
+<td><code>dpkg -l | grep &lt;pkg&gt;</code></td>
+<td>妫€鏌ュ凡瀹夎</td>
+</tr>
+</tbody></table>
+<h3 id="Docker-绠＄悊"><a href="#Docker-绠＄悊" class="headerlink" title="Docker 绠＄悊"></a>Docker 绠＄悊</h3><table>
+<thead>
+<tr>
+<th>鍛戒护</th>
+<th>鐢ㄩ€?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>docker ps</code></td>
+<td>鏌ョ湅杩愯瀹瑰櫒</td>
+</tr>
+<tr>
+<td><code>docker images</code></td>
+<td>鏌ョ湅鏈湴闀滃儚</td>
+</tr>
+<tr>
+<td><code>docker pull &lt;image&gt;</code></td>
+<td>鎷夊彇闀滃儚</td>
+</tr>
+<tr>
+<td><code>docker build -t &lt;tag&gt; .</code></td>
+<td>鏋勫缓闀滃儚</td>
+</tr>
+<tr>
+<td><code>docker exec -it &lt;id&gt; bash</code></td>
+<td>杩涘叆瀹瑰櫒</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="闄勫綍涓夛細PentAGI-Kali-Dockerfile-鍙傝€冪粨鏋"><a href="#闄勫綍涓夛細PentAGI-Kali-Dockerfile-鍙傝€冪粨鏋" class="headerlink" title="闄勫綍涓夛細PentAGI Kali Dockerfile 鍙傝€冪粨鏋?"></a>闄勫綍涓夛細PentAGI Kali Dockerfile 鍙傝€冪粨鏋?</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ============================================</span></span><br><span class="line"><span class="comment"># PentAGI Kali 闀滃儚 Dockerfile 鍙傝€冪粨鏋?# 鍩轰簬 vxcontrol/kali-linux 椤圭洰璁捐</span></span><br><span class="line"><span class="comment"># ============================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">FROM</span> kalilinux/kali-rolling:latest AS base</span><br><span class="line"></span><br><span class="line"><span class="keyword">LABEL</span><span class="language-bash"> maintainer=<span class="string">&quot;PentAGI Development Team&quot;</span></span></span><br><span class="line"><span class="keyword">LABEL</span><span class="language-bash"> description=<span class="string">&quot;Lightweight Kali Linux Docker images with curated CLI penetration testing tools&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鏇存柊骞跺畨瑁呮牳蹇冨伐鍏?RUN echo &quot;deb https://http.kali.org/kali kali-rolling main non-free contrib&quot; &gt; /etc/apt/sources.list &amp;&amp; \</span></span><br><span class="line">    apt update &amp;&amp; \</span><br><span class="line">    apt install -y --no-install-recommends \</span><br><span class="line">        <span class="comment"># 绯荤粺宸ュ叿</span></span><br><span class="line">        curl wget git vim nano jq tmux \</span><br><span class="line">        <span class="comment"># 缃戠粶鎵弿</span></span><br><span class="line">        nmap masscan \</span><br><span class="line">        <span class="comment"># Web 宸ュ叿</span></span><br><span class="line">        curl wget whatweb \</span><br><span class="line">        <span class="comment"># 瀵嗙爜宸ュ叿</span></span><br><span class="line">        hydra john \</span><br><span class="line">        <span class="comment"># Python</span></span><br><span class="line">        python3 python3-pip \</span><br><span class="line">    &amp;&amp; apt clean \</span><br><span class="line">    &amp;&amp; rm -rf /var/lib/apt/lists/*</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绗簩闃舵锛氬畨瑁呴澶栧伐鍏凤紙鍙寜闇€瑁佸壀锛?FROM base AS full</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt update &amp;&amp; apt install -y --no-install-recommends \</span></span><br><span class="line"><span class="language-bash">    nuclei subfinder dnsx httpx \</span></span><br><span class="line"><span class="language-bash">    sqlmap gobuster ffuf dirsearch \</span></span><br><span class="line"><span class="language-bash">    metasploit-framework \</span></span><br><span class="line"><span class="language-bash">    crackmapexec \</span></span><br><span class="line"><span class="language-bash">    impacket-scripts \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; apt clean &amp;&amp; <span class="built_in">rm</span> -rf /var/lib/apt/lists/*</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鏇存柊 Nuclei 妯℃澘</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> nuclei -update-templates</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 璁剧疆鍏ュ彛</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> container-entrypoint.sh /entrypoint.sh</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> [<span class="string">&quot;/entrypoint.sh&quot;</span>]</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;bash&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p><strong>鍏嶈矗澹版槑</strong>锛氭湰鏁欑▼浠呬緵瀹夊叏鐮旂┒鍜屾巿鏉冩祴璇曚娇鐢ㄣ€傚 Kali Linux 鐨勫畾鍒朵慨鏀瑰簲鍦ㄥ悎娉曟巿鏉冪殑鐜涓繘琛屻€備慨鏀圭郴缁熼厤缃墠寤鸿鍏堝垱寤哄揩鐓ф垨澶囦唤锛屼互渚垮洖婊氥€</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Kali/" rel="tag"># Kali</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag"># 渗透测试</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/07/09/JKU%E6%B3%A8%E5%85%A5/" rel="prev" title="JKU注入漏洞研究">
+      <i class="fa fa-chevron-left"></i> JKU注入漏洞研究
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2026/07/09/Coremail_XT5/" rel="next" title="Coremail XT5 2FA绕过分析">
+      Coremail XT5 2FA绕过分析 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Kali-Linux-%E6%B7%87%EE%86%BD%E6%95%BC%E7%80%B9%E6%B0%AC%E5%9F%97%E9%8F%81%E6%AC%91%E2%96%BC"><span class="nav-number">1.</span> <span class="nav-text">Kali Linux 淇敼瀹氬埗鏁欑▼</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%90%A9%EE%86%BC%E7%B6%8D"><span class="nav-number">1.1.</span> <span class="nav-text">鐩綍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Kali-VM-%E9%8D%A9%E8%99%B9%EE%94%85%E9%90%9C%EE%88%9A%EE%95%A8%E6%B7%87%EE%86%BD%E6%95%BC"><span class="nav-number">1.2.</span> <span class="nav-text">1. Kali VM 鍩虹鐜淇敼</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E6%B7%87%EE%86%BD%E6%95%BC%E7%BB%AF%E8%8D%A4%E7%B2%BA%E7%80%B5%E5%97%99%E7%88%9C"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.1 淇敼绯荤粺瀵嗙爜</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E5%A8%A3%E8%AF%B2%E5%A7%9E%E9%8F%82%E6%89%AE%E6%95%A4%E9%8E%B4"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2 娣诲姞鏂扮敤鎴?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E9%96%B0%E5%B6%87%E7%96%86%E6%B6%93%EE%85%9F%E6%9E%83%E7%92%87%EE%85%A1%E2%96%88%E9%90%9C%EE%88%9A%EE%95%A8"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.3 閰嶇疆涓枃璇█鐜</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E6%B7%87%EE%86%BD%E6%95%BC%E7%BB%AF%E8%8D%A4%E7%B2%BA%E9%8F%83%E8%B7%BA%E5%B0%AF"><span class="nav-number">1.2.4.</span> <span class="nav-text">1.4 淇敼绯荤粺鏃跺尯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-%E6%B7%87%EE%86%BD%E6%95%BC%E6%B6%93%E7%BB%98%E6%BA%80%E9%8D%9A"><span class="nav-number">1.2.5.</span> <span class="nav-text">1.5 淇敼涓绘満鍚?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Kali-VM-%E7%BB%AF%E8%8D%A4%E7%B2%BA%E6%B5%BC%E6%A8%BA%E5%AF%B2%E6%B6%93%E5%BA%A2%E2%82%AC%D1%86%E5%85%98%E7%92%8B%E5%86%A7%E7%B4%AD"><span class="nav-number">1.3.</span> <span class="nav-text">2. Kali VM 绯荤粺浼樺寲涓庢€ц兘璋冧紭</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E7%BB%AF%E8%8D%A4%E7%B2%BA%E9%8F%87%E5%AD%98%E6%9F%8A"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.1 绯荤粺鏇存柊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-SSH-%E9%8F%88%E5%B6%85%E5%A7%9F%E6%B5%BC%E6%A8%BA%E5%AF%B2%E9%94%9B%E5%A0%A5%E6%8B%A1%E7%80%B5%E7%A1%85%E7%B9%99%E7%BB%8B%E5%AC%AD%E7%B9%9B%E9%8E%BA%E3%83%A5%E6%BA%80%E9%8F%85%EE%88%A4%E7%B4%9A"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.2 SSH 鏈嶅姟浼樺寲锛堥拡瀵硅繙绋嬭繛鎺ュ満鏅級</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E7%BA%BE%E4%BD%BA%E6%B4%8F%E7%BB%8C%E6%B4%AA%E6%A3%BF%E7%BB%A0%EF%BC%84%E6%82%8A"><span class="nav-number">1.3.3.</span> <span class="nav-text">2.3 纾佺洏绌洪棿绠＄悊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E9%8E%B5%E2%95%81%E7%9D%8D%E7%BA%BE%E4%BD%BA%E6%B4%8F%E7%BB%8C%E6%B4%AA%E6%A3%BF%E9%94%9B%E5%9C%B4Mware-VM%E9%94%9B"><span class="nav-number">1.3.4.</span> <span class="nav-text">2.4 鎵╁睍纾佺洏绌洪棿锛圴Mware VM锛?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-%E7%BB%82%E4%BD%BA%E6%95%A4%E6%B6%93%E5%B6%85%E7%B9%80%E7%91%95%E4%BD%BA%E6%AE%91%E9%8F%88%E5%B6%85%E5%A7%9F"><span class="nav-number">1.3.5.</span> <span class="nav-text">2.5 绂佺敤涓嶅繀瑕佺殑鏈嶅姟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-%E9%8D%8F%E6%8A%BD%E6%A3%B4-GUI-%E6%B5%A0%E3%83%A8%E5%A6%AD%E9%90%AA%E4%BD%BD%E7%A5%AB%E5%A9%A7%E6%84%B6%E7%B4%99%E9%90%A2%E3%84%A4%E7%B0%AC%E6%9D%A9%E6%BB%85%E2%96%BC-SSH-%E9%8E%BF%E5%B6%84%E7%B6%94%E9%94%9B"><span class="nav-number">1.3.6.</span> <span class="nav-text">2.6 鍏抽棴 GUI 浠ヨ妭鐪佽祫婧愶紙鐢ㄤ簬杩滅▼ SSH 鎿嶄綔锛?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-%E9%8D%90%E5%91%AD%E7%93%A8%E6%B6%93%E5%B6%B4wap%E6%B5%BC%E6%A8%BA%E5%AF%B2"><span class="nav-number">1.3.7.</span> <span class="nav-text">2.7 鍐呭瓨涓嶴wap浼樺寲</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Kali-VM-%E5%AE%B8%E3%83%A5%E5%8F%BF%E9%96%BE%E7%82%AC%E5%A2%BF%E7%81%9E"><span class="nav-number">1.4.</span> <span class="nav-text">3. Kali VM 宸ュ叿閾炬墿灞?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E7%80%B9%E5%A4%8E%EE%97%8A%E7%80%B9%E5%B1%BE%E6%9A%A3%E5%AE%B8%E3%83%A5%E5%8F%BF%E9%97%86"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.1 瀹夎瀹屾暣宸ュ叿闆?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E7%80%B9%E5%A4%8E%EE%97%8A-HexStrike-AI-%E7%90%9B%E3%83%A5%E5%8E%96%E5%AE%B8%E3%83%A5%E5%8F%BF"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.3 瀹夎 HexStrike-AI 琛ュ厖宸ュ叿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E6%B5%A0%E5%BA%A2%E7%B0%AE%E9%90%AE%E4%BD%B8%E7%95%A8%E7%91%81%E5%91%B0%E5%9A%9C%E7%80%B9%E6%B0%AB%E7%AE%9F%E5%AE%B8%E3%83%A5%E5%8F%BF"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.4 浠庢簮鐮佸畨瑁呰嚜瀹氫箟宸ュ叿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-Python-%E5%AE%B8%E3%83%A5%E5%8F%BF%E9%90%9C%EE%88%9A%EE%95%A8"><span class="nav-number">1.4.4.</span> <span class="nav-text">3.5 Python 宸ュ叿鐜</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-%E9%8F%87%E5%AD%98%E6%9F%8A%E5%A9%95%E5%BF%94%E7%A4%8A%E5%A6%AF%E2%84%83%E6%BE%98%E6%90%B4"><span class="nav-number">1.4.5.</span> <span class="nav-text">3.6 鏇存柊婕忔礊妯℃澘搴?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Kali-VM-%E7%BC%83%E6%88%A0%E7%B2%B6%E6%B6%93-SSH-%E9%96%B0%E5%B6%87%E7%96%86"><span class="nav-number">1.5.</span> <span class="nav-text">4. Kali VM 缃戠粶涓?SSH 閰嶇疆</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E9%96%B0%E5%B6%87%E7%96%86%E9%97%88%E6%AC%90%E2%82%AC-IP%E9%94%9B%E5%9C%B4M-%E9%90%9C%EE%88%9A%EE%95%A8%E9%94%9B"><span class="nav-number">1.5.1.</span> <span class="nav-text">4.1 閰嶇疆闈欐€?IP锛圴M 鐜锛?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-SSH-%E7%80%B5%E5%97%9B%E6%8C%9C%E7%92%81%E3%82%88%E7%98%89%E9%94%9B%E5%A0%9D%E5%8E%A4%E7%80%B5%E5%97%99%E6%AB%A5%E8%A4%B0%E6%9B%AA%E7%B4%9A"><span class="nav-number">1.5.2.</span> <span class="nav-text">4.2 SSH 瀵嗛挜璁よ瘉锛堝厤瀵嗙櫥褰曪級</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E9%96%B0%E5%B6%87%E7%96%86-SSH-%E9%8D%92%EE%82%A2%E6%82%95%E9%94%9B%E5%9C%B5indows-side%E9%94%9B"><span class="nav-number">1.5.3.</span> <span class="nav-text">4.3 閰嶇疆 SSH 鍒悕锛圵indows side锛?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-iptables-%E9%97%83%E8%8C%AC%E4%BC%80%E6%BE%A7%E6%AC%8F%E7%86%80%E7%BA%AD%E2%82%AC%E7%91%99%E5%8B%AB%E5%9E%AF"><span class="nav-number">1.5.4.</span> <span class="nav-text">4.4 iptables 闃茬伀澧欏熀纭€瑙勫垯</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-PentAGI-Kali-Docker-%E9%97%80%E6%BB%83%E5%84%9A%E7%80%B9%E6%B0%AC%E5%9F%97"><span class="nav-number">1.6.</span> <span class="nav-text">5. PentAGI Kali Docker 闀滃儚瀹氬埗</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-PentAGI-Kali-%E9%97%80%E6%BB%83%E5%84%9A%E7%BB%A0%E2%82%AC%E6%B5%A0"><span class="nav-number">1.6.1.</span> <span class="nav-text">5.1 PentAGI Kali 闀滃儚绠€浠?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-PentAGI-%E6%B6%93%EE%85%9F%E6%B5%9B%E9%8E%B9%E3%88%A3%E5%9A%9C%E7%80%B9%E6%B0%AB%E7%AE%9F-Kali-%E9%97%80%E6%BB%83%E5%84%9A"><span class="nav-number">1.6.2.</span> <span class="nav-text">5.2 PentAGI 涓浛鎹㈣嚜瀹氫箟 Kali 闀滃儚</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E9%8E%BB%E6%84%AC%E5%BD%87-PentAGI-Kali-Docker-%E9%97%80%E6%BB%83%E5%84%9A"><span class="nav-number">1.6.3.</span> <span class="nav-text">5.3 鎻愬彇 PentAGI Kali Docker 闀滃儚</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-%E9%8D%A6-PentAGI-Kali-%E7%80%B9%E7%91%B0%E6%AB%92%E9%8D%90%E5%91%AC%E5%A4%8D%E9%8F%83%E8%B7%BA%E7%95%A8%E7%91%81%E5%91%AD%E4%BC%90%E9%8D%8F"><span class="nav-number">1.6.4.</span> <span class="nav-text">5.4 鍦?PentAGI Kali 瀹瑰櫒鍐呬复鏃跺畨瑁呭伐鍏?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E9%91%B7%EE%81%84%E7%95%BE%E6%B6%94-Kali-Docker-%E9%97%80%E6%BB%83%E5%84%9A%E9%8F%8B%E5%8B%AB%E7%BC%93"><span class="nav-number">1.7.</span> <span class="nav-text">6. 鑷畾涔?Kali Docker 闀滃儚鏋勫缓</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E9%8D%A9%E8%BD%B0%E7%B0%AC-PentAGI-%E7%80%B9%E6%A8%BB%E6%9F%9F%E9%97%80%E6%BB%83%E5%84%9A%E9%8E%B5%E2%95%81%E7%9D%8D"><span class="nav-number">1.7.1.</span> <span class="nav-text">6.1 鍩轰簬 PentAGI 瀹樻柟闀滃儚鎵╁睍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E9%8F%8B%E5%8B%AB%E7%BC%93%E9%91%B7%EE%81%84%E7%95%BE%E6%B6%94%E5%A4%90%E6%9A%85%E9%8D%8D"><span class="nav-number">1.7.2.</span> <span class="nav-text">6.2 鏋勫缓鑷畾涔夐暅鍍?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-%E7%BB%AE%E5%89%A7%E7%95%9D%E9%90%97-Kali-%E9%97%80%E6%BB%83%E5%84%9A%E9%94%9B%E5%A0%9F%E6%B8%B6%E7%81%8F%E5%BF%93%E5%AF%B2%E9%94%9B"><span class="nav-number">1.7.3.</span> <span class="nav-text">6.3 绮剧畝鐗?Kali 闀滃儚锛堟渶灏忓寲锛?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-%E9%97%80%E6%BB%83%E5%84%9A%E9%8E%BA%E3%84%A9%E2%82%AC%E4%BD%B7%E7%AC%8C%E6%BE%B6%E5%B6%87%E6%95%A4"><span class="nav-number">1.7.4.</span> <span class="nav-text">6.4 闀滃儚鎺ㄩ€佷笌澶嶇敤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5-%E6%A5%A0%E5%B2%83%E7%98%89%E9%91%B7%EE%81%84%E7%95%BE%E6%B6%94%E5%A4%90%E6%9A%85%E9%8D%8D"><span class="nav-number">1.7.5.</span> <span class="nav-text">6.5 楠岃瘉鑷畾涔夐暅鍍?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Kali-%E7%BB%AF%E8%8D%A4%E7%B2%BA%E6%BE%B6%E5%9B%A6%E5%94%A4%E6%B6%93%E5%BA%A2%E4%BB%AE%E6%BE%B6"><span class="nav-number">1.8.</span> <span class="nav-text">7. Kali 绯荤粺澶囦唤涓庢仮澶?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-%E9%96%B2%E5%B6%88%EE%9B%A6%E9%96%B0%E5%B6%87%E7%96%86%E9%8F%82%E5%9B%A6%E6%AC%A2%E6%BE%B6%E5%9B%A6%E5%94%A4"><span class="nav-number">1.8.1.</span> <span class="nav-text">7.1 閲嶈閰嶇疆鏂囦欢澶囦唤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-%E5%AE%B8%E3%83%A5%E5%8F%BF%E9%8D%92%E6%A5%84%E3%80%83%E6%BE%B6%E5%9B%A6%E5%94%A4"><span class="nav-number">1.8.2.</span> <span class="nav-text">7.2 宸ュ叿鍒楄〃澶囦唤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-VM-%E8%B9%87%EE%82%A4%E5%8F%8E%E9%94%9B%E5%A0%A5%E6%8B%A1%E7%80%B5-VMware%E9%94%9B"><span class="nav-number">1.8.3.</span> <span class="nav-text">7.3 VM 蹇収锛堥拡瀵?VMware锛?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-Docker-%E9%97%80%E6%BB%83%E5%84%9A%E6%BE%B6%E5%9B%A6%E5%94%A4"><span class="nav-number">1.8.4.</span> <span class="nav-text">7.4 Docker 闀滃儚澶囦唤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E7%94%AF%E6%AD%8C%EE%9D%86%E9%97%82%EE%87%80%EE%95%BD%E6%B6%93%E5%BA%A2%E5%B8%93%E9%96%BF"><span class="nav-number">1.9.</span> <span class="nav-text">8. 甯歌闂涓庢帓閿?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-SSH-%E6%9D%A9%E7%82%B4%E5%B8%B4%E9%90%A9%E7%A8%BF%E5%8F%A7"><span class="nav-number">1.9.1.</span> <span class="nav-text">8.1 SSH 杩炴帴鐩稿叧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-%E7%BC%83%E6%88%A0%E7%B2%B6%E9%90%A9%E7%A8%BF%E5%8F%A7"><span class="nav-number">1.9.2.</span> <span class="nav-text">8.2 缃戠粶鐩稿叧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-%E5%AE%B8%E3%83%A5%E5%8F%BF%E9%90%A9%E7%A8%BF%E5%8F%A7"><span class="nav-number">1.9.3.</span> <span class="nav-text">8.3 宸ュ叿鐩稿叧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-Docker-%E9%90%A9%E7%A8%BF%E5%8F%A7"><span class="nav-number">1.9.4.</span> <span class="nav-text">8.4 Docker 鐩稿叧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-%E9%8E%AC%D1%86%E5%85%98%E9%90%A9%E7%A8%BF%E5%8F%A7"><span class="nav-number">1.9.5.</span> <span class="nav-text">8.5 鎬ц兘鐩稿叧</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%84%E5%8B%AB%E7%B6%8D%E6%B6%93%E2%82%AC%E9%94%9B%E6%AC%BBexStrike-AI-Kali-VM-%E6%B6%93%E2%82%AC%E9%96%BF%EE%86%BC%E5%9E%B5%E6%BF%AE%E5%AC%AA%E5%AF%B2%E9%91%B4%E6%B0%AD%E6%B9%B0"><span class="nav-number">1.10.</span> <span class="nav-text">闄勫綍涓€锛欻exStrike-AI Kali VM 涓€閿垵濮嬪寲鑴氭湰</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%84%E5%8B%AB%E7%B6%8D%E6%B5%9C%E5%B2%8B%E7%B4%B0%E7%94%AF%E5%93%A5%E6%95%A4%E9%8D%9B%E6%88%92%E6%8A%A4%E9%96%AB%E7%86%B8%E7%85%A1%E7%90%9B"><span class="nav-number">1.11.</span> <span class="nav-text">闄勫綍浜岋細甯哥敤鍛戒护閫熸煡琛?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%AF%E8%8D%A4%E7%B2%BA%E7%BB%A0%EF%BC%84%E6%82%8A"><span class="nav-number">1.11.1.</span> <span class="nav-text">绯荤粺绠＄悊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%83%E6%88%A0%E7%B2%B6%E7%BB%A0%EF%BC%84%E6%82%8A"><span class="nav-number">1.11.2.</span> <span class="nav-text">缃戠粶绠＄悊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%8D%96%E5%91%AF%EE%85%B8%E9%90%9E"><span class="nav-number">1.11.3.</span> <span class="nav-text">鍖呯鐞?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-%E7%BB%A0%EF%BC%84%E6%82%8A"><span class="nav-number">1.11.4.</span> <span class="nav-text">Docker 绠＄悊</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%84%E5%8B%AB%E7%B6%8D%E6%B6%93%E5%A4%9B%E7%B4%B0PentAGI-Kali-Dockerfile-%E9%8D%99%E5%82%9D%E2%82%AC%E5%86%AA%E7%B2%A8%E9%8F%8B"><span class="nav-number">1.12.</span> <span class="nav-text">闄勫綍涓夛細PentAGI Kali Dockerfile 鍙傝€冪粨鏋?</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xioku"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Xioku</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Fri Feb 02 2024 08:00:00 GMT+0800 (中国标准时间) – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xioku</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"dialog":{"enable":true,"hitokoto":true},"log":false});</script></body>
+</html>
+<script type="text/javascript" >
+!function(e,t,a){function n(){c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"),o(),r()}function r(){for(var e=0;e<d.length;e++)d[e].alpha<=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y--,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText="left:"+d[e].x+"px;top:"+d[e].y+"px;opacity:"+d[e].alpha+";transform:scale("+d[e].scale+","+d[e].scale+") rotate(45deg);background:"+d[e].color+";z-index:99999");requestAnimationFrame(r)}function o(){var t="function"==typeof e.onclick&&e.onclick;e.onclick=function(e){t&&t(),i(e)}}function i(e){var a=t.createElement("div");a.className="heart",d.push({el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()}),t.body.appendChild(a)}function c(e){var a=t.createElement("style");a.type="text/css";try{a.appendChild(t.createTextNode(e))}catch(t){a.styleSheet.cssText=e}t.getElementsByTagName("head")[0].appendChild(a)}function s(){return"rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"}var d=[];e.requestAnimationFrame=function(){return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e){setTimeout(e,1e3/60)}}(),n()}(window,document);
+</script>
+
