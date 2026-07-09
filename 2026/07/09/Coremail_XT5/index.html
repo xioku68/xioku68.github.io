@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Coremail XT5 — SUFE 实例分析版本信息   项目 内容    产品 Coremail XT5   Build Hash db8dcd3d   Bundle d48e2   Server cmproxy   域名 mail.sufe.edu.cn   登录页 &#x2F;coremail&#x2F;common&#x2F;index_cmxt50.jsp   旧版兼容 &#x2F;">
+  <meta name="description" content="版本信息   项目 内容    产品 Coremail XT5   Build Hash 已脱敏   Bundle 已脱敏   Server cmproxy   域名 mail.example.edu   登录页 &#x2F;coremail&#x2F;common&#x2F;index_cmxt50.jsp（示例路径）   旧版兼容 &#x2F;coremail&#x2F;common&amp;#x2F">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Coremail XT5 2FA绕过分析">
+<meta property="og:title" content="Coremail XT5 - 某高校邮件系统安全配置复盘">
 <meta property="og:url" content="http://example.com/2026/07/09/Coremail_XT5/index.html">
-<meta property="og:site_name" content="xiokuの小さな世界">
-<meta property="og:description" content="Coremail XT5 — SUFE 实例分析版本信息   项目 内容    产品 Coremail XT5   Build Hash db8dcd3d   Bundle d48e2   Server cmproxy   域名 mail.sufe.edu.cn   登录页 &#x2F;coremail&#x2F;common&#x2F;index_cmxt50.jsp   旧版兼容 &#x2F;">
+<meta property="og:site_name" content="xioku銇皬銇曘仾涓栫晫">
+<meta property="og:description" content="版本信息   项目 内容    产品 Coremail XT5   Build Hash 已脱敏   Bundle 已脱敏   Server cmproxy   域名 mail.example.edu   登录页 &#x2F;coremail&#x2F;common&#x2F;index_cmxt50.jsp（示例路径）   旧版兼容 &#x2F;coremail&#x2F;common&amp;#x2F">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2026-07-09T08:07:15.000Z">
-<meta property="article:modified_time" content="2026-07-09T08:07:16.058Z">
+<meta property="article:published_time" content="2026-07-09T01:10:00.000Z">
+<meta property="article:modified_time" content="2026-07-09T08:36:29.991Z">
 <meta property="article:author" content="Xioku">
 <meta property="article:tag" content="Coremail">
 <meta property="article:tag" content="邮件系统">
@@ -50,7 +50,7 @@
   };
 </script>
 
-  <title>Coremail XT5 2FA绕过分析 | xiokuの小さな世界</title>
+  <title>Coremail XT5 - 某高校邮件系统安全配置复盘 | xioku銇皬銇曘仾涓栫晫</title>
   
 
 
@@ -101,10 +101,10 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">xiokuの小さな世界</h1>
+      <h1 class="site-title">xioku銇皬銇曘仾涓栫晫</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">xioku的小破站</p>
+      <p class="site-subtitle" itemprop="description">xioku鐨勫皬鐮寸珯</p>
   </div>
 
   <div class="site-nav-right">
@@ -209,11 +209,11 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xiokuの小さな世界">
+      <meta itemprop="name" content="xioku銇皬銇曘仾涓栫晫">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Coremail XT5 2FA绕过分析
+          Coremail XT5 - 某高校邮件系统安全配置复盘
         </h1>
 
         <div class="post-meta">
@@ -224,7 +224,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2026-07-09 16:07:15 / Modified: 16:07:16" itemprop="dateCreated datePublished" datetime="2026-07-09T16:07:15+08:00">2026-07-09</time>
+              <time title="Created: 2026-07-09 09:10:00 / Modified: 16:36:29" itemprop="dateCreated datePublished" datetime="2026-07-09T09:10:00+08:00">2026-07-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,7 +232,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">漏洞分析</span></a>
+                  <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">渗透测试</span></a>
                 </span>
             </span>
 
@@ -254,7 +254,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Coremail-XT5-—-SUFE-实例分析"><a href="#Coremail-XT5-—-SUFE-实例分析" class="headerlink" title="Coremail XT5 — SUFE 实例分析"></a>Coremail XT5 — SUFE 实例分析</h1><h2 id="版本信息"><a href="#版本信息" class="headerlink" title="版本信息"></a>版本信息</h2><table>
+        <h2 id="版本信息"><a href="#版本信息" class="headerlink" title="版本信息"></a>版本信息</h2><table>
 <thead>
 <tr>
 <th align="left">项目</th>
@@ -267,11 +267,11 @@
 </tr>
 <tr>
 <td align="left">Build Hash</td>
-<td align="left">db8dcd3d</td>
+<td align="left">已脱敏</td>
 </tr>
 <tr>
 <td align="left">Bundle</td>
-<td align="left">d48e2</td>
+<td align="left">已脱敏</td>
 </tr>
 <tr>
 <td align="left">Server</td>
@@ -279,15 +279,15 @@
 </tr>
 <tr>
 <td align="left">域名</td>
-<td align="left">mail.sufe.edu.cn</td>
+<td align="left">mail.example.edu</td>
 </tr>
 <tr>
 <td align="left">登录页</td>
-<td align="left">&#x2F;coremail&#x2F;common&#x2F;index_cmxt50.jsp</td>
+<td align="left">&#x2F;coremail&#x2F;common&#x2F;index_cmxt50.jsp（示例路径）</td>
 </tr>
 <tr>
 <td align="left">旧版兼容</td>
-<td align="left">&#x2F;coremail&#x2F;common&#x2F;index_cmxt30.jsp</td>
+<td align="left">&#x2F;coremail&#x2F;common&#x2F;index_cmxt30.jsp（示例路径）</td>
 </tr>
 <tr>
 <td align="left">厂商</td>
@@ -374,23 +374,24 @@
 <td align="center">❌ FR_INVALID_REQUEST</td>
 </tr>
 </tbody></table>
-<h2 id="已知凭证"><a href="#已知凭证" class="headerlink" title="已知凭证"></a>已知凭证</h2><table>
+<h2 id="凭证处理"><a href="#凭证处理" class="headerlink" title="凭证处理"></a>凭证处理</h2><table>
 <thead>
 <tr>
-<th align="left">用户</th>
-<th align="left">密码</th>
+<th align="left">项目</th>
 <th align="center">状态</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="left"><a href="mailto:&#97;&#100;&#x6d;&#x69;&#x6e;&#x40;&#109;&#97;&#x69;&#108;&#46;&#115;&#x75;&#x66;&#x65;&#46;&#x65;&#100;&#x75;&#x2e;&#x63;&#x6e;">&#97;&#100;&#x6d;&#x69;&#x6e;&#x40;&#109;&#97;&#x69;&#108;&#46;&#115;&#x75;&#x66;&#x65;&#46;&#x65;&#100;&#x75;&#x2e;&#x63;&#x6e;</a></td>
-<td align="left">P@ssw0rd</td>
-<td align="center">✅ 密码正确，⛔ 2FA拦截</td>
+<td align="left">测试账号</td>
+<td align="center">已脱敏</td>
 </tr>
 <tr>
-<td align="left"><a href="mailto:&#x61;&#100;&#x6d;&#x69;&#110;&#x40;&#115;&#117;&#x66;&#101;&#x2e;&#101;&#100;&#117;&#46;&#x63;&#x6e;">&#x61;&#100;&#x6d;&#x69;&#110;&#x40;&#115;&#117;&#x66;&#101;&#x2e;&#101;&#100;&#117;&#46;&#x63;&#x6e;</a></td>
-<td align="left">P@ssw0rd</td>
-<td align="center">✅ 密码正确，⛔ 2FA拦截</td>
+<td align="left">测试密码</td>
+<td align="center">已脱敏</td>
+</tr>
+<tr>
+<td align="left">认证结果</td>
+<td align="center">仅保留风险结论，不公开具体凭证</td>
 </tr>
 </tbody></table>
 <h2 id="开放API端点"><a href="#开放API端点" class="headerlink" title="开放API端点"></a>开放API端点</h2><table>
@@ -451,33 +452,24 @@
 <td align="left">仍可访问</td>
 </tr>
 </tbody></table>
-<h2 id="封锁记录"><a href="#封锁记录" class="headerlink" title="封锁记录"></a>封锁记录</h2><table>
+<h2 id="风控触发记录"><a href="#风控触发记录" class="headerlink" title="风控触发记录"></a>风控触发记录</h2><table>
 <thead>
 <tr>
-<th align="left">时间</th>
-<th align="left">IP</th>
+<th align="left">项目</th>
 <th align="left">状态</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="left">12:00</td>
-<td align="left">Windows</td>
-<td align="left">HTTP 000 (全站封锁)</td>
+<td align="left">测试来源</td>
+<td align="left">已脱敏</td>
 </tr>
 <tr>
-<td align="left">12:00</td>
-<td align="left">Kali</td>
-<td align="left">HTTP 000 (全站封锁)</td>
+<td align="left">触发现象</td>
+<td align="left">请求被风控策略拦截</td>
 </tr>
 <tr>
-<td align="left">12:05</td>
-<td align="left">Both</td>
-<td align="left">HTTP 000</td>
-</tr>
-<tr>
-<td align="left">12:10</td>
-<td align="left">Both</td>
-<td align="left">HTTP 000</td>
+<td align="left">处理方式</td>
+<td align="left">停止测试并记录复盘</td>
 </tr>
 </tbody></table>
 <h2 id="设备注册API状态"><a href="#设备注册API状态" class="headerlink" title="设备注册API状态"></a>设备注册API状态</h2><table>
@@ -504,24 +496,24 @@
 <thead>
 <tr>
 <th align="left">时间</th>
-<th align="left">本机IP</th>
-<th align="left">Kali IP</th>
+<th align="left">测试环境 A</th>
+<th align="left">测试环境 B</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="left">12:14</td>
-<td align="left">HTTP 000</td>
-<td align="left">HTTP 000</td>
+<td align="left">已脱敏</td>
+<td align="left">被拦截</td>
+<td align="left">被拦截</td>
 </tr>
 <tr>
-<td align="left">封锁时长</td>
-<td align="left">15min+</td>
-<td align="left">15min+</td>
+<td align="left">处置</td>
+<td align="left">停止测试</td>
+<td align="left">停止测试</td>
 </tr>
 </tbody></table>
 <h2 id="解决方案等待"><a href="#解决方案等待" class="headerlink" title="解决方案等待"></a>解决方案等待</h2><ul>
-<li>需等待WAF自动解封(可能30-60分钟)</li>
-<li>或更换IP&#x2F;代理</li>
+<li>停止未完成测试并保留复盘记录</li>
+<li>后续测试应在明确授权窗口内进行</li>
 </ul>
 
     </div>
@@ -543,12 +535,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2026/07/09/Kali%20Linux%20%E4%BF%AE%E6%94%B9%E5%AE%9A%E5%88%B6%E6%95%99%E7%A8%8B/" rel="prev" title="Kali Linux修改定制教程">
-      <i class="fa fa-chevron-left"></i> Kali Linux修改定制教程
+    <a href="/2026/07/09/API%E6%9C%AA%E6%8E%88%E6%9D%83/" rel="prev" title="API 未授权访问漏洞分析与利用指南">
+      <i class="fa fa-chevron-left"></i> API 未授权访问漏洞分析与利用指南
     </a></div>
       <div class="post-nav-item">
-    <a href="/2026/07/09/API%E6%9C%AA%E6%8E%88%E6%9D%83/" rel="next" title="API未授权访问分析与利用指南">
-      API未授权访问分析与利用指南 <i class="fa fa-chevron-right"></i>
+    <a href="/2026/07/09/CVE-2025-55182/" rel="next" title="CVE-2025-55182 - React Server Components 远程代码执行漏洞（React2Shell）">
+      CVE-2025-55182 - React Server Components 远程代码执行漏洞（React2Shell） <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -608,7 +600,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Coremail-XT5-%E2%80%94-SUFE-%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">Coremail XT5 — SUFE 实例分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="nav-number">1.1.</span> <span class="nav-text">版本信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%B2%E7%9F%A5%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">已知配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2FA-%E7%BB%95%E8%BF%87%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95"><span class="nav-number">1.3.</span> <span class="nav-text">2FA 绕过尝试记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%B2%E7%9F%A5%E5%87%AD%E8%AF%81"><span class="nav-number">1.4.</span> <span class="nav-text">已知凭证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E6%94%BEAPI%E7%AB%AF%E7%82%B9"><span class="nav-number">1.5.</span> <span class="nav-text">开放API端点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%BC%BA%E9%99%B7"><span class="nav-number">1.6.</span> <span class="nav-text">安全配置缺陷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%81%E9%94%81%E8%AE%B0%E5%BD%95"><span class="nav-number">1.7.</span> <span class="nav-text">封锁记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E6%B3%A8%E5%86%8CAPI%E7%8A%B6%E6%80%81"><span class="nav-number">1.8.</span> <span class="nav-text">设备注册API状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E7%8A%B6%E6%80%81"><span class="nav-number">1.9.</span> <span class="nav-text">最终状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E7%AD%89%E5%BE%85"><span class="nav-number">1.10.</span> <span class="nav-text">解决方案等待</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="nav-number">1.</span> <span class="nav-text">版本信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%B2%E7%9F%A5%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">已知配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2FA-%E7%BB%95%E8%BF%87%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95"><span class="nav-number">3.</span> <span class="nav-text">2FA 绕过尝试记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%AD%E8%AF%81%E5%A4%84%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">凭证处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E6%94%BEAPI%E7%AB%AF%E7%82%B9"><span class="nav-number">5.</span> <span class="nav-text">开放API端点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%BC%BA%E9%99%B7"><span class="nav-number">6.</span> <span class="nav-text">安全配置缺陷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A3%8E%E6%8E%A7%E8%A7%A6%E5%8F%91%E8%AE%B0%E5%BD%95"><span class="nav-number">7.</span> <span class="nav-text">风控触发记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E6%B3%A8%E5%86%8CAPI%E7%8A%B6%E6%80%81"><span class="nav-number">8.</span> <span class="nav-text">设备注册API状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E7%8A%B6%E6%80%81"><span class="nav-number">9.</span> <span class="nav-text">最终状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E7%AD%89%E5%BE%85"><span class="nav-number">10.</span> <span class="nav-text">解决方案等待</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
