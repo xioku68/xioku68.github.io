@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="研究日期：2026-07-08漏洞类型：JWT 头部注入 &#x2F; 认证绕过风险等级：高危（可导致任意用户身份伪造）   目录 一、JKU 基础概念 二、JKU 工作原理 三、攻击场景与核心原理 四、攻击方式详解 4.1 绕过 URL 白名单过滤 4.2 利用文件上传漏洞 4.3 利用开放重定向漏洞 4.4 利用 CRLF 注入   五、PoC 实战案例 5.1 AttackDefense：">
+  <meta name="description" content="研究日期：2026-07-08漏洞类型：JWT 头部注入 &#x2F; 认证绕过风险等级：高危（可导致任意用户身份伪造）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JKU 注入攻击技术分析与防御指南">
 <meta property="og:url" content="http://example.com/2026/07/09/JKU%E6%B3%A8%E5%85%A5/index.html">
-<meta property="og:site_name" content="xioku銇皬銇曘仾涓栫晫">
-<meta property="og:description" content="研究日期：2026-07-08漏洞类型：JWT 头部注入 &#x2F; 认证绕过风险等级：高危（可导致任意用户身份伪造）   目录 一、JKU 基础概念 二、JKU 工作原理 三、攻击场景与核心原理 四、攻击方式详解 4.1 绕过 URL 白名单过滤 4.2 利用文件上传漏洞 4.3 利用开放重定向漏洞 4.4 利用 CRLF 注入   五、PoC 实战案例 5.1 AttackDefense：">
+<meta property="og:site_name" content="xiokuの小さな世界">
+<meta property="og:description" content="研究日期：2026-07-08漏洞类型：JWT 头部注入 &#x2F; 认证绕过风险等级：高危（可导致任意用户身份伪造）">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-07-09T01:30:00.000Z">
-<meta property="article:modified_time" content="2026-07-09T08:30:59.610Z">
+<meta property="article:modified_time" content="2026-07-09T08:42:50.256Z">
 <meta property="article:author" content="Xioku">
 <meta property="article:tag" content="JKU">
 <meta property="article:tag" content="JWT">
@@ -50,7 +50,7 @@
   };
 </script>
 
-  <title>JKU 注入攻击技术分析与防御指南 | xioku銇皬銇曘仾涓栫晫</title>
+  <title>JKU 注入攻击技术分析与防御指南 | xiokuの小さな世界</title>
   
 
 
@@ -101,10 +101,10 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">xioku銇皬銇曘仾涓栫晫</h1>
+      <h1 class="site-title">xiokuの小さな世界</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">xioku鐨勫皬鐮寸珯</p>
+      <p class="site-subtitle" itemprop="description">xioku的小破站</p>
   </div>
 
   <div class="site-nav-right">
@@ -209,7 +209,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xioku銇皬銇曘仾涓栫晫">
+      <meta itemprop="name" content="xiokuの小さな世界">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -224,7 +224,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2026-07-09 09:30:00 / Modified: 16:30:59" itemprop="dateCreated datePublished" datetime="2026-07-09T09:30:00+08:00">2026-07-09</time>
+              <time title="Created: 2026-07-09 09:30:00 / Modified: 16:42:50" itemprop="dateCreated datePublished" datetime="2026-07-09T09:30:00+08:00">2026-07-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -258,6 +258,8 @@
 <p><strong>研究日期</strong>：2026-07-08<br><strong>漏洞类型</strong>：JWT 头部注入 &#x2F; 认证绕过<br><strong>风险等级</strong>：高危（可导致任意用户身份伪造）</p>
 </blockquote>
 <hr>
+<span id="more"></span>
+
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
 <li><a href="#%E4%B8%80jku-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5">一、JKU 基础概念</a></li>
 <li><a href="#%E4%BA%8Cjku-%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86">二、JKU 工作原理</a></li>
