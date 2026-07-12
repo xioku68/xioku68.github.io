@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -19,18 +19,25 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"xioku.top","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
+  <meta name="description" content="专注于网络安全、考研专业课与技术学习笔记。">
+<meta property="og:type" content="website">
 <meta property="og:title" content="xiokuの小さな世界">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="https://xioku.top/index.html">
 <meta property="og:site_name" content="xiokuの小さな世界">
-<meta property="og:locale" content="en_US">
+<meta property="og:description" content="专注于网络安全、考研专业课与技术学习笔记。">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Xioku">
+<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="考研">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="计算机网络">
+<meta property="article:tag" content="技术博客">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="https://xioku.top/">
 
 
 <script id="page-configurations">
@@ -39,7 +46,7 @@
     sidebar: "",
     isHome : true,
     isPost : false,
-    lang   : 'en'
+    lang   : 'zh-CN'
   };
 </script>
 
@@ -83,7 +90,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -114,27 +121,27 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-resources">
@@ -143,7 +150,7 @@
 
   </li>
       <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
       </li>
   </ul>
@@ -159,7 +166,7 @@
   </span>
   <div class="search-input-container">
     <input autocomplete="off" autocapitalize="off"
-           placeholder="Searching..." spellcheck="false"
+           placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
@@ -191,13 +198,13 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2026/07/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xioku.top/2026/07/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Xioku">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于网络安全、考研专业课与技术学习笔记。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -214,16 +221,16 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="Created: 2026-07-12 12:02:00 / Modified: 23:30:39" itemprop="dateCreated datePublished" datetime="2026-07-12T12:02:00+08:00">2026-07-12</time>
+              <time title="创建时间：2026-07-12 12:02:00 / 修改时间：23:30:39" itemprop="dateCreated datePublished" datetime="2026-07-12T12:02:00+08:00">2026-07-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E8%80%83%E7%A0%94/" itemprop="url" rel="index"><span itemprop="name">考研</span></a>
                 </span>
@@ -244,7 +251,7 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2026/07/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -266,13 +273,13 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2026/07/12/%E6%9F%A5%E6%89%BE-%E6%8E%92%E5%BA%8F-%E7%AE%97%E6%B3%95/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xioku.top/2026/07/12/%E6%9F%A5%E6%89%BE-%E6%8E%92%E5%BA%8F-%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Xioku">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于网络安全、考研专业课与技术学习笔记。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -289,16 +296,16 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="Created: 2026-07-12 12:01:00 / Modified: 23:30:38" itemprop="dateCreated datePublished" datetime="2026-07-12T12:01:00+08:00">2026-07-12</time>
+              <time title="创建时间：2026-07-12 12:01:00 / 修改时间：23:30:38" itemprop="dateCreated datePublished" datetime="2026-07-12T12:01:00+08:00">2026-07-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E8%80%83%E7%A0%94/" itemprop="url" rel="index"><span itemprop="name">考研</span></a>
                 </span>
@@ -319,7 +326,7 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2026/07/12/%E6%9F%A5%E6%89%BE-%E6%8E%92%E5%BA%8F-%E7%AE%97%E6%B3%95/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -341,13 +348,13 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xioku.top/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Xioku">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于网络安全、考研专业课与技术学习笔记。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -364,16 +371,16 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="Created: 2026-07-12 12:00:00 / Modified: 23:24:37" itemprop="dateCreated datePublished" datetime="2026-07-12T12:00:00+08:00">2026-07-12</time>
+              <time title="创建时间：2026-07-12 12:00:00 / 修改时间：23:24:37" itemprop="dateCreated datePublished" datetime="2026-07-12T12:00:00+08:00">2026-07-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E8%80%83%E7%A0%94/" itemprop="url" rel="index"><span itemprop="name">考研</span></a>
                 </span>
@@ -394,7 +401,7 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -416,13 +423,13 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2026/07/09/%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BB%95%E8%BF%87/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xioku.top/2026/07/09/%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BB%95%E8%BF%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Xioku">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于网络安全、考研专业课与技术学习笔记。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -439,16 +446,16 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="Created: 2026-07-09 10:40:00 / Modified: 16:42:50" itemprop="dateCreated datePublished" datetime="2026-07-09T10:40:00+08:00">2026-07-09</time>
+              <time title="创建时间：2026-07-09 10:40:00 / 修改时间：16:42:50" itemprop="dateCreated datePublished" datetime="2026-07-09T10:40:00+08:00">2026-07-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Web%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">Web安全</span></a>
                 </span>
@@ -472,7 +479,7 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2026/07/09/%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BB%95%E8%BF%87/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -494,13 +501,13 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2026/07/09/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xioku.top/2026/07/09/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Xioku">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于网络安全、考研专业课与技术学习笔记。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -517,16 +524,16 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="Created: 2026-07-09 10:30:00 / Modified: 16:42:50" itemprop="dateCreated datePublished" datetime="2026-07-09T10:30:00+08:00">2026-07-09</time>
+              <time title="创建时间：2026-07-09 10:30:00 / 修改时间：16:42:50" itemprop="dateCreated datePublished" datetime="2026-07-09T10:30:00+08:00">2026-07-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">渗透测试</span></a>
                 </span>
@@ -550,7 +557,7 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2026/07/09/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -572,13 +579,13 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2026/07/09/%E5%8D%9A%E8%BE%BECMS%20API%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xioku.top/2026/07/09/%E5%8D%9A%E8%BE%BECMS%20API%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Xioku">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于网络安全、考研专业课与技术学习笔记。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -595,16 +602,16 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="Created: 2026-07-09 10:20:00 / Modified: 16:42:50" itemprop="dateCreated datePublished" datetime="2026-07-09T10:20:00+08:00">2026-07-09</time>
+              <time title="创建时间：2026-07-09 10:20:00 / 修改时间：16:42:50" itemprop="dateCreated datePublished" datetime="2026-07-09T10:20:00+08:00">2026-07-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">漏洞分析</span></a>
                 </span>
@@ -628,7 +635,7 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2026/07/09/%E5%8D%9A%E8%BE%BECMS%20API%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -650,13 +657,13 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2026/07/09/%E4%BB%8A%E6%97%A5%E6%BC%8F%E6%B4%9E%E7%AE%80%E6%8A%A5/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xioku.top/2026/07/09/%E4%BB%8A%E6%97%A5%E6%BC%8F%E6%B4%9E%E7%AE%80%E6%8A%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Xioku">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于网络安全、考研专业课与技术学习笔记。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -673,16 +680,16 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="Created: 2026-07-09 10:10:00 / Modified: 16:43:34" itemprop="dateCreated datePublished" datetime="2026-07-09T10:10:00+08:00">2026-07-09</time>
+              <time title="创建时间：2026-07-09 10:10:00 / 修改时间：16:43:34" itemprop="dateCreated datePublished" datetime="2026-07-09T10:10:00+08:00">2026-07-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%BC%8F%E6%B4%9E%E6%83%85%E6%8A%A5/" itemprop="url" rel="index"><span itemprop="name">漏洞情报</span></a>
                 </span>
@@ -705,7 +712,7 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2026/07/09/%E4%BB%8A%E6%97%A5%E6%BC%8F%E6%B4%9E%E7%AE%80%E6%8A%A5/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -727,13 +734,13 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2026/07/09/WAF%E7%BB%95%E8%BF%87/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xioku.top/2026/07/09/WAF%E7%BB%95%E8%BF%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Xioku">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于网络安全、考研专业课与技术学习笔记。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -750,16 +757,16 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="Created: 2026-07-09 10:00:00 / Modified: 16:42:50" itemprop="dateCreated datePublished" datetime="2026-07-09T10:00:00+08:00">2026-07-09</time>
+              <time title="创建时间：2026-07-09 10:00:00 / 修改时间：16:42:50" itemprop="dateCreated datePublished" datetime="2026-07-09T10:00:00+08:00">2026-07-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Web%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">Web安全</span></a>
                 </span>
@@ -783,7 +790,7 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2026/07/09/WAF%E7%BB%95%E8%BF%87/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -805,13 +812,13 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2026/07/09/PentAGI%E8%87%AA%E5%8A%A8%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xioku.top/2026/07/09/PentAGI%E8%87%AA%E5%8A%A8%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Xioku">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于网络安全、考研专业课与技术学习笔记。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -828,16 +835,16 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="Created: 2026-07-09 09:50:00 / Modified: 16:42:50" itemprop="dateCreated datePublished" datetime="2026-07-09T09:50:00+08:00">2026-07-09</time>
+              <time title="创建时间：2026-07-09 09:50:00 / 修改时间：16:42:50" itemprop="dateCreated datePublished" datetime="2026-07-09T09:50:00+08:00">2026-07-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
                 </span>
@@ -861,7 +868,7 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2026/07/09/PentAGI%E8%87%AA%E5%8A%A8%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -883,13 +890,13 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2026/07/09/Kali%20Linux%20%E4%BF%AE%E6%94%B9%E5%AE%9A%E5%88%B6%E6%95%99%E7%A8%8B/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xioku.top/2026/07/09/Kali%20Linux%20%E4%BF%AE%E6%94%B9%E5%AE%9A%E5%88%B6%E6%95%99%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Xioku">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="专注于网络安全、考研专业课与技术学习笔记。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -906,16 +913,16 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="Created: 2026-07-09 09:40:00 / Modified: 16:42:50" itemprop="dateCreated datePublished" datetime="2026-07-09T09:40:00+08:00">2026-07-09</time>
+              <time title="创建时间：2026-07-09 09:40:00 / 修改时间：16:42:50" itemprop="dateCreated datePublished" datetime="2026-07-09T09:40:00+08:00">2026-07-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
                 </span>
@@ -939,7 +946,7 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2026/07/09/Kali%20Linux%20%E4%BF%AE%E6%94%B9%E5%AE%9A%E5%88%B6%E6%95%99%E7%A8%8B/#more" rel="contents">
-                Read more &raquo;
+                阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -961,7 +968,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1005,10 +1012,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -1022,7 +1029,7 @@
     <img class="site-author-image" itemprop="image" alt="Xioku"
       src="/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">Xioku</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">专注于网络安全、考研专业课与技术学习笔记。</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -1030,20 +1037,20 @@
           <a href="/archives/">
         
           <span class="site-state-item-count">16</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
         <span class="site-state-item-count">6</span>
-        <span class="site-state-item-name">categories</span></a>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
         <span class="site-state-item-count">31</span>
-        <span class="site-state-item-name">tags</span></a>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -1079,7 +1086,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Xioku</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
         
@@ -1089,7 +1096,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
       </span>
-      <span class="site-uv" title="Total Visitors">
+      <span class="site-uv" title="总访客量">
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
@@ -1098,7 +1105,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
       </span>
-      <span class="site-pv" title="Total Views">
+      <span class="site-pv" title="总访问量">
         <span id="busuanzi_value_site_pv"></span>
       </span>
     </span>
@@ -1159,7 +1166,7 @@
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"dialog":{"enable":true,"hitokoto":true},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"dialog":{"enable":true,"hitokoto":true},"log":false});</script></body>
 </html>
 <script type="text/javascript" >
 !function(e,t,a){function n(){c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"),o(),r()}function r(){for(var e=0;e<d.length;e++)d[e].alpha<=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y--,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText="left:"+d[e].x+"px;top:"+d[e].y+"px;opacity:"+d[e].alpha+";transform:scale("+d[e].scale+","+d[e].scale+") rotate(45deg);background:"+d[e].color+";z-index:99999");requestAnimationFrame(r)}function o(){var t="function"==typeof e.onclick&&e.onclick;e.onclick=function(e){t&&t(),i(e)}}function i(e){var a=t.createElement("div");a.className="heart",d.push({el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()}),t.body.appendChild(a)}function c(e){var a=t.createElement("style");a.type="text/css";try{a.appendChild(t.createTextNode(e))}catch(t){a.styleSheet.cssText=e}t.getElementsByTagName("head")[0].appendChild(a)}function s(){return"rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"}var d=[];e.requestAnimationFrame=function(){return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e){setTimeout(e,1e3/60)}}(),n()}(window,document);
