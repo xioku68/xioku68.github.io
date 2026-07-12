@@ -19,7 +19,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"xioku.top","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"xioku.top","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="本文整理考研数据结构核心知识，包括线性表、树、图、查找、排序等内容。">
@@ -420,7 +420,7 @@
 <p>T(n)&#x3D;O(n),T(n)&#x3D;O(n^2),T(n)&#x3D;O(n^3)……</p>
 <p>：多项相加，只保留最高阶</p>
 <p>：多项相乘，都保留</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260311171338291.png" class="" title="image-20260311171338291">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260311171338291.png" class="" title="image-20260311171338291">
 
 <p><strong>常对幂指阶</strong></p>
 <p><strong>注意</strong>：<strong>只需要看循环部分的代码</strong>，顺序执行的代码只会影响常数项，可以忽略。</p>
@@ -436,12 +436,12 @@
 <p>S(n)&#x3D;O(n)</p>
 <p>即与问题规模n相关的存储变量的大小，例如：flag[n]–S(n)&#x3D;O(n),flag[n]&#x2F;[n]–S(n)&#x3D;O(n^2)。</p>
 <p><strong>函数递归调用</strong>带来的内存开销：</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260311174719858.png" class="" title="image-20260311174719858">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260311174719858.png" class="" title="image-20260311174719858">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260311174734609.png" class="" title="image-20260311174734609">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260311174734609.png" class="" title="image-20260311174734609">
 
 <h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2><p>线性表是具有相同数据类型的n(n&gt;&#x3D;0)个数据元素的 有限序列 ，n为表长，当n&#x3D;0时候线性表示一个空表。</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260312161221801.png" class="" title="image-20260312161221801">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260312161221801.png" class="" title="image-20260312161221801">
 
 <p>什么时候传入参数引用“&amp;”—-对参数修改结果需要“带回来”。</p>
 <p>  就是函数执行过程会申请独立空间重新复制一个和main当中变量类似的同名变量，但是实际上是不一样的，两者地址不一样；如果使用的是&amp;则是取当前变量地址作为传参，这样申请的空间存储的是地址，对数据元素操作的时候修改会先找到地址再修改，这样的影响是全局的，在main当中的变量也会修改。</p>
@@ -450,30 +450,30 @@
 <p>LOC(L) , LOC(L)+数据元素大小*i ，</p>
 <p>sizeof(int)&#x3D;4B;  sizeof(变量名)</p>
 <p><strong>顺序表静态分配</strong></p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260312172331304.png" class="" title="image-20260312172331304">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260312172331304.png" class="" title="image-20260312172331304">
 
 <p>如果没有默认初始化数据，分配链表内存的地址内的比特值不会自动置0，也就是内存残留，这样我们在尝试打印的时候就会出现未知数字，也就是当前地址的默认比特值。在访问链表的时候要遵循链表长度的限制即<code>i&lt;L.length</code>;同样<code>L.length</code>也必须初始化设置，如果是maxsize，这是违规的，因为未定义的位置在逻辑上不算链表的一部分，只是物理结构的一部分。当然可以采用动态连表来解决这种问题。</p>
 <p>？？数组满了怎么办：重新建？</p>
-<p><strong>顺序表动态分配</strong><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260312173431214.png" class="" title="image-20260312173431214"></p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260312174050187.png" class="" title="image-20260312174050187">
+<p><strong>顺序表动态分配</strong><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260312173431214.png" class="" title="image-20260312173431214"></p>
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260312174050187.png" class="" title="image-20260312174050187">
 
 <h3 id="顺序表的插入和删除"><a href="#顺序表的插入和删除" class="headerlink" title="顺序表的插入和删除"></a>顺序表的插入和删除</h3><p><strong>插入</strong></p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260313205548580.png" class="" title="image-20260313205548580">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260313205548580.png" class="" title="image-20260313205548580">
 
 <p>位序&#x3D;下标+1；</p>
 <p>也就是在将要插入的位置(位序&#x3D;i)的后面的L.length-i个元素全部后移移位，建立for循环，从最后开始移位，j&#x3D;L.length,什么时候停止？当j&#x3D;i的时候应该是最后一次执行，所以j&gt;&#x3D;i；j–，循环当中链表元素的下标统一比位序小一，即要将位序j放到j+1，就是Data[j-1]的元素放到L.data[j]的位置。循环结束之后也应该是将待插入元素e放到位序&#x3D;i，L.data[i-1]的位置。</p>
 <p>所以链表未定义位置不能凭空插入，如果长度只有5，但却要在9插入，就是不正确的，同时需要建立条件判断插入位置是否合理；除此之外，还要考虑静态连表插入之前是否已经满列？满了返回不允许，或者动态的时候重新调用 分配新内存函数，新内存传参为1或者待插入元素列表大小。</p>
 <p>优化代码如下</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260313211217305.png" class="" title="image-20260313211217305">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260313211217305.png" class="" title="image-20260313211217305">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260313211457180.png" class="" title="image-20260313211457180">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260313211457180.png" class="" title="image-20260313211457180">
 
 <p><strong>删除</strong></p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260313211721216.png" class="" title="image-20260313211721216">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260313211721216.png" class="" title="image-20260313211721216">
 
 <p>e是全局变量，所以要用&amp;取地址，可以将函数内部的改变读取出来，就是删除元素的值返还给e。</p>
 <p>最后一次移位是将位序length的复制给length-1，所以j的判断条件应该要执行到length这个位置，下标是length-1，所以j最大只需要执行到length-1就可以，所以判断条件j&lt;length是对的。</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260313212658537.png" class="" title="image-20260313212658537">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260313212658537.png" class="" title="image-20260313212658537">
 
 <h3 id="顺序表的查找"><a href="#顺序表的查找" class="headerlink" title="顺序表的查找"></a>顺序表的查找</h3><p><strong>线性表按位查找</strong></p>
 <p>动态分配的data和静态分配的data是不一样痒的</p>
@@ -505,7 +505,7 @@
 <li><strong>指针的 data</strong>：是<strong>变量指针</strong>（地址可以随便改）</li>
 </ul>
 <p>但取值方式一模一样。</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260313213613083.png" class="" title="image-20260313213613083">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260313213613083.png" class="" title="image-20260313213613083">
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">L.data = (int *)malloc(InitSize * sizeof(int));</span><br></pre></td></tr></table></figure>
 
@@ -526,18 +526,18 @@
 <li><strong><code>p[2]</code> → 30</strong></li>
 </ul>
 <p><strong>线性表按值查找</strong></p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260313220105741.png" class="" title="image-20260313220105741">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260313220105741.png" class="" title="image-20260313220105741">
 
 <p><strong>结构类型不可直接使用&#x3D;&#x3D;比较</strong></p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260313221821230.png" class="" title="image-20260313221821230">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260313221821230.png" class="" title="image-20260313221821230">
 
 <h3 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h3><p>不可随机存取，每个节点存储自身元素还有指向下一个节点的指针。</p>
 <p><strong>定义</strong>：</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260319225151278.png" class="" title="image-20260319225151278">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260319225151278.png" class="" title="image-20260319225151278">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260319225745769.png" class="" title="image-20260319225745769">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260319225745769.png" class="" title="image-20260319225745769">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260319225355923.png" class="" title="image-20260319225355923">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260319225355923.png" class="" title="image-20260319225355923">
 
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span> <span class="comment">// 用于malloc申请内存</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 把抽象类型ElemType定义为int，让data可以存整数</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> ElemType;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 定义单链表结点（和题目结构完全一致）</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span>&#123;</span></span><br><span class="line">    ElemType data;       <span class="comment">// 数据域：存int类型的整数</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span> *<span class="title">next</span>;</span>  <span class="comment">// 指针域：指向下一个结点</span></span><br><span class="line">&#125;LNode, *LinkList;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">// --------------------------</span></span><br><span class="line">    <span class="comment">// 3. 创建3个结点，分别存10、20、30</span></span><br><span class="line">    <span class="comment">// --------------------------</span></span><br><span class="line">    <span class="comment">// 方法1：用LNode定义结点（结点本身，栈内存，适合固定结点）</span></span><br><span class="line">    LNode node1;</span><br><span class="line">    node1.data = <span class="number">10</span>;</span><br><span class="line">    node1.next = <span class="literal">NULL</span>; <span class="comment">// 指针置空，表示后面暂时没有结点</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 方法2：用指针动态创建结点（堆内存，实际链表中最常用）</span></span><br><span class="line">    LNode *node2 = (LNode*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));</span><br><span class="line">    node2-&gt;data = <span class="number">20</span>;  <span class="comment">// 指针用-&gt;访问结构体成员</span></span><br><span class="line">    node2-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 方法3：用LinkList定义指针（和LNode*完全等价，强调“链表”）</span></span><br><span class="line">    LinkList node3 = (LinkList)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));</span><br><span class="line">    node3-&gt;data = <span class="number">30</span>;</span><br><span class="line">    node3-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// --------------------------</span></span><br><span class="line">    <span class="comment">// 4. 把结点串成链表：10 → 20 → 30</span></span><br><span class="line">    <span class="comment">// --------------------------</span></span><br><span class="line">    node1.next = node2;  <span class="comment">// node1的next指向node2</span></span><br><span class="line">    node2-&gt;next = node3; <span class="comment">// node2的next指向node3</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// --------------------------</span></span><br><span class="line">    <span class="comment">// 5. 遍历链表（从头指针开始，依次访问每个结点）</span></span><br><span class="line">    <span class="comment">// --------------------------</span></span><br><span class="line">    LinkList L = &amp;node1; <span class="comment">// 头指针L指向第一个结点node1</span></span><br><span class="line">    LNode *p = L;        <span class="comment">// 遍历用的临时指针p，从表头开始</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;链表元素：&quot;</span>);</span><br><span class="line">    <span class="keyword">while</span>(p != <span class="literal">NULL</span>)&#123;    <span class="comment">// 直到p为NULL（链表末尾）</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, p-&gt;data); <span class="comment">// 输出当前结点的数据</span></span><br><span class="line">        p = p-&gt;next;     <span class="comment">// 移动到下一个结点</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// --------------------------</span></span><br><span class="line">    <span class="comment">// 6. 释放动态申请的内存（避免内存泄漏）</span></span><br><span class="line">    <span class="comment">// --------------------------</span></span><br><span class="line">    <span class="built_in">free</span>(node2);</span><br><span class="line">    <span class="built_in">free</span>(node3);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -548,27 +548,27 @@
 <li><strong>结构体自引用</strong>：<code>next</code>指针必须用<code>struct LNode *</code>，不能用<code>LNode *</code>，因为结构体定义内部<code>typedef</code>的别名还没生效。</li>
 <li><strong>内存管理</strong>：用<code>malloc</code>动态创建的结点，必须用<code>free</code>释放，否则会造成内存泄漏。</li>
 </ol>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320000614185.png" class="" title="image-20260320000614185">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320000614185.png" class="" title="image-20260320000614185">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320000629838.png" class="" title="image-20260320000629838">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320000629838.png" class="" title="image-20260320000629838">
 
 <p>不带头节点，写代码的时候不方便。</p>
 <h3 id="单链表插入和删除"><a href="#单链表插入和删除" class="headerlink" title="单链表插入和删除"></a>单链表插入和删除</h3><p>按位序插入(带头节点)</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320002441499.png" class="" title="image-20260320002441499">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320002441499.png" class="" title="image-20260320002441499">
 
 <p>不带头节点的单链表再插入删除第一个结点的时候都要修改链表指针L</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320003223680.png" class="" title="image-20260320003223680">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320003223680.png" class="" title="image-20260320003223680">
 
 <p>指定节点后插操作，指定节点前插操作。</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320003609715.png" class="" title="image-20260320003609715">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320003609715.png" class="" title="image-20260320003609715">
 
 <p><strong>按位序删除</strong></p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320004344516.png" class="" title="image-20260320004344516">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320004344516.png" class="" title="image-20260320004344516">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320004400554.png" class="" title="image-20260320004400554">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320004400554.png" class="" title="image-20260320004400554">
 
 <h3 id="单链表的查找"><a href="#单链表的查找" class="headerlink" title="单链表的查找"></a>单链表的查找</h3><p><strong>按位查找</strong></p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320010937411.png" class="" title="image-20260320010937411">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320010937411.png" class="" title="image-20260320010937411">
 
 <p>如果不加上if(i&lt;1)会怎么样？</p>
 <p><strong>没加执行步骤</strong>：</p>
@@ -591,7 +591,7 @@
 <li>只有<code>i&lt;0</code>的情况：循环条件<code>j&lt;i</code>（<code>j=1</code>，<code>i&lt;0</code>）永远不成立，会直接返回初始的<code>p</code>（第 1 个数据结点），必须单独拦截。</li>
 </ul>
 <p><strong>按值查找</strong></p>
-<h3 id="单链表的建立"><a href="#单链表的建立" class="headerlink" title="单链表的建立"></a>单链表的建立</h3><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320012820501.png" class="" title="image-20260320012820501">
+<h3 id="单链表的建立"><a href="#单链表的建立" class="headerlink" title="单链表的建立"></a>单链表的建立</h3><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320012820501.png" class="" title="image-20260320012820501">
 
 <p>其实链表建立就是地址空间的链接，不需要记住每一个的地址，只需要记住第一个地址就行，所以申请空间之后不需要保留空间地址，只需等到结束统一释放。</p>
 <p>所以在创建链表的时候就不需要和数组和顺序表一样记住下标，赋值完成，下一个节点指针给出就可以了。</p>
@@ -603,7 +603,7 @@
 
 
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320015131801.png" class="" title="image-20260320015131801">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260320015131801.png" class="" title="image-20260320015131801">
 
 <p>不带头节点</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span>&#123;</span></span><br><span class="line">    ElemType data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;LNode, *LinkList;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不带头结点的头插法建立单链表（逆序建立）</span></span><br><span class="line">LinkList <span class="title function_">List_HeadInsert_NoHead</span><span class="params">(LinkList &amp;L)</span>&#123;</span><br><span class="line">    <span class="type">int</span> x;</span><br><span class="line">    L = <span class="literal">NULL</span>;          <span class="comment">// 不带头结点，初始空表：头指针L为NULL（关键！）</span></span><br><span class="line">    LNode *s;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;x);   <span class="comment">// 输入第一个元素</span></span><br><span class="line">    <span class="keyword">while</span>(x != <span class="number">9999</span>)&#123;  <span class="comment">// 输入9999表示结束输入</span></span><br><span class="line">        <span class="comment">// 1. 创建新结点，赋值数据域</span></span><br><span class="line">        s = (LNode *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));</span><br><span class="line">        s-&gt;data = x;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. 核心头插逻辑（顺序绝对不能颠倒！）</span></span><br><span class="line">        s-&gt;next = L;   <span class="comment">// 新结点的next指向「当前链表的表头」（空表时L=NULL，s-&gt;next自动置空，完美适配）</span></span><br><span class="line">        L = s;         <span class="comment">// 头指针L更新为新结点，新结点成为新的表头</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;x); <span class="comment">// 输入下一个元素</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> L;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -659,7 +659,7 @@
 <pre><code>####  **括号匹配**
 </code></pre>
 <p>最后出现的左括号最先被匹配，LIFO，每次出现一个右括号弹出栈顶左括号。</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260407222106023.png" class="" title="image-20260407222106023">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260407222106023.png" class="" title="image-20260407222106023">
 
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> Maxsize 10</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    <span class="type">char</span> data[Maxsize];</span><br><span class="line">    <span class="type">int</span> top;</span><br><span class="line">&#125;Sqstack;</span><br><span class="line"></span><br><span class="line"><span class="type">bool</span> <span class="title function_">bracketCheck</span><span class="params">(<span class="type">char</span> str[], <span class="type">int</span> length)</span>&#123;</span><br><span class="line">    Sqstack S;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;length;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(str[i]==<span class="string">&#x27;(&#x27;</span>||str[i]==<span class="string">&#x27;[&#x27;</span>||str[i]==<span class="string">&#x27;&#123;&#x27;</span>)&#123;</span><br><span class="line">            S.data[j]=str[i];</span><br><span class="line">            top++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(S.top==<span class="number">-1</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="type">char</span> topElem;</span><br><span class="line">            topElem=S.[top];</span><br><span class="line">            <span class="keyword">if</span>(str[i]==<span class="string">&#x27;)&#x27;</span>&amp;&amp; topElem!=<span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span>(str[i]==<span class="string">&#x27;]&#x27;</span>&amp;&amp; topElem!=<span class="string">&#x27;[&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span>(str[i]==<span class="string">&#x27;&#125;&#x27;</span>&amp;&amp; topElem!=<span class="string">&#x27;&#123;&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(S.top!=<span class="number">-1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -668,20 +668,20 @@
 <h5 id="中缀表达式求值、模拟入栈出栈顺序"><a href="#中缀表达式求值、模拟入栈出栈顺序" class="headerlink" title="中缀表达式求值、模拟入栈出栈顺序"></a>中缀表达式求值、模拟入栈出栈顺序</h5><p>OPTR栈：#……  #</p>
 <p>OPND栈：7 8……</p>
 <p>直接按顺序计算就好了</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260408164935673.png" class="" title="image-20260408164935673">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260408164935673.png" class="" title="image-20260408164935673">
 
 <h5 id="后缀表达式求值，模拟入栈出栈顺序"><a href="#后缀表达式求值，模拟入栈出栈顺序" class="headerlink" title="后缀表达式求值，模拟入栈出栈顺序"></a>后缀表达式求值，模拟入栈出栈顺序</h5><p>后缀表达式，从左往右，操作数入栈，运算符则从栈中pop两个数据运算符运算后push，先出栈的是右操作数。</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260408162651511.png" class="" title="image-20260408162651511">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260408162651511.png" class="" title="image-20260408162651511">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260408162720803.png" class="" title="image-20260408162720803">
-
-
-
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260408162804451.png" class="" title="image-20260408162804451">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260408162720803.png" class="" title="image-20260408162720803">
 
 
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260408163123014.png" class="" title="image-20260408163123014">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260408162804451.png" class="" title="image-20260408162804451">
+
+
+
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260408163123014.png" class="" title="image-20260408163123014">
 
 <p><strong>AB+CD*E&#x2F;-F+</strong></p>
 <p>+后面-进栈的时候发现+和-优先级相等，先弹出+再进栈-；-*，接下来&#x2F;进栈，&#x2F;*相等，先出*,下一个-小于&#x2F;不出栈，继续。</p>
@@ -691,15 +691,15 @@
 <p>缺点：太多层递归导致栈溢出。</p>
 <h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><h4 id="顺序队列"><a href="#顺序队列" class="headerlink" title="顺序队列"></a>顺序队列</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MaxSize 10</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    ElemType data[MaxSize];</span><br><span class="line">    <span class="type">int</span> front,rear;</span><br><span class="line">&#125; SqQueue;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">InitQueue</span><span class="params">(SqQueue &amp;Q)</span>&#123;</span><br><span class="line">    Q.front=Q.rear=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">bool</span> <span class="title function_">QueueEmpty</span><span class="params">(SqQueue &amp;Q)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(Q.front==Q.rear)</span><br><span class="line">        <span class="keyword">return</span> ture;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">bool</span> <span class="title function_">EnQueue</span><span class="params">(SqQueue &amp;Q,ElemType &amp;x)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>((Q.rear+<span class="number">1</span>)==Q.front)</span><br><span class="line">        <span class="keyword">return</span> fasle;</span><br><span class="line">    Q.data[Q.rear]=X;</span><br><span class="line">    Q.rear=(Q.rear+<span class="number">1</span>)%MaxSize;</span><br><span class="line">    <span class="keyword">return</span> ture;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">bool</span> <span class="title function_">OutQueue</span><span class="params">(SqQueue &amp;Q,ElemType &amp;x)</span>&#123;</span><br><span class="line">  <span class="comment">//  if(((Q.front+MaxSize-1)%MaxSize)==Q.rear)</span></span><br><span class="line">  <span class="comment">//      return fasle;</span></span><br><span class="line">    <span class="keyword">if</span>(Q.rear==Q.front)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    x=Q.data[Q.front];</span><br><span class="line">    <span class="comment">//Q.front=(Q.front+MaxSize-1)%MaxSize;</span></span><br><span class="line">    Q.front=(Q.front<span class="number">-1</span>)%MaxSize;</span><br><span class="line">    <span class="keyword">return</span> ture;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//队列元素个数（rear+M-front）%M</span></span><br><span class="line"><span class="type">bool</span> <span class="title function_">GetHead</span><span class="params">(SqQueue Q,ElemType &amp;x)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(Q.rear==Q.front)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    x=Q.data[Q.front];</span><br><span class="line">    <span class="keyword">return</span> ture;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260326104110913.png" class="" title="image-20260326104110913">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260326104110913.png" class="" title="image-20260326104110913">
 
 
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260326104129712.png" class="" title="image-20260326104129712">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260326104129712.png" class="" title="image-20260326104129712">
 
 
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260326104208975.png" class="" title="image-20260326104208975">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260326104208975.png" class="" title="image-20260326104208975">
 
 <h4 id="链队列"><a href="#链队列" class="headerlink" title="链队列"></a>链队列</h4><p>有头尾指针，且限制在表头删除，在表尾增加的带头节点，p指向头节点的单链表。</p>
 <p>实际上是单独申请两个指针指向带头节点链表的头节点和尾解点。</p>
@@ -860,26 +860,26 @@
 </ol>
 <p>|i-j|&lt;1,aij!&#x3D;0</p>
 <p>3n-2个，数组下表3n-3</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260408193206473.png" class="" title="image-20260408193206473">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260408193206473.png" class="" title="image-20260408193206473">
 
 <ol start="4">
 <li>稀疏矩阵</li>
 </ol>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260408193313940.png" class="" title="image-20260408193313940">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260408193313940.png" class="" title="image-20260408193313940">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260408193255110.png" class="" title="image-20260408193255110">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260408193255110.png" class="" title="image-20260408193255110">
 
-<h2 id="串"><a href="#串" class="headerlink" title="串"></a>串</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260409150658016.png" class="" title="image-20260409150658016">
+<h2 id="串"><a href="#串" class="headerlink" title="串"></a>串</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260409150658016.png" class="" title="image-20260409150658016">
 
 <h3 id="串的存储结构"><a href="#串的存储结构" class="headerlink" title="串的存储结构"></a>串的存储结构</h3><h4 id="定长顺序存储-静态数组"><a href="#定长顺序存储-静态数组" class="headerlink" title="定长顺序存储(静态数组)"></a><strong>定长顺序存储(静态数组)</strong></h4><p>记录串长，A[0]&#x2F;A[N]&#x3D;l.length两者；缺点是只能表示TypeElemt长度</p>
 <p>或者不显示表示字符长，但是以\0结尾；</p>
 <p>或者char[0]舍弃不用，结尾记录长</p>
 <h4 id="链式存储"><a href="#链式存储" class="headerlink" title="链式存储"></a>链式存储</h4><p><strong>串的链式存储</strong> </p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260409151828904.png" class="" title="image-20260409151828904">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260409151828904.png" class="" title="image-20260409151828904">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260409152849366.png" class="" title="image-20260409152849366">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260409152849366.png" class="" title="image-20260409152849366">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260409152907188.png" class="" title="image-20260409152907188">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260409152907188.png" class="" title="image-20260409152907188">
 
 <h4 id="索引存储"><a href="#索引存储" class="headerlink" title="索引存储"></a>索引存储</h4><p>索引存储除了存储串值以外，还要存储串名与串值之间得对应关系得索引表。</p>
 <h5 id="带长度得索引表"><a href="#带长度得索引表" class="headerlink" title="带长度得索引表"></a>带长度得索引表</h5><p>每条索引包含三部分：</p>
@@ -910,13 +910,13 @@
 <h4 id="KMP算法-手算next数组"><a href="#KMP算法-手算next数组" class="headerlink" title="KMP算法-手算next数组"></a><strong>KMP算法</strong>-手算next数组</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">index</span><span class="params">(SString S,SString T)</span>&#123;</span><br><span class="line">    <span class="type">int</span> i=<span class="number">1</span>,j=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;=S.length&amp;&amp;j&lt;=T.length)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j==<span class="number">0</span>||S.ch[i]==T.ch[j])&#123;</span><br><span class="line">            ++i;++j;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			j=next[j];<span class="comment">//匹配失败不回溯i指针</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(j&gt;T.length)&#123;</span><br><span class="line">    <span class="keyword">return</span> i-T.length;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>手算NEXT数组方法：</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260623201204499.png" class="" title="image-20260623201204499">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260623201204499.png" class="" title="image-20260623201204499">
 
 
 
 
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260410200529687.png" class="" title="image-20260410200529687">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260410200529687.png" class="" title="image-20260410200529687">
 
 
 
@@ -939,7 +939,7 @@
 <li>这张 PPT 为了简化初学者理解，没有写 - 1，直接留白，代表该下标无可用回退值，单独走边界分支。</li>
 </ul>
 <p><strong>KMP算法求NEXT数组</strong></p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260410203320103.png" class="" title="image-20260410203320103">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260410203320103.png" class="" title="image-20260410203320103">
 
 <p><strong>优化后的KMP算法</strong></p>
 <h4 id="手算求解netval数组"><a href="#手算求解netval数组" class="headerlink" title="手算求解netval数组"></a>手算求解netval数组</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">nextval[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">2</span>;j&lt;=T.length;j++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(T.ch[next[j]]==T.ch[j])&#123;</span><br><span class="line">        nextval[j]=nextval[next[j]];</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        nextval[j]=next[j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -947,13 +947,13 @@
 <p>第一步求解next数组，包含j,模式(从左到右就是模式串)，next[j],遍历数组，</p>
 <p>第二步，从左往右遍历，如果j对应的模式的值，等于next[j]下标对应的模式的值，就直接替换成next[j]对应模式的相对应值。</p>
 <p>例如：</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260623204733729.png" class="" title="image-20260623204733729">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260623204733729.png" class="" title="image-20260623204733729">
 
 
 
-<h3 id="压缩存储"><a href="#压缩存储" class="headerlink" title="压缩存储"></a>压缩存储</h3><h4 id="特殊矩阵-矩阵-数组"><a href="#特殊矩阵-矩阵-数组" class="headerlink" title="特殊矩阵-矩阵-&gt;数组"></a>特殊矩阵-矩阵-&gt;数组</h4><h4 id="稀疏矩阵-矩阵-三元组"><a href="#稀疏矩阵-矩阵-三元组" class="headerlink" title="稀疏矩阵-矩阵-&gt;三元组"></a>稀疏矩阵-矩阵-&gt;三元组</h4><h5 id="三元组表"><a href="#三元组表" class="headerlink" title="三元组表"></a>三元组表</h5><h5 id="十字链表法"><a href="#十字链表法" class="headerlink" title="十字链表法"></a>十字链表法</h5><h2 id="树和二叉树"><a href="#树和二叉树" class="headerlink" title="树和二叉树"></a>树和二叉树</h2><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260411180141180.png" class="" title="image-20260411180141180">
+<h3 id="压缩存储"><a href="#压缩存储" class="headerlink" title="压缩存储"></a>压缩存储</h3><h4 id="特殊矩阵-矩阵-数组"><a href="#特殊矩阵-矩阵-数组" class="headerlink" title="特殊矩阵-矩阵-&gt;数组"></a>特殊矩阵-矩阵-&gt;数组</h4><h4 id="稀疏矩阵-矩阵-三元组"><a href="#稀疏矩阵-矩阵-三元组" class="headerlink" title="稀疏矩阵-矩阵-&gt;三元组"></a>稀疏矩阵-矩阵-&gt;三元组</h4><h5 id="三元组表"><a href="#三元组表" class="headerlink" title="三元组表"></a>三元组表</h5><h5 id="十字链表法"><a href="#十字链表法" class="headerlink" title="十字链表法"></a>十字链表法</h5><h2 id="树和二叉树"><a href="#树和二叉树" class="headerlink" title="树和二叉树"></a>树和二叉树</h2><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260411180141180.png" class="" title="image-20260411180141180">
 
-<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><h4 id="二叉树的概念"><a href="#二叉树的概念" class="headerlink" title="二叉树的概念"></a>二叉树的概念</h4><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260411181502889.png" class="" title="image-20260411181502889">
+<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><h4 id="二叉树的概念"><a href="#二叉树的概念" class="headerlink" title="二叉树的概念"></a>二叉树的概念</h4><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260411181502889.png" class="" title="image-20260411181502889">
 
 
 
@@ -1033,11 +1033,11 @@
 <li>适用：需要频繁向上回溯的场景。</li>
 </ol>
 <h3 id="二叉树遍历-深度vs广度"><a href="#二叉树遍历-深度vs广度" class="headerlink" title="二叉树遍历-深度vs广度"></a>二叉树遍历-深度vs广度</h3><h4 id="先序遍历：根左右"><a href="#先序遍历：根左右" class="headerlink" title="先序遍历：根左右"></a>先序遍历：根左右</h4><p>O(h+1)</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412200405898.png" class="" title="image-20260412200405898">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412200405898.png" class="" title="image-20260412200405898">
 
-<h4 id="中序遍历-左根右"><a href="#中序遍历-左根右" class="headerlink" title="中序遍历: 左根右"></a>中序遍历: 左根右</h4><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412200425320.png" class="" title="image-20260412200425320">
+<h4 id="中序遍历-左根右"><a href="#中序遍历-左根右" class="headerlink" title="中序遍历: 左根右"></a>中序遍历: 左根右</h4><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412200425320.png" class="" title="image-20260412200425320">
 
-<h4 id="后序遍历：左右根"><a href="#后序遍历：左右根" class="headerlink" title="后序遍历：左右根"></a>后序遍历：左右根</h4><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412200438291.png" class="" title="image-20260412200438291">
+<h4 id="后序遍历：左右根"><a href="#后序遍历：左右根" class="headerlink" title="后序遍历：左右根"></a>后序遍历：左右根</h4><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412200438291.png" class="" title="image-20260412200438291">
 
 <h4 id="深度优先遍历的非递归算法"><a href="#深度优先遍历的非递归算法" class="headerlink" title="深度优先遍历的非递归算法"></a>深度优先遍历的非递归算法</h4><p>将递归算法转化为等价的非递归算法的一种简单方法，就是通过对递归调用过程的考查而得来的。这种方法使用一个堆栈 stack [N] 来保存每次调用的参数，这个堆栈的栈顶指针为 top，另设一个活动指针 p 来指向当前访问的结点。这里将讨论中序遍历的非递归算法，关于先序遍历和后序遍历的非递归算法，请读者自行设计。</p>
 <p>中序遍历的非递归算法的基本思想是：当 p 所指的结点非空时，将该结点的存储地址进栈，然后将 p 指向该结点的左孩子结点；当 p 所指的结点为空时，从栈顶退出栈顶元素送 p，并访问该结点，然后将 p 指向该结点的右孩子结点；如此反复，直到 p 为空并且栈顶指针 top &#x3D; -1 为止。</p>
@@ -1045,12 +1045,12 @@
 
 
 
-<h4 id="层序遍历-广度优先遍历"><a href="#层序遍历-广度优先遍历" class="headerlink" title="层序遍历(广度优先遍历)"></a>层序遍历(广度优先遍历)</h4><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412202627783.png" class="" title="image-20260412202627783">
+<h4 id="层序遍历-广度优先遍历"><a href="#层序遍历-广度优先遍历" class="headerlink" title="层序遍历(广度优先遍历)"></a>层序遍历(广度优先遍历)</h4><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412202627783.png" class="" title="image-20260412202627783">
 
 <p><strong>应用：求树的深度</strong></p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412202524502.png" class="" title="image-20260412202524502">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412202524502.png" class="" title="image-20260412202524502">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412202602682.png" class="" title="image-20260412202602682">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412202602682.png" class="" title="image-20260412202602682">
 
 
 
@@ -1062,7 +1062,7 @@
 <p>后+中</p>
 <p>层+中</p>
 <p>其他组合无法唯一确定一棵树</p>
-<h3 id="遍历算法的应用"><a href="#遍历算法的应用" class="headerlink" title="遍历算法的应用"></a>遍历算法的应用</h3><h4 id="1-统计一颗二叉树的叶子节点"><a href="#1-统计一颗二叉树的叶子节点" class="headerlink" title="1.统计一颗二叉树的叶子节点"></a>1.统计一颗二叉树的叶子节点</h4><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260629172101637.png" class="" title="image-20260629172101637">
+<h3 id="遍历算法的应用"><a href="#遍历算法的应用" class="headerlink" title="遍历算法的应用"></a>遍历算法的应用</h3><h4 id="1-统计一颗二叉树的叶子节点"><a href="#1-统计一颗二叉树的叶子节点" class="headerlink" title="1.统计一颗二叉树的叶子节点"></a>1.统计一颗二叉树的叶子节点</h4><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260629172101637.png" class="" title="image-20260629172101637">
 
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">CountLeaf</span><span class="params">(bitree *p)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!p)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(!p-&gt;lchild &amp;&amp; !p-&gt;rchild)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> CountLeaf(p-&gt;lchild) + CountLeaf(p-&gt;rchild);</span><br><span class="line">&#125; <span class="comment">//CountLeaf</span></span><br></pre></td></tr></table></figure>
 
@@ -1070,7 +1070,7 @@
 
 
 
-<h4 id="2-求二叉树的深度"><a href="#2-求二叉树的深度" class="headerlink" title="2.求二叉树的深度"></a>2.求二叉树的深度</h4><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260629172134322.png" class="" title="image-20260629172134322">
+<h4 id="2-求二叉树的深度"><a href="#2-求二叉树的深度" class="headerlink" title="2.求二叉树的深度"></a>2.求二叉树的深度</h4><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260629172134322.png" class="" title="image-20260629172134322">
 
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Height</span><span class="params">(bitree *p)</span>&#123;</span><br><span class="line">    <span class="type">int</span> lc, rc;</span><br><span class="line">    <span class="keyword">if</span>(p == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    lc = Height(p-&gt;lchild) + <span class="number">1</span>;</span><br><span class="line">    rc = Height(p-&gt;rchild) + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> lc &gt; rc ? lc : rc;</span><br><span class="line">&#125; <span class="comment">//Height</span></span><br></pre></td></tr></table></figure>
 
@@ -1085,11 +1085,11 @@
 
 
 
-<h3 id="线索二叉树"><a href="#线索二叉树" class="headerlink" title="线索二叉树"></a>线索二叉树</h3><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412205321013.png" class="" title="image-20260412205321013">
+<h3 id="线索二叉树"><a href="#线索二叉树" class="headerlink" title="线索二叉树"></a>线索二叉树</h3><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412205321013.png" class="" title="image-20260412205321013">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412205648639.png" class="" title="image-20260412205648639">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412205648639.png" class="" title="image-20260412205648639">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412205659845.png" class="" title="image-20260412205659845">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412205659845.png" class="" title="image-20260412205659845">
 
 <h4 id="二叉树线索化代码"><a href="#二叉树线索化代码" class="headerlink" title="二叉树线索化代码"></a>二叉树线索化代码</h4><h5 id="中序线索二叉树"><a href="#中序线索二叉树" class="headerlink" title="中序线索二叉树"></a>中序线索二叉树</h5><p><strong>最左结点</strong>：树中最左下结点，无左孩子（ltag&#x3D;1），是中序遍历第一个点，前驱线索为空。</p>
 <p><strong>最右结点</strong>：树中最右下结点，无右孩子（rtag&#x3D;1），是中序遍历最后一个点，后继线索为空。</p>
@@ -1103,25 +1103,25 @@
 <li><p>若 p 有左孩子（ltag&#x3D;0）：前驱是左子树最右下结点；</p>
 </li>
 <li><p>若 p 无左孩子（ltag&#x3D;1）：<code>lchild</code> 直接就是前驱线索。</p>
- <img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412211701271.png" class="" title="image-20260412211701271"></li>
+ <img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412211701271.png" class="" title="image-20260412211701271"></li>
 </ul>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412213238113.png" class="" title="image-20260412213238113">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260412213238113.png" class="" title="image-20260412213238113">
 
 
 
 <h5 id="先序线索二叉树"><a href="#先序线索二叉树" class="headerlink" title="先序线索二叉树"></a>先序线索二叉树</h5><p>有左孩子时，左孩子一定是前序直接后继；</p>
 <p>只有无左孩子时，右线索才指向后继；</p>
 <p>根结点无前驱。</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260414114020870.png" class="" title="image-20260414114020870">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260414114020870.png" class="" title="image-20260414114020870">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260414113946163.png" class="" title="image-20260414113946163">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260414113946163.png" class="" title="image-20260414113946163">
 
 <h5 id="后序线索二叉树"><a href="#后序线索二叉树" class="headerlink" title="后序线索二叉树"></a>后序线索二叉树</h5><p>有右孩子时，右孩子是后序直接前驱；</p>
 <p>无右孩子时，左线索指向前驱；</p>
 <p>根结点无后继。</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260414114041507.png" class="" title="image-20260414114041507">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260414114041507.png" class="" title="image-20260414114041507">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260414114006849.png" class="" title="image-20260414114006849">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260414114006849.png" class="" title="image-20260414114006849">
 
 <p><strong>无需栈 &#x2F; 递归就能完成遍历</strong></p>
 <p>依靠线索可直接找到前驱、后继，遍历空间复杂度降到 (O(1))，普通二叉树递归 &#x2F; 栈遍历是 (O(h))。</p>
@@ -1134,66 +1134,66 @@
 <li>先序线索：后继好找、前驱难（无父指针时）；</li>
 <li>后序线索：前驱好找、<strong>后继难（无法高效求解）</strong>。</li>
 </ul>
-<h3 id="树的存储结构"><a href="#树的存储结构" class="headerlink" title="树的存储结构"></a>树的存储结构</h3><h4 id="双亲表示法"><a href="#双亲表示法" class="headerlink" title="双亲表示法"></a><strong>双亲</strong>表示法</h4><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415223100917.png" class="" title="image-20260415223100917">
+<h3 id="树的存储结构"><a href="#树的存储结构" class="headerlink" title="树的存储结构"></a>树的存储结构</h3><h4 id="双亲表示法"><a href="#双亲表示法" class="headerlink" title="双亲表示法"></a><strong>双亲</strong>表示法</h4><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415223100917.png" class="" title="image-20260415223100917">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415223120852.png" class="" title="image-20260415223120852">
-
-
-
-<h4 id="孩子表示法"><a href="#孩子表示法" class="headerlink" title="孩子表示法"></a>孩子表示法</h4><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415223211327.png" class="" title="image-20260415223211327">
-
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415223239110.png" class="" title="image-20260415223239110">
-
-<h4 id="孩子兄弟表示法"><a href="#孩子兄弟表示法" class="headerlink" title="孩子兄弟表示法"></a>孩子兄弟表示法</h4><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415223300899.png" class="" title="image-20260415223300899">
-
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415223322584.png" class="" title="image-20260415223322584">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415223120852.png" class="" title="image-20260415223120852">
 
 
 
-<h4 id="树，森林与二叉树的转换"><a href="#树，森林与二叉树的转换" class="headerlink" title="树，森林与二叉树的转换"></a>树，森林与二叉树的转换</h4><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415222939131.png" class="" title="image-20260415222939131">
+<h4 id="孩子表示法"><a href="#孩子表示法" class="headerlink" title="孩子表示法"></a>孩子表示法</h4><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415223211327.png" class="" title="image-20260415223211327">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415222955882.png" class="" title="image-20260415222955882">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415223239110.png" class="" title="image-20260415223239110">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415223012030.png" class="" title="image-20260415223012030">
+<h4 id="孩子兄弟表示法"><a href="#孩子兄弟表示法" class="headerlink" title="孩子兄弟表示法"></a>孩子兄弟表示法</h4><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415223300899.png" class="" title="image-20260415223300899">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415223556116.png" class="" title="image-20260415223556116">
-
-<h3 id="树的遍历-先根-后-层"><a href="#树的遍历-先根-后-层" class="headerlink" title="树的遍历-先根&#x2F;后&#x2F;层"></a>树的遍历-先根&#x2F;后&#x2F;层</h3><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415224859765.png" class="" title="image-20260415224859765">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415223322584.png" class="" title="image-20260415223322584">
 
 
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415224903070.png" class="" title="image-20260415224903070">
+<h4 id="树，森林与二叉树的转换"><a href="#树，森林与二叉树的转换" class="headerlink" title="树，森林与二叉树的转换"></a>树，森林与二叉树的转换</h4><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415222939131.png" class="" title="image-20260415222939131">
+
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415222955882.png" class="" title="image-20260415222955882">
+
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415223012030.png" class="" title="image-20260415223012030">
+
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415223556116.png" class="" title="image-20260415223556116">
+
+<h3 id="树的遍历-先根-后-层"><a href="#树的遍历-先根-后-层" class="headerlink" title="树的遍历-先根&#x2F;后&#x2F;层"></a>树的遍历-先根&#x2F;后&#x2F;层</h3><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415224859765.png" class="" title="image-20260415224859765">
 
 
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415224911944.png" class="" title="image-20260415224911944">
-
-<h3 id="森林的遍历-先-中"><a href="#森林的遍历-先-中" class="headerlink" title="森林的遍历-先&#x2F;中"></a>森林的遍历-先&#x2F;中</h3><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415225326000.png" class="" title="image-20260415225326000">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415224903070.png" class="" title="image-20260415224903070">
 
 
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415225421152.png" class="" title="image-20260415225421152">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415224911944.png" class="" title="image-20260415224911944">
+
+<h3 id="森林的遍历-先-中"><a href="#森林的遍历-先-中" class="headerlink" title="森林的遍历-先&#x2F;中"></a>森林的遍历-先&#x2F;中</h3><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415225326000.png" class="" title="image-20260415225326000">
+
+
+
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415225421152.png" class="" title="image-20260415225421152">
 
 <h3 id="哈夫曼树-WPL怎么求"><a href="#哈夫曼树-WPL怎么求" class="headerlink" title="哈夫曼树-WPL怎么求"></a>哈夫曼树-WPL怎么求</h3><h4 id="什么是哈夫曼树"><a href="#什么是哈夫曼树" class="headerlink" title="什么是哈夫曼树"></a>什么是哈夫曼树</h4><p>树的路径长度：从根节点到树中每一个节点的路径长度之和。</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415225627326.png" class="" title="image-20260415225627326">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415225627326.png" class="" title="image-20260415225627326">
 
 
 
 
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415225745479.png" class="" title="image-20260415225745479">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415225745479.png" class="" title="image-20260415225745479">
 
 
 
-<h4 id="哈夫曼树的构造"><a href="#哈夫曼树的构造" class="headerlink" title="哈夫曼树的构造"></a>哈夫曼树的构造</h4><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415225809767.png" class="" title="image-20260415225809767">
+<h4 id="哈夫曼树的构造"><a href="#哈夫曼树的构造" class="headerlink" title="哈夫曼树的构造"></a>哈夫曼树的构造</h4><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260415225809767.png" class="" title="image-20260415225809767">
 
 <p>生成哈夫曼树要进行n-1次的合并，产生n-1个新节点，总共2n-1个节点。</p>
-<h4 id="哈夫曼编码"><a href="#哈夫曼编码" class="headerlink" title="哈夫曼编码"></a>哈夫曼编码</h4><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260630222241486.png" class="" title="image-20260630222241486">
+<h4 id="哈夫曼编码"><a href="#哈夫曼编码" class="headerlink" title="哈夫曼编码"></a>哈夫曼编码</h4><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260630222241486.png" class="" title="image-20260630222241486">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260630222309121.png" class="" title="image-20260630222309121">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260630222309121.png" class="" title="image-20260630222309121">
 
 <p>很多教材标准答案为<strong>最多再编 3 个</strong>是没严格卡哈夫曼严格二叉约束；按纯前缀码 Kraft 上限能填 4 个，按哈夫曼严格二叉构造只能放 3 个（构造时要两两合并），考试主流答案是<strong>B.3</strong>。</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260630222401018.png" class="" title="image-20260630222401018">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260630222401018.png" class="" title="image-20260630222401018">
 
 
 
@@ -1256,63 +1256,63 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>Initial(S);<span class="comment">//将集合S的每个元素初始化为独立的单元素子集合。</span></span><br><span class="line"></span><br><span class="line"><span class="number">2.U</span>nion(S,Root1,Root2);<span class="comment">//R1和R2没有交集，将R2并入R1，R1R2都是S的子集合。</span></span><br><span class="line"></span><br><span class="line"><span class="number">3.F</span>ind(S,X);<span class="comment">//在集合S内查找元素X的所属集合，返回子集合根节点。</span></span><br></pre></td></tr></table></figure>
 
 <p>双亲表示法表示“森林”–“并查集”。实现会比较方便</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260416101334058.png" class="" title="image-20260416101334058">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260416101334058.png" class="" title="image-20260416101334058">
 
 <p>观察可以知道：有几个-1就有几个子集合，就有几个树。存储结构是静态数组。</p>
 <p>如何实现“查”代码</p>
 <p>给出元素一路访问父节点，直到父节点的data&#x3D;&#x3D;-1的时候返回当前节点。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> SIZE 13</span></span><br><span class="line"><span class="type">int</span> UFSets[SIZE];</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">Initial</span><span class="params">(<span class="type">int</span> S[])</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;SIZE;i++)</span><br><span class="line">        S[i]=<span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查操作</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Find</span><span class="params">(<span class="type">int</span> S[],<span class="type">int</span> x)</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(S[x]&gt;=<span class="number">0</span>)</span><br><span class="line">        x=s[x];</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//并操作</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Union</span><span class="params">(<span class="type">int</span> S[],<span class="type">int</span> root1,<span class="type">int</span> root2)</span>&#123;</span><br><span class="line">    <span class="comment">//root1代表的是其根节点在S数组当中的下表</span></span><br><span class="line">    <span class="keyword">if</span>(root1==root2)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    S[root2]=root1;</span><br><span class="line">    <span class="comment">//直接将root2根节点的下标从-1变成root1的下标，相当于增加子树；该情况在所有节点都是一个的情况退化为一条深度为N的树，查找的时间复杂度会变成O(n)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260416103549465.png" class="" title="image-20260416103549465">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260416103549465.png" class="" title="image-20260416103549465">
 
 <p>优化后构造的树的高度不会超过</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260416104214843.png" class="" title="image-20260416104214843">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260416104214843.png" class="" title="image-20260416104214843">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260416104601360.png" class="" title="image-20260416104601360">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260416104601360.png" class="" title="image-20260416104601360">
 
 <h3 id="数据结构可视化"><a href="#数据结构可视化" class="headerlink" title="数据结构可视化"></a><a target="_blank" rel="noopener" href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html">数据结构可视化</a></h3><h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>图不能为空，但是边可以为零。</p>
 <p>若一个图有n个结点，且有大于n-1条边，则这个图一定有环。</p>
 <p>简单图：无重复边，无顶点到自身的边。</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418201301458.png" class="" title="image-20260418201301458">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418201301458.png" class="" title="image-20260418201301458">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418201410700.png" class="" title="image-20260418201410700">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418201410700.png" class="" title="image-20260418201410700">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418202020992.png" class="" title="image-20260418202020992">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418202020992.png" class="" title="image-20260418202020992">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418202202853.png" class="" title="image-20260418202202853">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418202202853.png" class="" title="image-20260418202202853">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418202249918.png" class="" title="image-20260418202249918">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418202249918.png" class="" title="image-20260418202249918">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418202443285.png" class="" title="image-20260418202443285">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418202443285.png" class="" title="image-20260418202443285">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418202632305.png" class="" title="image-20260418202632305">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418202632305.png" class="" title="image-20260418202632305">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418202757455.png" class="" title="image-20260418202757455">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418202757455.png" class="" title="image-20260418202757455">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418202909225.png" class="" title="image-20260418202909225">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418202909225.png" class="" title="image-20260418202909225">
 
-<h3 id="图的存储方式"><a href="#图的存储方式" class="headerlink" title="图的存储方式"></a>图的存储方式</h3><h4 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h4>  <img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418214851262.png" class="" title="image-20260418214851262">
+<h3 id="图的存储方式"><a href="#图的存储方式" class="headerlink" title="图的存储方式"></a>图的存储方式</h3><h4 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h4>  <img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418214851262.png" class="" title="image-20260418214851262">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418215342275.png" class="" title="image-20260418215342275">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418215342275.png" class="" title="image-20260418215342275">
 
 <p>同理：</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418215656424.png" class="" title="image-20260418215656424">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418215656424.png" class="" title="image-20260418215656424">
 
-<h4 id="玲接表"><a href="#玲接表" class="headerlink" title="玲接表"></a>玲接表</h4><img src="image-20260418220448074.png" alt="image-20260418220448074" style="zoom:200%;" />
+<h4 id="玲接表"><a href="#玲接表" class="headerlink" title="玲接表"></a>玲接表</h4><img data-src="image-20260418220448074.png" alt="image-20260418220448074" style="zoom:200%;" />
 
- <img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418221631753.png" class="" title="image-20260418221631753">
+ <img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418221631753.png" class="" title="image-20260418221631753">
 
-<img src="image-20260418222317468.png" alt="image-20260418222317468"  />
+<img data-src="image-20260418222317468.png" alt="image-20260418222317468"  />
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418222904877.png" class="" title="image-20260418222904877">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418222904877.png" class="" title="image-20260418222904877">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418223707655.png" class="" title="image-20260418223707655">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418223707655.png" class="" title="image-20260418223707655">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418223734496.png" class="" title="image-20260418223734496">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418223734496.png" class="" title="image-20260418223734496">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418224014023.png" class="" title="image-20260418224014023">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418224014023.png" class="" title="image-20260418224014023">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418224051753.png" class="" title="image-20260418224051753">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260418224051753.png" class="" title="image-20260418224051753">
 
 <h4 id="图的基本操作"><a href="#图的基本操作" class="headerlink" title="图的基本操作"></a>图的基本操作</h4><p>主要考复杂度计算</p>
 <h3 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h3><h4 id="广度优先搜索BFS"><a href="#广度优先搜索BFS" class="headerlink" title="广度优先搜索BFS"></a>广度优先搜索BFS</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> visited[maxsizenum];</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">BFSTraverse</span><span class="params">(Graph G)</span>&#123;</span><br><span class="line">    <span class="comment">//初始化visited数组，申请辅助队列Q</span></span><br><span class="line">	<span class="keyword">for</span>(i&lt;<span class="number">0</span>;i&lt;G.vexnum;i++)</span><br><span class="line">        visited[i]=False;</span><br><span class="line">    InitQueue(Q);</span><br><span class="line">    <span class="comment">//循环扫描所有图中其他非联通的未扫描的其他节点。</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;G.vexnum;++i)</span><br><span class="line">        <span class="keyword">if</span>(!visited[i])</span><br><span class="line">            BFS(G,i);</span><br><span class="line">    <span class="comment">//如果连通分量扫描完毕之后，数据中还有其他的未扫描节点，从图中的当前节点开始下一个BFS扫描，直到所有的节点visited[i]==true.</span></span><br><span class="line">        </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">BFS</span><span class="params">(Graph G,<span class="type">int</span> v)</span>&#123;</span><br><span class="line">    visited(v);</span><br><span class="line">    visited[v]=TRUE;</span><br><span class="line">    Enqueue(Q,v);</span><br><span class="line">    <span class="comment">//访问结束入队</span></span><br><span class="line">    <span class="keyword">while</span>(!isEmpty(Q))&#123;</span><br><span class="line">        <span class="comment">//如果队列还有元素就出队头元素并访问都元素的其他相邻节点</span></span><br><span class="line">        DeQueue(Q,v);</span><br><span class="line">        <span class="keyword">for</span>(W=firstNeighbor(G,v);w&gt;=<span class="number">0</span>;w=NextNeighbor(G,v,w))&#123;</span><br><span class="line">            <span class="keyword">if</span>(!visited[w])&#123;</span><br><span class="line">                visit(i);</span><br><span class="line">                visited[i]=TRUE;</span><br><span class="line">                EnQueue(G,w);</span><br><span class="line">                <span class="comment">//如果访问结束继续进队，优先将当前出队元素的所有相邻节点扫描完毕。</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1345,9 +1345,9 @@
 <p>对于无向图进行BFS&#x2F;DFS遍历调用BFS&#x2F;DFS的次数等于连通分量</p>
 <p>对于连通图，只需调用一次BFS&#x2F;DFS</p>
 <p>对于有向图：</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420192925493.png" class="" title="image-20260420192925493">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420192925493.png" class="" title="image-20260420192925493">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420193055721.png" class="" title="image-20260420193055721">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420193055721.png" class="" title="image-20260420193055721">
 
 
 
@@ -1362,12 +1362,12 @@
 <p>Kruskal算法</p>
 <p>每次选择一条权值最小的边，如果重复连通视为无效边，舍去重新寻找，直到所有点连通。</p>
 <p>O(|E|log2 |E|)</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420204206264.png" class="" title="image-20260420204206264">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420204206264.png" class="" title="image-20260420204206264">
 
 <h4 id="最短路径算法"><a href="#最短路径算法" class="headerlink" title="最短路径算法"></a>最短路径算法</h4><p><strong>Dijkstra算法</strong></p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420205246993.png" class="" title="image-20260420205246993">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420205246993.png" class="" title="image-20260420205246993">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420205251857.png" class="" title="image-20260420205251857">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420205251857.png" class="" title="image-20260420205251857">
 
 <p>在进行手动计算的时候，将无向图化为有向图，在纸上画出图之后，从起点开始；</p>
 <p>第一步画起点，找到距离起点N0最近的可达点N1，画出N0–&gt;N1的弧和权值；</p>
@@ -1376,15 +1376,15 @@
 <p>这样找到的N0——-&gt;Nn为什么是最短的？</p>
 <p>因为，每次找到的都是从N0到当前节点的最短路径。</p>
 <p>在寻找最短路径的过程中，需要不断观察新的点的箭头来自哪些点，需要从剪头来源进行评估路径长度，只有最短的全程路径,箭头才可以存在，点集(A,B,C,E),新点D,即A-&gt;B-&gt;C-&gt;D的路径长度为10，而A-&gt;B-&gt;E-&gt;D的路径长度为9，那么剪头就只能是从E-&gt;D;</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420224917067.png" class="" title="image-20260420224917067">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420224917067.png" class="" title="image-20260420224917067">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420225648435.png" class="" title="image-20260420225648435">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420225648435.png" class="" title="image-20260420225648435">
 
 <p>注意：生成的是N0出发到每个点最短路径的走法，而不是里面任意两点。</p>
 <p><strong>BFS算法</strong></p>
 <p>单源最短路径 </p>
 <p>每对顶点间最短路径</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420211016589.png" class="" title="image-20260420211016589">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420211016589.png" class="" title="image-20260420211016589">
 
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> visited[MAX_VERTEX_NUM]; <span class="comment">// 访问标记数组，初始全为false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 广度优先遍历（从顶点v出发，遍历图G）</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">BFS</span><span class="params">(Graph G, <span class="type">int</span> v)</span>&#123;    </span><br><span class="line">    visit(v);                 <span class="comment">// 访问初始顶点v（如打印、数据处理）</span></span><br><span class="line">    visited[v] = TRUE;        <span class="comment">// 标记v为已访问</span></span><br><span class="line">    Enqueue(Q, v);             <span class="comment">// 顶点v入队（队列Q存储待访问顶点）</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(!isEmpty(Q))&#123;       <span class="comment">// 队列不为空时循环</span></span><br><span class="line">        DeQueue(Q, v);         <span class="comment">// 队首顶点出队（作为当前处理顶点）</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 遍历当前顶点v的所有邻接点</span></span><br><span class="line">        <span class="keyword">for</span>(w = FirstNeighbor(G, v); w &gt;= <span class="number">0</span>; w = NextNeighbor(G, v, w))&#123;</span><br><span class="line">            <span class="keyword">if</span>(!visited[w])&#123;       <span class="comment">// 若邻接点w未被访问</span></span><br><span class="line">                visit(w);           <span class="comment">// 访问顶点w</span></span><br><span class="line">                visited[w] = TRUE;  <span class="comment">// 标记w为已访问</span></span><br><span class="line">                EnQueue(Q, w);       <span class="comment">// w入队，等待后续处理</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1393,11 +1393,11 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 求顶点u到其他顶点的最短路径（无权图专用）</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">BFS_MIN_Distance</span><span class="params">(Graph G, <span class="type">int</span> u)</span>&#123;</span><br><span class="line">    <span class="comment">// 1. 初始化所有顶点的距离与前驱</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;G.vexnum; ++i)&#123;</span><br><span class="line">        d[i] = ∞;          <span class="comment">// 初始距离设为无穷大，表示暂时不可达</span></span><br><span class="line">        path[i] = <span class="number">-1</span>;      <span class="comment">// 初始无前驱顶点</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 初始化起点u的状态</span></span><br><span class="line">    d[u] = <span class="number">0</span>;              <span class="comment">// 起点到自身的路径长度为0</span></span><br><span class="line">    visited[u] = TRUE;     <span class="comment">// 标记起点已访问</span></span><br><span class="line">    EnQueue(Q, u);         <span class="comment">// 起点入队，启动BFS层次遍历</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. BFS主过程（核心逻辑）</span></span><br><span class="line">    <span class="keyword">while</span>(!isEmpty(Q))&#123;     <span class="comment">// 队列不为空时，持续处理顶点</span></span><br><span class="line">        DeQueue(Q, u);      <span class="comment">// 队首顶点u出队，作为当前处理顶点</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 遍历u的所有邻接点</span></span><br><span class="line">        <span class="keyword">for</span>(w = FirstNeighbor(G, u); w &gt;= <span class="number">0</span>; w = NextNeighbor(G, u, w))&#123;</span><br><span class="line">            <span class="keyword">if</span>(!visited[w])&#123;        <span class="comment">// 仅处理未访问的邻接点（保证路径最短）</span></span><br><span class="line">                d[w] = d[u] + <span class="number">1</span>;    <span class="comment">// 路径长度 = 当前顶点u的距离 + 1（边权为1）</span></span><br><span class="line">                path[w] = u;        <span class="comment">// 记录w的前驱为u（路径经过u到达w）</span></span><br><span class="line">                visited[w] = TRUE;  <span class="comment">// 标记w已访问，后续不再处理</span></span><br><span class="line">                EnQueue(Q, w);      <span class="comment">// w入队，后续处理其邻接点</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>Floyd算法</strong></p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420212147910.png" class="" title="image-20260420212147910">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420212147910.png" class="" title="image-20260420212147910">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420212712794.png" class="" title="image-20260420212712794">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420212712794.png" class="" title="image-20260420212712794">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420213438915.png" class="" title="image-20260420213438915">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260420213438915.png" class="" title="image-20260420213438915">
 
 <h4 id="有向无环图"><a href="#有向无环图" class="headerlink" title="有向无环图"></a>有向无环图</h4><p>DAG图</p>
 <p><strong>做题方法</strong></p>
@@ -1408,14 +1408,14 @@
 <p>​	5.根据运算优先级层层合并.</p>
 <p>​	6.运算DAG图不唯一，每次只操作一个op运算符，左右视为运算结果</p>
 <p>​	7.根据运算顺序决定放在第几层</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260421104449785.png" class="" title="image-20260421104449785">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260421104449785.png" class="" title="image-20260421104449785">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260421104508155.png" class="" title="image-20260421104508155">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260421104508155.png" class="" title="image-20260421104508155">
 
 <p><strong>拓扑排序</strong></p>
-<img src="image-20260421105655813.png" alt="image-20260421105655813" style="zoom:200%;" />
+<img data-src="image-20260421105655813.png" alt="image-20260421105655813" style="zoom:200%;" />
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260421110034904.png" class="" title="image-20260421110034904">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260421110034904.png" class="" title="image-20260421110034904">
 
 <p>拓扑排序：在图论中，由一个<strong>有向无环图</strong>的顶点组成的序列，当且仅当满足下列条件时，称为该图的一个拓扑排序：</p>
 <p>① 每个顶点出现且只出现一次。</p>
@@ -1432,11 +1432,11 @@
 
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//逆拓扑排序（DFS 版）在 DFS 遍历中，一个顶点的所有后继节点都被访问完之后，才会回溯到该顶点。因此，在 DFS 递归回溯时记录顶点，最终得到的序列就是逆拓扑序（把序列反转就是拓扑序）</span></span><br><span class="line"><span class="type">int</span> topoSeq[MaxVertexNum];  <span class="comment">//存储逆拓扑序列</span></span><br><span class="line"><span class="type">int</span> index = <span class="number">0</span>;              <span class="comment">//序列下标</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">DFSTraverse</span><span class="params">(Graph G)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v=<span class="number">0</span>; v&lt;G.vexnum; ++v)</span><br><span class="line">        visited[v] = FALSE;</span><br><span class="line">    index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v=<span class="number">0</span>; v&lt;G.vexnum; ++v)</span><br><span class="line">        <span class="keyword">if</span>(!visited[v])</span><br><span class="line">            DFS(G, v);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">DFS</span><span class="params">(Graph G, <span class="type">int</span> v)</span>&#123;</span><br><span class="line">    visited[v] = TRUE;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> w=FirstNeighbor(G, v); w&gt;=<span class="number">0</span>; w=NextNeighbor(G, v, w))&#123;</span><br><span class="line">        <span class="keyword">if</span>(!visited[w])&#123;</span><br><span class="line">            DFS(G, w);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 回溯时记录顶点，此时所有后继都已访问完成</span></span><br><span class="line">    topoSeq[index++] = v;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用后，topoSeq数组就是逆拓扑序列</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//改进</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MaxVertexNum 100</span></span><br><span class="line"><span class="type">bool</span> visited[MaxVertexNum];   <span class="comment">// 标记是否已访问</span></span><br><span class="line"><span class="type">bool</span> onStack[MaxVertexNum];   <span class="comment">// 标记是否在当前递归栈中（核心！）</span></span><br><span class="line"><span class="type">int</span> topoSeq[MaxVertexNum];    <span class="comment">// 存储逆拓扑序列</span></span><br><span class="line"><span class="type">int</span> index;                    <span class="comment">// 序列下标</span></span><br><span class="line"><span class="type">bool</span> hasCycle;                <span class="comment">// 标记是否有环</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// DFS核心：逆拓扑排序 + 环检测</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">DFS</span><span class="params">(Graph G, <span class="type">int</span> v)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(hasCycle) <span class="keyword">return</span>;      <span class="comment">// 发现环，直接退出</span></span><br><span class="line">    </span><br><span class="line">    visited[v] = <span class="literal">true</span>;</span><br><span class="line">    onStack[v] = <span class="literal">true</span>;        <span class="comment">// 入递归栈</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 访问所有邻接点</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> w=FirstNeighbor(G,v); w&gt;=<span class="number">0</span>; w=NextNeighbor(G,v,w))&#123;</span><br><span class="line">        <span class="keyword">if</span>(!visited[w])&#123;</span><br><span class="line">            DFS(G, w);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(onStack[w])&#123;   <span class="comment">// 邻接点在当前递归栈中 → 发现环！</span></span><br><span class="line">            hasCycle = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    onStack[v] = <span class="literal">false</span>;       <span class="comment">// 出递归栈（回溯）</span></span><br><span class="line">    topoSeq[index++] = v;     <span class="comment">// 回溯时加入序列（逆拓扑序）</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对外接口：逆拓扑排序（带环检测）</span></span><br><span class="line"><span class="type">bool</span> <span class="title function_">ReverseTopoSort</span><span class="params">(Graph G)</span>&#123;</span><br><span class="line">    <span class="comment">// 初始化</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v=<span class="number">0</span>; v&lt;G.vexnum; v++)&#123;</span><br><span class="line">        visited[v] = <span class="literal">false</span>;</span><br><span class="line">        onStack[v] = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    index = <span class="number">0</span>;</span><br><span class="line">    hasCycle = <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 遍历所有顶点</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v=<span class="number">0</span>; v&lt;G.vexnum; v++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!visited[v] &amp;&amp; !hasCycle)&#123;</span><br><span class="line">            DFS(G, v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 最终判断：有环 或 序列长度不匹配</span></span><br><span class="line">    <span class="keyword">return</span> !hasCycle &amp;&amp; (index == G.vexnum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260421113017635.png" class="" title="image-20260421113017635">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260421113017635.png" class="" title="image-20260421113017635">
 
 
 
-<h4 id="关键路径"><a href="#关键路径" class="headerlink" title="关键路径"></a>关键路径</h4><img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260421113057131.png" class="" title="image-20260421113057131">
+<h4 id="关键路径"><a href="#关键路径" class="headerlink" title="关键路径"></a>关键路径</h4><img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260421113057131.png" class="" title="image-20260421113057131">
 
 <p><strong>源点</strong>：入度为 0，代表工程开始</p>
 <p><strong>汇点</strong>：出度为 0，代表工程结束</p>
@@ -1474,9 +1474,9 @@
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">事件最晚时间 vs 活动最晚时间：核心区别</span><br><span class="line"><span class="number">1.</span> 事件最晚发生时间 vl(k)</span><br><span class="line">对象：顶点（事件）</span><br><span class="line">含义：不拖慢整个工程，这个事件最晚必须在第几分钟发生（瞬间完成）</span><br><span class="line">计算：按逆拓扑序，vl(k) = <span class="built_in">min</span>( 后继vl − 边权 )</span><br><span class="line">汇点：vl(汇点) = ve(汇点)</span><br><span class="line"><span class="number">2.</span> 活动最晚开始时间 l(i)</span><br><span class="line">对象：弧（活动）</span><br><span class="line">含义：不拖慢整个工程，这个活动最晚必须在第几分钟开始做</span><br><span class="line">计算：l(i) = 终点事件vl − 活动耗时（边权）</span><br><span class="line">晚一秒开始，就会耽误终点事件，拖慢总工期！</span><br></pre></td></tr></table></figure>
 
 <p>问题 1：AOE 网与 AOV 网的核心区别是什么？<br>答案：AOV 网用顶点表示活动，关注活动先后关系；AOE 网用边表示活动、顶点表示事件，关注活动耗时与工程总工期，AOE 网可求关键路径，AOV 网仅做拓扑排序。<br>问题 2：为什么关键路径是 “最长路径” 却代表工程 “最短工期”？<br>答案：因为 AOE 网中活动可并行，工程必须等所有路径都完成才能结束；最长路径是最后完成的路径，它的耗时就是整个工程无法再压缩的最短时间。<br>问题 3：计算关键路径时，ve 与 vl 的计算顺序为什么必须分别用拓扑序与逆拓扑序？<br>答案：ve 依赖前驱事件，必须按拓扑序从前到后算；vl 依赖后继事件，必须按逆拓扑序从后到前算，顺序错误会导致无法取值或结果错误。</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260421120101643.png" class="" title="image-20260421120101643">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260421120101643.png" class="" title="image-20260421120101643">
 
-<h2 id="索引结构与散列技术"><a href="#索引结构与散列技术" class="headerlink" title="索引结构与散列技术"></a>索引结构与散列技术</h2><p>依照893的大纲区别王道408书的不同，在考纲当中，第七章第八章与教材有关考点内容如下：<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260423134226341.png" class="" title="image-20260423134226341"></p>
+<h2 id="索引结构与散列技术"><a href="#索引结构与散列技术" class="headerlink" title="索引结构与散列技术"></a>索引结构与散列技术</h2><p>依照893的大纲区别王道408书的不同，在考纲当中，第七章第八章与教材有关考点内容如下：<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260423134226341.png" class="" title="image-20260423134226341"></p>
 <h3 id="索引结构"><a href="#索引结构" class="headerlink" title="索引结构"></a>索引结构</h3><p><strong>存储方法：</strong></p>
 <ol>
 <li>顺序表</li>
@@ -1491,28 +1491,28 @@
 <p>对于索引顺序结构，由于数据表中的记录按关键字有序，则 可对一组记录建立一个索引项，这种索引称为<strong>稀疏索引</strong>。对于分块有序（可能不满足索引顺序结构）的数据表，也可 以建立稀疏索引。</p>
 <p><strong>无论是稠密索引还是稀疏索引，都属于线性索引。</strong></p>
 <p>索引表是有序的，数据表不是有序的；故索引表可以使用顺序查找，折半查找。</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260423140320667.png" class="" title="image-20260423140320667">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260423140320667.png" class="" title="image-20260423140320667">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260423140335078.png" class="" title="image-20260423140335078">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260423140335078.png" class="" title="image-20260423140335078">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260423140508004.png" class="" title="image-20260423140508004">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260423140508004.png" class="" title="image-20260423140508004">
 
 
 
 <p><strong>倒排表</strong></p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260423140812249.png" class="" title="image-20260423140812249">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260423140812249.png" class="" title="image-20260423140812249">
 
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260423140825205.png" class="" title="image-20260423140825205">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260423140825205.png" class="" title="image-20260423140825205">
 
 <p>通常倒排表为多种次关键字同时使用，查找时可以 <strong>以集合运算的方式组合查找</strong>。  但对倒排表进行集合运算也需要一些运算空间， 当文件发生变化时，要同时维护更新这些索引， 而这种更新的工作量会很大。</p>
 <p>倒排索引的特点分析  • 支持高效检索。  • 运算复杂度高。比较适合于当大文件里面内 容比较稳定的情况下，典型应用：光盘上的数据检索。</p>
 <p><strong>多级索引</strong>  </p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260423141134048.png" class="" title="image-20260423141134048">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260423141134048.png" class="" title="image-20260423141134048">
 
 <p>• 建立二级索引的索引，叫做<strong>三级索引</strong>。在三级索引情况下，访 问外存次数等于读入索引次数再加上1次读取数据。也可以建 四级索引，五级索引，…。这种多级索引结构形成一种m叉树， 也称<strong>m路搜索树</strong>。</p>
 <p>  • 多级索引是一种<strong>静态结构</strong>，各级索引均为顺序表，每次修改都 要重组索引。因此，当数据表在使用过程中记录变动较多时， 应采用<strong>动态索引</strong>，例如<strong>二叉排序树、B-树</strong>，它们本身是<strong>层次结构</strong>，无需建立多级索引，而且<strong>建立索引表的过程即排序过程</strong>。</p>
 <h3 id="散列技术-对应王道408的7-5"><a href="#散列技术-对应王道408的7-5" class="headerlink" title="散列技术(对应王道408的7.5)"></a>散列技术(对应王道408的7.5)</h3><p>一种不用比较直接计算出记录所在地址，直接进行数据存取的方法。</p>
-<img src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260423142227620.png" class="" title="image-20260423142227620">
+<img data-src="/2026/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20260423142227620.png" class="" title="image-20260423142227620">
 
 <p>Hash技术的原始面目：  Hash，就是把任意长度的输入，通过散列算法，变换成固定长度的 输出，该输出就是散列值。</p>
 <p>装填因子：  散列表空间大小为m，填入表中的结点数是n n&lt;m；则称α&#x3D;n&#x2F;m为散列表的装填因子，常取值于[0.65,0.9]</p>
@@ -1705,6 +1705,7 @@
   
   <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
   <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
